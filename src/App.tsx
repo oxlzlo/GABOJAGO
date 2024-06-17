@@ -1,7 +1,10 @@
+import ChakraUiTest from '@/components/ChakraUiTest';
+
 function App() {
   return (
     <>
-      <h1>hello</h1>
+      <div>Im app component</div>
+      <ChakraUiTest />
     </>
   );
 }

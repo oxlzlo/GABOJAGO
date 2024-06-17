@@ -1,2 +1,12 @@
 :root {
+  --color-yellow: #fcd118;
+  --color-red: #ff3636;
+
+  font-size: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
