@@ -1,6 +1,11 @@
 :root {
-  --color-yellow: #fcd118;
-  --color-red: #ff3636;
+  --color-main: #006769;
+  --color-banner: #cdfad5;
+  --color-background: #f7f9f2;
+  --color-red: #ff3969;
+  --color-blue: #3a5aff;
+  --color-gray: #777777;
+  --color-logo: #005153;
 
   font-size: 10px;
 }
