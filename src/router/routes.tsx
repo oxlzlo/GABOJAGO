@@ -8,27 +8,36 @@ import SignUp from '@/pages/SignUp';
 
 export const routes = [
   {
-    paht: '/',
-    element: <Layout children />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-
-      {
-        path: '/shopping-basket',
-        element: <ShoppingBasket />,
-      },
-      {
-        path: '/products-detail',
-        element: <ProductDetail />,
-      },
-      {
-        path: '/payment',
-        element: <Payment />,
-      },
-    ],
+    path: '/',
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
+  },
+  {
+    path: '/shopping-basket',
+    element: (
+      <Layout>
+        <ShoppingBasket />,
+      </Layout>
+    ),
+  },
+  {
+    path: '/products-detail',
+    element: (
+      <Layout>
+        <ProductDetail />,
+      </Layout>
+    ),
+  },
+  {
+    path: '/payment',
+    element: (
+      <Layout>
+        <Payment />
+      </Layout>
+    ),
   },
   {
     path: '/signup',
