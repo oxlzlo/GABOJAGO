@@ -1,9 +1,9 @@
 import { getLodgment } from '@/api/fetchLodgment';
-import { Lodgemnt } from '@/lib/types/lodgemnt';
+import { Lodgement } from '@/lib/types/lodgement';
 import { useEffect, useState } from 'react';
 
 const LodgmentList = () => {
-  const [lodgments, setLodgments] = useState<Lodgemnt[]>([]);
+  const [lodgments, setLodgments] = useState<Lodgement[]>([]);
 
   useEffect(() => {
     const fetchLodgments = async () => {

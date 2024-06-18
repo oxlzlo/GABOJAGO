@@ -1,4 +1,4 @@
-export type Lodgemnt = {
+export type Lodgement = {
   id: number;
   image: string;
   name: string;

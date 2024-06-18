@@ -1,3 +1,4 @@
+import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Payment from '@/pages/Payment';
 import ProductDetail from '@/pages/ProductDetail';
@@ -7,8 +8,27 @@ import SignUp from '@/pages/SignUp';
 
 export const routes = [
   {
-    path: '/',
-    element: <Home />,
+    paht: '/',
+    element: <Layout children />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+
+      {
+        path: '/shopping-basket',
+        element: <ShoppingBasket />,
+      },
+      {
+        path: '/products-detail',
+        element: <ProductDetail />,
+      },
+      {
+        path: '/payment',
+        element: <Payment />,
+      },
+    ],
   },
   {
     path: '/signup',
@@ -17,17 +37,5 @@ export const routes = [
   {
     path: '/signin',
     element: <SignIn />,
-  },
-  {
-    path: '/shopping-basket',
-    element: <ShoppingBasket />,
-  },
-  {
-    path: '/products-detail',
-    element: <ProductDetail />,
-  },
-  {
-    path: '/payment',
-    element: <Payment />,
   },
 ];
