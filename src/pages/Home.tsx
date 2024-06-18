@@ -1,5 +1,5 @@
 import LodgmentList from '@/components/LodgmentList';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 
 const Home = () => {
   return (

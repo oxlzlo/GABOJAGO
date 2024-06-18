@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Payment from '@/pages/Payment';
 import ProductDetail from '@/pages/ProductDetail';
-import ShoppingBasket from '@/pages/ShoppingBasket';
+import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 
@@ -19,7 +19,7 @@ export const routes = [
     path: '/shopping-basket',
     element: (
       <Layout>
-        <ShoppingBasket />,
+        <Cart />,
       </Layout>
     ),
   },
@@ -46,5 +46,17 @@ export const routes = [
   {
     path: '/signin',
     element: <SignIn />,
+  },
+  {
+    path: '/cart',
+    element: <Cart />,
+  },
+  {
+    path: '/products-detail',
+    element: <ProductDetail />,
+  },
+  {
+    path: '/payment',
+    element: <Payment />,
   },
 ];
