@@ -1,43 +1,14 @@
-import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Payment from '@/pages/Payment';
 import ProductDetail from '@/pages/ProductDetail';
-import ShoppingBasket from '@/pages/ShoppingBasket';
+import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 
 export const routes = [
   {
     path: '/',
-    element: (
-      <Layout>
-        <Home />
-      </Layout>
-    ),
-  },
-  {
-    path: '/shopping-basket',
-    element: (
-      <Layout>
-        <ShoppingBasket />,
-      </Layout>
-    ),
-  },
-  {
-    path: '/products-detail',
-    element: (
-      <Layout>
-        <ProductDetail />,
-      </Layout>
-    ),
-  },
-  {
-    path: '/payment',
-    element: (
-      <Layout>
-        <Payment />
-      </Layout>
-    ),
+    element: <Home />,
   },
   {
     path: '/signup',
@@ -46,5 +17,17 @@ export const routes = [
   {
     path: '/signin',
     element: <SignIn />,
+  },
+  {
+    path: '/cart',
+    element: <Cart />,
+  },
+  {
+    path: '/products-detail',
+    element: <ProductDetail />,
+  },
+  {
+    path: '/payment',
+    element: <Payment />,
   },
 ];
