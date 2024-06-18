@@ -1,5 +1,6 @@
 import { getLodgment } from '@/api/fetchLodgment';
 import { Lodgement } from '@/lib/types/lodgement';
+import { Image, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 const LodgmentList = () => {
@@ -15,17 +16,17 @@ const LodgmentList = () => {
 
   return (
     <>
-      <h1>LodgmentList</h1>
-      <ul>
+      <UnorderedList display="flex" alignItems="center" gap="5rem" justifyContent="center">
         {lodgments.map((lodgment) => (
-          <li key={lodgment.id}>
-            <img src={lodgment.image} alt={lodgment.name} />
-            <p>{lodgment.name}</p>
-            <p>{lodgment.price}</p>
-            <p>{lodgment.description}</p>
-          </li>
+          <ListItem key={lodgment.id} listStyleType="none" display="flex" flexDirection="column" gap="1rem">
+            <Image src={lodgment.image} alt={lodgment.name} />
+            <Text fontSize="1.5rem">{lodgment.name}</Text>
+            <Text fontSize="1.5rem">{lodgment.address}</Text>
+            <Text>{lodgment.telephone}</Text>
+            <Text>{lodgment.comment}</Text>
+          </ListItem>
         ))}
-      </ul>
+      </UnorderedList>
     </>
   );
 };

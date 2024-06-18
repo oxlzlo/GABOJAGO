@@ -2,6 +2,18 @@ export type Lodgement = {
   id: number;
   image: string;
   name: string;
+  address: string;
+  telephone: string;
+  comment: string;
+  room: Room;
+};
+
+export type Room = {
+  id: number;
+  name: string;
+  type: string;
+  extra_price: number;
   price: number;
-  description: string;
+  comment: string;
+  max_person: number;
 };

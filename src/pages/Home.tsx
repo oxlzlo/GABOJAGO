@@ -1,9 +1,10 @@
-import { Box, Heading } from '@chakra-ui/react';
+import LodgmentList from '@/components/LodgmentList';
+import { Box } from '@chakra-ui/react';
 
 const Home = () => {
   return (
     <Box padding="14rem 3rem 7rem">
-      <Heading size="3xl">Home</Heading>
+      <LodgmentList />
     </Box>
   );
 };
