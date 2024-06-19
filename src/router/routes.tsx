@@ -19,7 +19,7 @@ export const routes = [
     path: '/shopping-basket',
     element: (
       <Layout>
-        <Cart />,
+        <Cart />
       </Layout>
     ),
   },
@@ -27,7 +27,7 @@ export const routes = [
     path: '/products-detail',
     element: (
       <Layout>
-        <ProductDetail />,
+        <ProductDetail />
       </Layout>
     ),
   },
