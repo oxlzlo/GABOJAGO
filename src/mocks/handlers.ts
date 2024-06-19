@@ -69,6 +69,23 @@ let lodgment = [
       max_person: 4,
     },
   },
+  {
+    id: 4,
+    image: 'https://picsum.photos/200/300',
+    name: '부산 숙소',
+    address: '부산시 해운대구 123-456',
+    telephone: '051-1234-5678',
+    comment: '부산 중심부에 위치한 아늑한 숙소입니다.',
+    room: {
+      id: 4,
+      name: '객실 5번',
+      type: '팬션',
+      extra_price: 600000,
+      price: 500000,
+      comment: '방5 입니다.',
+      max_person: 5,
+    },
+  },
 ];
 
 export const handlers = [

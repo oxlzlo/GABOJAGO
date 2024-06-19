@@ -9,6 +9,7 @@ const customTheme = extendTheme({
     blue: 'var(--color-blue)',
     gray: 'var(--color-gray)',
     logo: 'var(--color-logo)',
+    btnHover: 'var(--color-background)',
   },
 });
 

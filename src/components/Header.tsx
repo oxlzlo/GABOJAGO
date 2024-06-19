@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, Button, Spacer } from '@chakra-ui/react';
+import Logo from '@/assets/logo.svg?react';
 
 const Header = () => {
   return (
@@ -12,17 +13,19 @@ const Header = () => {
       right="0"
       zIndex="50"
       background="white">
-      <Flex align="center" paddingX="28" paddingY="6">
-        <Heading size="3xl">logo</Heading>
+      <Flex align="center" paddingX="4.75rem" paddingY="1.5rem">
+        <Heading>
+          <Logo />
+        </Heading>
         <Spacer />
-        <Box display="flex" gap="3">
+        <Box display="flex" gap="1.5rem">
           <Button
-            border="1px"
-            borderRadius="5"
+            padding="2rem"
+            background="white"
+            border=".1rem solid "
             borderColor="main"
-            size="lg"
-            padding="8"
-            fontSize="2xl"
+            borderRadius=".5rem"
+            fontSize="2rem"
             _hover={{
               background: 'main',
               color: 'white',
@@ -30,15 +33,15 @@ const Header = () => {
             로그인
           </Button>
           <Button
-            color="white"
-            border="1px"
-            borderRadius="5"
-            borderColor="gray.300"
-            background="main"
             padding="2rem"
-            fontSize="2xl"
+            background="main"
+            border=".1rem solid "
+            borderRadius=".5rem"
+            borderColor="main"
+            color="white"
+            fontSize="2rem"
             _hover={{
-              background: 'white',
+              background: 'btnHover',
               color: 'main',
             }}>
             회원가입
