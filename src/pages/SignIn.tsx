@@ -32,7 +32,7 @@ const SignIn = () => {
                 fontSize="1.5rem"
                 color="white"
                 _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
-                Log in
+                Sign in
               </Button>
               <Box width="19rem" fontSize="1.2rem" marginTop="2rem" color="main">
                 <Flex justify="space-between">
