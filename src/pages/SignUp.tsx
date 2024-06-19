@@ -4,7 +4,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <Box position="relative" backgroundColor="background" height="100vh">
       <Box
@@ -44,7 +44,7 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
 const InputBox = emotionStyled.input`
   width : 40rem;
