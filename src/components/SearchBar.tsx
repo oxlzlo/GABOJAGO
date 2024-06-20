@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Text, position } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
 import React from 'react';
-import SearchIcon from '@/assets/search.svg?react';
+import { SearchIcon } from '@chakra-ui/icons';
 
 const SearchBar = () => {
   return (
@@ -54,39 +54,6 @@ const SearchBar = () => {
                 />
               </Flex>
             </InputGroup>
-
-            {/* <Input
-              width="20rem"
-              height="6.7rem"
-              fontSize="1.6rem"
-              border=".1rem solid var(--color-main)"
-              borderRight="none"
-              borderRadius=".8rem 0 0 .8rem"
-              backgroundColor="white"
-              type="date"
-              _focusVisible={{ outline: 'none' }}
-            />
-            <Text
-              height="6.7rem"
-              fontSize="4em"
-              fontWeight="30"
-              backgroundColor="white"
-              borderTop=".1rem solid var(--color-main)"
-              borderBottom=".1rem solid var(--color-main)"
-              color="main">
-              |
-            </Text>
-            <Input
-              width="20rem"
-              height="6.7rem"
-              fontSize="1.6rem"
-              border=".1rem solid var(--color-main)"
-              borderLeft="none"
-              borderRadius="0 .8rem .8rem 0"
-              type="date"
-              _focusVisible={{ outline: 'none' }}
-              backgroundColor="white"
-            /> */}
 
             <Input
               width="26rem"
