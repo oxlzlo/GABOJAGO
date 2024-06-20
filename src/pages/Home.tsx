@@ -9,6 +9,7 @@ const Home = () => {
         width="100%"
         height="50vh"
         objectFit="cover"
+        opacity=".6"
       />
       <Box padding="4rem 15rem 7rem">
         <LodgmentList />
