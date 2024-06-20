@@ -17,12 +17,15 @@ const LodgmentItem = () => {
   return (
     <>
       <Box>
-        <Flex paddingTop="10rem" justify="center" flexDirection="column" alignItems="center">
+        <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <ul>
             {lodgments.map((lodgment, index) => (
               <li key={lodgment.id}>
                 <Heading>{lodgment.name}</Heading>
                 <Image src={lodgment.image} alt={lodgment.name} width="40vw" height="40vh" />
+                <p>{lodgment.address}</p>
+                <p>{lodgment.telephone}</p>
+                <p>{lodgment.comment}</p>
                 {lodgment.room && (
                   <ul>
                     {lodgment.room.map((item, index) => (
