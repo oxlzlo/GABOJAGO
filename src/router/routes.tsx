@@ -16,7 +16,7 @@ export const routes = [
     ),
   },
   {
-    path: '/shopping-basket',
+    path: '/cart',
     element: (
       <Layout>
         <Cart />
@@ -46,9 +46,5 @@ export const routes = [
   {
     path: '/signin',
     element: <SignIn />,
-  },
-  {
-    path: '/cart',
-    element: <Cart />,
   },
 ];

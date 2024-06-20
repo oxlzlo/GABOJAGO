@@ -1,18 +1,15 @@
-import React from 'react';
+import CartItem from '@/components/CartItem';
+import CartPayment from '@/components/CartPayment';
+import { Box } from '@chakra-ui/react';
 
 const Cart = () => {
-  const { cart, total, cleatBasket } = useGlobalContext();
 
-  if (cart.length === 0) {
-    return (
-      <section className="cart">
-        <header>
-          <h1></h1>
-        </header>
-      </section>
-    )
-  }
-  return <div>Cart</div>;
+  return (
+  <Box>
+    <CartItem />
+    <CartPayment />
+  </Box>
+    );
 };
 
 export default Cart;

@@ -1,10 +1,10 @@
+import React from 'react';
 import LodgmentList from '@/components/LodgmentList';
 import { Box, Image } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { settings } from '@/lib/constants/slickCarousel';
-import React from 'react';
 import SearchBar from '@/components/SearchBar';
 
 const Home = () => {
