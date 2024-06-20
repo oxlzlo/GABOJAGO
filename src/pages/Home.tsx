@@ -15,7 +15,7 @@ const Home = () => {
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".7"
+            opacity=".6"
           />
         </Box>
         <Box>
@@ -24,7 +24,7 @@ const Home = () => {
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".7"
+            opacity=".6"
           />
         </Box>
         <Box>
@@ -33,7 +33,7 @@ const Home = () => {
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".7"
+            opacity=".6"
           />
         </Box>
       </Slider>

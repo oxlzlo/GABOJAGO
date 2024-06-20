@@ -17,7 +17,7 @@ const LodgmentItem = () => {
   return (
     <>
       <Box>
-        <Flex paddingTop="8rem" justify="center" flexDirection="column" alignItems="center">
+        <Flex paddingTop="10rem" justify="center" flexDirection="column" alignItems="center">
           <ul>
             {lodgments.map((lodgment, index) => (
               <li key={lodgment.id}>
