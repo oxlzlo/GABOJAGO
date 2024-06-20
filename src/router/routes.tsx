@@ -24,7 +24,7 @@ export const routes = [
     ),
   },
   {
-    path: '/LodgmentItem:id',
+    path: '/lodgment/:id',
     element: (
       <Layout>
         <LodgmentItem />

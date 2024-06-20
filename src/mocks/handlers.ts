@@ -212,7 +212,7 @@ export const handlers = [
     return HttpResponse.json(lodgment);
   }),
   // 단일 숙박 조회
-  http.get('api/lodgment/:id', (request) => {
+  http.get('/api/lodgment/:id', (request) => {
     const { id } = request.params;
     const lodgmentItem = lodgment.find((item) => item.id === parseInt(id, 10));
     if (lodgmentItem) {

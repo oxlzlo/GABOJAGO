@@ -1,5 +1,5 @@
 export type Lodgement = {
-  id: number;
+  id: string;
   image: string;
   name: string;
   address: string;
