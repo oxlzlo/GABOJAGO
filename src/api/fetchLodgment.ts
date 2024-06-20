@@ -1,6 +1,19 @@
 import axios from 'axios';
 
-export const getLodgment = async () => {
-  const response = await axios.get('/api/lodgment');
-  return response.data;
+export const fetchLodgment = async () => {
+  try {
+    const response = await axios.get('/api/lodgment');
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchLodgmentById = async (id: string) => {
+  try {
+    const response = await axios.get(`/api/lodgment/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };

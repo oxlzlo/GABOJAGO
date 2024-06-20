@@ -1,10 +1,10 @@
 import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Payment from '@/pages/Payment';
-import ProductDetail from '@/pages/ProductDetail';
 import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
+import LodgmentItem from '@/pages/LodgmentItem';
 
 export const routes = [
   {
@@ -24,10 +24,10 @@ export const routes = [
     ),
   },
   {
-    path: '/products-detail',
+    path: '/lodgment/:id',
     element: (
       <Layout>
-        <ProductDetail />
+        <LodgmentItem />
       </Layout>
     ),
   },
@@ -50,13 +50,5 @@ export const routes = [
   {
     path: '/cart',
     element: <Cart />,
-  },
-  {
-    path: '/products-detail',
-    element: <ProductDetail />,
-  },
-  {
-    path: '/payment',
-    element: <Payment />,
   },
 ];

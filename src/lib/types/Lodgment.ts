@@ -1,15 +1,15 @@
-export type Lodgement = {
-  id: number;
+export type Lodgment = {
+  id: string;
   image: string;
   name: string;
   address: string;
   telephone: string;
   comment: string;
-  room: Room;
+  room: Room[];
 };
 
 export type Room = {
-  id: number;
+  id: string;
   name: string;
   type: string;
   extra_price: number;
