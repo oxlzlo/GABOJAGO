@@ -220,7 +220,6 @@ export const handlers = [
   http.get('/api/lodgment/:id', (request) => {
     const { id } = request.params;
     const lodgmentItem = lodgment.find((item) => item.id === id);
-    console.log(lodgmentItem);
     if (lodgmentItem) {
       return HttpResponse.json(lodgmentItem);
     } else {

@@ -1,5 +1,6 @@
 export type Lodgment = {
   id: string;
+  price: number;
   image: string;
   name: string;
   address: string;

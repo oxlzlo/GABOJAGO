@@ -9,7 +9,7 @@ import SearchBar from '@/components/SearchBar';
 const Home = () => {
   return (
     <Box paddingTop="8rem">
-      <Box position="relative">
+      <Box position="relative" overflowX="hidden">
         <Slider {...settings}>
           <Box>
             <Image
@@ -41,7 +41,6 @@ const Home = () => {
         </Slider>
         <SearchBar />
       </Box>
-
       <Box padding="4rem 15rem 7rem">
         <LodgmentList />
       </Box>
