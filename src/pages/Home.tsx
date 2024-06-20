@@ -15,16 +15,16 @@ const Home = () => {
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".6"
+            opacity=".7"
           />
         </Box>
         <Box>
           <Image
-            src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243545773020840.jpg"
+            src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243560922193661.jpg"
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".6"
+            opacity=".7"
           />
         </Box>
         <Box>
@@ -33,7 +33,7 @@ const Home = () => {
             width="100%"
             height="50vh"
             objectFit="cover"
-            opacity=".6"
+            opacity=".7"
           />
         </Box>
       </Slider>
