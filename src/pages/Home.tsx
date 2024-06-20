@@ -4,13 +4,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { settings } from '@/lib/constants/slickCarousel';
-import React from 'react';
 import SearchBar from '@/components/SearchBar';
 
 const Home = () => {
   return (
     <Box paddingTop="8rem">
-      <Box position="relative">
+      <Box position="relative" overflowX="hidden">
         <Slider {...settings}>
           <Box>
             <Image
@@ -42,7 +41,6 @@ const Home = () => {
         </Slider>
         <SearchBar />
       </Box>
-
       <Box padding="4rem 15rem 7rem">
         <LodgmentList />
       </Box>
