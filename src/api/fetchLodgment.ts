@@ -9,7 +9,7 @@ export const fetchLodgment = async () => {
   }
 };
 
-export const fetchLodgmentById = async (id: any) => {
+export const fetchLodgmentById = async (id: string) => {
   try {
     const response = await axios.get(`/api/lodgment/${id}`);
     return response.data;
