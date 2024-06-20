@@ -1,24 +1,8 @@
 import { fetchLodgmentById } from '@/api/fetchLodgment';
+import { Lodgment } from '@/lib/types/Lodgment';
 import { Flex, Heading, Image } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-type Lodgment = {
-  id: number;
-  image: string;
-  name: string;
-  room: Room[];
-};
-
-type Room = {
-  id: number;
-  name: string;
-  type: string;
-  extra_price: number;
-  price: number;
-  comment: string;
-  max_person: number;
-};
 
 const LodgmentItem = () => {
   const { id } = useParams<{ id: string }>();

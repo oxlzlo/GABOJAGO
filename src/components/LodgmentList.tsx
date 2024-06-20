@@ -1,11 +1,11 @@
 import { fetchLodgment } from '@/api/fetchLodgment';
-import { Lodgement } from '@/lib/types/lodgement';
+import { Lodgment } from '@/lib/types/Lodgment';
 import { Box, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const LodgmentList = () => {
-  const [lodgments, setLodgments] = useState<Lodgement[]>([]);
+  const [lodgments, setLodgments] = useState<Lodgment[]>([]);
 
   useEffect(() => {
     fetchLodgment().then((response) => {
