@@ -14,9 +14,12 @@ const SearchBar = () => {
         <Box width="90.3vw" height="6.5vh">
           <Flex justifyContent="space-between" align="center">
             <InputGroup width="29.9vw">
-              <InputLeftElement width="3vw" height="6.5vh">
-                <SearchIcon w={9} h={9} color="gray" />
-              </InputLeftElement>
+              <InputLeftElement
+                width="3vw"
+                height="6.5vh"
+                paddingLeft=".5vw"
+                children={<SearchIcon color="gray" w={9} h={9} />}
+              />
               <Input
                 height="6.5vh"
                 padding="0 5.5rem"
@@ -42,7 +45,7 @@ const SearchBar = () => {
             </InputGroup>
 
             <InputGroup width="18.1vw">
-              <InputLeftElement width="3vw" height="6.5vh">
+              <InputLeftElement width="3vw" height="6.5vh" paddingLeft=".5vw">
                 <People />
               </InputLeftElement>
               <Input
