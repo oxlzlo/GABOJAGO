@@ -1,5 +1,5 @@
 import { fetchLodgmentById } from '@/api/fetchLodgment';
-import { Lodgment } from '@/lib/types/Lodgment';
+import { Lodgment, Room } from '@/lib/types/Lodgment';
 import { Box, Flex, Heading, Image, List, ListItem, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,7 +15,7 @@ const LodgmentItem = () => {
     });
   }, [id]);
 
-  const handlePayment = (room) => {
+  const handlePayment = (room: Room) => {
     navgiation(`/payment/${room.id}`, { state: room });
   };
 
@@ -54,8 +54,20 @@ const LodgmentItem = () => {
                           {item.name}
                         </Heading>
                         <Text fontSize="sm">{item.type}</Text>
-                        <Text fontSize="sm">Extra Price: {item.extra_price}</Text>
-                        <Text fontSize="sm">Price: {item.price}</Text>
+                        <Text fontSize="sm">
+                          Extra Price:
+                          {item.extra_price.toLocaleString('ko-KR', {
+                            style: 'currency',
+                            currency: 'KRW',
+                          })}
+                        </Text>
+                        <Text fontSize="sm">
+                          Price:
+                          {item.price.toLocaleString('ko-KR', {
+                            style: 'currency',
+                            currency: 'KRW',
+                          })}
+                        </Text>
                         <Text fontSize="sm" mb={2}>
                           {item.comment}
                         </Text>
