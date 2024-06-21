@@ -23,7 +23,9 @@ const Header = () => {
         </Heading>
         <Spacer />
         <Box display="flex" gap="1.5rem">
-          <Cart width="4rem" height="3.5rem" cursor="pointer" />
+          <Link to="/cart">
+            <Cart width="4rem" height="3.5rem" cursor="pointer" />
+          </Link>
           <Link to="/signin">
             <Button
               padding="2rem"
@@ -32,6 +34,7 @@ const Header = () => {
               borderColor="main"
               borderRadius=".5rem"
               fontSize="2rem"
+              color="main"
               _hover={{
                 background: 'main',
                 color: 'white',

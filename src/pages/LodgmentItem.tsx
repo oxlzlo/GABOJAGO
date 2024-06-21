@@ -1,6 +1,6 @@
 import { fetchLodgmentById } from '@/api/fetchLodgment';
 import { Lodgment, Room } from '@/lib/types/Lodgment';
-import { Box, Flex, Heading, Image, List, ListItem, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image, List, ListItem, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -71,9 +71,38 @@ const LodgmentItem = () => {
                         <Text fontSize="sm" mb={2}>
                           {item.comment}
                         </Text>
-                        <Flex flexDirection="column" justifyContent="center" alignItems="end">
-                          <button onClick={() => handlePayment(item)}>지금 예약하기</button>
-                          <button onClick={handleCartAdd}>장바구니에 추가하기</button>
+                        <Flex flexDirection="column" justifyContent="center" alignItems="end" gap="0.6rem">
+                          <Button
+                            paddingY="1.8rem"
+                            paddingX="4.07rem"
+                            background="white"
+                            border=".1rem solid "
+                            borderColor="main"
+                            borderRadius=".5rem"
+                            fontSize="1.5rem"
+                            color="main"
+                            _hover={{
+                              background: 'main',
+                              color: 'white',
+                            }}
+                            onClick={() => handlePayment(item)}>
+                            지금 예약하기
+                          </Button>
+                          <Button
+                            padding="1.8rem"
+                            background="main"
+                            border=".1rem solid "
+                            borderRadius=".5rem"
+                            borderColor="main"
+                            color="white"
+                            fontSize="1.5rem"
+                            _hover={{
+                              background: 'btnHover',
+                              color: 'main',
+                            }}
+                            onClick={handleCartAdd}>
+                            장바구니에 추가하기
+                          </Button>
                         </Flex>
                       </ListItem>
                     ))}
