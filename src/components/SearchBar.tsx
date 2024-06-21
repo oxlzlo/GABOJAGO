@@ -48,7 +48,7 @@ const SearchBar = () => {
               <Input
                 width="18.1vw"
                 height="6.5vh"
-                padding="0 3vw"
+                padding="0 3.5vw"
                 border=".1rem solid var(--color-main)"
                 borderRadius=".8rem"
                 backgroundColor="white"
