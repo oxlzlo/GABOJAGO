@@ -13,22 +13,22 @@ const SignUp = () => {
         left="0"
         right="0"
         position="absolute"
-        width="60rem"
-        height="70rem"
+        width="41.7vw"
+        height="68.4vh"
         margin="auto"
         backgroundColor="white">
-        <Flex flexDirection="column" justify="center" align="center" marginTop="15rem">
+        <Flex flexDirection="column" justify="center" align="center" marginTop="14.6vh">
           <Logo />
-          <Box marginTop="5rem">
+          <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
               <InputBox placeholder="E-mail *" />
               <InputBox placeholder="Password *" />
               <InputBox placeholder="Confirm Password *" />
               <InputBox placeholder="Name *" />
               <Button
-                width="40rem"
-                height="4rem"
-                marginTop="1.5rem"
+                width="27.8vw"
+                height="4.9vh"
+                marginTop="2vh"
                 borderRadius=".5rem"
                 backgroundColor="main"
                 fontSize="1.5rem"
@@ -36,6 +36,13 @@ const SignUp = () => {
                 _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
                 Sign up
               </Button>
+              <Box width="13.2vw" fontSize="1.2rem" marginTop="2.5vh" color="main">
+                <Flex justify="space-between">
+                  <Text cursor="pointer">패스워드 재설정</Text>
+                  <Text>|</Text>
+                  <Text cursor="pointer">이메일로 회원가입</Text>
+                </Flex>
+              </Box>
             </Flex>
           </Box>
         </Flex>
@@ -47,10 +54,10 @@ const SignUp = () => {
 export default SignUp;
 
 const InputBox = emotionStyled.input`
-  width : 40rem;
-  height: 4rem;
-  margin-top: 1.5rem;
-  padding: 2rem 3rem;
+  width : 27.8vw;
+  height: 4.9vh;
+  margin-top: 2vh;
+  padding: 2.6vh 2.1vw;
   border: .1rem solid var(--color-main);
   border-radius: .5rem;
 
