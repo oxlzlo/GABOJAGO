@@ -3,13 +3,7 @@ import { InputGroup, InputLeftElement, Input, InputProps } from '@chakra-ui/reac
 import { CalendarIcon } from '@chakra-ui/icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { DatepickerStyleProps } from '../lib/types/Datepicker';
-
-interface CustomInputProps extends InputProps {
-  value: string;
-  onClick: () => void;
-  style?: React.CSSProperties;
-}
+import { DatepickerStyleProps, CustomInputProps } from '../lib/types/Datepicker';
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick, style, ...props }, ref) => (
   <Input
