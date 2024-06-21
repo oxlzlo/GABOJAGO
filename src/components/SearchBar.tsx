@@ -1,11 +1,40 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 
 const SearchBar = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [peopleCount, setPeopleCount] = useState(2);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setShowDropdown((prevState) => !prevState);
+  };
+
+  const incrementPeopleCount = () => {
+    setPeopleCount((prevCount) => prevCount + 1);
+  };
+
+  const decrementPeopleCount = () => {
+    setPeopleCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div
       className="searchBar"
@@ -44,7 +73,7 @@ const SearchBar = () => {
               </Flex>
             </InputGroup>
 
-            <InputGroup width="18.1vw">
+            <InputGroup width="18.1vw" position="relative" ref={dropdownRef}>
               <InputLeftElement width="3vw" height="6.5vh" paddingLeft=".5vw">
                 <People />
               </InputLeftElement>
@@ -56,14 +85,45 @@ const SearchBar = () => {
                 borderRadius=".8rem"
                 backgroundColor="white"
                 fontSize="1.6rem"
-                placeholder="성인 2명"
+                placeholder={`성인 ${peopleCount}명`}
                 _focusVisible={{ outline: 'none' }}
               />
               <InputRightElement
                 children={
-                  <ChevronDownIcon w={10} h={10} color="gray" marginTop="3.5vh" marginRight="1vw" cursor="pointer" />
+                  <ChevronDownIcon
+                    w={10}
+                    h={10}
+                    color="gray"
+                    marginTop="3.5vh"
+                    marginRight="1vw"
+                    cursor="pointer"
+                    onClick={toggleDropdown}
+                  />
                 }
               />
+              {showDropdown && (
+                <Box
+                  position="absolute"
+                  top="100%"
+                  right="0"
+                  width="80%"
+                  border=".1rem solid var(--color-main)"
+                  borderRadius=".8rem"
+                  backgroundColor="white"
+                  zIndex="10"
+                  padding="1vh 1vw"
+                  height="8vh">
+                  <Flex height="100%" justify="space-between" align="center" fontSize="1.5rem">
+                    <Button onClick={decrementPeopleCount} fontSize="2rem" fontWeight="200">
+                      -
+                    </Button>
+                    <Box>성인 {peopleCount}명</Box>
+                    <Button onClick={incrementPeopleCount} fontSize="2rem" fontWeight="200">
+                      +
+                    </Button>
+                  </Flex>
+                </Box>
+              )}
             </InputGroup>
 
             <Button
