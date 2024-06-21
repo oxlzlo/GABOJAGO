@@ -3,6 +3,7 @@ import emotionStyled from '@emotion/styled';
 import React from 'react';
 import { SearchIcon, CalendarIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
+import Datepicker from './Datepicker';
 
 const SearchBar = () => {
   return (
@@ -35,59 +36,8 @@ const SearchBar = () => {
               borderRadius=".8rem"
               backgroundColor="white">
               <Flex align="center">
-                <InputGroup width="13.5vw">
-                  <InputLeftElement width="3vw" height="5vh">
-                    {/* <CalendarIcon w={8} h={8} color="gray" /> */}
-                  </InputLeftElement>
-                  <Input
-                    height="5vh"
-                    fontSize="1.6rem"
-                    // paddingLeft="3vw"
-                    border="none"
-                    borderRadius="0"
-                    borderRight=".1rem solid var(--color-main)"
-                    type="date"
-                    _focusVisible={{ outline: 'none' }}
-                    // css={{
-                    //   '::-webkit-calendar-picker-indicator': {
-                    //     display: 'none',
-                    //   },
-                    //   '::-webkit-inner-spin-button': {
-                    //     display: 'none',
-                    //   },
-                    //   '::-webkit-clear-button': {
-                    //     display: 'none',
-                    //   },
-                    // }}
-                  />
-                </InputGroup>
-
-                {/* 여기부터 라이브러리 써서 달력 구현 해볼 예정 */}
-                <InputGroup width="13.5vw">
-                  <InputLeftElement width="3vw" height="5vh">
-                    <CalendarIcon w={8} h={8} color="gray" />
-                  </InputLeftElement>
-                  <Input
-                    height="5vh"
-                    fontSize="1.6rem"
-                    paddingLeft="3vw"
-                    border="none"
-                    borderRadius="0"
-                    type="date"
-                    _focusVisible={{ outline: 'none' }}
-                    css={{
-                      '::-webkit-calendar-picker-indicator': {
-                        display: 'none',
-                      },
-                      '::-webkit-inner-spin-button': {
-                        display: 'none',
-                      },
-                      '::-webkit-clear-button': {
-                        display: 'none',
-                      },
-                    }}
-                  />
-                </InputGroup>
+                <Datepicker style={{ borderRight: '.1rem solid var(--color-main)' }} />
+                <Datepicker />
               </Flex>
             </InputGroup>
 
