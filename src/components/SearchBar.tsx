@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
 import React, { useState, useRef, useEffect } from 'react';
-import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 
@@ -115,11 +115,11 @@ const SearchBar = () => {
                   height="8vh">
                   <Flex height="100%" justify="space-between" align="center" fontSize="1.5rem">
                     <Button onClick={decrementPeopleCount} fontSize="2rem" fontWeight="200">
-                      -
+                      <MinusIcon w={6} h={6} color="gray" />
                     </Button>
                     <Box>성인 {peopleCount}명</Box>
                     <Button onClick={incrementPeopleCount} fontSize="2rem" fontWeight="200">
-                      +
+                      <AddIcon w={6} h={6} color="gray" />
                     </Button>
                   </Flex>
                 </Box>
