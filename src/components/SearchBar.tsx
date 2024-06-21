@@ -1,7 +1,7 @@
-import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Text, position } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
 import React from 'react';
-import { SearchIcon, CalendarIcon } from '@chakra-ui/icons';
+import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 
@@ -58,6 +58,11 @@ const SearchBar = () => {
                 fontSize="1.6rem"
                 placeholder="성인 2명"
                 _focusVisible={{ outline: 'none' }}
+              />
+              <InputRightElement
+                children={
+                  <ChevronDownIcon w={10} h={10} color="gray" marginTop="3.5vh" marginRight="1vw" cursor="pointer" />
+                }
               />
             </InputGroup>
 
