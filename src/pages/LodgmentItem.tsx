@@ -2,17 +2,26 @@ import { fetchLodgmentById } from '@/api/fetchLodgment';
 import { Lodgment } from '@/lib/types/Lodgment';
 import { Box, Flex, Heading, Image, List, ListItem, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const LodgmentItem = () => {
   const { id } = useParams<string>();
   const [lodgments, setLodgments] = useState<Lodgment[]>([]);
+  const navgiation = useNavigate();
 
   useEffect(() => {
     fetchLodgmentById(id as string).then((response) => {
       setLodgments([response]);
     });
   }, [id]);
+
+  const handlePayment = (room) => {
+    navgiation(`/payment/${room.id}`, { state: room });
+  };
+
+  const handleCartAdd = () => {
+    navgiation('/cart');
+  };
 
   return (
     <>
@@ -35,10 +44,12 @@ const LodgmentItem = () => {
                   숙소 소개
                 </Text>
                 <Text fontSize="1.8rem">{lodgment.comment}</Text>
+                <br />
                 {lodgment.room && (
-                  <List>
+                  <List display="flex" flexDirection="column" gap="1rem">
+                    <h1>객실을 선택하세요</h1>
                     {lodgment.room.map((item) => (
-                      <ListItem key={item.id} borderTop="1px" borderColor="gray.100" pt={2}>
+                      <ListItem key={item.id} border="1px" borderColor="gray" padding="2rem" borderRadius="0.8rem">
                         <Heading as="h3" size="md" mb={2}>
                           {item.name}
                         </Heading>
@@ -48,6 +59,10 @@ const LodgmentItem = () => {
                         <Text fontSize="sm" mb={2}>
                           {item.comment}
                         </Text>
+                        <Flex flexDirection="column" justifyContent="center" alignItems="end">
+                          <button onClick={() => handlePayment(item)}>지금 예약하기</button>
+                          <button onClick={handleCartAdd}>장바구니에 추가하기</button>
+                        </Flex>
                       </ListItem>
                     ))}
                   </List>

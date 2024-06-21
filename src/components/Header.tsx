@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Button, Spacer } from '@chakra-ui/react';
 import Logo from '@/assets/logo.svg?react';
+import Cart from '@/assets/images/cart.svg?react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -22,6 +23,7 @@ const Header = () => {
         </Heading>
         <Spacer />
         <Box display="flex" gap="1.5rem">
+          <Cart width="4rem" height="3.5rem" cursor="pointer" />
           <Link to="/signin">
             <Button
               padding="2rem"

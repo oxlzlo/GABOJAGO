@@ -32,7 +32,7 @@ export const routes = [
     ),
   },
   {
-    path: '/payment',
+    path: '/payment/:roomId',
     element: (
       <Layout>
         <Payment />
