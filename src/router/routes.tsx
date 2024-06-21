@@ -47,4 +47,8 @@ export const routes = [
     path: '/signin',
     element: <SignIn />,
   },
+  {
+    path: '/payment',
+    element: <Payment />,
+  },
 ];

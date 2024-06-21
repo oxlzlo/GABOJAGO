@@ -1,4 +1,3 @@
-import React from 'react';
 import LodgmentList from '@/components/LodgmentList';
 import { Box, Image } from '@chakra-ui/react';
 import Slider from 'react-slick';

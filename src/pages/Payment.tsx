@@ -6,6 +6,10 @@ const Payment = () => {
   const location = useLocation();
   const roomData = location.state;
 
+  if (!roomData) {
+    return <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>;
+  }
+
   return (
     <Box padding="14rem 3rem 7rem">
       <Text fontSize="md">객실 ID: {roomId}</Text>
