@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Text, position } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
 import React from 'react';
-import { SearchIcon, CalendarIcon } from '@chakra-ui/icons';
+import { SearchIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 
@@ -61,9 +61,9 @@ const SearchBar = () => {
             <Button
               width="12.5vw"
               height="6.5vh"
-              fontSize="3rem"
               borderRadius=".8rem"
               backgroundColor="main"
+              fontSize="3rem"
               color="white"
               _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
               Search

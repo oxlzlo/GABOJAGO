@@ -7,15 +7,15 @@ import { DatepickerStyleProps, CustomInputProps } from '../lib/types/Datepicker'
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick, style, ...props }, ref) => (
   <Input
+    height="5vh"
+    paddingLeft="3vw"
+    border="none"
+    borderRadius="0"
+    fontSize="1.6rem"
     placeholder="연도. 월. 일"
     ref={ref}
     value={value}
     onClick={onClick}
-    height="5vh"
-    fontSize="1.6rem"
-    paddingLeft="3vw"
-    border="none"
-    borderRadius="0"
     type="text"
     readOnly
     _focusVisible={{ outline: 'none' }}
@@ -50,9 +50,9 @@ function Datepicker({ style }: DatepickerStyleProps) {
   return (
     <InputGroup width="13.5vw">
       <InputLeftElement
+        height="100%"
         paddingLeft="1.5vw"
         pointerEvents="auto"
-        height="100%"
         children={<CalendarIcon color="gray" w={8} h={8} />}
         onClick={() => {
           const datepicker = document.getElementById('customDatepicker');
