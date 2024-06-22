@@ -1,11 +1,15 @@
 :root {
   --color-main: #006769;
+  /* --color-primary: #006769; */
+  /* --color-secondary: #777777 */
   --color-banner: #cdfad5;
+  --color-white: #ffffff;
   --color-background: #f7f9f2;
-  --color-red: #ff3969;
+  --color-price: #ff3969;
   --color-blue: #3a5aff;
   --color-gray: #777777;
   --color-logo: #005153;
+  --color-primaryHover: #003637;
 
   font-size: 10px;
 }

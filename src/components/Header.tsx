@@ -52,8 +52,8 @@ const Header = () => {
               color="white"
               fontSize="2rem"
               _hover={{
-                background: 'btnHover',
-                color: 'main',
+                background: 'primaryHover',
+                color: 'white',
               }}>
               회원가입
             </Button>
