@@ -34,9 +34,9 @@ const SignIn = () => {
                 _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
                 Sign in
               </Button>
-              <Box width="13.2vw" fontSize="1.2rem" marginTop="2.5vh" color="main">
+              <Box width="12vw" fontSize="1.2rem" marginTop="2.5vh" marginLeft="2vw" color="main">
                 <Flex justify="space-between">
-                  <Text cursor="pointer">패스워드 재설정</Text>
+                  <Text cursor="pointer">아이디 찾기</Text>
                   <Text>|</Text>
                   <Text cursor="pointer">이메일로 회원가입</Text>
                 </Flex>
