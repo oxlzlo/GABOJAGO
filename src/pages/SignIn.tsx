@@ -3,8 +3,15 @@ import '../index.css';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
+  const handleSignupClick = () => {
+    navigate('/signup');
+  };
+
   return (
     <Box position="relative" backgroundColor="background" height="100vh">
       <Box
@@ -38,7 +45,9 @@ const SignIn = () => {
                 <Flex justify="space-between">
                   <Text cursor="pointer">아이디 찾기</Text>
                   <Text>|</Text>
-                  <Text cursor="pointer">이메일로 회원가입</Text>
+                  <Text cursor="pointer" onClick={handleSignupClick}>
+                    이메일로 회원가입
+                  </Text>
                 </Flex>
               </Box>
             </Flex>
