@@ -41,7 +41,7 @@ const Home = () => {
         </Slider>
         <SearchBar />
       </Box>
-      <Box padding="4rem 15rem 7rem">
+      <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
         <LodgmentList />
       </Box>
     </Box>
