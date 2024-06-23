@@ -23,7 +23,8 @@ const LodgmentList = () => {
           justifyContent="center"
           width="auto"
           height="auto"
-          border="1px solid #e2e8f0"
+          border="1px solid "
+          borderColor="grayLight"
           borderRadius="0.8rem"
           gap="1.5rem"
           _hover={{

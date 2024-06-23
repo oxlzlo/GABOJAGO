@@ -49,7 +49,12 @@ const LodgmentItem = () => {
                   <List display="flex" flexDirection="column" gap="1rem">
                     <h1>객실을 선택하세요</h1>
                     {lodgment.room.map((item) => (
-                      <ListItem key={item.id} border="1px" borderColor="gray" padding="2rem" borderRadius="0.8rem">
+                      <ListItem
+                        key={item.id}
+                        border="1px solid"
+                        borderColor="grayLight"
+                        padding="2rem"
+                        borderRadius="0.8rem">
                         <Heading as="h3" size="md" mb={2}>
                           {item.name}
                         </Heading>
@@ -97,8 +102,8 @@ const LodgmentItem = () => {
                             color="white"
                             fontSize="1.5rem"
                             _hover={{
-                              background: 'btnHover',
-                              color: 'main',
+                              background: 'primaryHover',
+                              color: 'white',
                             }}
                             onClick={handleCartAdd}>
                             장바구니에 추가하기

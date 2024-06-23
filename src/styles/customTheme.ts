@@ -15,6 +15,7 @@ const customTheme = extendTheme({
     logo: 'var(--color-logo)',
     btnHover: 'var(--color-background)',
     primaryHover: 'var(--color-primaryHover)',
+    grayLight: 'var(--color-gray-light)',
   },
 });
 
