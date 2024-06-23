@@ -3,7 +3,7 @@ import LodgmentList from '@/components/LodgmentList';
 import { Box, Image } from '@chakra-ui/react';
 import { settings } from '@/lib/constants/slickCarousel';
 import SearchBar from '@/components/SearchBar';
-import { fetchAccommodation } from '@/api/fetchLodgment';
+import { fetchAccommodation } from '@/api';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
