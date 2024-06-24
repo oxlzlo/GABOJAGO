@@ -129,9 +129,9 @@ const SearchBar = () => {
             <Button
               width="12.5vw"
               height="6.5vh"
-              fontSize="3rem"
               borderRadius=".8rem"
               backgroundColor="main"
+              fontSize="3rem"
               color="white"
               _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
               Search

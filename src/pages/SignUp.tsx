@@ -39,13 +39,13 @@ const SignUp = () => {
   };
 
   return (
-    <Box position="relative" backgroundColor="background" height="100vh">
+    <Box position="relative" height="100vh" backgroundColor="background">
       <Box
+        position="absolute"
         top="0"
         bottom="0"
         left="0"
         right="0"
-        position="absolute"
         width="41.7vw"
         height="68.4vh"
         margin="auto"
