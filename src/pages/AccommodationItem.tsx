@@ -58,49 +58,52 @@ const LodgmentItem = () => {
                     currency: 'KRW',
                   })}
                 </Text>
-                <Image src={lodgment.image} alt={lodgment.name} width="40vw" height="63.8vh" marginBottom="1rem" />
+                <Image src={lodgment.image} alt={lodgment.name} width="52vw" height="63.8vh" marginBottom="1rem" />
                 <Text fontSize="1.5rem">{lodgment.address}</Text>
                 <Text fontSize="1.5rem">{lodgment.telephone}</Text>
                 <Text marginTop="2rem" fontSize="1.5rem" borderBottom="1px solid gray">
                   숙소 소개
                 </Text>
                 <Text fontSize="1.8rem">{lodgment.comment}</Text>
-                <br />
                 {lodgment.room && (
                   <List display="flex" flexDirection="column" gap="1rem">
-                    <h1>객실을 선택하세요</h1>
+                    <Heading>객실을 선택하세요</Heading>
                     {lodgment.room.map((item) => (
                       <ListItem
                         key={item.id}
-                        border="1px solid"
+                        borderBottom="1px solid"
                         borderColor="grayLight"
                         padding="2rem"
-                        borderRadius="0.8rem">
-                        {item.image && (
-                          <Image src={item.image} alt={item.name} width="20vw" height="30vh" marginBottom="1rem" />
-                        )}
-                        <Heading as="h3" size="md" mb={2}>
-                          {item.name}
-                        </Heading>
-                        <Text fontSize="sm">{item.type}</Text>
-                        <Text fontSize="sm">
-                          Extra Price:
-                          {item.extra_price.toLocaleString('ko-KR', {
-                            style: 'currency',
-                            currency: 'KRW',
-                          })}
-                        </Text>
-                        <Text fontSize="sm">
-                          Price:
-                          {item.price.toLocaleString('ko-KR', {
-                            style: 'currency',
-                            currency: 'KRW',
-                          })}
-                        </Text>
-                        <Text fontSize="sm" mb={2}>
-                          {item.comment}
-                        </Text>
-                        <Flex flexDirection="column" justifyContent="center" alignItems="end" gap="0.6rem">
+                        display="flex"
+                        justifyContent="space-between">
+                        <Flex gap="4rem">
+                          {item.image && (
+                            <Image src={item.image} alt={item.name} width="20vw" height="30vh" marginBottom="1rem" />
+                          )}
+                          <Flex flexDirection="column" gap=".5rem">
+                            <Heading fontSize="2rem">{item.name}</Heading>
+                            <Box display="flex" flexDirection="column" paddingLeft=".5rem" gap=".5rem">
+                              <Text fontSize="1.6rem">{item.type}</Text>
+                              <Text fontSize="1.6rem">
+                                Extra Price:
+                                {item.extra_price.toLocaleString('ko-KR', {
+                                  style: 'currency',
+                                  currency: 'KRW',
+                                })}
+                              </Text>
+
+                              <Text fontSize="1.6rem">{item.comment}</Text>
+                            </Box>
+                          </Flex>
+                        </Flex>
+                        <Flex flexDirection="column" justifyContent="end" alignItems="start" gap="0.6rem">
+                          <Text fontSize="1.6rem">
+                            Price:
+                            {item.price.toLocaleString('ko-KR', {
+                              style: 'currency',
+                              currency: 'KRW',
+                            })}
+                          </Text>
                           <Button
                             paddingY="1.8rem"
                             paddingX="4.07rem"
