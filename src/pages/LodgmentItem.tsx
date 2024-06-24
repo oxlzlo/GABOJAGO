@@ -11,7 +11,16 @@ const LodgmentItem = () => {
   const navgiation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement | null>(null);
-  const [selectedRoom, setSelectedRoom] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState<Room>({
+    id: '',
+    name: '',
+    type: '',
+    extra_price: 0,
+    price: 0,
+    comment: '',
+    max_person: 0,
+    image: '',
+  });
 
   const handleConfirm = () => {
     if (selectedRoom) {

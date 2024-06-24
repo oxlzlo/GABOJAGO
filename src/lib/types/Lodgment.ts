@@ -11,6 +11,7 @@ export type Lodgment = {
 
 export type Room = {
   id: string;
+  image: string;
   name: string;
   type: string;
   extra_price: number;
