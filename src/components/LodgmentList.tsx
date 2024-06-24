@@ -1,4 +1,4 @@
-import { fetchLodgment } from '@/api/fetchLodgment';
+import { fetchLodgment } from '@/api';
 import { Lodgment } from '@/lib/types/Lodgment';
 import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -23,8 +23,9 @@ const LodgmentList = () => {
           justifyContent="center"
           width="auto"
           height="auto"
-          border="1px solid #e2e8f0"
-          borderRadius="1rem"
+          border="1px solid "
+          borderColor="grayLight"
+          borderRadius="0.8rem"
           gap="1.5rem"
           _hover={{
             cursor: 'pointer',
@@ -32,7 +33,13 @@ const LodgmentList = () => {
             boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
           }}>
           <Link to={`/lodgment/${lodgment.id}`}>
-            <Image src={lodgment.image} alt={lodgment.name} width="100%" height="25.7vh" borderRadius="1rem 1rem 0 0" />
+            <Image
+              src={lodgment.image}
+              alt={lodgment.name}
+              width="100%"
+              height="25.7vh"
+              borderRadius="0.8rem 0.8rem 0 0"
+            />
             <Box display="flex" flexDirection="column" width="100%" height="25.7vh" paddingLeft="1rem" gap=".5rem">
               <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
                 {lodgment.name}

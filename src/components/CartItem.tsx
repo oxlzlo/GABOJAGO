@@ -1,4 +1,4 @@
-import { fetchLodgment } from '@/api/fetchLodgment';
+import { fetchLodgment } from '@/api';
 import { Lodgment } from '@/lib/types/Lodgment';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';

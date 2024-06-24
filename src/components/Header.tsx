@@ -1,6 +1,5 @@
 import { Box, Flex, Heading, Button, Spacer } from '@chakra-ui/react';
 import Logo from '@/assets/logo.svg?react';
-import Cart from '@/assets/images/cart.svg?react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -23,15 +22,15 @@ const Header = () => {
         </Heading>
         <Spacer />
         <Box display="flex" gap="1.5rem">
-          <Cart width="4rem" height="3.5rem" cursor="pointer" />
           <Link to="/signin">
             <Button
-              padding="2rem"
+              padding="1.8rem"
               background="white"
               border=".1rem solid "
               borderColor="main"
               borderRadius=".5rem"
-              fontSize="2rem"
+              fontSize="1.8rem"
+              color="main"
               _hover={{
                 background: 'main',
                 color: 'white',
@@ -41,16 +40,16 @@ const Header = () => {
           </Link>
           <Link to="/signup">
             <Button
-              padding="2rem"
+              padding="1.8rem"
               background="main"
               border=".1rem solid "
               borderRadius=".5rem"
               borderColor="main"
               color="white"
-              fontSize="2rem"
+              fontSize="1.8rem"
               _hover={{
-                background: 'btnHover',
-                color: 'main',
+                background: 'primaryHover',
+                color: 'white',
               }}>
               회원가입
             </Button>
