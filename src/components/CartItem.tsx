@@ -1,5 +1,5 @@
 import { fetchLodgment } from '@/api';
-import { Lodgment } from '@/lib/types/Lodgment';
+import { Lodgment } from '@/lib/types/lodgment';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';

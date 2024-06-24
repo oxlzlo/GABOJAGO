@@ -76,6 +76,9 @@ const LodgmentItem = () => {
                         borderColor="grayLight"
                         padding="2rem"
                         borderRadius="0.8rem">
+                        {item.image && (
+                          <Image src={item.image} alt={item.name} width="20vw" height="30vh" marginBottom="1rem" />
+                        )}
                         <Heading as="h3" size="md" mb={2}>
                           {item.name}
                         </Heading>
