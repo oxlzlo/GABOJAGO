@@ -4,12 +4,15 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
@@ -30,6 +33,7 @@ const SignUp = () => {
       );
       if (response.data.result_code === '201') {
         alert('회원가입이 정상적으로 처리되었습니다.');
+        navigate('/signin');
         console.log(name, email, password);
       }
     } catch (error) {
