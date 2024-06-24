@@ -75,7 +75,7 @@ const CartItem = ({ onSelectItem }) => {
           </Flex>
           <Divider borderColor={`${theme.colors.main}`} />
           <Box mt={10} fontSize="1.2rem">
-            <Text>이용기간: {lodgment.period}</Text>
+            <Text>이용기간: {lodgment.startDate} - {lodgment.endDate}</Text>
             <Text>이용자 수: {lodgment.userCount}명</Text>
             <Flex 
               justifyContent="flex-end"
