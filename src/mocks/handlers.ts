@@ -12,6 +12,8 @@ let lodgment = [
     room: [
       {
         id: '0',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 1번',
         type: '싱글룸',
         extra_price: 200000,
@@ -21,6 +23,8 @@ let lodgment = [
       },
       {
         id: '1',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 2번',
         type: '더블룸',
         extra_price: 300000,
@@ -30,6 +34,8 @@ let lodgment = [
       },
       {
         id: '2',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 3번',
         type: '트리플룸',
         extra_price: 400000,
@@ -39,6 +45,8 @@ let lodgment = [
       },
       {
         id: '3',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 4번',
         type: '패밀리룸',
         extra_price: 500000,
@@ -48,6 +56,8 @@ let lodgment = [
       },
       {
         id: '4',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 5번',
         type: '팬션',
         extra_price: 600000,
@@ -68,6 +78,8 @@ let lodgment = [
     room: [
       {
         id: '0',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 1번',
         type: '싱글룸',
         extra_price: 200000,
@@ -77,6 +89,8 @@ let lodgment = [
       },
       {
         id: '1',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 2번',
         type: '더블룸',
         extra_price: 300000,
@@ -86,6 +100,8 @@ let lodgment = [
       },
       {
         id: '2',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 3번',
         type: '트리플룸',
         extra_price: 400000,
@@ -106,6 +122,8 @@ let lodgment = [
     room: [
       {
         id: '0',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 1번',
         type: '싱글룸',
         extra_price: 200000,
@@ -115,6 +133,8 @@ let lodgment = [
       },
       {
         id: '1',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 2번',
         type: '더블룸',
         extra_price: 300000,
@@ -124,6 +144,8 @@ let lodgment = [
       },
       {
         id: '2',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 3번',
         type: '트리플룸',
         extra_price: 400000,
@@ -144,6 +166,8 @@ let lodgment = [
     room: [
       {
         id: '0',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 1번',
         type: '싱글룸',
         extra_price: 200000,
@@ -153,6 +177,8 @@ let lodgment = [
       },
       {
         id: '1',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 2번',
         type: '더블룸',
         extra_price: 300000,
@@ -162,6 +188,8 @@ let lodgment = [
       },
       {
         id: '2',
+        image: 'https://picsum.photos/200/300',
+
         name: '객실 3번',
         type: '트리플룸',
         extra_price: 400000,
@@ -182,6 +210,7 @@ let lodgment = [
     room: [
       {
         id: '0',
+        image: 'https://picsum.photos/200/300',
         name: '객실 1번',
         type: '싱글룸',
         extra_price: 200000,
@@ -191,6 +220,7 @@ let lodgment = [
       },
       {
         id: '1',
+        image: 'https://picsum.photos/200/300',
         name: '객실 2번',
         type: '더블룸',
         extra_price: 300000,
@@ -200,6 +230,7 @@ let lodgment = [
       },
       {
         id: '2',
+        image: 'https://picsum.photos/200/300',
         name: '객실 3번',
         type: '트리플룸',
         extra_price: 400000,
