@@ -21,7 +21,7 @@ const CartPayment = ({ selectedItems }) => {
                   fontWeight="900" 
                 >{item.name}</Text>
                 <Text fontSize="1.3rem">이용기간: {item.startDate} - {item.endDate}</Text>
-                <Text fontSize="1.3rem">이용자 수: 성인 {item.userCount}명</Text>
+                <Text fontSize="1.3rem">이용자 수: {item.userCount}인</Text>
               </Box>
             </Flex>
             <Divider borderColor="teal" />

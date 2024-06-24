@@ -14,11 +14,11 @@ const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
       onChange={handleChange}
       sx={{
         '& .chakra-checkbox__control': {
-          width: '2rem', // 커스텀 너비
-          height: '2rem', // 커스텀 높이
+          width: '2rem',
+          height: '2rem',
         },
         '& .chakra-checkbox__icon': {
-          fontSize: '2.5rem', // 아이콘의 크기 조절
+          fontSize: '2.5rem',
         },
       }}
     />
@@ -76,7 +76,7 @@ const CartItem = ({ onSelectItem }) => {
           <Divider borderColor={`${theme.colors.main}`} />
           <Box mt={10} fontSize="1.2rem">
             <Text>이용기간: {lodgment.startDate} - {lodgment.endDate}</Text>
-            <Text>이용자 수: {lodgment.userCount}명</Text>
+            <Text>이용자 수: {lodgment.userCount}인</Text>
             <Flex 
               justifyContent="flex-end"
               fontSize="2rem"
