@@ -1,4 +1,4 @@
-import LodgmentList from '@/components/LodgmentList';
+import LodgmentList from '@/components/AccommodationList';
 import { Box, Image } from '@chakra-ui/react';
 import { settings } from '@/lib/constants/slickCarousel';
 import SearchBar from '@/components/SearchBar';

@@ -4,7 +4,7 @@ import Payment from '@/pages/Payment';
 import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
-import LodgmentItem from '@/pages/LodgmentItem';
+import AccommodationItem from '@/pages/AccommodationItem';
 
 export const routes = [
   {
@@ -27,7 +27,7 @@ export const routes = [
     path: '/lodgment/:id',
     element: (
       <Layout>
-        <LodgmentItem />
+        <AccommodationItem />
       </Layout>
     ),
   },
@@ -46,9 +46,5 @@ export const routes = [
   {
     path: '/signin',
     element: <SignIn />,
-  },
-  {
-    path: '/payment',
-    element: <Payment />,
   },
 ];
