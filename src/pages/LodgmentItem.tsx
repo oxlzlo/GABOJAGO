@@ -1,13 +1,24 @@
 import { fetchLodgmentById } from '@/api';
+import { AlertWindow } from '@/lib/common/AlertWindow';
 import { Lodgment, Room } from '@/lib/types/Lodgment';
-import { Box, Button, Flex, Heading, Image, List, ListItem, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const LodgmentItem = () => {
   const { id } = useParams<string>();
   const [lodgments, setLodgments] = useState<Lodgment[]>([]);
   const navgiation = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
+  const [selectedRoom, setSelectedRoom] = useState([]);
+
+  const handleConfirm = () => {
+    if (selectedRoom) {
+      navgiation(`/payment/${selectedRoom.id}`, { state: selectedRoom });
+    }
+    onClose();
+  };
 
   useEffect(() => {
     fetchLodgmentById(id as string).then((response) => {
@@ -16,7 +27,8 @@ const LodgmentItem = () => {
   }, [id]);
 
   const handlePayment = (room: Room) => {
-    navgiation(`/payment/${room.id}`, { state: room });
+    setSelectedRoom(room);
+    onOpen();
   };
 
   const handleCartAdd = () => {
@@ -118,6 +130,16 @@ const LodgmentItem = () => {
           </List>
         </Flex>
       </Box>
+      <AlertWindow
+        isOpen={isOpen}
+        onClose={onClose}
+        leastDestructiveRef={cancelRef}
+        title="이 객실을 예약하시겠습니까?"
+        body=" "
+        confirmButtonText="예약하기"
+        cancelButtonText="아니오"
+        onConfirm={handleConfirm}
+      />
     </>
   );
 };
