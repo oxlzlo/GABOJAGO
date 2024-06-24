@@ -1,5 +1,5 @@
 import { fetchLodgment } from '@/api';
-import { Lodgment } from '@/lib/types/Lodgment';
+import { Lodgment } from '@/lib/types/lodgment';
 import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';

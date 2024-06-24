@@ -8,6 +8,7 @@ import {
   AlertDialogBody,
   AlertDialogFooter,
 } from '@chakra-ui/react';
+import { AlertWindowProps } from '../types/alertWindow';
 
 export const AlertWindow = ({
   isOpen,
@@ -20,7 +21,7 @@ export const AlertWindow = ({
   leastDestructiveRef,
   maxWidth = '30rem',
   height = 'auto',
-}) => {
+}: AlertWindowProps) => {
   return (
     <AlertDialog
       motionPreset="slideInBottom"

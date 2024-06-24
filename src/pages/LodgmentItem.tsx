@@ -1,6 +1,6 @@
 import { fetchLodgmentById } from '@/api';
 import { AlertWindow } from '@/lib/common/AlertWindow';
-import { Lodgment, Room } from '@/lib/types/Lodgment';
+import { Lodgment, Room } from '@/lib/types/lodgment';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,7 +10,7 @@ const LodgmentItem = () => {
   const [lodgments, setLodgments] = useState<Lodgment[]>([]);
   const navgiation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const cancelRef = useRef<HTMLButtonElement | null>(null);
   const [selectedRoom, setSelectedRoom] = useState([]);
 
   const handleConfirm = () => {
