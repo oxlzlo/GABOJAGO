@@ -15,7 +15,7 @@ const Home = () => {
             <Image
               src="https://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243548102999472.jpg"
               width="100%"
-              height="50vh"
+              height="55vh"
               objectFit="cover"
               opacity=".6"
             />
@@ -24,7 +24,7 @@ const Home = () => {
             <Image
               src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243560922193661.jpg"
               width="100%"
-              height="50vh"
+              height="55vh"
               objectFit="cover"
               opacity=".6"
             />
@@ -33,7 +33,7 @@ const Home = () => {
             <Image
               src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243553155874372.jpg"
               width="100%"
-              height="50vh"
+              height="55vh"
               objectFit="cover"
               opacity=".6"
             />
