@@ -15,6 +15,11 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
+      alert('비밀번호는 영어와 숫자를 포함한 8자 이상이어야 합니다.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       alert('패스워드가 일치하지 않습니다.');
       return;
