@@ -52,7 +52,7 @@ const LodgmentItem = () => {
           <List>
             {lodgments.map((lodgment) => (
               <ListItem key={lodgment.id}>
-                <Heading marginBottom="1rem" fontSize="3rem">
+                <Heading marginBottom="2rem" fontSize="3rem">
                   {lodgment.name}
                 </Heading>
                 <Text
@@ -68,21 +68,32 @@ const LodgmentItem = () => {
                   })}
                 </Text>
                 <Image src={lodgment.image} alt={lodgment.name} width="52vw" height="63.8vh" marginBottom="1rem" />
-                <Text fontSize="1.5rem">{lodgment.address}</Text>
-                <Text fontSize="1.5rem">{lodgment.telephone}</Text>
-                <Text marginTop="2rem" fontSize="2rem" borderBottom="1px solid" borderColor="grayLight">
+                <Text fontSize="1.6rem">{lodgment.address}</Text>
+                <Text fontSize="1.6rem" fontWeight="600">
+                  {lodgment.telephone}
+                </Text>
+                <Text
+                  marginTop="2rem"
+                  fontWeight="600"
+                  fontSize="2rem"
+                  borderBottom="1px solid"
+                  borderColor="grayLight">
                   숙소 소개
                 </Text>
-                <Text fontSize="1.8rem">{lodgment.comment}</Text>
+                <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
+                  {lodgment.comment}
+                </Text>
                 {lodgment.room && (
                   <List display="flex" flexDirection="column" gap="1rem">
-                    <Heading>객실을 선택하세요</Heading>
+                    <Heading borderBottom="1px solid" borderColor="grayLight">
+                      객실을 선택하세요
+                    </Heading>
                     {lodgment.room.map((item) => (
                       <ListItem
                         key={item.id}
                         borderBottom="1px solid"
                         borderColor="grayLight"
-                        padding="2rem"
+                        padding="2rem 2rem 2rem 0"
                         display="flex"
                         justifyContent="space-between"
                         gap="1rem">
@@ -112,7 +123,6 @@ const LodgmentItem = () => {
                             border=".1rem solid "
                             borderColor="grayLight"
                             borderRadius=".5rem"
-                            fontSize="1.5rem"
                             color="main"
                             _hover={{
                               background: 'main',
@@ -142,7 +152,7 @@ const LodgmentItem = () => {
                               borderRadius=".5rem"
                               borderColor="grayLight"
                               color="white"
-                              fontSize="1.5rem"
+                              fontSize="1.6rem"
                               _hover={{
                                 background: 'primaryHover',
                                 color: 'white',
