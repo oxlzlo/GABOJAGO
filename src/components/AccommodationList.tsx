@@ -1,12 +1,11 @@
 import { fetchAccommodation, fetchLodgment } from '@/api';
 import { Accommodation } from '@/lib/types/accommodation';
-import { Lodgment } from '@/lib/types/lodgment';
 import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const LodgmentList = () => {
-  const [lodgments, setLodgments] = useState<Lodgment[]>([]);
+  const [lodgments, setLodgments] = useState<Accommodation[]>([]);
 
   useEffect(() => {
     fetchLodgment().then((response) => {
@@ -34,9 +33,9 @@ const LodgmentList = () => {
   return (
     <>
       <Grid templateColumns="repeat(4, 1fr)" gap="1.5rem">
-        {accommodations.map((accommodation, index) => (
+        {accommodations.map((accommodation, _) => (
           <Box
-            key={index + 1}
+            key={accommodation.id}
             display="flex"
             flexDirection="column"
             justifyContent="center"
@@ -51,9 +50,9 @@ const LodgmentList = () => {
               transform: 'scale(1.01)',
               boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
             }}>
-            <Link to={`/accommodation/${index + 1}`}>
+            <Link to={`/accommodation/${accommodation.id}`}>
               <Image
-                src={accommodation.image}
+                src={accommodation.thumbnail}
                 alt={accommodation.name}
                 width="100%"
                 height="25.7vh"
@@ -82,14 +81,10 @@ const LodgmentList = () => {
           </Box>
         ))}
       </Grid>
-
       <Grid templateColumns="repeat(4, 1fr)" gap="1.5rem">
         {lodgments.map((lodgment, _) => (
           <Box
             key={lodgment.id}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
             width="auto"
             height="auto"
             border="1px solid "
@@ -103,36 +98,40 @@ const LodgmentList = () => {
             }}>
             <Link to={`/lodgment/${lodgment.id}`}>
               <Image
-                src={lodgment.image}
+                src={lodgment.thumbnail}
                 alt={lodgment.name}
                 width="100%"
-                height="25.7vh"
+                height="25.7rem"
                 borderRadius="0.8rem 0.8rem 0 0"
               />
-              <Box display="flex" flexDirection="column" width="100%" height="25.7vh" paddingLeft="1rem" gap=".5rem">
+              <Box display="flex" flexDirection="column" width="100%" height="auto" paddingLeft="1rem" gap=".5rem">
                 <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
                   {lodgment.name}
                 </Text>
-                <Text fontSize="1.5rem" color="gray">
-                  {lodgment.address}
-                </Text>
-                <Text fontSize="1.5rem" color="gray">
-                  {lodgment.telephone}
-                </Text>
-                <Text fontSize="1.8rem" color="gray">
-                  {lodgment.comment}
-                </Text>
-                <Flex flexDirection="column">
+                <Box padding=".5rem">
                   <Text fontSize="1.5rem" color="gray">
+                    {lodgment.address}
+                  </Text>
+                  <Text fontSize="1.5rem" color="gray">
+                    {lodgment.numbers}
+                  </Text>
+                  <Text fontSize="1.8rem" color="gray">
+                    {lodgment.comment}
+                  </Text>
+                </Box>
+                <Box display="flex" flexDirection="column" alignItems="flex-end" marginTop="3rem" paddingRight="1rem">
+                  <Text fontSize="1.5rem" color="gray" paddingRight="2.8rem">
                     1박당 요금
                   </Text>
-                  <Text fontSize="2rem" color="red">
-                    {lodgment.price.toLocaleString('ko-KR', {
-                      style: 'currency',
-                      currency: 'KRW',
-                    })}
-                  </Text>
-                </Flex>
+                  <Flex flexDirection="column">
+                    <Text fontSize="2rem" color="red">
+                      {lodgment.price.toLocaleString('ko-KR', {
+                        style: 'currency',
+                        currency: 'KRW',
+                      })}
+                    </Text>
+                  </Flex>
+                </Box>
               </Box>
             </Link>
           </Box>
