@@ -15,6 +15,11 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    if (email === '') {
+      alert('이메일을 입력해주세요.');
+      return;
+    }
+
     if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
       alert('비밀번호는 영어와 숫자를 포함한 8자 이상이어야 합니다.');
       return;
@@ -22,6 +27,11 @@ const SignUp = () => {
 
     if (password !== confirmPassword) {
       alert('패스워드가 일치하지 않습니다.');
+      return;
+    }
+
+    if (name === '') {
+      alert('이름을 입력해주세요.');
       return;
     }
 
@@ -46,6 +56,12 @@ const SignUp = () => {
     }
   };
 
+  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <Box position="relative" height="100vh" backgroundColor="background">
       <Box
@@ -62,20 +78,32 @@ const SignUp = () => {
           <Logo />
           <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
-              <InputBox placeholder="E-mail *" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <InputBox
+                placeholder="E-mail *"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={handleKeypress}
+              />
               <InputBox
                 placeholder="Password *"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={handleKeypress}
               />
               <InputBox
                 placeholder="Confirm Password *"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                onKeyPress={handleKeypress}
               />
-              <InputBox placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
+              <InputBox
+                placeholder="Name *"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                onKeyPress={handleKeypress}
+              />
               <Button
                 width="27.8vw"
                 height="4.9vh"
