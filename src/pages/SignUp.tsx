@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../index.css';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import axios from 'axios';
