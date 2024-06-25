@@ -85,7 +85,7 @@ const SearchBar = () => {
                 borderRadius=".8rem"
                 backgroundColor="white"
                 fontSize="1.6rem"
-                placeholder={`성인 ${peopleCount}명`}
+                placeholder={`인원 ${peopleCount}명`}
                 _focusVisible={{ outline: 'none' }}
               />
               <InputRightElement
@@ -117,7 +117,7 @@ const SearchBar = () => {
                     <Button onClick={decrementPeopleCount} fontSize="2rem" fontWeight="200">
                       <MinusIcon w={6} h={6} color="gray" />
                     </Button>
-                    <Box>성인 {peopleCount}명</Box>
+                    <Box>인원 {peopleCount}명</Box>
                     <Button onClick={incrementPeopleCount} fontSize="2rem" fontWeight="200">
                       <AddIcon w={6} h={6} color="gray" />
                     </Button>
