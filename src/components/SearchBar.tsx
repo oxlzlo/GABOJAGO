@@ -68,7 +68,7 @@ const SearchBar = () => {
               borderRadius=".8rem"
               backgroundColor="white">
               <Flex align="center">
-                <Datepicker style={{ borderRight: '.1rem solid var(--color-main)' }} />
+                <Datepicker style={{ paddingRight: '3vw', borderRight: '.1rem solid var(--color-main)' }} />
                 <Datepicker />
               </Flex>
             </InputGroup>
