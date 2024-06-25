@@ -8,6 +8,10 @@ export const fetchAccommodation = async () => {
   return instance.get('/open-api/accommodation');
 };
 
+export const fetchAccommodationById = async (id: string) => {
+  return instance.get(`/open-api/accommodation/${id}`);
+};
+
 export const fetchLodgment = async () => {
   try {
     const response = await axios.get('/api/lodgment');
