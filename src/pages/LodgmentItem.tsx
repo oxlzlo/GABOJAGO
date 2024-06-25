@@ -93,9 +93,9 @@ const LodgmentItem = () => {
                         key={item.id}
                         borderBottom="1px solid"
                         borderColor="grayLight"
-                        padding="2rem 2rem 2rem 0"
                         display="flex"
                         justifyContent="space-between"
+                        padding="2rem 0"
                         gap="1rem">
                         <Flex gap="4rem">
                           {item.image && (
