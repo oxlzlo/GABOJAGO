@@ -34,7 +34,6 @@ const SignUp = () => {
       if (response.data.result_code === '201') {
         alert('회원가입이 정상적으로 처리되었습니다.');
         navigate('/signin');
-        console.log(name, email, password);
       }
     } catch (error) {
       console.error('회원가입 에러', error);
