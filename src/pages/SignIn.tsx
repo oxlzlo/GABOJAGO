@@ -33,8 +33,14 @@ const SignIn = () => {
         console.log(email, password);
       }
     } catch (error) {
-      console.error('회원가입 에러', error);
+      console.error('로그인 에러', error);
       alert('로그인에 실패하였습니다.');
+    }
+  };
+
+  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
     }
   };
 
@@ -54,12 +60,18 @@ const SignIn = () => {
           <Logo />
           <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
-              <InputBox placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <InputBox
+                placeholder="E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={handleKeypress}
+              />
               <InputBox
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={handleKeypress}
               />
               <Button
                 width="27.8vw"

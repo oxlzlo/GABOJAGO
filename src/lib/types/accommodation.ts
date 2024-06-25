@@ -1,5 +1,17 @@
-export type Room = {
+export type Accommodation = {
+  id: string;
+  name: string;
+  address: string;
+  numbers: number;
+  comment: string;
+  thumbnail: string;
+  price: number;
+  roomList: Rooms[];
+};
+
+export type Rooms = {
   id: number;
+  imageList: string;
   roomType: string;
   roomTypeName: string;
   roomPrice: number;
@@ -8,13 +20,4 @@ export type Room = {
   roomDefaultGuest: number;
   roomMaxGuest: number;
   comment: string;
-};
-
-export type Accommodation = {
-  name: string;
-  address: string;
-  numbers: number;
-  comment: string;
-  roomList: Room[];
-  image?: string;
 };

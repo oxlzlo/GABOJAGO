@@ -1,37 +1,25 @@
 import { fetchAccommodationById } from '@/api';
-import { Accommodation } from '@/lib/types/accommodation';
+import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { Box, Text, useDisclosure } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-type SelectedRooms = {
-  id: string;
-  roomType: string;
-  roomTypeName: string;
-  roomPrice: number;
-  roomExtraPrice: number;
-  roomStock: number;
-  roomDefaultGuest: number;
-  rooMaxGuest: number;
-  comment: string;
-};
-
 const AccommodationItem = () => {
   const { id } = useParams<string>();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
-
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement | null>(null);
-  const [selectedRooms, setSelectedRooms] = useState<SelectedRooms>({
-    id: '',
+  const [selectedRooms, setSelectedRooms] = useState<Rooms>({
+    id: 0,
+    imageList: '',
     roomType: '',
     roomTypeName: '',
     roomPrice: 0,
     roomExtraPrice: 0,
     roomStock: 0,
     roomDefaultGuest: 0,
-    rooMaxGuest: 0,
+    roomMaxGuest: 0,
     comment: '',
   });
 
@@ -65,7 +53,10 @@ const AccommodationItem = () => {
             <Box key={room.id}>
               <Text>{room.roomType}</Text>
               <Text>{room.roomTypeName}</Text>
-              <Text>{room.roomPrice}</Text>
+              {`${room.roomPrice.toLocaleString('ko-KR', {
+                style: 'decimal',
+                currency: 'KRW',
+              })}원`}
               <Text>{room.roomExtraPrice}</Text>
               <Text>{room.roomStock}</Text>
               <Text>{room.roomDefaultGuest}</Text>
