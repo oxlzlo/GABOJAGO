@@ -15,7 +15,7 @@ const SearchBar = () => {
   };
 
   const incrementPeopleCount = () => {
-    setPeopleCount((prevCount) => prevCount + 1);
+    setPeopleCount((prevCount) => (prevCount < 30 ? prevCount + 1 : prevCount));
   };
 
   const decrementPeopleCount = () => {
