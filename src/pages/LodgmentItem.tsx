@@ -1,17 +1,16 @@
 import { fetchLodgmentById } from '@/api';
-import { AlertWindow } from '@/lib/common/AlertWindow';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
+import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const LodgmentItem = () => {
-  const { id } = useParams<string>();
+  const { lodgmentId } = useParams<string>();
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef<HTMLButtonElement | null>(null);
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
     imageList: '',
@@ -33,19 +32,22 @@ const LodgmentItem = () => {
   };
 
   useEffect(() => {
-    fetchLodgmentById(id as string).then((response) => {
-      setLodgments([response]);
-    });
-  }, [id]);
+    fetchLodgmentById(lodgmentId as string)
+      .then((response) => {
+        setLodgments([response]);
+      })
+      .catch((error) => {
+        const errorTime = new Date().toISOString();
+        console.error(`[${errorTime}] Error  data:`, error);
+      });
+  }, [lodgmentId]);
 
   const handlePayment = (room: SetStateAction<Rooms>) => {
     setSelectedRooms(room);
     onOpen();
   };
 
-  const handleCartAdd = () => {
-    navigation('/cart');
-  };
+  const handleCartAdd = () => {};
 
   return (
     <>
@@ -90,7 +92,7 @@ const LodgmentItem = () => {
                     <Heading borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
-                    {lodgment.roomList.map((room) => (
+                    {lodgment.roomList.map((room, _) => (
                       <ListItem
                         key={room.id}
                         borderBottom="1px solid"
@@ -184,12 +186,23 @@ const LodgmentItem = () => {
           </List>
         </Flex>
       </Box>
-      <AlertWindow
+      <ReservationModal
         isOpen={isOpen}
         onClose={onClose}
-        leastDestructiveRef={cancelRef}
         title="이 객실을 예약하시겠습니까?"
-        body=" "
+        body={
+          <Box>
+            <Text>객실 이름: {selectedRooms.roomTypeName}</Text>
+            <Text>객실 타입: {selectedRooms.roomType}</Text>
+            <Text>
+              가격:{' '}
+              {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
+                style: 'decimal',
+                currency: 'KRW',
+              })}원`}
+            </Text>
+          </Box>
+        }
         confirmButtonText="예약하기"
         cancelButtonText="아니오"
         onConfirm={handleConfirm}

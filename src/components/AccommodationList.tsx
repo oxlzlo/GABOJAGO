@@ -36,9 +36,6 @@ const LodgmentList = () => {
         {accommodations.map((accommodation, _) => (
           <Box
             key={accommodation.id}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
             width="auto"
             height="auto"
             border="1px solid "
@@ -55,27 +52,32 @@ const LodgmentList = () => {
                 src={accommodation.thumbnail}
                 alt={accommodation.name}
                 width="100%"
-                height="25.7vh"
+                height="25.7rem"
                 borderRadius="0.8rem 0.8rem 0 0"
               />
-              <Box display="flex" flexDirection="column" width="100%" height="25.7vh" paddingLeft="1rem" gap=".5rem">
+              <Box display="flex" flexDirection="column" width="100%" height="auto" paddingLeft="1rem" gap=".5rem">
                 <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
                   {accommodation.name}
                 </Text>
-                <Text fontSize="1.5rem" color="gray">
-                  {accommodation.address}
-                </Text>
-                <Text fontSize="1.5rem" color="gray">
-                  {accommodation.numbers}
-                </Text>
-                <Text fontSize="1.8rem" color="gray">
-                  {accommodation.comment}
-                </Text>
-                <Flex flexDirection="column">
+                <Box padding=".5rem">
                   <Text fontSize="1.5rem" color="gray">
+                    {accommodation.address}
+                  </Text>
+                  <Text fontSize="1.5rem" color="gray">
+                    {accommodation.numbers}
+                  </Text>
+                  <Text fontSize="1.8rem" color="gray">
+                    {accommodation.comment}
+                  </Text>
+                </Box>
+                <Box display="flex" flexDirection="column" alignItems="flex-end" marginTop="3rem" paddingRight="1rem">
+                  <Text fontSize="1.5rem" color="gray" paddingRight="2.8rem">
                     1박당 요금
                   </Text>
-                </Flex>
+                  <Flex flexDirection="column">
+                    <Text fontSize="2rem" color="red"></Text>
+                  </Flex>
+                </Box>
               </Box>
             </Link>
           </Box>
@@ -125,10 +127,10 @@ const LodgmentList = () => {
                   </Text>
                   <Flex flexDirection="column">
                     <Text fontSize="2rem" color="red">
-                      {lodgment.price.toLocaleString('ko-KR', {
-                        style: 'currency',
+                      {`${lodgment.price.toLocaleString('ko-KR', {
+                        style: 'decimal',
                         currency: 'KRW',
-                      })}
+                      })}원`}
                     </Text>
                   </Flex>
                 </Box>

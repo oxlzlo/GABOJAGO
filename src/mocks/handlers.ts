@@ -42,7 +42,7 @@ let lodgment = [
     price: 200000,
     name: '부산 숙소',
     address: '부산시 해운대구 우동 123-456',
-    telephone: '051-1234-5678',
+    numbers: '051-1234-5678',
     comment: '부산 중심부에 위치한 아늑한 숙소입니다.',
     roomList: [
       {
@@ -77,7 +77,7 @@ let lodgment = [
     price: 300000,
     name: '제주도 숙소',
     address: '제주시 제주동 123-456',
-    telephone: '064-1234-5678',
+    numbers: '064-1234-5678',
     comment: '제주도 중심부에 위치한 아늑한 숙소입니다.',
     roomList: [
       {
@@ -112,43 +112,8 @@ let lodgment = [
     price: 400000,
     name: '강릉 숙소',
     address: '강원도 강릉시 강릉동 123-456',
-    telephone: '033-1234-5678',
+    numbers: '033-1234-5678',
     comment: '강릉 중심부에 위치한 아늑한 숙소입니다.',
-    roomList: [
-      {
-        id: '0',
-        roomType: '싱글룸',
-        roomTypeName: 'A 싱글룸',
-        roomPrice: 100000,
-        roomExtraPrice: 50000,
-        roomStock: 10,
-        roomDefaultGuest: 1,
-        roomMaxGuest: 1,
-        comment: '싱글룸 입니다.',
-        imageList: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      },
-      {
-        id: '1',
-        roomType: '더블룸',
-        roomTypeName: 'B 더블룸',
-        roomPrice: 200000,
-        roomExtraPrice: 100000,
-        roomStock: 10,
-        roomDefaultGuest: 2,
-        roomMaxGuest: 2,
-        comment: '더블룸 입니다.',
-        imageList: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      },
-    ],
-  },
-  {
-    id: '4',
-    thumbnail: 'https://picsum.photos/200/300',
-    price: 500000,
-    name: '대구 숙소',
-    address: '대구시 중구 대구동 123-456',
-    telephone: '053-1234-5678',
-    comment: '대구 중심부에 위치한 아늑한 숙소입니다.',
     roomList: [
       {
         id: '0',
