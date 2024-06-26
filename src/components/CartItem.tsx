@@ -1,6 +1,7 @@
 import { fetchLodgment } from '@/api';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
+import { Accommodation } from '@/lib/types/accommodation';
 
 const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
   const handleChange = (e) => {
@@ -25,7 +26,7 @@ const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
 };
 
 const CartItem = ({ onSelectItem }) => {
-  const [lodgments, setLodgments] = useState([]);
+  const [lodgments, setLodgments] = useState<Accommodation[]>([]);
   const theme = useTheme();
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const CartItem = ({ onSelectItem }) => {
       {lodgments.map((lodgment) => (
         <Box key={lodgment.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
           <Flex mb={10} alignItems="center">
-            <Image src={lodgment.image} alt={lodgment.name} boxSize="100px" mr={8} borderRadius="lg" />
+            <Image src={lodgment.thumbnail} alt={lodgment.name} boxSize="100px" mr={8} borderRadius="lg" />
             <Box flex="1">
               <Text fontSize="2rem" fontWeight="900">
                 {lodgment.name}

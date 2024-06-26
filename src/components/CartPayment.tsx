@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const CartPayment = ({ selectedItems }) => {
   const theme = useTheme();
   const navigate = useNavigate();
+  console.log(selectedItems);
 
   const handlePayment = () => {
     navigate('/payment', { state: { selectedItems } });
