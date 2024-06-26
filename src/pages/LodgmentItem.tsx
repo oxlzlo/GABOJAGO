@@ -1,5 +1,4 @@
 import { fetchLodgmentById } from '@/api';
-import { AlertWindow } from '@/lib/common/AlertWindow';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
@@ -12,7 +11,6 @@ const LodgmentItem = () => {
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef<HTMLButtonElement | null>(null);
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
     imageList: '',
@@ -44,9 +42,7 @@ const LodgmentItem = () => {
     onOpen();
   };
 
-  const handleCartAdd = () => {
-    navigation('/cart');
-  };
+  const handleCartAdd = () => {};
 
   return (
     <>
