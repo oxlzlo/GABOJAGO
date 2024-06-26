@@ -17,13 +17,13 @@ const Payment = () => {
       <Text>유형: {roomData.roomType}</Text>
       <Text>최대 인원: {roomData.roomMaxGuest}</Text>
       <Text>기본 인원: {roomData.roomDefaultGuest}</Text>
-      <Text>
+      {/* <Text>
         가격:{' '}
         {`${roomData.roomPrice.toLocaleString('ko-KR', {
           style: 'decimal',
           currency: 'KRW',
         })}원`}
-      </Text>
+      </Text> */}
       <Text>추가 요금: {roomData.roomExtraPrice}</Text>
       <Text>설명: {roomData.comment}</Text>
     </Box>

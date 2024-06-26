@@ -6,6 +6,7 @@ import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
 import LodgmentItem from '@/pages/LodgmentItem';
 import AccommodationItem from '@/pages/AccommodationItem';
+import path from 'path';
 
 export const routes = [
   {
@@ -42,6 +43,14 @@ export const routes = [
   },
   {
     path: '/payment/:roomId',
+    element: (
+      <Layout>
+        <Payment />
+      </Layout>
+    ),
+  },
+  {
+    path: '/payment',
     element: (
       <Layout>
         <Payment />

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import CartItem from '@/components/CartItem';
 import CartPayment from '@/components/CartPayment';
-import { Lodgment } from '@/lib/types/Lodgment';
+import { Accommodation } from '@/lib/types/accommodation';
 
 const Cart = () => {
-  const [selectedItems, setSelectedItems] = useState<Lodgment[]>([]);
+  const [selectedItems, setSelectedItems] = useState<Accommodation[]>([]);
 
-  const handleSelectItem = (item: Lodgment, isSelected: boolean) => {
+  const handleSelectItem = (item: Accommodation, isSelected: boolean) => {
     if (isSelected) {
       setSelectedItems((prev) => [...prev, item]);
     } else {
@@ -16,31 +16,12 @@ const Cart = () => {
   };
 
   return (
-    <Flex
-      direction="column"
-      justifyContent="flex-start"
-      alignItems="center"
-      minHeight="calc(100vh - 80px)"
-      p={4}
-    >
-      <Box
-        width="100%"
-        maxWidth="1240px"
-        mx="auto"
-        paddingTop="8rem"
-      >
-        <Text
-          fontWeight="900"
-          fontSize="3rem"
-          mb={4}
-          textAlign="left"
-        >
+    <Flex direction="column" justifyContent="flex-start" alignItems="center" minHeight="calc(100vh - 80px)" p={4}>
+      <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
+        <Text fontWeight="900" fontSize="3rem" mb={4} textAlign="left">
           장바구니
         </Text>
-        <Flex
-          width="100%"
-          gap="1rem"
-        >
+        <Flex width="100%" gap="1rem">
           <Flex flex="1" direction="column">
             <CartItem onSelectItem={handleSelectItem} />
           </Flex>

@@ -1,5 +1,4 @@
 import { fetchLodgment } from '@/api';
-import { Lodgment } from '@/lib/types/lodgment';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
 
@@ -26,7 +25,7 @@ const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
 };
 
 const CartItem = ({ onSelectItem }) => {
-  const [lodgments, setLodgments] = useState<Lodgment[]>([]);
+  const [lodgments, setLodgments] = useState([]);
   const theme = useTheme();
 
   useEffect(() => {
@@ -40,26 +39,11 @@ const CartItem = ({ onSelectItem }) => {
   return (
     <>
       {lodgments.map((lodgment) => (
-        <Box 
-          key={lodgment.id} 
-          p={10} 
-          mb={3} 
-          border={`1px solid ${theme.colors.main}`} 
-          borderRadius="lg"
-        >
+        <Box key={lodgment.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
           <Flex mb={10} alignItems="center">
-            <Image 
-              src={lodgment.image} 
-              alt={lodgment.name} 
-              boxSize="100px" 
-              mr={8} 
-              borderRadius="lg" 
-            />
+            <Image src={lodgment.image} alt={lodgment.name} boxSize="100px" mr={8} borderRadius="lg" />
             <Box flex="1">
-              <Text 
-                fontSize="2rem"
-                fontWeight="900" 
-              >
+              <Text fontSize="2rem" fontWeight="900">
                 {lodgment.name}
               </Text>
               <Text fontSize="1.2rem">
@@ -75,17 +59,13 @@ const CartItem = ({ onSelectItem }) => {
           </Flex>
           <Divider borderColor={`${theme.colors.main}`} />
           <Box mt={10} fontSize="1.2rem">
-            <Text>이용기간: {lodgment.startDate} - {lodgment.endDate}</Text>
+            <Text>
+              이용기간: {lodgment.startDate} - {lodgment.endDate}
+            </Text>
             <Text>이용자 수: {lodgment.userCount}인</Text>
-            <Flex 
-              justifyContent="flex-end"
-              fontSize="2rem"
-              fontWeight="700"
-            >
+            <Flex justifyContent="flex-end" fontSize="2rem" fontWeight="700">
               <Text>
-                {lodgment.room && lodgment.room.length > 0 
-                  ? lodgment.room[0].price.toLocaleString() 
-                  : 'N/A'}원
+                {lodgment.room && lodgment.room.length > 0 ? lodgment.room[0].price.toLocaleString() : 'N/A'}원
               </Text>
             </Flex>
           </Box>
