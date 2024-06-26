@@ -8,19 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
-import { ReactNode, RefObject } from 'react';
-
-type ReservationModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  body: ReactNode;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
-  onConfirm: () => void;
-  maxWidth?: string;
-  height?: string;
-};
+import { ReservationModalProps } from '../types/reservationModal';
 
 export const ReservationModal = ({
   isOpen,

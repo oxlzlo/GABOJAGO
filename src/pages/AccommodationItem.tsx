@@ -11,7 +11,6 @@ const AccommodationItem = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef<HTMLButtonElement | null>(null);
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
     imageList: '',
