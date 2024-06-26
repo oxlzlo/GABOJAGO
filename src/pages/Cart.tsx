@@ -16,9 +16,15 @@ const Cart = () => {
   };
 
   return (
-    <Flex direction="column" justifyContent="flex-start" alignItems="center" minHeight="calc(100vh - 80px)" p={4}>
+    <Flex 
+      direction="column" 
+      justifyContent="flex-start" 
+      minHeight="calc(100vh - 80px)" 
+      p={4}
+      alignItems="center" 
+      >
       <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
-        <Text fontWeight="900" fontSize="3rem" mb={4} textAlign="left">
+        <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
           장바구니
         </Text>
         <Flex width="100%" gap="1rem">
