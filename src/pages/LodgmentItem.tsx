@@ -5,6 +5,7 @@ import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
+import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const LodgmentItem = () => {
   const { lodgmentId } = useParams<string>();
@@ -184,12 +185,23 @@ const LodgmentItem = () => {
           </List>
         </Flex>
       </Box>
-      <AlertWindow
+      <ReservationModal
         isOpen={isOpen}
         onClose={onClose}
-        leastDestructiveRef={cancelRef}
         title="이 객실을 예약하시겠습니까?"
-        body=" "
+        body={
+          <Box>
+            <Text>룸이름: {selectedRooms.roomTypeName}</Text>
+            <Text>룸타입: {selectedRooms.roomType}</Text>
+            <Text>
+              가격:{' '}
+              {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
+                style: 'decimal',
+                currency: 'KRW',
+              })}원`}
+            </Text>
+          </Box>
+        }
         confirmButtonText="예약하기"
         cancelButtonText="아니오"
         onConfirm={handleConfirm}
