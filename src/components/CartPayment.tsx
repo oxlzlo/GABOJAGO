@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const CartPayment = ({ selectedItems }) => {
   const theme = useTheme();
   const navigate = useNavigate();
-  console.log(selectedItems);
 
   const handlePayment = () => {
     navigate('/payment', { state: { selectedItems } });
@@ -24,18 +23,23 @@ const CartPayment = ({ selectedItems }) => {
         </Text>
       ) : (
         selectedItems.map((item) => (
-          <Box key={item.id} mb={4}>
-            <Flex alignItems="center" mb={2}>
-              <Image src={item.image} alt={item.name} boxSize="60px" mr={4} />
-              <Box>
-                <Text fontSize="2rem" fontWeight="900">
+          <Box key={item.id} my={16}>
+            <Flex alignItems="center">
+              <Image src={item.image} alt={item.name} boxSize="60px" mr={10} />
+              <Text fontSize="2rem" fontWeight="900" mr={10}>
                   {item.name}
                 </Text>
+                <Flex 
+                flexDirection="column" 
+                justifyContent="flex-end" 
+                alignItems="flex-end" 
+                textAlign="right"
+                flex="1">
                 <Text fontSize="1.3rem">
                   이용기간: {item.startDate} - {item.endDate}
                 </Text>
                 <Text fontSize="1.3rem">이용자 수: {item.userCount}인</Text>
-              </Box>
+              </Flex>
             </Flex>
             <Divider borderColor="teal" />
             <Flex justifyContent="space-between" mt={2}>
@@ -59,7 +63,23 @@ const CartPayment = ({ selectedItems }) => {
                 .toLocaleString()}
               원
             </Text>
-            <Button onClick={handlePayment}>결제하기</Button>
+          </Flex>
+          <Flex justifyContent="center" mt={4}>
+            <Button 
+              onClick={handlePayment}
+              padding="1.8rem"
+              background="main"
+              border=".1rem solid "
+              borderRadius=".5rem"
+              borderColor="main"
+              color="white"
+              fontSize="1.8rem"
+              _hover={{
+                background: 'primaryHover',
+                color: 'white',
+              }}>
+              결제하기
+            </Button>
           </Flex>
         </>
       )}
