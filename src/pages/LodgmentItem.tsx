@@ -192,8 +192,8 @@ const LodgmentItem = () => {
         title="이 객실을 예약하시겠습니까?"
         body={
           <Box>
-            <Text>룸이름: {selectedRooms.roomTypeName}</Text>
-            <Text>룸타입: {selectedRooms.roomType}</Text>
+            <Text>객실 이름: {selectedRooms.roomTypeName}</Text>
+            <Text>객실 타입: {selectedRooms.roomType}</Text>
             <Text>
               가격:{' '}
               {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
