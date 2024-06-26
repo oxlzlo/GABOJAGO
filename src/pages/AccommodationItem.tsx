@@ -43,8 +43,8 @@ const AccommodationItem = () => {
 
   return (
     <Box paddingTop="30rem" paddingLeft="20rem">
-      {accommodations.map((accommodation, index) => (
-        <Box key={index}>
+      {accommodations.map((accommodation, _) => (
+        <Box key={accommodation.id}>
           <Text>{accommodation.name}</Text>
           <Text>{accommodation.address}</Text>
           <Text>{accommodation.numbers}</Text>

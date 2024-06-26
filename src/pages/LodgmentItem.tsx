@@ -32,9 +32,14 @@ const LodgmentItem = () => {
   };
 
   useEffect(() => {
-    fetchLodgmentById(lodgmentId as string).then((response) => {
-      setLodgments([response]);
-    });
+    fetchLodgmentById(lodgmentId as string)
+      .then((response) => {
+        setLodgments([response]);
+      })
+      .catch((error) => {
+        const errorTime = new Date().toISOString();
+        console.error(`[${errorTime}] Error  data:`, error);
+      });
   }, [lodgmentId]);
 
   const handlePayment = (room: SetStateAction<Rooms>) => {
@@ -87,7 +92,7 @@ const LodgmentItem = () => {
                     <Heading borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
-                    {lodgment.roomList.map((room) => (
+                    {lodgment.roomList.map((room, _) => (
                       <ListItem
                         key={room.id}
                         borderBottom="1px solid"
