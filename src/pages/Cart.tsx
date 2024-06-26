@@ -20,7 +20,7 @@ const Cart = () => {
       direction="column"
       justifyContent="flex-start"
       alignItems="center"
-      minHeight="calc(100vh - 80px)" // 헤더 높이를 고려하여 전체 높이를 계산합니다.
+      minHeight="calc(100vh - 80px)"
       p={4}
     >
       <Box
