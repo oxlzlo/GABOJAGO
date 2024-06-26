@@ -29,8 +29,9 @@ const SignIn = () => {
       );
       if (response.data.result_code === '200') {
         alert('로그인 되었습니다');
+        localStorage.setItem('accessToken', response.data.data.access_token);
+        localStorage.setItem('refreshToken', response.data.data.refresh_token);
         navigate('/');
-        console.log(email, password);
       }
     } catch (error) {
       console.error('로그인 에러', error);
