@@ -45,7 +45,7 @@ export const ReservationModal = ({
           {body}
         </ModalBody>
         <ModalFooter marginTop="1.5rem">
-          <Button onClick={onClose} fontSize="1.8rem" _hover={{ background: 'grayLight' }}>
+          <Button onClick={onClose} fontSize="1.8rem" padding="1.5rem" _hover={{ background: 'grayLight' }}>
             {cancelButtonText || 'No'}
           </Button>
           <Button
@@ -54,6 +54,7 @@ export const ReservationModal = ({
             color="white"
             marginLeft="1rem"
             fontSize="1.8rem"
+            padding="1.5rem"
             _hover={{
               background: 'primaryHover',
             }}>
