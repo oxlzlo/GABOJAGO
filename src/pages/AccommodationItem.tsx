@@ -1,11 +1,11 @@
 import { fetchAccommodationById } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { Box, Text, useDisclosure } from '@chakra-ui/react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AccommodationItem = () => {
-  const { id } = useParams<string>();
+  const { accommodationId } = useParams<string>();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -31,7 +31,7 @@ const AccommodationItem = () => {
   };
 
   useEffect(() => {
-    fetchAccommodationById(id as string)
+    fetchAccommodationById(accommodationId as string)
       .then((response) => {
         const { data } = response.data;
         setAccommodations([data]);
@@ -39,7 +39,7 @@ const AccommodationItem = () => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, [id]);
+  }, [accommodationId]);
 
   return (
     <Box paddingTop="30rem" paddingLeft="20rem">

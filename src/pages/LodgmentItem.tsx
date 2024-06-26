@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 
 const LodgmentItem = () => {
-  const { id } = useParams<string>();
+  const { lodgmentId } = useParams<string>();
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,10 +33,10 @@ const LodgmentItem = () => {
   };
 
   useEffect(() => {
-    fetchLodgmentById(id as string).then((response) => {
+    fetchLodgmentById(lodgmentId as string).then((response) => {
       setLodgments([response]);
     });
-  }, [id]);
+  }, [lodgmentId]);
 
   const handlePayment = (room: SetStateAction<Rooms>) => {
     setSelectedRooms(room);

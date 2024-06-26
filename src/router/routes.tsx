@@ -25,7 +25,7 @@ export const routes = [
     ),
   },
   {
-    path: '/lodgment/:id',
+    path: '/lodgment/:lodgmentId',
     element: (
       <Layout>
         <LodgmentItem />
@@ -33,7 +33,7 @@ export const routes = [
     ),
   },
   {
-    path: '/accommodation/:id',
+    path: '/accommodation/:accommodationId',
     element: (
       <Layout>
         <AccommodationItem />
