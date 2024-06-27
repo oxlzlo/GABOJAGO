@@ -5,6 +5,7 @@ import Cart from '@/assets/images/cart.svg?react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { ReservationModal } from '@/lib/common/ReservationModal';
+import RoomDetailModal from '@/lib/common/RoomDetailModal';
 
 const LodgmentItem = () => {
   const { lodgmentId } = useParams<string>();
@@ -24,6 +25,7 @@ const LodgmentItem = () => {
     comment: '',
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchLodgmentById(lodgmentId as string)
@@ -59,6 +61,27 @@ const LodgmentItem = () => {
   };
 
   const handleCartAdd = () => {};
+
+  const handleRoomClick = (room: Rooms) => {
+    setSelectedRooms(room);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRooms({
+      id: 0,
+      imageList: '',
+      roomType: '',
+      roomTypeName: '',
+      roomPrice: 0,
+      roomExtraPrice: 0,
+      roomStock: 0,
+      roomDefaultGuest: 0,
+      roomMaxGuest: 0,
+      comment: '',
+    });
+  };
 
   return (
     <>
@@ -115,11 +138,13 @@ const LodgmentItem = () => {
                         <Flex gap="4rem">
                           {room.imageList && (
                             <Image
+                              onClick={() => handleRoomClick(room)}
                               src={room.imageList[0]}
                               alt={room.roomTypeName}
                               width="20vw"
                               height="30vh"
                               marginBottom="1rem"
+                              cursor="pointer"
                             />
                           )}
                           <Flex flexDirection="column" gap=".5rem">
@@ -218,6 +243,7 @@ const LodgmentItem = () => {
         cancelButtonText="아니오"
         onConfirm={handleConfirm}
       />
+      <RoomDetailModal isOpen={isModalOpen} onClose={handleCloseModal} selectedRooms={selectedRooms} />
     </>
   );
 };

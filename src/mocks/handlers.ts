@@ -193,19 +193,6 @@ export const handlers = [
     }
   }),
 
-  // 특정 객실 목록 조회
-  // http.get('/api/lodgment/:lodgmentId/room/:roomId', (request) => {
-  //   const { LodgmentId, roomId } = request.params;
-  //   const lodgmentItem = lodgment.find((item) => item.id === LodgmentId);
-  //   if (lodgmentItem) {
-  //     const room = lodgmentItem.roomList.find((room) => room.id === roomId);
-  //     if (room) {
-  //       return HttpResponse.json(room);
-  //     }
-  //   }
-  //   return HttpResponse.json({ message: 'Not found' }, { status: 404 });
-  // }),
-
   // 전체 객실 목록 조회
   // http.get('/api/lodgment/:LodgmentId/room', (request) => {
   //   const { LodgmentId } = request.params;
