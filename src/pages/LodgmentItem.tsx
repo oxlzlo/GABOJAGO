@@ -1,5 +1,5 @@
 import { fetchLodgmentById, fetchRoomList } from '@/api';
-import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Divider, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -110,14 +110,10 @@ const LodgmentItem = () => {
                 <Text fontSize="1.6rem" fontWeight="600">
                   {lodgment.numbers}
                 </Text>
-                <Text
-                  marginTop="2rem"
-                  fontWeight="600"
-                  fontSize="2rem"
-                  borderBottom="1px solid"
-                  borderColor="grayLight">
+                <Text marginTop="2rem" fontWeight="600" fontSize="2rem">
                   숙소 소개
                 </Text>
+                <Divider borderColor="grayLight" />
                 <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
                   {lodgment.comment}
                 </Text>
