@@ -1,13 +1,15 @@
 import { Box, Flex, Heading, Button, Spacer, Text, Popover, PopoverTrigger, PopoverContent } from '@chakra-ui/react';
 import Logo from '@/assets/logo.svg?react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { useState, useRef, useEffect } from 'react';
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const handleUserNameClick = () => {
     setShowDropdown((prevState) => !prevState);
@@ -25,6 +27,10 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <Box
@@ -53,13 +59,15 @@ const Header = () => {
                 {showDropdown && (
                   <PopoverContent
                     top="1.3vh"
-                    right="1vw"
+                    right="1.2vw"
                     width="9vw"
                     height="17.6vh"
                     borderRadius="0 0 .5rem .5rem"
                     ref={dropdownRef}>
                     <Flex flexDirection="column" align="center" gap="1vh" fontSize="2rem" color="black">
-                      <Text marginTop="2.5vh">장바구니</Text>
+                      <Text marginTop="2.5vh" onClick={() => navigate('/cart')}>
+                        장바구니
+                      </Text>
                       <Text>주문내역</Text>
                       <Button
                         width="7vw"
@@ -68,7 +76,8 @@ const Header = () => {
                         backgroundColor="main"
                         fontSize="2rem"
                         color="white"
-                        borderRadius=".8rem">
+                        borderRadius=".8rem"
+                        onClick={handleLogout}>
                         로그아웃
                       </Button>
                     </Flex>
