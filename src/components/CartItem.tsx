@@ -1,53 +1,74 @@
 import { fetchLodgment } from '@/api';
-import { Lodgment } from '@/lib/types/lodgment';
 import { useEffect, useState } from 'react';
-import { Box, Flex, Image, Text, Checkbox, Divider } from '@chakra-ui/react';
-import emotionStyled from '@emotion/styled';
-import roomImage from '../assets/hotel.png';
+import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
+import { Accommodation } from '@/lib/types/accommodation';
 
-const CartItem = () => {
-  const [lodgments, setLodgments] = useState<Lodgment[]>([]);
+const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
+  const handleChange = (e) => {
+    onSelectItem(item, e.target.checked);
+  };
+
+  return (
+    <Checkbox
+      {...props}
+      onChange={handleChange}
+      sx={{
+        '& .chakra-checkbox__control': {
+          width: '2rem',
+          height: '2rem',
+        },
+        '& .chakra-checkbox__icon': {
+          fontSize: '2.5rem',
+        },
+      }}
+    />
+  );
+};
+
+const CartItem = ({ onSelectItem }) => {
+  const [lodgments, setLodgments] = useState<Accommodation[]>([]);
+  const theme = useTheme();
 
   useEffect(() => {
-    fetchLodgment().then((response) => {
+    const fetchData = async () => {
+      const response = await fetchLodgment();
       setLodgments(response);
-    });
+    };
+    fetchData();
   }, []);
 
   return (
     <>
       {lodgments.map((lodgment) => (
-        <Box
-          key={lodgment.id}
-          display="flex"
-          flexDirection="column"
-          p={10}
-          border="1px solid #005153"
-          borderRadius="1rem">
-          <Flex alignItems="center" mb={3}>
-            {' '}
-            {/* 첫 번째 행, 수평 정렬 및 하단 마진 */}
-            <Image src={lodgment.image} alt={lodgment.name} boxSize="100px" mr={3} borderRadius="md" />
-            <Box>
-              <Text fontWeight="900" fontSize="1.5rem">
+        <Box key={lodgment.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
+          <Flex mb={10} alignItems="center">
+            <Image src={lodgment.thumbnail} alt={lodgment.name} boxSize="100px" mr={8} borderRadius="lg" />
+            <Box flex="1">
+              <Text fontSize="2rem" fontWeight="900">
                 {lodgment.name}
-              </Text>{' '}
-              {/* 굵은 텍스트로 이름 표시 */}
-              <Text>평점: item.rating / 리뷰 수: item.reviewCount</Text> {/* 평점과 리뷰 수 표시 */}
+              </Text>
+              <Text fontSize="1.2rem">
+                평점: {lodgment.rating} / 리뷰 수: {lodgment.reviewCount}
+              </Text>
             </Box>
-            <Checkbox ml="auto" /> {/* 체크박스를 오른쪽 끝으로 배치 */}
+            <CustomCheckbox
+              item={lodgment}
+              onSelectItem={onSelectItem}
+              colorScheme="teal"
+              borderColor={theme.colors.main}
+            />
           </Flex>
-          <Divider borderColor="#005153" /> {/* 구분선 */}
-          <Box mt={3}>
-            {' '}
-            {/* 두 번째 행, 상단 마진 */}
-            <Text>이용기간: 'item.period'</Text> {/* 이용 기간 표시 */}
-            <Text>이용자 수: 'item.userCount'명</Text> {/* 이용자 수 표시 */}
+          <Divider borderColor={`${theme.colors.main}`} />
+          <Box mt={10} fontSize="1.2rem">
             <Text>
-              이용금액:
-              {lodgment.room && lodgment.room.length > 0 ? lodgment.room[0].price.toLocaleString() : 'N/A'}원
-            </Text>{' '}
-            {/* 이용 금액 표시 */}
+              이용기간: {lodgment.startDate} - {lodgment.endDate}
+            </Text>
+            <Text>이용자 수: {lodgment.userCount}인</Text>
+            <Flex justifyContent="flex-end" fontSize="2rem" fontWeight="700">
+              <Text>
+                {lodgment.room && lodgment.room.length > 0 ? lodgment.room[0].price.toLocaleString() : 'N/A'}원
+              </Text>
+            </Flex>
           </Box>
         </Box>
       ))}

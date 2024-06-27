@@ -50,6 +50,14 @@ export const routes = [
     ),
   },
   {
+    path: '/payment',
+    element: (
+      <Layout>
+        <Payment />
+      </Layout>
+    ),
+  },
+  {
     path: '/signup',
     element: <SignUp />,
   },
