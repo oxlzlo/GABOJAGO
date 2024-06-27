@@ -7,7 +7,7 @@ import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const AccommodationItem = () => {
-  const { accommodationId } = useParams();
+  const { accommodationId } = useParams<string>();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +25,7 @@ const AccommodationItem = () => {
   });
 
   useEffect(() => {
-    fetchAccommodationById(accommodationId)
+    fetchAccommodationById(accommodationId as string)
       .then((response) => {
         const { data } = response.data;
         setAccommodations([data]);

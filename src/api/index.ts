@@ -10,17 +10,17 @@ export const fetchAccommodation = async () => {
 };
 
 // 개별 상품 조회 (숙박, 객실)
-export const fetchAccommodationById = async (accommodationId: number) => {
+export const fetchAccommodationById = async (accommodationId: string) => {
   return instance.get(`/open-api/accommodation/${accommodationId}`);
 };
 
 // 전체 객실 조회
-export const fetchRoom = async (accommodationId: number) => {
+export const fetchRoom = async (accommodationId: string) => {
   return instance.get(`/open-api/accommodation/${accommodationId}/room`);
 };
 
 // 개별 객실 조회
-export const fetchRoomById = async (accommodationId: number, roomId: number) => {
+export const fetchRoomById = async (accommodationId: string, roomId: string) => {
   return instance.get(`/open-api/accommodation/${accommodationId}/room/${roomId}`);
 };
 
@@ -34,7 +34,7 @@ export const fetchLodgment = async () => {
   }
 };
 
-export const fetchLodgmentById = async (lodgmentId: number) => {
+export const fetchLodgmentById = async (lodgmentId: string) => {
   try {
     const response = await axios.get(`/api/lodgment/${lodgmentId}`);
     return response.data;
@@ -44,7 +44,7 @@ export const fetchLodgmentById = async (lodgmentId: number) => {
 };
 
 // 전체 객실 조회
-export const fetchRoomList = async (lodgmentId: number) => {
+export const fetchRoomList = async (lodgmentId: string) => {
   try {
     const response = await axios.get(`/api/lodgment/${lodgmentId}/room`);
     return response.data;
@@ -53,7 +53,7 @@ export const fetchRoomList = async (lodgmentId: number) => {
   }
 };
 // 특정 객실 조회
-export const fetchRoomDetail = async (lodgmentId: number, roomId: number) => {
+export const fetchRoomDetail = async (lodgmentId: string, roomId: string) => {
   try {
     const response = await axios.get(`/api/lodgment/${lodgmentId}/room/${roomId}`);
     return response.data;

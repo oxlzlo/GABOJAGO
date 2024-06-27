@@ -7,7 +7,7 @@ import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const LodgmentItem = () => {
-  const { lodgmentId } = useParams();
+  const { lodgmentId } = useParams<string>();
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,7 +26,7 @@ const LodgmentItem = () => {
   const [roomList, setRoomList] = useState<Rooms[]>([]);
 
   useEffect(() => {
-    fetchLodgmentById(lodgmentId)
+    fetchLodgmentById(lodgmentId as string)
       .then((response) => {
         setLodgments([response]);
       })
@@ -37,7 +37,7 @@ const LodgmentItem = () => {
   }, [lodgmentId]);
 
   useEffect(() => {
-    fetchRoomList(lodgmentId)
+    fetchRoomList(lodgmentId as string)
       .then((response) => {
         setRoomList(response);
       })
