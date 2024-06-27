@@ -36,8 +36,8 @@ const SignUp = () => {
       return;
     }
 
-    if (phoneNumber === '') {
-      alert('전화번호를 입력해주세요.');
+    if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(phoneNumber)) {
+      alert('전화번호를 양식에 맞게 입력해주세요.');
       return;
     }
 
