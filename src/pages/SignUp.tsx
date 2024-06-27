@@ -5,7 +5,7 @@ import emotionStyled from '@emotion/styled';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -35,6 +35,11 @@ const SignUp = () => {
 
     if (name === '') {
       alert('이름을 입력해주세요.');
+      return;
+    }
+
+    if (phoneNumber === '') {
+      alert('전화번호를 입력해주세요.');
       return;
     }
 
@@ -78,7 +83,7 @@ const SignUp = () => {
         height="68.4vh"
         margin="auto"
         backgroundColor="white">
-        <Flex flexDirection="column" justify="center" align="center" marginTop="14.6vh">
+        <Flex flexDirection="column" justify="center" align="center" marginTop="8vh">
           <Logo />
           <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
@@ -106,6 +111,12 @@ const SignUp = () => {
                 placeholder="Name *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                onKeyPress={handleKeypress}
+              />
+              <InputBox
+                placeholder="Phone Number *"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
                 onKeyPress={handleKeypress}
               />
               <Button
