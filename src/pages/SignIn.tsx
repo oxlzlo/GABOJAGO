@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import '../index.css';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSignupClick = () => {
@@ -31,6 +31,7 @@ const SignIn = () => {
         alert('로그인 되었습니다');
         localStorage.setItem('accessToken', response.data.data.access_token);
         localStorage.setItem('refreshToken', response.data.data.refresh_token);
+        login({ email, name: response.data.data.name });
         navigate('/');
       }
     } catch (error) {

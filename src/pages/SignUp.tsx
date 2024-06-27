@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Box, Button, Flex } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
@@ -10,6 +10,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [name, setName] = useState('');
 
   const navigate = useNavigate();
@@ -35,10 +36,16 @@ const SignUp = () => {
       return;
     }
 
+    if (phoneNumber === '') {
+      alert('전화번호를 입력해주세요.');
+      return;
+    }
+
     const payload = {
       name,
       email,
       password,
+      phone_number: phoneNumber,
     };
 
     try {
@@ -74,7 +81,7 @@ const SignUp = () => {
         height="68.4vh"
         margin="auto"
         backgroundColor="white">
-        <Flex flexDirection="column" justify="center" align="center" marginTop="14.6vh">
+        <Flex flexDirection="column" justify="center" align="center" marginTop="8vh">
           <Logo />
           <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
@@ -102,6 +109,12 @@ const SignUp = () => {
                 placeholder="Name *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                onKeyPress={handleKeypress}
+              />
+              <InputBox
+                placeholder="Phone Number *"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
                 onKeyPress={handleKeypress}
               />
               <Button
