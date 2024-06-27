@@ -7,9 +7,9 @@ import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const LodgmentItem = () => {
-  const { lodgmentId } = useParams<string>();
+  const { lodgmentId } = useParams();
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
@@ -26,7 +26,7 @@ const LodgmentItem = () => {
   const [roomList, setRoomList] = useState<Rooms[]>([]);
 
   useEffect(() => {
-    fetchLodgmentById(lodgmentId as string)
+    fetchLodgmentById(lodgmentId)
       .then((response) => {
         setLodgments([response]);
       })
@@ -37,7 +37,7 @@ const LodgmentItem = () => {
   }, [lodgmentId]);
 
   useEffect(() => {
-    fetchRoomList(lodgmentId as string)
+    fetchRoomList(lodgmentId)
       .then((response) => {
         setRoomList(response);
       })
@@ -48,7 +48,7 @@ const LodgmentItem = () => {
 
   const handleConfirm = () => {
     if (selectedRooms) {
-      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
+      navigate(`/payment/${selectedRooms.id}`, { state: selectedRooms });
     }
     onClose();
   };
@@ -65,7 +65,7 @@ const LodgmentItem = () => {
       <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
-            {lodgments.map((lodgment) => (
+            {lodgments.map((lodgment, _) => (
               <ListItem key={lodgment.id}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {lodgment.name}

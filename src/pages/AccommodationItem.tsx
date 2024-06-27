@@ -7,7 +7,7 @@ import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 
 const AccommodationItem = () => {
-  const { accommodationId } = useParams<string>();
+  const { accommodationId } = useParams();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +25,7 @@ const AccommodationItem = () => {
   });
 
   useEffect(() => {
-    fetchAccommodationById(accommodationId as string)
+    fetchAccommodationById(accommodationId)
       .then((response) => {
         const { data } = response.data;
         setAccommodations([data]);
@@ -53,7 +53,7 @@ const AccommodationItem = () => {
       <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
-            {accommodations.map((accommodation) => (
+            {accommodations.map((accommodation, _) => (
               <ListItem key={accommodation.id}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {accommodation.name}
