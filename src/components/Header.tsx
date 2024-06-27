@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Button, Spacer, Text } from '@chakra-ui/react';
 import Logo from '@/assets/logo.svg?react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../store/authStore';
 
 const Header = () => {
   const { user } = useAuth();
