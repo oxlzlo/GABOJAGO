@@ -25,7 +25,7 @@ const Header = () => {
         </Heading>
         <Spacer />
         {user ? (
-          <Box display="flex" alignItems="center" gap="1.5rem">
+          <Box display="flex" alignItems="center" gap="1.5rem" cursor="pointer">
             <Text fontSize="1.8rem">{user.name}님</Text>
           </Box>
         ) : (
