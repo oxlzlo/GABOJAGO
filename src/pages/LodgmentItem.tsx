@@ -1,15 +1,16 @@
-import { fetchLodgmentById } from '@/api';
-import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
-import { SetStateAction, useEffect, useRef, useState } from 'react';
+import { fetchLodgmentById, fetchRoomList } from '@/api';
+import { Box, Button, Divider, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
+import { SetStateAction, useEffect, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { ReservationModal } from '@/lib/common/ReservationModal';
+import RoomDetailModal from '@/lib/common/RoomDetailModal';
 
 const LodgmentItem = () => {
   const { lodgmentId } = useParams<string>();
   const [lodgments, setLodgments] = useState<Accommodation[]>([]);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
@@ -23,13 +24,8 @@ const LodgmentItem = () => {
     roomMaxGuest: 0,
     comment: '',
   });
-
-  const handleConfirm = () => {
-    if (selectedRooms) {
-      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
-    }
-    onClose();
-  };
+  const [roomList, setRoomList] = useState<Rooms[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchLodgmentById(lodgmentId as string)
@@ -42,6 +38,23 @@ const LodgmentItem = () => {
       });
   }, [lodgmentId]);
 
+  useEffect(() => {
+    fetchRoomList(lodgmentId as string)
+      .then((response) => {
+        setRoomList(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleConfirm = () => {
+    if (selectedRooms) {
+      navigate(`/payment/${selectedRooms.id}`, { state: selectedRooms });
+    }
+    onClose();
+  };
+
   const handlePayment = (room: SetStateAction<Rooms>) => {
     setSelectedRooms(room);
     onOpen();
@@ -49,12 +62,33 @@ const LodgmentItem = () => {
 
   const handleCartAdd = () => {};
 
+  const handleRoomClick = (room: Rooms) => {
+    setSelectedRooms(room);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRooms({
+      id: 0,
+      imageList: '',
+      roomType: '',
+      roomTypeName: '',
+      roomPrice: 0,
+      roomExtraPrice: 0,
+      roomStock: 0,
+      roomDefaultGuest: 0,
+      roomMaxGuest: 0,
+      comment: '',
+    });
+  };
+
   return (
     <>
       <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
-            {lodgments.map((lodgment) => (
+            {lodgments.map((lodgment, _) => (
               <ListItem key={lodgment.id}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {lodgment.name}
@@ -76,23 +110,19 @@ const LodgmentItem = () => {
                 <Text fontSize="1.6rem" fontWeight="600">
                   {lodgment.numbers}
                 </Text>
-                <Text
-                  marginTop="2rem"
-                  fontWeight="600"
-                  fontSize="2rem"
-                  borderBottom="1px solid"
-                  borderColor="grayLight">
+                <Text marginTop="2rem" fontWeight="600" fontSize="2rem">
                   숙소 소개
                 </Text>
+                <Divider borderColor="grayLight" />
                 <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
                   {lodgment.comment}
                 </Text>
-                {lodgment.roomList && (
+                {roomList && (
                   <List display="flex" flexDirection="column" gap="1rem">
                     <Heading borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
-                    {lodgment.roomList.map((room, _) => (
+                    {roomList.map((room, _) => (
                       <ListItem
                         key={room.id}
                         borderBottom="1px solid"
@@ -104,11 +134,13 @@ const LodgmentItem = () => {
                         <Flex gap="4rem">
                           {room.imageList && (
                             <Image
+                              onClick={() => handleRoomClick(room)}
                               src={room.imageList[0]}
                               alt={room.roomTypeName}
                               width="20vw"
                               height="30vh"
                               marginBottom="1rem"
+                              cursor="pointer"
                             />
                           )}
                           <Flex flexDirection="column" gap=".5rem">
@@ -207,6 +239,7 @@ const LodgmentItem = () => {
         cancelButtonText="아니오"
         onConfirm={handleConfirm}
       />
+      <RoomDetailModal isOpen={isModalOpen} onClose={handleCloseModal} selectedRooms={selectedRooms} />
     </>
   );
 };

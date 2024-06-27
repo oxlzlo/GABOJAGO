@@ -1,5 +1,5 @@
 export type Accommodation = {
-  id: string;
+  id: number;
   name: string;
   address: string;
   numbers: number;

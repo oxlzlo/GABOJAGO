@@ -42,3 +42,22 @@ export const fetchLodgmentById = async (lodgmentId: string) => {
     console.error(error);
   }
 };
+
+// 전체 객실 조회
+export const fetchRoomList = async (lodgmentId: string) => {
+  try {
+    const response = await axios.get(`/api/lodgment/${lodgmentId}/room`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+// 특정 객실 조회
+export const fetchRoomDetail = async (lodgmentId: string, roomId: string) => {
+  try {
+    const response = await axios.get(`/api/lodgment/${lodgmentId}/room/${roomId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
