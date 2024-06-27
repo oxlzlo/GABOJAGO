@@ -17,7 +17,7 @@ const Header = () => {
       right="0"
       zIndex="50"
       background="white">
-      <Flex align="center" paddingX="4.75rem" paddingY="1.5rem">
+      <Flex alignItems="center" paddingX="4.75rem" paddingY="1.5rem">
         <Heading>
           <Link to="/">
             <Logo />

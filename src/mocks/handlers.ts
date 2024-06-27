@@ -1,5 +1,4 @@
 import { http, HttpResponse } from 'msw';
-import { request } from 'node_modules/axios/index.d.cts';
 
 let lodgment = [
   {
