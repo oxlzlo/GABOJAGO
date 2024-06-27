@@ -42,3 +42,12 @@ export const fetchLodgmentById = async (lodgmentId: string) => {
     console.error(error);
   }
 };
+
+export const fetchRoomList = async (lodgmentId: string) => {
+  try {
+    const response = await axios.get(`/api/lodgment/${lodgmentId}/room`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

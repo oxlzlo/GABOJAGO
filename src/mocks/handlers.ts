@@ -143,6 +143,33 @@ let lodgment = [
   },
 ];
 
+const roomList = [
+  {
+    id: '0',
+    roomType: '싱글룸',
+    roomTypeName: 'A 싱글룸',
+    roomPrice: 100000,
+    roomExtraPrice: 50000,
+    roomStock: 10,
+    roomDefaultGuest: 1,
+    roomMaxGuest: 1,
+    comment: '싱글룸 입니다.',
+    imageList: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
+  },
+  {
+    id: '1',
+    roomType: '더블룸',
+    roomTypeName: 'B 더블룸',
+    roomPrice: 200000,
+    roomExtraPrice: 100000,
+    roomStock: 10,
+    roomDefaultGuest: 2,
+    roomMaxGuest: 2,
+    comment: '더블룸 입니다.',
+    imageList: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
+  },
+];
+
 export const handlers = [
   // 전체 숙박 목록 조회
   http.get('/api/lodgment', () => {
@@ -158,4 +185,17 @@ export const handlers = [
       return HttpResponse.json({ message: 'Not found' }, { status: 404 });
     }
   }),
+
+  // 전체 객실 목록 조회
+  http.get('/api/lodgment/:LodgmentId/room', (request) => {
+    const { id } = request.params;
+    const lodgmentItem = lodgment.find((item) => item.id === id);
+    if (lodgmentItem) {
+      return HttpResponse.json(roomList);
+    } else {
+      return HttpResponse.json({ message: 'Not found' }, { status: 404 });
+    }
+  }),
+  // 특정 객실 목록 조회
+  // http.get('/api/lodgment/:LodgmentId/room/:roomId', (request) => {}),
 ];

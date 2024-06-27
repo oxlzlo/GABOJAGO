@@ -1,4 +1,4 @@
-import { fetchLodgmentById } from '@/api';
+import { fetchLodgmentById, fetchRoomList } from '@/api';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
@@ -23,13 +23,7 @@ const LodgmentItem = () => {
     roomMaxGuest: 0,
     comment: '',
   });
-
-  const handleConfirm = () => {
-    if (selectedRooms) {
-      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
-    }
-    onClose();
-  };
+  const [roomList, setRoomList] = useState<Rooms[]>([]);
 
   useEffect(() => {
     fetchLodgmentById(lodgmentId as string)
@@ -41,6 +35,23 @@ const LodgmentItem = () => {
         console.error(`[${errorTime}] Error  data:`, error);
       });
   }, [lodgmentId]);
+
+  useEffect(() => {
+    fetchRoomList(lodgmentId as string)
+      .then((response) => {
+        setRoomList(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleConfirm = () => {
+    if (selectedRooms) {
+      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
+    }
+    onClose();
+  };
 
   const handlePayment = (room: SetStateAction<Rooms>) => {
     setSelectedRooms(room);
@@ -87,12 +98,12 @@ const LodgmentItem = () => {
                 <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
                   {lodgment.comment}
                 </Text>
-                {lodgment.roomList && (
+                {roomList && (
                   <List display="flex" flexDirection="column" gap="1rem">
                     <Heading borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
-                    {lodgment.roomList.map((room, _) => (
+                    {roomList.map((room, _) => (
                       <ListItem
                         key={room.id}
                         borderBottom="1px solid"
