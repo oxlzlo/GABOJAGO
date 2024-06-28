@@ -6,6 +6,6 @@ export type User = {
 export type AuthState = {
   user: User | null;
   login: (userData: User) => void;
-  logout: () => void;
+  logout: (userData: User) => void;
   loadUserFromLocalStorage: () => void;
 };
