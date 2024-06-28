@@ -9,8 +9,6 @@ import { fetchCreatCartItems } from '@/api';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const [cartItems, setCartItems] = useState([]);
-
   useEffect(() => {
     fetchCreatCartItems()
       .then((response) => {
@@ -57,11 +55,6 @@ const Home = () => {
       </Box>
       <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
         <LodgmentList />
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
       </Box>
     </Box>
   );
