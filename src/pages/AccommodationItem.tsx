@@ -1,4 +1,4 @@
-import { fetchAccommodationById } from '@/api';
+import { fetchAccommodationById, fetchCreateCartItems } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
@@ -12,8 +12,8 @@ const AccommodationItem = () => {
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
-    id: 0,
-    imageList: '',
+    id: '',
+    imageList: [],
     roomType: '',
     roomTypeName: '',
     roomPrice: 0,
@@ -46,15 +46,32 @@ const AccommodationItem = () => {
     setSelectedRooms(room);
     onOpen();
   };
-  const handleCartAdd = () => {};
 
+  // 장바구니에 추가 함수
+  const handleAddToCart = (roomId: string) => {
+    const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === roomId);
+    if (selectedRoomForCart) {
+      const payload = {
+        roomId: selectedRoomForCart.id,
+        startDate: new Date(),
+        endDate: new Date(),
+      };
+      fetchCreateCartItems(payload)
+        .then(() => {
+          console.log('장바구니에 추가되었습니다.');
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  };
   return (
     <>
       <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
-            {accommodations.map((accommodation, _) => (
-              <ListItem key={accommodation.id}>
+            {accommodations.map((accommodation, index) => (
+              <ListItem key={index}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {accommodation.name}
                 </Heading>
@@ -138,7 +155,7 @@ const AccommodationItem = () => {
                         </Flex>
                         <Flex gap=".5rem" alignItems="end">
                           <Button
-                            onClick={handleCartAdd}
+                            onClick={() => handleAddToCart(room.id)}
                             paddingY="1.8rem"
                             background="white"
                             border=".1rem solid "

@@ -1,5 +1,5 @@
 export type Accommodation = {
-  id: number;
+  id: string;
   name: string;
   address: string;
   numbers: number;
@@ -10,7 +10,7 @@ export type Accommodation = {
 };
 
 export type Rooms = {
-  id: number;
+  id: string;
   imageList: string[];
   roomType: string;
   roomTypeName: string;

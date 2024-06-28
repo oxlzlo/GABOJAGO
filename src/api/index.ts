@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { error } from 'console';
 
 const instance = axios.create({
   baseURL: 'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com',
@@ -7,11 +6,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    // 로컬 스토리지에서 토큰을 가져옵니다.
+    // 로컬 스토리지에서 토큰을 반환
     const accessToken = localStorage.getItem('accessToken');
-    console.log('accessToken:', accessToken);
     if (accessToken) {
-      // 토큰이 있으면 Authorization 헤더에 추가합니다.
+      // 토큰이 있으면 Authorization 헤더에 추가
       config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
     return config;
@@ -41,9 +39,18 @@ export const fetchRoomById = (accommodationId: string, roomId: string) => {
   return instance.get(`/open-/accommodation/${accommodationId}/room/${roomId}`);
 };
 
+// 장바구니 조회
+export const fetchCartItems = () => {
+  return instance.get('/api/user/cartItems', {});
+};
 // 장바구니 생성
-export const fetchCreatCartItems = () => {
-  return instance.post('/api/user/cartItems');
+export const fetchCreateCartItems = (payload: { roomId: string }) => {
+  const accessToken = localStorage.getItem('accessToken'); // 또는 다른 저장소에서 토큰을 가져옵니다.
+  return instance.post('/api/user/cartItems', payload, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 };
 
 // MSW에서 사용할 API
