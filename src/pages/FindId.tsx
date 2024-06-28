@@ -72,6 +72,14 @@ const FindId = () => {
                   _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
                   Find ID
                 </Button>
+                <Text
+                  marginTop="2.5vh"
+                  fontSize="1.2rem"
+                  color="main"
+                  cursor="pointer"
+                  onClick={() => navigate('/resetpw')}>
+                  패스워드 재설정
+                </Text>
               </Flex>
             )}
             {email && (
