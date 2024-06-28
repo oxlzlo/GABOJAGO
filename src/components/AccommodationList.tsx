@@ -19,8 +19,8 @@ const LodgmentList = () => {
     fetchAccommodation()
       .then((response) => {
         //  서버에서 받은  data가 배열인지 확인하는 코드
-        if (response && Array.isArray(response.data.data)) {
-          setAccommodations(response.data.data);
+        if (response && Array.isArray(response.data.data.content)) {
+          setAccommodations(response.data.data.content);
         } else {
           console.error('Expected an array but got:', response);
         }
