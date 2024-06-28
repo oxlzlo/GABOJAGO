@@ -24,6 +24,21 @@ export const fetchRoomById = async (accommodationId: string, roomId: string) => 
   return instance.get(`/open-api/accommodation/${accommodationId}/room/${roomId}`);
 };
 
+// 장바구니 보기
+export const userCart = async () => {
+  return instance.get('api/user/cartItems');
+};
+
+// 주문하기
+export const order = async () => {
+  return instance.get('api/order');
+};
+
+// 결제하기
+export const paymentOrder = async (orderId: string) => {
+  return instance.get(`api/order/payment/${orderId}`);
+};
+
 // MSW에서 사용할 API
 export const fetchLodgment = async () => {
   try {
