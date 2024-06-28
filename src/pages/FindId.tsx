@@ -3,12 +3,15 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -76,7 +79,10 @@ const FindId = () => {
                     fontSize="2rem"
                     backgroundColor="main"
                     color="white"
-                    _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
+                    _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}
+                    onClick={() => {
+                      navigate('/findpw');
+                    }}>
                     Reset Password
                   </Button>
                   <Button
@@ -86,7 +92,10 @@ const FindId = () => {
                     fontSize="2rem"
                     backgroundColor="main"
                     color="white"
-                    _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
+                    _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}
+                    onClick={() => {
+                      navigate('/');
+                    }}>
                     Return to main
                   </Button>
                 </Flex>
