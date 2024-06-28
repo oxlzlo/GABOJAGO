@@ -22,7 +22,7 @@ const FindId = () => {
       setError('');
     } catch (err) {
       console.error(err);
-      setError('이메일을 찾을 수 없습니다.');
+      setError('입력하신 정보와 일치하는 계정이 존재하지 않습니다.');
     }
   };
 
