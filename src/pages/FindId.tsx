@@ -26,6 +26,12 @@ const FindId = () => {
     }
   };
 
+  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <Box position="relative" height="100vh" backgroundColor="background">
       <Box
@@ -43,11 +49,17 @@ const FindId = () => {
           <Box marginTop="4.9vh">
             {!email && (
               <Flex flexDirection="column" justify="center" align="center">
-                <InputBox placeholder="Name" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <InputBox
+                  placeholder="Name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  onKeyPress={handleKeypress}
+                />
                 <InputBox
                   placeholder="Phone Number"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
+                  onKeyPress={handleKeypress}
                 />
                 <Button
                   width="27.8vw"
@@ -57,7 +69,6 @@ const FindId = () => {
                   backgroundColor="main"
                   fontSize="1.5rem"
                   color="white"
-                  onClick={handleSubmit}
                   _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
                   Find ID
                 </Button>
