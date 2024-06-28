@@ -44,8 +44,8 @@ export const fetchCartItems = () => {
   return instance.get('/api/user/cartItems', {});
 };
 // 장바구니 생성
-export const fetchCreateCartItems = (payload: { roomId: string }) => {
-  const accessToken = localStorage.getItem('accessToken'); // 또는 다른 저장소에서 토큰을 가져옵니다.
+export const fetchCreateCartItems = (payload: { roomId: string; startDate: string; endDate: string }) => {
+  const accessToken = localStorage.getItem('accessToken');
   return instance.post('/api/user/cartItems', payload, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
