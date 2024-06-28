@@ -19,7 +19,7 @@ const FindId = () => {
           <Logo />
           <Box marginTop="4.9vh">
             <Flex flexDirection="column" justify="center" align="center">
-              <InputBox placeholder="E-mail" />
+              <InputBox placeholder="Name" />
               <InputBox placeholder="Phone Number" />
               <Button
                 width="27.8vw"
