@@ -11,7 +11,7 @@ export type Accommodation = {
 
 export type Rooms = {
   id: number;
-  imageList: string;
+  imageList: string[];
   roomType: string;
   roomTypeName: string;
   roomPrice: number;

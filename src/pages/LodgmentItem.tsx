@@ -14,7 +14,7 @@ const LodgmentItem = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
-    imageList: '',
+    imageList: [],
     roomType: '',
     roomTypeName: '',
     roomPrice: 0,
@@ -71,7 +71,7 @@ const LodgmentItem = () => {
     setIsModalOpen(false);
     setSelectedRooms({
       id: 0,
-      imageList: '',
+      imageList: [],
       roomType: '',
       roomTypeName: '',
       roomPrice: 0,
