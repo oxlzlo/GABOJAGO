@@ -9,6 +9,13 @@ const useAuthStore = create<AuthState>((set) => ({
     localStorage.setItem('email', userData.email);
     localStorage.setItem('name', userData.name);
   },
+  logout: () => {
+    set({ user: null });
+    localStorage.removeItem('email');
+    localStorage.removeItem('name');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+  },
   loadUserFromLocalStorage: () => {
     const email = localStorage.getItem('email');
     const name = localStorage.getItem('name');
@@ -19,10 +26,10 @@ const useAuthStore = create<AuthState>((set) => ({
 }));
 
 export const useAuth = () => {
-  const { user, login, loadUserFromLocalStorage } = useAuthStore();
+  const { user, login, logout, loadUserFromLocalStorage } = useAuthStore();
 
   useEffect(() => {
     loadUserFromLocalStorage();
   }, [loadUserFromLocalStorage]);
-  return { user, login };
+  return { user, login, logout };
 };
