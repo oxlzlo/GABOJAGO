@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import { InputGroup, InputLeftElement, Input, InputProps } from '@chakra-ui/react';
+import { useState, forwardRef } from 'react';
+import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { CalendarIcon } from '@chakra-ui/icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';

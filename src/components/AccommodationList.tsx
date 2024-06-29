@@ -17,7 +17,7 @@ const LodgmentList = () => {
   // }, []);
 
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
   useEffect(() => {
     fetchAccommodation(page)

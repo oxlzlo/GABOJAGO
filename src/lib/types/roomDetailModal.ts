@@ -4,7 +4,7 @@ export type RoomDetailModalProps = {
   isOpen: boolean;
   onClose: () => void;
   selectedRooms: {
-    id: string;
+    id: number;
     imageList: ImageInfo[];
     roomType: string;
     roomTypeName: string;

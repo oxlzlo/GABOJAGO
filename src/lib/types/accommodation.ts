@@ -2,7 +2,7 @@ import { ImageInfo } from './imageInfo';
 
 export type Accommodation = {
   imageList: ImageInfo[];
-  id: string;
+  id: number;
   name: string;
   address: string;
   numbers: number;
@@ -13,7 +13,7 @@ export type Accommodation = {
 };
 
 export type Rooms = {
-  id: string;
+  id: number;
   imageList: ImageInfo[];
   roomType: string;
   roomTypeName: string;

@@ -13,7 +13,7 @@ const AccommodationItem = () => {
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
-    id: '',
+    id: 0,
     imageList: [],
     roomType: '',
     roomTypeName: '',
@@ -88,7 +88,7 @@ const AccommodationItem = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedRooms({
-      id: '',
+      id: 0,
       imageList: [],
       roomType: '',
       roomTypeName: '',
@@ -107,10 +107,10 @@ const AccommodationItem = () => {
    * @return void
    */
   const handleAddToCart = (roomId: string) => {
-    const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === roomId);
+    const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
     if (selectedRoomForCart) {
       const payload = {
-        roomId: selectedRoomForCart.id,
+        roomId: selectedRoomForCart.id.toString(),
         startDate: new Date(),
         endDate: new Date(),
       };
@@ -229,7 +229,7 @@ const AccommodationItem = () => {
                         </Flex>
                         <Flex gap=".5rem" alignItems="end">
                           <Button
-                            onClick={() => handleAddToCart(room.id)}
+                            onClick={() => handleAddToCart(room.id.toString())}
                             paddingY="1.8rem"
                             background="white"
                             border=".1rem solid "
