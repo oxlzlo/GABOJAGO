@@ -1,4 +1,4 @@
-import { fetchLodgmentById, fetchRoomList } from '@/api';
+import { fetchLodgmentById, fetchRoomListMSW } from '@/api';
 import { Box, Button, Divider, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
 import Cart from '@/assets/images/cart.svg?react';
@@ -14,7 +14,7 @@ const LodgmentItem = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
-    imageList: '',
+    imageList: [],
     roomType: '',
     roomTypeName: '',
     roomPrice: 0,
@@ -25,6 +25,7 @@ const LodgmentItem = () => {
     comment: '',
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
+  console.log(roomList);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const LodgmentItem = () => {
   }, [lodgmentId]);
 
   useEffect(() => {
-    fetchRoomList(lodgmentId as string)
+    fetchRoomListMSW(lodgmentId as string)
       .then((response) => {
         setRoomList(response);
       })
@@ -71,7 +72,7 @@ const LodgmentItem = () => {
     setIsModalOpen(false);
     setSelectedRooms({
       id: 0,
-      imageList: '',
+      imageList: [],
       roomType: '',
       roomTypeName: '',
       roomPrice: 0,

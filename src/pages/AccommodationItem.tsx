@@ -1,10 +1,11 @@
-import { fetchAccommodationById } from '@/api';
+import { fetchAccommodationById, fetchCreateCartItems, fetchRoomList } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
+import RoomDetailModal from '@/lib/common/RoomDetailModal';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams<string>();
@@ -13,7 +14,7 @@ const AccommodationItem = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
-    imageList: '',
+    imageList: [],
     roomType: '',
     roomTypeName: '',
     roomPrice: 0,
@@ -23,6 +24,8 @@ const AccommodationItem = () => {
     roomMaxGuest: 0,
     comment: '',
   });
+  const [roomList, setRoomList] = useState<Rooms[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchAccommodationById(accommodationId as string)
@@ -31,10 +34,26 @@ const AccommodationItem = () => {
         setAccommodations([data]);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        const errorTime = new Date().toISOString();
+        console.error(`[${errorTime}] Error  data:`, error);
       });
   }, [accommodationId]);
 
+  useEffect(() => {
+    fetchRoomList(accommodationId as string)
+      .then((response) => {
+        const { data } = response.data;
+        setRoomList(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  /**
+   * 특정 객실을 "지금 예약하기" 누르면 결제정보 페이지도 이동되는 함수
+   * @return void
+   */
   const handleConfirm = () => {
     if (selectedRooms) {
       navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
@@ -42,11 +61,69 @@ const AccommodationItem = () => {
     onClose();
   };
 
+  /**
+   * 객실 "지금 예약하기" 버튼 클릭 시 실행되는 함수
+   * @param room 선택된 방의 정보 data
+   * @return void
+   */
   const handlePayment = (room: SetStateAction<Rooms>) => {
     setSelectedRooms(room);
     onOpen();
   };
-  const handleCartAdd = () => {};
+
+  /**
+   * 객실 이미지, 객실 이름 클릭 시  객실 상세 Modal 실행되는 함수
+   * @param room 선택된 방의 정보 data
+   * @return void
+   */
+  const handleRoomClick = (room: Rooms) => {
+    setSelectedRooms(room);
+    setIsModalOpen(true);
+  };
+
+  /**
+   * 객실 상세 Modal 닫고 선택된 객실 정보 초기화 함수
+   * @return void
+   */
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRooms({
+      id: 0,
+      imageList: [],
+      roomType: '',
+      roomTypeName: '',
+      roomPrice: 0,
+      roomExtraPrice: 0,
+      roomStock: 0,
+      roomDefaultGuest: 0,
+      roomMaxGuest: 0,
+      comment: '',
+    });
+  };
+
+  /**
+   * 장바구니에 추가하는 함수
+   * @param roomId 선택된 방의 id
+   * @return void
+   */
+  const handleAddToCart = (roomId: string) => {
+    const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
+    if (selectedRoomForCart) {
+      const payload = {
+        roomId: selectedRoomForCart.id.toString(),
+        startDate: new Date(),
+        endDate: new Date(),
+      };
+      console.log('payload', payload);
+      fetchCreateCartItems(payload)
+        .then((response) => {
+          console.log('장바구니에 추가되었습니다.', response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  };
 
   return (
     <>
@@ -54,7 +131,7 @@ const AccommodationItem = () => {
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (
-              <ListItem key={accommodation.id}>
+              <ListItem key={accommodationId}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {accommodation.name}
                 </Heading>
@@ -70,13 +147,18 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                <Image
-                  src={accommodation.thumbnail}
-                  alt={accommodation.name}
-                  width="52vw"
-                  height="63.8vh"
-                  marginBottom="1rem"
-                />
+                {accommodation.imageList &&
+                  accommodation.imageList.map((image, index) => (
+                    <Image
+                      key={index}
+                      src={image.url}
+                      alt={accommodation.name}
+                      width="100%"
+                      height="50vh"
+                      objectFit="cover"
+                      marginBottom="2rem"
+                    />
+                  ))}
                 <Text fontSize="1.6rem">{accommodation.address}</Text>
                 <Text fontSize="1.6rem" fontWeight="600">
                   {accommodation.numbers}
@@ -92,12 +174,12 @@ const AccommodationItem = () => {
                 <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
                   {accommodation.comment}
                 </Text>
-                {accommodation.roomList && (
+                {roomList && (
                   <List display="flex" flexDirection="column" gap="1rem">
                     <Heading borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
-                    {accommodation.roomList.map((room, _) => (
+                    {roomList.map((room, _) => (
                       <ListItem
                         key={room.id}
                         borderBottom="1px solid"
@@ -107,17 +189,26 @@ const AccommodationItem = () => {
                         padding="2rem 0"
                         gap="1rem">
                         <Flex gap="4rem">
-                          {room.imageList && (
-                            <Image
-                              src={room.imageList[0]}
-                              alt={room.roomTypeName}
-                              width="20vw"
-                              height="30vh"
-                              marginBottom="1rem"
-                            />
-                          )}
+                          {room.imageList &&
+                            room.imageList.map((image, index) => (
+                              <Image
+                                onClick={() => handleRoomClick(room)}
+                                key={index}
+                                src={image.url}
+                                alt={room.roomTypeName}
+                                width="20vw"
+                                height="30vh"
+                                marginBottom="1rem"
+                              />
+                            ))}
                           <Flex flexDirection="column" gap=".5rem">
-                            <Heading fontSize="2rem">{room.roomTypeName}</Heading>
+                            <Heading
+                              onClick={() => handleRoomClick(room)}
+                              fontSize="2rem"
+                              cursor="pointer"
+                              _hover={{ color: 'main', textDecoration: 'underline' }}>
+                              {room.roomTypeName}
+                            </Heading>
                             <Box display="flex" flexDirection="column" paddingLeft="1rem" gap=".5rem">
                               <Text fontSize="1.6rem">{room.roomType}</Text>
                               <Text fontSize="1.6rem">
@@ -138,7 +229,7 @@ const AccommodationItem = () => {
                         </Flex>
                         <Flex gap=".5rem" alignItems="end">
                           <Button
-                            onClick={handleCartAdd}
+                            onClick={() => handleAddToCart(room.id.toString())}
                             paddingY="1.8rem"
                             background="white"
                             border=".1rem solid "
@@ -212,6 +303,7 @@ const AccommodationItem = () => {
         cancelButtonText="아니오"
         onConfirm={handleConfirm}
       />
+      <RoomDetailModal isOpen={isModalOpen} onClose={handleCloseModal} selectedRooms={selectedRooms} />
     </>
   );
 };
