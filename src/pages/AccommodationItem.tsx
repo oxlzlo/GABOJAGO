@@ -51,12 +51,12 @@ const AccommodationItem = () => {
   const handleAddToCart = (roomId: string) => {
     const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === roomId);
     if (selectedRoomForCart) {
-      const formatDate = (date: Date) => date.toISOString().split('T')[0];
       const payload = {
         roomId: selectedRoomForCart.id,
-        startDate: formatDate(new Date()),
-        endDate: formatDate(new Date()),
+        startDate: new Date(),
+        endDate: new Date(),
       };
+      console.log('payload', payload);
       fetchCreateCartItems(payload)
         .then((response) => {
           console.log('장바구니에 추가되었습니다.', response.data);

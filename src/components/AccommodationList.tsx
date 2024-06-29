@@ -36,9 +36,9 @@ const LodgmentList = () => {
         {accommodations.map((accommodation, _) => (
           <Box
             key={accommodation.id}
-            width="auto"
-            height="auto"
-            border="1px solid "
+            width="90%"
+            height="100%"
+            border="1px solid"
             borderColor="grayLight"
             borderRadius="0.8rem"
             gap="1.5rem"
@@ -75,7 +75,12 @@ const LodgmentList = () => {
                     1박당 요금
                   </Text>
                   <Flex flexDirection="column">
-                    <Text fontSize="2rem" color="red"></Text>
+                    <Text fontSize="2rem" color="red">
+                      {`${accommodation.price.toLocaleString('ko-KR', {
+                        style: 'decimal',
+                        currency: 'KRW',
+                      })}원`}
+                    </Text>
                   </Flex>
                 </Box>
               </Box>
@@ -139,6 +144,7 @@ const LodgmentList = () => {
           </Box>
         ))}
       </Grid>
+      ;
     </>
   );
 };

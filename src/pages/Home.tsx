@@ -5,16 +5,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LodgmentList from '@/components/AccommodationList';
-import { useEffect } from 'react';
-import { fetchCartItems } from '@/api';
 
 const Home = () => {
-  useEffect(() => {
-    fetchCartItems().then((response) => {
-      console.log(response.data);
-    });
-  }, []);
-
   return (
     <Box paddingTop="8rem">
       <Box position="relative" overflowX="hidden">

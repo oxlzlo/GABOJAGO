@@ -8,6 +8,7 @@ instance.interceptors.request.use(
   (config) => {
     // 로컬 스토리지에서 토큰을 반환
     const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
     if (accessToken) {
       // 토큰이 있으면 Authorization 헤더에 추가
       config.headers['Authorization'] = `Bearer ${accessToken}`;
@@ -41,16 +42,11 @@ export const fetchRoomById = (accommodationId: string, roomId: string) => {
 
 // 장바구니 조회
 export const fetchCartItems = () => {
-  return instance.get('/api/user/cartItems', {});
+  return instance.get('/api/user/cartItems');
 };
 // 장바구니 생성
-export const fetchCreateCartItems = (payload: { roomId: string; startDate: string; endDate: string }) => {
-  const accessToken = localStorage.getItem('accessToken');
-  return instance.post('/api/user/cartItems', payload, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+export const fetchCreateCartItems = (payload: { roomId: string }) => {
+  return instance.post('/api/user/cartItems', payload);
 };
 
 // MSW에서 사용할 API
