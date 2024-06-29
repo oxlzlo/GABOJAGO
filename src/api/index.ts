@@ -31,13 +31,8 @@ export const fetchAccommodationById = (accommodationId: string) => {
 };
 
 // 전체 객실 조회
-export const fetchRoom = (accommodationId: string) => {
+export const fetchRoomList = (accommodationId: string) => {
   return instance.get(`/open-api/accommodation/${accommodationId}/room`);
-};
-
-// 개별 객실 조회
-export const fetchRoomById = (accommodationId: string, roomId: string) => {
-  return instance.get(`/open-/accommodation/${accommodationId}/room/${roomId}`);
 };
 
 // 장바구니 조회
@@ -69,7 +64,7 @@ export const fetchLodgmentById = async (lodgmentId: string) => {
 };
 
 // 전체 객실 조회
-export const fetchRoomList = async (lodgmentId: string) => {
+export const fetchRoomListMSW = async (lodgmentId: string) => {
   try {
     const response = await axios.get(`/api/lodgment/${lodgmentId}/room`);
     return response.data;

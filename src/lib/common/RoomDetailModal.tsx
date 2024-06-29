@@ -10,23 +10,7 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-
-interface RoomDetailModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  selectedRooms: {
-    id: number;
-    imageList: string[];
-    roomType: string;
-    roomTypeName: string;
-    roomPrice: number;
-    roomExtraPrice: number;
-    roomStock: number;
-    roomDefaultGuest: number;
-    roomMaxGuest: number;
-    comment: string;
-  };
-}
+import { RoomDetailModalProps } from '../types/roomDetailModal';
 
 const RoomDetailModal = ({ isOpen, onClose, selectedRooms }: RoomDetailModalProps) => {
   return (
@@ -40,7 +24,7 @@ const RoomDetailModal = ({ isOpen, onClose, selectedRooms }: RoomDetailModalProp
         <ModalBody fontSize="1.6rem" color="black">
           {selectedRooms?.imageList && selectedRooms.imageList[0] && (
             <Image
-              src={selectedRooms.imageList[0]}
+              src={selectedRooms.imageList[0].url}
               alt={selectedRooms.roomTypeName}
               width="100%"
               height="auto"

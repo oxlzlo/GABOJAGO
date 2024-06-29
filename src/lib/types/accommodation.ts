@@ -1,6 +1,4 @@
-type ImageInfo = {
-  url: string;
-};
+import { ImageInfo } from './imageInfo';
 
 export type Accommodation = {
   imageList: ImageInfo[];
