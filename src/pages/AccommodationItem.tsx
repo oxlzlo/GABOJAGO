@@ -66,13 +66,14 @@ const AccommodationItem = () => {
         });
     }
   };
+
   return (
     <>
       <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
-            {accommodations.map((accommodation, index) => (
-              <ListItem key={index}>
+            {accommodations.map((accommodation, _) => (
+              <ListItem key={accommodationId}>
                 <Heading marginBottom="2rem" fontSize="3rem">
                   {accommodation.name}
                 </Heading>
@@ -88,13 +89,18 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                <Image
-                  src={accommodation.thumbnail}
-                  alt={accommodation.name}
-                  width="52vw"
-                  height="63.8vh"
-                  marginBottom="1rem"
-                />
+                {accommodation.imageList &&
+                  accommodation.imageList.map((image, index) => (
+                    <Image
+                      key={index}
+                      src={image.url}
+                      alt={accommodation.name}
+                      width="100%"
+                      height="50vh"
+                      objectFit="cover"
+                      marginBottom="2rem"
+                    />
+                  ))}
                 <Text fontSize="1.6rem">{accommodation.address}</Text>
                 <Text fontSize="1.6rem" fontWeight="600">
                   {accommodation.numbers}
@@ -125,15 +131,17 @@ const AccommodationItem = () => {
                         padding="2rem 0"
                         gap="1rem">
                         <Flex gap="4rem">
-                          {room.imageList && (
-                            <Image
-                              src={room.imageList[0]}
-                              alt={room.roomTypeName}
-                              width="20vw"
-                              height="30vh"
-                              marginBottom="1rem"
-                            />
-                          )}
+                          {room.imageList &&
+                            room.imageList.map((image, index) => (
+                              <Image
+                                key={index}
+                                src={image.url}
+                                alt={room.roomTypeName}
+                                width="20vw"
+                                height="30vh"
+                                marginBottom="1rem"
+                              />
+                            ))}
                           <Flex flexDirection="column" gap=".5rem">
                             <Heading fontSize="2rem">{room.roomTypeName}</Heading>
                             <Box display="flex" flexDirection="column" paddingLeft="1rem" gap=".5rem">

@@ -1,4 +1,9 @@
+type ImageInfo = {
+  url: string;
+};
+
 export type Accommodation = {
+  imageList: ImageInfo[];
   id: string;
   name: string;
   address: string;
@@ -11,7 +16,7 @@ export type Accommodation = {
 
 export type Rooms = {
   id: string;
-  imageList: string[];
+  imageList: ImageInfo[];
   roomType: string;
   roomTypeName: string;
   roomPrice: number;
