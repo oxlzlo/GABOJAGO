@@ -11,7 +11,7 @@ const Home = () => {
     <Box paddingTop="8rem">
       <Box position="relative" overflowX="hidden">
         <Slider {...settings}>
-          <Box>
+          <Box pointerEvents="none">
             <Image
               src="https://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243548102999472.jpg"
               width="100%"
@@ -20,7 +20,7 @@ const Home = () => {
               opacity=".6"
             />
           </Box>
-          <Box>
+          <Box pointerEvents="none">
             <Image
               src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243560922193661.jpg"
               width="100%"
@@ -29,7 +29,7 @@ const Home = () => {
               opacity=".6"
             />
           </Box>
-          <Box>
+          <Box pointerEvents="none">
             <Image
               src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243553155874372.jpg"
               width="100%"
