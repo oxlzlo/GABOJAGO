@@ -21,8 +21,12 @@ instance.interceptors.request.use(
 );
 
 // 전체 상품 조회 (숙박)
-export const fetchAccommodation = () => {
-  return instance.get('/open-api/accommodation');
+export const fetchAccommodation = (page: number) => {
+  return instance.get('/open-api/accommodation', {
+    params: {
+      page,
+    },
+  });
 };
 
 // 개별 상품 조회 (숙박, 객실)
