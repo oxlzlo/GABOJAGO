@@ -36,7 +36,7 @@ const LodgmentList = () => {
         {accommodations.map((accommodation, _) => (
           <Box
             key={accommodation.id}
-            width="90%"
+            width="100%"
             height="100%"
             border="1px solid"
             borderColor="grayLight"
