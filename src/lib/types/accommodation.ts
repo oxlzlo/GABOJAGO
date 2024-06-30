@@ -1,4 +1,7 @@
+import { ImageInfo } from './imageInfo';
+
 export type Accommodation = {
+  imageList: ImageInfo[];
   id: number;
   name: string;
   address: string;
@@ -11,7 +14,7 @@ export type Accommodation = {
 
 export type Rooms = {
   id: number;
-  imageList: string;
+  imageList: ImageInfo[];
   roomType: string;
   roomTypeName: string;
   roomPrice: number;
