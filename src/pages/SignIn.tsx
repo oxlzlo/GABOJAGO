@@ -12,10 +12,6 @@ const SignIn = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSignupClick = () => {
-    navigate('/signup');
-  };
-
   const handleSubmit = async () => {
     const payload = {
       email,
@@ -89,9 +85,11 @@ const SignIn = () => {
               </Button>
               <Box width="12vw" marginTop="2.5vh" marginLeft="2vw" fontSize="1.2rem" color="main">
                 <Flex justify="space-between">
-                  <Text cursor="pointer">아이디 찾기</Text>
+                  <Text cursor="pointer" onClick={() => navigate('/findid')}>
+                    아이디 찾기
+                  </Text>
                   <Text>|</Text>
-                  <Text cursor="pointer" onClick={handleSignupClick}>
+                  <Text cursor="pointer" onClick={() => navigate('/signup')}>
                     이메일로 회원가입
                   </Text>
                 </Flex>
