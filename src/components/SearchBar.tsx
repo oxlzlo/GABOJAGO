@@ -1,31 +1,53 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
 import emotionStyled from '@emotion/styled';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 
 const SearchBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [peopleCount, setPeopleCount] = useState(2);
   const dropdownRef = useRef(null);
+
+  const [keyword, setKeyword] = useState('');
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [guest, setGuest] = useState(2);
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
   };
 
-  const incrementPeopleCount = () => {
-    setPeopleCount((prevCount) => (prevCount < 30 ? prevCount + 1 : prevCount));
+  const incrementGuestCount = () => {
+    setGuest((prevCount) => (prevCount < 30 ? prevCount + 1 : prevCount));
   };
 
-  const decrementPeopleCount = () => {
-    setPeopleCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
+  const decrementGuestCount = () => {
+    setGuest((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
   };
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setShowDropdown(false);
     }
+  };
+
+  const handleClickSearchBtn = () => {
+    const formattedDate = (date: Date | null) => {
+      if (!date) return null;
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+
+    const start = formattedDate(startDate);
+    const end = formattedDate(endDate);
+
+    console.log(keyword);
+    console.log(start);
+    console.log(end);
+    console.log(guest);
   };
 
   useEffect(() => {
@@ -57,6 +79,8 @@ const SearchBar = () => {
                 backgroundColor="white"
                 fontSize="2rem"
                 placeholder="어디로 가실건가요?"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
                 _focusVisible={{ outline: 'none' }}
               />
             </InputGroup>
@@ -68,8 +92,15 @@ const SearchBar = () => {
               borderRadius=".8rem"
               backgroundColor="white">
               <Flex align="center">
-                <Datepicker style={{ paddingRight: '3vw', borderRight: '.1rem solid var(--color-main)' }} />
-                <Datepicker />
+                <Datepicker
+                  value={startDate ? startDate.toISOString().split('T')[0] : ''}
+                  onChange={(date) => setStartDate(date)}
+                  style={{ paddingRight: '3vw', borderRight: '.1rem solid var(--color-main)' }}
+                />
+                <Datepicker
+                  value={endDate ? endDate.toISOString().split('T')[0] : ''}
+                  onChange={(date) => setEndDate(date)}
+                />
               </Flex>
             </InputGroup>
 
@@ -85,8 +116,10 @@ const SearchBar = () => {
                 borderRadius=".8rem"
                 backgroundColor="white"
                 fontSize="1.6rem"
-                placeholder={`인원 ${peopleCount}명`}
+                placeholder={`인원 ${guest}명`}
                 _focusVisible={{ outline: 'none' }}
+                value={`인원 ${guest}명`}
+                readOnly
               />
               <InputRightElement
                 children={
@@ -114,11 +147,11 @@ const SearchBar = () => {
                   padding="1vh 1vw"
                   height="8vh">
                   <Flex height="100%" justify="space-between" align="center" fontSize="1.5rem">
-                    <Button onClick={decrementPeopleCount} fontSize="2rem" fontWeight="200">
+                    <Button onClick={decrementGuestCount} fontSize="2rem" fontWeight="200">
                       <MinusIcon w={6} h={6} color="gray" />
                     </Button>
-                    <Box>인원 {peopleCount}명</Box>
-                    <Button onClick={incrementPeopleCount} fontSize="2rem" fontWeight="200">
+                    <Box>인원 {guest}명</Box>
+                    <Button onClick={incrementGuestCount} fontSize="2rem" fontWeight="200">
                       <AddIcon w={6} h={6} color="gray" />
                     </Button>
                   </Flex>
@@ -133,7 +166,8 @@ const SearchBar = () => {
               backgroundColor="main"
               fontSize="3rem"
               color="white"
-              _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}>
+              _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}
+              onClick={handleClickSearchBtn}>
               Search
             </Button>
           </Flex>
