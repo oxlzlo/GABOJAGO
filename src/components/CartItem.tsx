@@ -3,9 +3,16 @@ import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
 import { Accommodation } from '@/lib/types/accommodation';
 
-const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
-  const handleChange = (e) => {
-    onSelectItem(item, e.target.checked);
+const CustomCheckbox = ({
+  accommodationItem,
+  onSelectItem,
+  ...props
+}: {
+  accommodationItem: Accommodation;
+  onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
+}) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSelectItem(accommodationItem, event.target.checked);
   };
 
   return (
@@ -25,34 +32,38 @@ const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
   );
 };
 
-const CartItem = ({ onSelectItem }) => {
-  const [lodgments, setLodgments] = useState<Accommodation[]>([]);
+export type CartItemProps = {
+  onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
+};
+
+const CartItem = ({ onSelectItem }: CartItemProps) => {
+  const [accommodation, setAccommdation] = useState<Accommodation[]>([]);
   const theme = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchLodgment();
-      setLodgments(response);
+      setAccommdation(response);
     };
     fetchData();
   }, []);
 
   return (
     <>
-      {lodgments.map((lodgment) => (
-        <Box key={lodgment.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
+      {accommodation.map((accommodation, _) => (
+        <Box key={accommodation.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
           <Flex mb={10} alignItems="center">
-            <Image src={lodgment.thumbnail} alt={lodgment.name} boxSize="100px" mr={8} borderRadius="lg" />
+            <Image src={accommodation.thumbnail} alt={accommodation.name} boxSize="100px" mr={8} borderRadius="lg" />
             <Box flex="1">
               <Text fontSize="2rem" fontWeight="900">
-                {lodgment.name}
+                {accommodation.name}
               </Text>
               <Text fontSize="1.2rem">
-                평점: {lodgment.rating} / 리뷰 수: {lodgment.reviewCount}
+                평점: {accommodation.rating} / 리뷰 수: {accommodation.reviewCount}
               </Text>
             </Box>
             <CustomCheckbox
-              item={lodgment}
+              accommodationItem={accommodation}
               onSelectItem={onSelectItem}
               colorScheme="teal"
               borderColor={theme.colors.main}
@@ -61,12 +72,15 @@ const CartItem = ({ onSelectItem }) => {
           <Divider borderColor={`${theme.colors.main}`} />
           <Box mt={10} fontSize="1.2rem">
             <Text>
-              이용기간: {lodgment.startDate} - {lodgment.endDate}
+              이용기간: {accommodation.startDate} - {accommodation.endDate}
             </Text>
-            <Text>이용자 수: {lodgment.userCount}인</Text>
+            <Text>이용자 수: {accommodation.userCount}인</Text>
             <Flex justifyContent="flex-end" fontSize="2rem" fontWeight="700">
               <Text>
-                {lodgment.room && lodgment.room.length > 0 ? lodgment.room[0].price.toLocaleString() : 'N/A'}원
+                {accommodation.roomList && accommodation.roomList.length > 0
+                  ? accommodation.roomList[0].roomPrice.toLocaleString()
+                  : 'N/A'}
+                원
               </Text>
             </Flex>
           </Box>
