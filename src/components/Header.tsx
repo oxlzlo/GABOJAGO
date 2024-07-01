@@ -12,6 +12,8 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const targetRef = useRef<HTMLDivElement | null>(null);
+
   const handleUserNameClick = () => {
     setShowDropdown((prevState) => !prevState);
   };
@@ -33,8 +35,26 @@ const Header = () => {
     logout();
   };
 
+  const handleScroll = () => {
+    if (targetRef.current) {
+      if (window.scrollY >= 300) {
+        targetRef.current.style.visibility = 'hidden';
+      } else {
+        targetRef.current.style.visibility = 'visible';
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
     <Box
+      ref={targetRef}
       color="main"
       height="8rem"
       boxShadow="0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.03)"
