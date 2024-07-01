@@ -93,6 +93,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         targetRef.current.style.top = '50%';
         targetRef.current.style.transform = 'translateY(-50%)';
         targetRef.current.style.backgroundColor = 'initial';
+        targetRef.current.style.zIndex = '10';
       }
     }
   };
