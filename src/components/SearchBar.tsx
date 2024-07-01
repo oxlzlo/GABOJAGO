@@ -4,14 +4,15 @@ import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
+import { DropdownRef, DateState } from '@/lib/types/searchBar';
 
 const SearchBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
   const [keyword, setKeyword] = useState('');
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<DateState>(null);
+  const [endDate, setEndDate] = useState<DateState>(null);
   const [guest, setGuest] = useState(2);
 
   const toggleDropdown = () => {
@@ -26,14 +27,14 @@ const SearchBar = () => {
     setGuest((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
   };
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setShowDropdown(false);
     }
   };
 
   const handleClickSearchBtn = () => {
-    const formattedDate = (date: Date | null) => {
+    const formattedDate = (date: DateState) => {
       if (!date) return null;
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
