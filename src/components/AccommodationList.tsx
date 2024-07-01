@@ -5,11 +5,10 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
 
-const page = 1;
-
 const AccommodationList = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     fetchAccommodation(page)
@@ -26,20 +25,26 @@ const AccommodationList = () => {
       });
   }, []);
 
+  useEffect(() => {
+    loadMore();
+  }, []);
+
   /**
    * 무한 스크롤 함수
    * fetchAccommodation 함수를 호출하여 다음 페이지의 숙소 데이터를 반환
    */
   const loadMore = () => {
-    fetchAccommodation(page + 1)
+    fetchAccommodation(page)
       .then((response) => {
         if (response && Array.isArray(response.data.data.content)) {
           setAccommodations((prev) => [...prev, ...response.data.data.content]);
+          console.log();
+          setPage(page + 1); // 다음 페이지로 이동함
           if (response.data.data.content.length === 0) {
             setHasMore(false);
-          } else {
-            console.error('Expected array :', response);
           }
+        } else {
+          console.error('Expected an array but got:', response);
         }
       })
       .catch((error) => {
@@ -58,7 +63,13 @@ const AccommodationList = () => {
             Loading...
           </Heading>
         }>
-        <Grid templateColumns="repeat(4, 1fr)" gap="1.5rem">
+        <Grid
+          templateColumns={{
+            mobile: 'repeat(1, 1fr)',
+            tablet: 'repeat(2, 1fr)',
+            desktop: 'repeat(4, 1fr)',
+          }}
+          gap="1.5rem">
           {accommodations.map((accommodation, _) => (
             <Box
               key={accommodation.id}

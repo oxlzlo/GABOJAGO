@@ -17,6 +17,12 @@ const customTheme = extendTheme({
     primaryHover: 'var(--color-primaryHover)',
     grayLight: 'var(--color-gray-light)',
   },
+
+  breakpoints: {
+    mobile: '540px',
+    tablet: '768px',
+    desktop: '1200px',
+  },
 });
 
 const theme = extendTheme(customTheme);
