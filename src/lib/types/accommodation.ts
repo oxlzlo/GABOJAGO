@@ -24,3 +24,7 @@ export type Rooms = {
   roomMaxGuest: number;
   comment: string;
 };
+
+export interface AccommodationListProps {
+  accommodation: Accommodation[];
+}

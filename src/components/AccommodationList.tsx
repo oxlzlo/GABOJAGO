@@ -1,11 +1,11 @@
 import { fetchAccommodation } from '@/api';
-import { Accommodation } from '@/lib/types/accommodation';
+import { Accommodation, AccommodationListProps } from '@/lib/types/accommodation';
 import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
 
-const AccommodationList = ({ accommodation }) => {
+const AccommodationList: React.FC<AccommodationListProps> = ({ accommodation }) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
@@ -70,7 +70,7 @@ const AccommodationList = ({ accommodation }) => {
             desktop: 'repeat(4, 1fr)',
           }}
           gap="1.5rem">
-          {accommodations.map((accommodation, _) => (
+          {accommodations.map((accommodation) => (
             <Box
               key={accommodation.id}
               width="100%"
