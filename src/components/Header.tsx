@@ -62,7 +62,6 @@ const Header = () => {
       top="0"
       left="0"
       right="0"
-      borderBottom=".1rem solid var(--color-main)"
       zIndex="50"
       background="white">
       <Flex height="8rem" align="center" paddingX="4.75rem">
