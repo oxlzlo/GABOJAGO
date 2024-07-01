@@ -79,21 +79,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const handleScroll = () => {
     if (targetRef.current) {
+      const style = targetRef.current.style;
       if (window.scrollY >= 300) {
-        targetRef.current.style.display = 'flex';
-        targetRef.current.style.justifyContent = 'center';
-        targetRef.current.style.alignItems = 'center';
-        targetRef.current.style.position = 'fixed';
-        targetRef.current.style.top = '4.4vh';
-        targetRef.current.style.height = '9vh';
-        targetRef.current.style.backgroundColor = 'var(--color-banner)';
-        targetRef.current.style.zIndex = '100';
+        style.display = 'flex';
+        style.justifyContent = 'center';
+        style.alignItems = 'center';
+        style.position = 'fixed';
+        style.top = '4.4vh';
+        style.height = '9vh';
+        style.backgroundColor = 'var(--color-banner)';
+        style.zIndex = '100';
       } else {
-        targetRef.current.style.position = 'absolute';
-        targetRef.current.style.top = '50%';
-        targetRef.current.style.transform = 'translateY(-50%)';
-        targetRef.current.style.backgroundColor = 'initial';
-        targetRef.current.style.zIndex = '10';
+        style.position = 'absolute';
+        style.top = '50%';
+        style.transform = 'translateY(-50%)';
+        style.backgroundColor = 'initial';
+        style.zIndex = '10';
       }
     }
   };
