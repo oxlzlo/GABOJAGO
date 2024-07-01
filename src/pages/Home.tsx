@@ -4,7 +4,7 @@ import SearchBar from '@/components/SearchBar';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import LodgmentList from '@/components/AccommodationList';
+import AccommodationList from '@/components/AccommodationList';
 
 const Home = () => {
   return (
@@ -42,7 +42,7 @@ const Home = () => {
         <SearchBar />
       </Box>
       <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
-        <LodgmentList />
+        <AccommodationList />
       </Box>
     </Box>
   );
