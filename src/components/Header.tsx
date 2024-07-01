@@ -3,11 +3,12 @@ import Logo from '@/assets/logo.svg?react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { useState, useRef, useEffect } from 'react';
+import { DropdownRef } from '@/lib/types/searchBar';
 
 const Header = () => {
   const { user, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
 
@@ -15,8 +16,8 @@ const Header = () => {
     setShowDropdown((prevState) => !prevState);
   };
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setShowDropdown(false);
     }
   };
