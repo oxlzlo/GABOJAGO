@@ -7,10 +7,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import AccommodationList from '@/components/AccommodationList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Accommodation } from '@/lib/types/accommodation';
 
 const Home = () => {
-  const [accommodationData, setAccommodationData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [accommodationData, setAccommodationData] = useState<Accommodation[]>([]);
+  const [filteredData, setFilteredData] = useState<Accommodation[]>([]);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -26,7 +27,7 @@ const Home = () => {
     fetchInitialData();
   }, []);
 
-  const handleSearch = (data) => {
+  const handleSearch = (data: Accommodation[]) => {
     setFilteredData(data);
   };
 
