@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const page = 1;
 
-const LodgmentList = () => {
+const AccommodationList = () => {
   // const [lodgments, setLodgments] = useState<Accommodation[]>([]);
 
   // useEffect(() => {
@@ -171,9 +171,8 @@ const LodgmentList = () => {
           </Box>
         ))}
       </Grid> */}
-      ;
     </>
   );
 };
 
-export default LodgmentList;
+export default AccommodationList;
