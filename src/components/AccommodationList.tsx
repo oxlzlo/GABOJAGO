@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
 
-const AccommodationList = () => {
+const AccommodationList = ({ accommodation }) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);

@@ -5,8 +5,31 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import AccommodationList from '@/components/AccommodationList';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home = () => {
+  const [accommodationData, setAccommodationData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        const response = await axios.get(
+          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
+        );
+        setAccommodationData(response.data.data.content);
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    };
+    fetchInitialData();
+  }, []);
+
+  const handleSearch = (data) => {
+    setFilteredData(data);
+  };
+
   return (
     <Box paddingTop="8rem">
       <Box position="relative" overflowX="hidden">
@@ -39,10 +62,10 @@ const Home = () => {
             />
           </Box>
         </Slider>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
       </Box>
       <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
-        <AccommodationList />
+        <AccommodationList accommodation={filteredData.length > 0 ? filteredData : accommodationData} />
       </Box>
     </Box>
   );

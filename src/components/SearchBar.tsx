@@ -5,8 +5,9 @@ import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icon
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 import { DropdownRef, DateState } from '@/lib/types/searchBar';
+import axios from 'axios';
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +34,7 @@ const SearchBar = () => {
     }
   };
 
-  const handleClickSearchBtn = () => {
+  const handleClickSearchBtn = async () => {
     const formattedDate = (date: DateState) => {
       if (!date) return null;
       const year = date.getFullYear();
@@ -45,10 +46,27 @@ const SearchBar = () => {
     const start = formattedDate(startDate);
     const end = formattedDate(endDate);
 
-    console.log(keyword);
-    console.log(start);
-    console.log(end);
-    console.log(guest);
+    const query = {
+      keyword,
+      start,
+      end,
+      guest,
+    };
+
+    const filteredQuery = Object.fromEntries(
+      Object.entries(query).filter(([_, value]) => value != null && value !== ''),
+    );
+
+    try {
+      const response = await axios.get(
+        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
+        { params: filteredQuery },
+      );
+      console.log(response);
+      onSearch(response.data.data.content);
+    } catch (error) {
+      console.error('검색 필터링 오류', error);
+    }
   };
 
   useEffect(() => {
