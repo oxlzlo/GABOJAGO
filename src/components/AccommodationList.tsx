@@ -1,6 +1,6 @@
-import { fetchAccommodation, fetchLodgment } from '@/api';
+import { fetchAccommodation } from '@/api';
 import { Accommodation } from '@/lib/types/accommodation';
-import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
@@ -8,14 +8,6 @@ import { Link } from 'react-router-dom';
 const page = 1;
 
 const AccommodationList = () => {
-  // const [lodgments, setLodgments] = useState<Accommodation[]>([]);
-
-  // useEffect(() => {
-  //   fetchLodgment().then((response) => {
-  //     setLodgments(response);
-  //   });
-  // }, []);
-
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
@@ -57,7 +49,15 @@ const AccommodationList = () => {
 
   return (
     <>
-      <InfiniteScroll pageStart={0} loadMore={loadMore} hasMore={hasMore} loader={<div key={0}>Loading...</div>}>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadMore}
+        hasMore={hasMore}
+        loader={
+          <Heading display="flex" justifyContent="center" key={0}>
+            Loading...
+          </Heading>
+        }>
         <Grid templateColumns="repeat(4, 1fr)" gap="1.5rem">
           {accommodations.map((accommodation, _) => (
             <Box
@@ -115,62 +115,6 @@ const AccommodationList = () => {
           ))}
         </Grid>
       </InfiniteScroll>
-      {/* <Grid templateColumns="repeat(4, 1fr)" gap="1.5rem">
-        {lodgments.map((lodgment, _) => (
-          <Box
-            key={lodgment.id}
-            width="auto"
-            height="auto"
-            border="1px solid "
-            borderColor="grayLight"
-            borderRadius="0.8rem"
-            gap="1.5rem"
-            _hover={{
-              cursor: 'pointer',
-              transform: 'scale(1.01)',
-              boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-            }}>
-            <Link to={`/lodgment/${lodgment.id}`}>
-              <Image
-                src={lodgment.thumbnail}
-                alt={lodgment.name}
-                width="100%"
-                height="25.7rem"
-                borderRadius="0.8rem 0.8rem 0 0"
-              />
-              <Box display="flex" flexDirection="column" width="100%" height="auto" paddingLeft="1rem" gap=".5rem">
-                <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
-                  {lodgment.name}
-                </Text>
-                <Box padding=".5rem">
-                  <Text fontSize="1.5rem" color="gray">
-                    {lodgment.address}
-                  </Text>
-                  <Text fontSize="1.5rem" color="gray">
-                    {lodgment.numbers}
-                  </Text>
-                  <Text fontSize="1.8rem" color="gray">
-                    {lodgment.comment}
-                  </Text>
-                </Box>
-                <Box display="flex" flexDirection="column" alignItems="flex-end" marginTop="3rem" paddingRight="1rem">
-                  <Text fontSize="1.5rem" color="gray" paddingRight="2.8rem">
-                    1박당 요금
-                  </Text>
-                  <Flex flexDirection="column">
-                    <Text fontSize="2rem" color="red">
-                      {`${lodgment.price.toLocaleString('ko-KR', {
-                        style: 'decimal',
-                        currency: 'KRW',
-                      })}원`}
-                    </Text>
-                  </Flex>
-                </Box>
-              </Box>
-            </Link>
-          </Box>
-        ))}
-      </Grid> */}
     </>
   );
 };
