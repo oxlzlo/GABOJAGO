@@ -1,6 +1,6 @@
 import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
 
-const PaymentDetail = ({ selectedItems }) => {
+const OrderDetails = ({ selectedItems }) => {
   const theme = useTheme();
 
   if (!selectedItems || selectedItems.length === 0) {
@@ -65,4 +65,4 @@ const PaymentDetail = ({ selectedItems }) => {
   );
 };
 
-export default PaymentDetail;
+export default OrderDetails;

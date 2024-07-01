@@ -2,7 +2,7 @@ import { Accommodation } from '@/lib/types/accommodation';
 import { Box, Button, Text, Flex, Divider, Image, useTheme } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-const CartPayment = ({ selectedItems }) => {
+const CartOrder = ({ selectedItems }) => {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -88,4 +88,4 @@ const CartPayment = ({ selectedItems }) => {
   );
 };
 
-export default CartPayment;
+export default CartOrder;

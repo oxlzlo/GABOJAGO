@@ -1,6 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
-import Payment from '@/pages/Payment';
+import Order from '@/pages/Order';
 import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
@@ -42,18 +42,18 @@ export const routes = [
     ),
   },
   {
-    path: '/payment/:roomId',
+    path: '/order/:roomId',
     element: (
       <Layout>
-        <Payment />
+        <Order />
       </Layout>
     ),
   },
   {
-    path: '/payment',
+    path: '/order/',
     element: (
       <Layout>
-        <Payment />
+        <Order />
       </Layout>
     ),
   },

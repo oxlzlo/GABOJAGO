@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
 import CartItem from '@/components/CartItem';
-import CartPayment from '@/components/CartPayment';
+import CartOrder from '@/components/CartOrder';
 import { Accommodation } from '@/lib/types/accommodation';
 import { useAuth } from '@/store/authStore';
 import { fetchLodgment, fetchRoomListMSW } from '@/api';
@@ -83,7 +83,7 @@ const Cart = () => {
               <CartItem onSelectItem={handleSelectItem} />
             </Flex>
             <Flex flex="1" direction="column">
-              <CartPayment selectedItems={selectedItems} />
+              <CartOrder selectedItems={selectedItems} />
             </Flex>
           </Flex>
         )}

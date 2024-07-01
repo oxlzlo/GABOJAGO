@@ -1,6 +1,6 @@
 import { Flex, Box, Text, Checkbox, useTheme } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
-import PaymentDetail from '@/components/PaymentDetail';
+import OrderDetails from '@/components/OrderDetails';
 
 const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ const CustomCheckbox = ({ item, onSelectItem, ...props }) => {
   );
 };
 
-const Payment = () => {
+const Order = () => {
   const location = useLocation();
   const selectedItems = location.state.selectedItems || {};
   console.log(selectedItems);
@@ -59,7 +59,7 @@ const Payment = () => {
         <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
           예약 결제
         </Text>
-        <PaymentDetail selectedItems={selectedItems} />
+        <OrderDetails selectedItems={selectedItems} />
         <Box
           width="100%"
           p={10}
@@ -96,4 +96,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Order;
