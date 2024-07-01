@@ -15,6 +15,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [endDate, setEndDate] = useState<DateState>(null);
   const [guest, setGuest] = useState(2);
 
+  const targetRef = useRef<HTMLDivElement | null>(null);
+
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
   };
@@ -75,12 +77,42 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     };
   }, []);
 
+  const handleScroll = () => {
+    if (targetRef.current) {
+      const style = targetRef.current.style;
+      if (window.scrollY >= 300) {
+        style.display = 'flex';
+        style.justifyContent = 'center';
+        style.alignItems = 'center';
+        style.position = 'fixed';
+        style.top = '4.4vh';
+        style.height = '9vh';
+        style.backgroundColor = 'var(--color-banner)';
+        style.zIndex = '100';
+      } else {
+        style.position = 'absolute';
+        style.top = '50%';
+        style.transform = 'translateY(-50%)';
+        style.backgroundColor = 'initial';
+        style.zIndex = '10';
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
     <div
+      ref={targetRef}
       className="searchBar"
       style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '0', left: '0' }}>
       <Flex justify="center" align="center">
-        <Box width="90.3vw" height="6.5vh">
+        <Box position="absolute" width="90.3vw" height="6.5vh">
           <Flex justifyContent="space-between" align="center">
             <InputGroup width="29.9vw">
               <InputLeftElement
