@@ -48,13 +48,8 @@ export const fetchCreateCartItems = (payload: { roomId: string }) => {
   return instance.post('/api/user/cartItems', payload);
 };
 
-// 장바구니 보기
-export const userCart = async () => {
-  return instance.get('api/user/cartItems');
-};
-
 // 주문하기
-export const order = async () => {
+export const fetchOrder = async () => {
   return instance.get('api/order');
 };
 
