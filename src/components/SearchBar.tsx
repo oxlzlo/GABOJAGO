@@ -1,5 +1,4 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
-import emotionStyled from '@emotion/styled';
 import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
@@ -197,9 +196,3 @@ const SearchBar = ({ onSearch }) => {
 };
 
 export default SearchBar;
-
-const InputBox = emotionStyled.input`
-  height: 100%;
-  border: .1rem solid var(--color-main);
-  background-color: white;
-`;
