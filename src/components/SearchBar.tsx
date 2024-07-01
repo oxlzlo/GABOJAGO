@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
-import { DropdownRef, DateState } from '@/lib/types/searchBar';
+import { DropdownRef, DateState, SearchBarProps } from '@/lib/types/searchBar';
 import axios from 'axios';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
