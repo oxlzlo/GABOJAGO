@@ -7,7 +7,7 @@ const CartOrder = ({ selectedItems }) => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    navigate('/payment', { state: { selectedItems } });
+    navigate('/order', { state: { selectedItems } });
   };
 
   return (

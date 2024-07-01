@@ -11,33 +11,13 @@ const Cart = () => {
   const { user } = useAuth(); // 로그인한 사용자 정보
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
   const theme = useTheme();
+  const [items, setItems] = useState<Accommodation[]>([]);
   const [selectedItems, setSelectedItems] = useState<Accommodation[]>([]);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     // 로그인한 사용자의 장바구니 데이터를 불러오기
-  //     const fetchCartItems = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           `http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/cartItems`,
-  //         );
-  //         setSelectedItems(response.data);
-  //       } catch (error) {
-  //         console.error('장바구니 데이터를 불러오는 중 오류가 발생했습니다:', error);
-  //       } finally {
-  //         setLoading(false); // 로딩 상태 종료
-  //       }
-  //     };
-
-  //     fetchCartItems();
-  //   } else {
-  //     setLoading(false); // 사용자가 로그인하지 않은 경우 로딩 상태 종료
-  //   }
-  // }, [user]);
 
   useEffect(() => {
     fetchLodgment().then((response) => {
-      setSelectedItems(response);
+      setItems(response);
+      setLoading(false);
     });
   }, []);
 
@@ -64,7 +44,7 @@ const Cart = () => {
           장바구니
         </Text>
 
-        {selectedItems.length === 0 ? (
+        {items.length === 0 ? (
           <Box
             justifyContent="center"
             alignItems="center"
@@ -80,7 +60,7 @@ const Cart = () => {
         ) : (
           <Flex width="100%" gap="1rem">
             <Flex flex="1" direction="column">
-              <CartItem onSelectItem={handleSelectItem} />
+              <CartItem items={items} onSelectItem={handleSelectItem} />
             </Flex>
             <Flex flex="1" direction="column">
               <CartOrder selectedItems={selectedItems} />

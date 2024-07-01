@@ -33,24 +33,16 @@ const CustomCheckbox = ({
 };
 
 export type CartItemProps = {
+  items: Accommodation[];
   onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
 };
 
-const CartItem = ({ onSelectItem }: CartItemProps) => {
-  const [accommodation, setAccommdation] = useState<Accommodation[]>([]);
+const CartItem = ({ items, onSelectItem }: CartItemProps) => {
   const theme = useTheme();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchLodgment();
-      setAccommdation(response);
-    };
-    fetchData();
-  }, []);
 
   return (
     <>
-      {accommodation.map((accommodation, _) => (
+      {items.map((accommodation, _) => (
         <Box key={accommodation.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
           <Flex mb={10} alignItems="center">
             <Image src={accommodation.thumbnail} alt={accommodation.name} boxSize="100px" mr={8} borderRadius="lg" />

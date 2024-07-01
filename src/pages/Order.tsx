@@ -76,14 +76,14 @@ const Order = () => {
             </Text>
           </Flex>
         </Box>
-        {/* <CustomCheckbox
+        <CustomCheckbox
           item={}
           onSelectItem={}
           colorScheme="teal"
           borderColor={theme.colors.main}
-        > */}
+        >
         [필수] 만 14세 이상 이용 동의
-        {/* </CustomCheckbox> */}
+        </CustomCheckbox>
         <Box width="100%" p={10} mt={20} border={`1px solid ${theme.colors.main}`} borderRadius="3xl" background="main">
           <Flex justifyContent="center" alignItems="center" width="100%">
             <Text textAlign="center" fontSize="3rem" color="white">
