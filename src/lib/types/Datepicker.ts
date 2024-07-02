@@ -1,6 +1,8 @@
 import { InputProps } from '@chakra-ui/react';
 
 export type DatepickerStyleProps = {
+  value: string;
+  onChange: (date: Date | null) => void;
   style?: React.CSSProperties;
 };
 

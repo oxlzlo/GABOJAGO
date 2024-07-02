@@ -4,9 +4,9 @@ import Order from '@/pages/Order';
 import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
-import LodgmentItem from '@/pages/LodgmentItem';
 import AccommodationItem from '@/pages/AccommodationItem';
 import FindId from '@/pages/FindId';
+import Resetpw from '@/pages/Resetpw';
 
 export const routes = [
   {
@@ -22,14 +22,6 @@ export const routes = [
     element: (
       <Layout>
         <Cart />
-      </Layout>
-    ),
-  },
-  {
-    path: '/lodgment/:lodgmentId',
-    element: (
-      <Layout>
-        <LodgmentItem />
       </Layout>
     ),
   },
@@ -68,5 +60,9 @@ export const routes = [
   {
     path: '/findid',
     element: <FindId />,
+  },
+  {
+    path: '/resetpw',
+    element: <Resetpw />,
   },
 ];

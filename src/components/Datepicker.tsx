@@ -35,11 +35,12 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onC
   />
 ));
 
-function Datepicker({ style }: DatepickerStyleProps) {
+function Datepicker({ value, onChange, style }: DatepickerStyleProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
+    onChange(date);
   };
 
   const formattedDate = selectedDate
