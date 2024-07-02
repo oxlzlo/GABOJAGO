@@ -7,6 +7,7 @@ import SignUp from '@/pages/SignUp';
 import AccommodationItem from '@/pages/AccommodationItem';
 import FindId from '@/pages/FindId';
 import Resetpw from '@/pages/Resetpw';
+import Mypage from '@/pages/Mypage';
 
 export const routes = [
   {
@@ -64,5 +65,9 @@ export const routes = [
   {
     path: '/resetpw',
     element: <Resetpw />,
+  },
+  {
+    path: '/mypage',
+    element: <Mypage />,
   },
 ];
