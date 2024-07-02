@@ -8,6 +8,7 @@ const useAuthStore = create<AuthState>((set) => ({
     set({ user: userData });
     localStorage.setItem('email', userData.email);
     localStorage.setItem('name', userData.name);
+    // localStorage.setItem('phoneNumber', userData.phone_number);
   },
   logout: () => {
     set({ user: null });
