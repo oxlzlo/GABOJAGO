@@ -5,8 +5,9 @@ import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
 import { DropdownRef, DateState, SearchBarProps } from '@/lib/types/searchBar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
@@ -16,6 +17,8 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [guest, setGuest] = useState(2);
 
   const targetRef = useRef<HTMLDivElement | null>(null);
+
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
@@ -47,28 +50,29 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
     const start = formattedDate(startDate);
     const end = formattedDate(endDate);
 
-    const query = {
+    const query = new URLSearchParams({
       keyword,
-      start,
-      end,
-      guest,
-    };
+      start: start || '',
+      end: end || '',
+      guest: guest.toString(),
+    }).toString();
 
-    const filteredQuery = Object.fromEntries(
-      Object.entries(query).filter(([_, value]) => value != null && value !== ''),
-    );
-
-    try {
-      const response = await axios.get(
-        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
-        { params: filteredQuery },
-      );
-      console.log(response);
-      onSearch(response.data.data.content);
-    } catch (error) {
-      console.error('검색 필터링 오류', error);
-    }
+    navigate(`/?${query}`);
   };
+
+  // const filteredQuery = Object.fromEntries(Object.entries(query).filter(([_, value]) => value != null && value !== ''));
+
+  //   try {
+  //     const response = await axios.get(
+  //       'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
+  //       { params: filteredQuery },
+  //     );
+  //     console.log(response);
+  //     onSearch(response.data.data.content);
+  //   } catch (error) {
+  //     console.error('검색 필터링 오류', error);
+  //   }
+  // };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
