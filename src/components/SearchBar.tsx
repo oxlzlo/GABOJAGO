@@ -3,8 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
-import { DropdownRef, DateState, SearchBarProps } from '@/lib/types/searchBar';
-import axios from 'axios';
+import { DropdownRef, DateState } from '@/lib/types/searchBar';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
@@ -59,20 +58,6 @@ const SearchBar = () => {
 
     navigate(`/?${query}`);
   };
-
-  // const filteredQuery = Object.fromEntries(Object.entries(query).filter(([_, value]) => value != null && value !== ''));
-
-  //   try {
-  //     const response = await axios.get(
-  //       'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
-  //       { params: filteredQuery },
-  //     );
-  //     console.log(response);
-  //     onSearch(response.data.data.content);
-  //   } catch (error) {
-  //     console.error('검색 필터링 오류', error);
-  //   }
-  // };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);

@@ -36,25 +36,6 @@ const Home = () => {
     };
     fetchFilteredData();
   }, [location.search]);
-  // const [filteredData, setFilteredData] = useState<Accommodation[]>([]);
-
-  // useEffect(() => {
-  //   const fetchInitialData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
-  //       );
-  //       setAccommodationData(response.data.data.content);
-  //     } catch (error) {
-  //       console.error('Error fetching initial data:', error);
-  //     }
-  //   };
-  //   fetchInitialData();
-  // }, []);
-
-  // const handleSearch = (data: Accommodation[]) => {
-  //   setAccommodationData(data);
-  // };
 
   return (
     <Box paddingTop="8rem">
