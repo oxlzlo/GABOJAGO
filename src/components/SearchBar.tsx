@@ -6,7 +6,7 @@ import Datepicker from './Datepicker';
 import { DropdownRef, DateState, SearchBarProps } from '@/lib/types/searchBar';
 import axios from 'axios';
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
