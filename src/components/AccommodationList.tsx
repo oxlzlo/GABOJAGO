@@ -48,6 +48,10 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
       });
   };
 
+  useEffect(() => {
+    setAccommodations(accommodation);
+  }, [accommodation]);
+
   return (
     <>
       <InfiniteScroll
