@@ -68,6 +68,10 @@ export const routes = [
   },
   {
     path: '/mypage',
-    element: <Mypage />,
+    element: (
+      <Layout>
+        <Mypage />
+      </Layout>
+    ),
   },
 ];
