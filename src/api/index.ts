@@ -48,6 +48,16 @@ export const fetchCreateCartItems = (payload: { roomId: string }) => {
   return instance.post('/api/user/cartItems', payload);
 };
 
+// 주문하기
+export const fetchOrder = async () => {
+  return instance.get('api/order');
+};
+
+// 결제하기
+export const paymentOrder = async (orderId: string) => {
+  return instance.get(`api/order/payment/${orderId}`);
+};
+
 // MSW에서 사용할 API
 export const fetchLodgment = async () => {
   try {

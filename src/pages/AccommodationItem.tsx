@@ -1,6 +1,18 @@
-import { fetchAccommodationById, fetchCreateCartItems, fetchRoomList } from '@/api';
+import { fetchAccommodationById, fetchCartItems, fetchCreateCartItems, fetchRoomList } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
-import { Box, Button, Flex, Heading, Image, List, ListItem, Text, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Image,
+  List,
+  ListItem,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cart from '@/assets/images/cart.svg?react';
@@ -108,16 +120,16 @@ const AccommodationItem = () => {
    */
   const handleAddToCart = (roomId: string) => {
     const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
+    console.log(selectedRoomForCart);
     if (selectedRoomForCart) {
       const payload = {
         roomId: selectedRoomForCart.id.toString(),
         startDate: new Date(),
         endDate: new Date(),
       };
-      console.log('payload', payload);
       fetchCreateCartItems(payload)
         .then((response) => {
-          console.log('장바구니에 추가되었습니다.', response.data);
+          console.log(response.data);
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
@@ -127,7 +139,7 @@ const AccommodationItem = () => {
 
   return (
     <>
-      <Box>
+      <Box paddingX="15rem">
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (
@@ -147,18 +159,17 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                {accommodation.imageList &&
-                  accommodation.imageList.map((image, index) => (
-                    <Image
-                      key={index}
-                      src={image.url}
-                      alt={accommodation.name}
-                      width="100%"
-                      height="50vh"
-                      objectFit="cover"
-                      marginBottom="2rem"
-                    />
-                  ))}
+                {accommodation.imageList.map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.url}
+                    alt={accommodation.name}
+                    width="100%"
+                    height="50vh"
+                    objectFit="cover"
+                    marginBottom="2rem"
+                  />
+                ))}
                 <Text fontSize="1.6rem">{accommodation.address}</Text>
                 <Text fontSize="1.6rem" fontWeight="600">
                   {accommodation.numbers}

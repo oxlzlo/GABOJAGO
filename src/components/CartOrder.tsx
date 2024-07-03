@@ -1,16 +1,17 @@
+import { Accommodation } from '@/lib/types/accommodation';
 import { Box, Button, Text, Flex, Divider, Image, useTheme } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-const CartPayment = ({ selectedItems }) => {
+const CartOrder = ({ selectedItems }) => {
   const theme = useTheme();
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    navigate('/payment', { state: { selectedItems } });
+    navigate('/order', { state: { selectedItems } });
   };
 
   return (
-    <Box border={`1px solid teal`} borderRadius="lg" p={10}>
+    <Box border={`1px solid teal`} borderRadius="lg" padding="3rem">
       <Text fontWeight="900" fontSize="3rem" mb={4}>
         결제금액
       </Text>
@@ -22,30 +23,30 @@ const CartPayment = ({ selectedItems }) => {
           현재 선택된 상품이 없습니다.
         </Text>
       ) : (
-        selectedItems.map((item) => (
-          <Box key={item.id} my={16}>
+        selectedItems.map((selectedItem, _) => (
+          <Box key={selectedItem.id} my={16}>
             <Flex alignItems="center">
-              <Image src={item.image} alt={item.name} boxSize="60px" mr={10} />
+              <Image src={selectedItem.thumbnail} alt={selectedItem.name} boxSize="60px" mr={10} />
               <Text fontSize="2rem" fontWeight="900" mr={10}>
-                  {item.name}
-                </Text>
-                <Flex 
-                flexDirection="column" 
-                justifyContent="flex-end" 
-                alignItems="flex-end" 
-                textAlign="right"
-                flex="1">
+                {selectedItem.name}
+              </Text>
+              <Flex flexDirection="column" justifyContent="flex-end" alignItems="flex-end" textAlign="right" flex="1">
                 <Text fontSize="1.3rem">
-                  이용기간: {item.startDate} - {item.endDate}
+                  이용기간: {selectedItem.startDate} - {selectedItem.endDate}
                 </Text>
-                <Text fontSize="1.3rem">이용자 수: {item.userCount}인</Text>
+                <Text fontSize="1.3rem">이용자 수: {selectedItem.userCount}인</Text>
               </Flex>
             </Flex>
             <Divider borderColor="teal" />
             <Flex justifyContent="space-between" mt={2}>
               <Text>가격</Text>
               {/* 방어 코드 추가 */}
-              <Text>{item.room && item.room[0] ? item.room[0].price.toLocaleString() : 'N/A'}원</Text>
+              <Text>
+                {selectedItem.roomList && selectedItem.roomList[0]
+                  ? selectedItem.roomList[0].roomPrice.toLocaleString()
+                  : 'N/A'}
+                원
+              </Text>
             </Flex>
           </Box>
         ))
@@ -59,13 +60,13 @@ const CartPayment = ({ selectedItems }) => {
             </Text>
             <Text>
               {selectedItems
-                .reduce((acc, item) => acc + (item.room && item.room[0] ? item.room[0].price : 0), 0)
+                .reduce((acc, item) => acc + (item.roomList && item.roomList[0] ? item.roomList[0].roomPrice : 0), 0)
                 .toLocaleString()}
               원
             </Text>
           </Flex>
           <Flex justifyContent="center" mt={4}>
-            <Button 
+            <Button
               onClick={handlePayment}
               padding="1.8rem"
               background="main"
@@ -87,4 +88,4 @@ const CartPayment = ({ selectedItems }) => {
   );
 };
 
-export default CartPayment;
+export default CartOrder;

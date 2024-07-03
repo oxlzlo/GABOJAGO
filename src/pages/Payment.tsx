@@ -29,6 +29,8 @@ const Payment = () => {
   const { selectedItems } = location.state || {};
   const theme = useTheme();
 
+  console.log('selectedItems:', selectedItems);
+
   if (!selectedItems || selectedItems.length === 0) {
     return (
       <Flex

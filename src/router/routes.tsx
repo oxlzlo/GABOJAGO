@@ -1,6 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
-import Payment from '@/pages/Payment';
+import Order from '@/pages/Order';
 import Cart from '@/pages/Cart';
 import SignIn from '@/pages/SignIn';
 import SignUp from '@/pages/SignUp';
@@ -8,6 +8,8 @@ import AccommodationItem from '@/pages/AccommodationItem';
 import FindId from '@/pages/FindId';
 import Resetpw from '@/pages/Resetpw';
 import Mypage from '@/pages/Mypage';
+import OrderConfirm from '@/pages/OrderConfirm';
+import OrderHistory from '@/pages/OrderHistory';
 
 export const routes = [
   {
@@ -35,18 +37,34 @@ export const routes = [
     ),
   },
   {
-    path: '/payment/:roomId',
+    path: '/order/:roomId',
     element: (
       <Layout>
-        <Payment />
+        <Order />
       </Layout>
     ),
   },
   {
-    path: '/payment',
+    path: '/order/',
     element: (
       <Layout>
-        <Payment />
+        <Order />
+      </Layout>
+    ),
+  },
+  {
+    path: '/order/payment',
+    element: (
+      <Layout>
+        <OrderConfirm />
+      </Layout>
+    ),
+  },
+  {
+    path: '/orderhistory',
+    element: (
+      <Layout>
+        <OrderHistory />
       </Layout>
     ),
   },
@@ -67,7 +85,7 @@ export const routes = [
     element: <Resetpw />,
   },
   {
-    path: '/mypage',
+    path: 'mypage',
     element: (
       <Layout>
         <Mypage />
