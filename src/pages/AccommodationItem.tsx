@@ -139,7 +139,7 @@ const AccommodationItem = () => {
 
   return (
     <>
-      <Box>
+      <Box paddingX="15rem">
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (
@@ -159,10 +159,25 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                <Grid templateColumns="repeat(200px, 1fr)" gap={4}>
+                <Grid
+                  templateColumns="repeat(4, 1fr)"
+                  templateRows="repeat(2, 1fr)"
+                  gap={4}
+                  margin="0 auto 2.4rem"
+                  border="1px solid"
+                  borderColor="grayLight"
+                  padding="2rem"
+                  borderRadius="1rem">
                   {accommodation.imageList.map((image, index) => (
-                    <GridItem key={index} colSpan={index === 0 ? 2 : 1} height={index === 0 ? '50vh' : '25vh'}>
-                      <Image src={image.url} alt={accommodation.name} width="100%" height="100%" objectFit="cover" />
+                    <GridItem key={index} colSpan={index === 0 ? 2 : 1} rowSpan={index === 0 ? 2 : 1}>
+                      <Image
+                        src={image.url}
+                        alt={accommodation.name}
+                        width={index === 0 ? '100%' : '100%'}
+                        height={index === 0 ? '100%' : '100%'}
+                        objectFit="cover"
+                        borderRadius={index === 0 ? '12px 0 0 12px' : ''}
+                      />
                     </GridItem>
                   ))}
                 </Grid>
