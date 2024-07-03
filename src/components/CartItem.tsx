@@ -1,4 +1,4 @@
-import { fetchLodgment } from '@/api';
+import { fetchCartItems, fetchLodgment } from '@/api';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
 import { Accommodation } from '@/lib/types/accommodation';
@@ -39,6 +39,26 @@ export type CartItemProps = {
 
 const CartItem = ({ items, onSelectItem }: CartItemProps) => {
   const theme = useTheme();
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchLodgment();
+      setLodgments(response);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    fetchCartItems()
+      .then((response) => {
+        console.log(response.data.data.item_dto_list);
+        setCartItems(response.data.data.item_dto_list);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <>
