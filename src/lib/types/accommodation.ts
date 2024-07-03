@@ -1,5 +1,7 @@
 import { ImageInfo } from './imageInfo';
 
+export type CombinedAccommodationRooms = Accommodation & Rooms;
+
 export type Accommodation = {
   imageList: ImageInfo[];
   id: number;
@@ -10,6 +12,7 @@ export type Accommodation = {
   thumbnail: string;
   price: number;
   roomList: Rooms[];
+  length?: number;
 };
 
 export type Rooms = {
@@ -28,3 +31,7 @@ export type Rooms = {
 export interface AccommodationListProps {
   accommodation: Accommodation[];
 }
+
+export type RoomListType = {
+  roomList: Rooms[];
+};
