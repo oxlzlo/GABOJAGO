@@ -36,7 +36,7 @@ const OrderConfirm = () => {
     >
       <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
         <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
-          결제 내역
+          결제 확인
         </Text>
         <Box
           width="100%"

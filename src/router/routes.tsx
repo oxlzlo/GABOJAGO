@@ -7,6 +7,8 @@ import SignUp from '@/pages/SignUp';
 import AccommodationItem from '@/pages/AccommodationItem';
 import FindId from '@/pages/FindId';
 import Resetpw from '@/pages/Resetpw';
+import OrderConfirm from '@/pages/OrderConfirm';
+import OrderHistory from '@/pages/OrderHistory';
 
 export const routes = [
   {
@@ -46,6 +48,22 @@ export const routes = [
     element: (
       <Layout>
         <Order />
+      </Layout>
+    ),
+  },
+  {
+    path: '/order/payment',
+    element: (
+      <Layout>
+        <OrderConfirm />
+      </Layout>
+    ),
+  },
+  {
+    path: '/orderhistory',
+    element: (
+      <Layout>
+        <OrderHistory />
       </Layout>
     ),
   },
