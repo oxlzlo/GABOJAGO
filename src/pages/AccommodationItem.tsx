@@ -68,7 +68,7 @@ const AccommodationItem = () => {
    */
   const handleConfirm = () => {
     if (selectedRooms) {
-      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
+      navigation(`/order/${selectedRooms.id}`, { state: selectedRooms });
     }
     onClose();
   };
@@ -139,7 +139,7 @@ const AccommodationItem = () => {
 
   return (
     <>
-      <Box paddingX="15rem">
+      <Box>
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (
@@ -159,17 +159,13 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                {accommodation.imageList.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image.url}
-                    alt={accommodation.name}
-                    width="100%"
-                    height="50vh"
-                    objectFit="cover"
-                    marginBottom="2rem"
-                  />
-                ))}
+                <Grid templateColumns="repeat(200px, 1fr)" gap={4}>
+                  {accommodation.imageList.map((image, index) => (
+                    <GridItem key={index} colSpan={index === 0 ? 2 : 1} height={index === 0 ? '50vh' : '25vh'}>
+                      <Image src={image.url} alt={accommodation.name} width="100%" height="100%" objectFit="cover" />
+                    </GridItem>
+                  ))}
+                </Grid>
                 <Text fontSize="1.6rem">{accommodation.address}</Text>
                 <Text fontSize="1.6rem" fontWeight="600">
                   {accommodation.numbers}
