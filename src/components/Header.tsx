@@ -88,7 +88,9 @@ const Header = () => {
                       <Text marginTop="2.5vh" onClick={() => navigate('/cart')}>
                         장바구니
                       </Text>
-                      <Text>주문내역</Text>
+                      <Text onClick={() => navigate('/payments')}>
+                        주문내역
+                      </Text>
                       <Button
                         width="7vw"
                         height="4vh"
