@@ -38,9 +38,26 @@ const Cart = () => {
   // }
 
   return (
-    <Flex direction="column" justifyContent="flex-start" minHeight="calc(100vh - 80px)" p={10} alignItems="center">
-      <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
-        <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
+    <Flex 
+      direction="column" 
+      justifyContent="flex-start" 
+      alignItems="center"
+      minHeight="calc(100vh - 80px)" 
+      p={10} 
+      px={20} 
+    >
+      <Box 
+        width="100%" 
+        maxWidth="1240px" 
+        mx="auto" 
+        pt="8rem"
+      >
+        <Text 
+          mb={4} 
+          fontSize="3rem"
+          fontWeight="900" 
+          textAlign="left" 
+        >
           장바구니
         </Text>
 
@@ -48,12 +65,12 @@ const Cart = () => {
           <Box
             justifyContent="center"
             alignItems="center"
-            textAlign="center"
             p={10}
             mb={3}
             border={`1px solid ${theme.colors.main}`}
             borderRadius="xl">
-            <Text height="60vh" fontWeight="500" fontSize="2rem">
+              textAlign="center"
+            <Text height="60vh" fontSize="2rem" fontWeight="500">
               장바구니가 비어 있습니다.
             </Text>
           </Box>
