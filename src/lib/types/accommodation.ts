@@ -26,6 +26,9 @@ export type Rooms = {
   roomDefaultGuest: number;
   roomMaxGuest: number;
   comment: string;
+  cart_item_id?: number;
+  end_date?: string;
+  start_date?: string;
 };
 
 export interface AccommodationListProps {

@@ -1,68 +1,75 @@
-import { Box, Button, Text, Flex, Divider, Image, useTheme } from '@chakra-ui/react';
+import { Rooms } from '@/lib/types/accommodation';
+import { Box, Button, Text, Flex, Divider, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-const CartOrder = ({ selectedItems }) => {
-  const theme = useTheme();
+type SelectedRoomsProps = {
+  selectedRooms: Rooms[];
+};
+
+const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    navigate('/order', { state: { selectedItems } });
+    navigate('/order', { state: { selectedRooms } });
   };
 
   return (
-    <Box border={`1px solid teal`} borderRadius="lg" padding="3rem">
-      <Text fontWeight="900" fontSize="3rem" mb={4}>
+    <Box border="1px solid" borderColor="gray" borderRadius=".5rem" padding="3rem">
+      <Text fontWeight="900" fontSize="3rem" mb={4} color="main">
         결제금액
       </Text>
-      <Text fontSize="1.9rem" color={`${theme.colors.gray}`}>
+      <Text fontSize="1.9rem" color="gray">
         결제할 상품을 선택해 주세요.
       </Text>
-      {selectedItems.length === 0 ? (
-        <Text fontWeight="500" fontSize="1.9rem" color={`${theme.colors.gray}`}>
+      {selectedRooms.length === 0 ? (
+        <Text fontWeight="500" fontSize="1.9rem" color="gray">
           현재 선택된 상품이 없습니다.
         </Text>
       ) : (
-        selectedItems.map((selectedItem, _) => (
-          <Box key={selectedItem.id} my={16}>
+        selectedRooms.map((selectedRoom, index) => (
+          <Box key={`${selectedRoom.room.id} - ${index}`} marginY="4rem">
             <Flex alignItems="center">
-              <Image src={selectedItem.thumbnail} alt={selectedItem.name} boxSize="60px" mr={10} />
+              <Image
+                src={selectedRoom.room.imageList}
+                alt={selectedRoom.room.rommTypeName}
+                boxSize="60px"
+                marginRight="2.5rem"
+              />
               <Text fontSize="2rem" fontWeight="900" mr={10}>
-                {selectedItem.name}
+                {selectedRoom.room.roomTypeName}
               </Text>
               <Flex flexDirection="column" justifyContent="flex-end" alignItems="flex-end" textAlign="right" flex="1">
                 <Text fontSize="1.3rem">
-                  이용기간: {selectedItem.startDate} - {selectedItem.endDate}
+                  이용기간: {selectedRoom.start_date} - {selectedRoom.end_date}
                 </Text>
-                <Text fontSize="1.3rem">이용자 수: {selectedItem.userCount}인</Text>
+                <Text fontSize="1.3rem">이용자 수: {selectedRoom.room.roomDefaultGuest}인</Text>
               </Flex>
             </Flex>
             <Divider borderColor="teal" />
             <Flex justifyContent="space-between" mt={2}>
-              <Text>가격</Text>
-              {/* 방어 코드 추가 */}
-              <Text>
-                {selectedItem.roomList && selectedItem.roomList[0]
-                  ? selectedItem.roomList[0].roomPrice.toLocaleString()
-                  : 'N/A'}
-                원
-              </Text>
+              <Text fontSize="1.5rem">가격: </Text>
+              <Text fontSize="1.5rem">{`${selectedRoom.room.roomPrice.toLocaleString('ko-KR', {
+                style: 'decimal',
+                currency: 'KRW',
+              })}원`}</Text>
             </Flex>
           </Box>
         ))
       )}
-      {selectedItems.length > 0 && (
+      {selectedRooms.length > 0 && (
         <>
           <Divider borderColor="teal" mb={4} />
           <Flex justifyContent="space-between" fontWeight="bold">
             <Text fontWeight="900" fontSize="2rem">
               총 결제금액
             </Text>
-            <Text>
-              {selectedItems
-                .reduce((acc, item) => acc + (item.roomList && item.roomList[0] ? item.roomList[0].roomPrice : 0), 0)
-                .toLocaleString()}
-              원
-            </Text>
+            <span style={{ color: 'red' }}>
+              <Text fontSize="1.5rem">
+                {`${selectedRooms
+                  .reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+                  .toLocaleString('ko-KR', { style: 'decimal', currency: 'KRW' })}원`}
+              </Text>
+            </span>
           </Flex>
           <Flex justifyContent="center" mt={4}>
             <Button

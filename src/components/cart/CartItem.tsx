@@ -1,39 +1,11 @@
-import { fetchCartItems } from '@/api';
+import { fetchCartItems, fetchDeleteAllCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect, useState } from 'react';
-import { Box, Flex, Image, Text, Checkbox, Divider } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, Divider } from '@chakra-ui/react';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
-
-const CustomCheckbox = ({
-  accommodationItem,
-  onSelectItem,
-  ...props
-}: {
-  accommodationItem: Accommodation;
-  onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
-}) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onSelectItem(accommodationItem, event.target.checked);
-  };
-
-  return (
-    <Checkbox
-      {...props}
-      onChange={handleChange}
-      sx={{
-        '& .chakra-checkbox__control': {
-          width: '2rem',
-          height: '2rem',
-        },
-        '& .chakra-checkbox__icon': {
-          fontSize: '2.5rem',
-        },
-      }}
-    />
-  );
-};
+import { CartCheckbox } from '@/lib/common/CartCheckbox';
 
 type CartItemProps = {
-  onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
+  onSelecRooms: (accommodation: Accommodation, isSelected: boolean) => void;
 };
 
 type CartItems = {
@@ -43,25 +15,39 @@ type CartItems = {
   room: Rooms;
 };
 
-const CartItem = ({ onSelectItem }: CartItemProps) => {
-  const [cartItems, setCartItems] = useState<CartItems[]>([]);
+const CartItem = ({ onSelecRooms }: CartItemProps) => {
+  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
 
+  /**
+   * 장바구니에 담긴 상품 조회
+   */
   useEffect(() => {
     fetchCartItems()
       .then((response) => {
-        setCartItems(response.data.data.item_dto_list);
-        console.log(response.data.data.item_dto_list.room);
+        setCartRooms(response.data.data.item_dto_list);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
   }, []);
 
+  console.log(cartRooms);
+  // const handleCheckboxChange = (cartRoom) => {
+  //   onSelectItem(cartRoom);
+  // };
+
+  // useEffect(() => {
+  //   const cartItemIdList = cartItems;
+  //   fetchDeleteCartItems(cartItemIdList).then((response) => {
+  //     console.log(response.data);
+  //   });
+  // }, []);
+
   return (
     <>
-      {cartItems.map((cartItem, _) => (
+      {cartRooms.map((cartRoom, _) => (
         <Box
-          key={cartItem.cart_item_id}
+          key={cartRoom.cart_item_id}
           padding="2.5rem"
           marginBottom="1rem"
           border="1px solid"
@@ -69,8 +55,8 @@ const CartItem = ({ onSelectItem }: CartItemProps) => {
           borderRadius=".5rem">
           <Flex mb={10} alignItems="center">
             <Image
-              src={cartItem.room.imageList}
-              alt={cartItem.room.roomTypeName}
+              src={cartRoom.room.imageList}
+              alt={cartRoom.room.roomTypeName}
               width="10rem"
               height="10rem"
               marginRight="2rem"
@@ -78,30 +64,25 @@ const CartItem = ({ onSelectItem }: CartItemProps) => {
             />
             <Box flex="1">
               <Text fontSize="2rem" fontWeight="900">
-                {cartItem.room.roomTypeName}
+                {cartRoom.room.roomTypeName}
               </Text>
-              <Text fontSize="1.5rem">{cartItem.room.roomType}</Text>
+              <Text fontSize="1.5rem">{cartRoom.room.roomType}</Text>
               {/* <Text fontSize="1.2rem">
                 평점: {cartItem.rating} / 리뷰 수: {cartItem.reviewCount}
               </Text> */}
             </Box>
-            <CustomCheckbox
-              accommodationItem={cartItem}
-              onSelectItem={onSelectItem}
-              colorScheme="teal"
-              borderColor="main"
-            />
+            <CartCheckbox cartRoom={cartRoom} onSelecRooms={onSelecRooms} colorScheme="teal" borderColor="main" />
           </Flex>
           <Divider borderColor="gray" />
           <Box mt={10} fontSize="1.2rem">
             <Text fontSize="1.3rem">
-              이용기간: {cartItem.start_date} - {cartItem.end_date}
+              이용기간: {cartRoom.start_date} - {cartRoom.end_date}
             </Text>
-            <Text fontSize="1.3rem">이용자 수: {cartItem.room.roomDefaultGuest}인</Text>
+            <Text fontSize="1.3rem">이용자 수: {cartRoom.room.roomDefaultGuest}인</Text>
             <Flex justifyContent="flex-end" fontSize="2rem" fontWeight="700">
               <Text>
                 <span style={{ color: 'red' }}>
-                  {`${cartItem.room.roomPrice.toLocaleString('ko-KR', {
+                  {`${cartRoom.room.roomPrice.toLocaleString('ko-KR', {
                     style: 'decimal',
                     currency: 'KRW',
                   })}원`}

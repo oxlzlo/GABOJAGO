@@ -49,7 +49,17 @@ export const fetchCreateCartItems = (payload: { roomId: string }) => {
   return instance.post('/api/user/cartItems', payload);
 };
 
-//
+// 장바구니 삭제
+export const fetchDeleteCartItems = (cartItemIdList) => {
+  return instance.delete('/api/user/cartItems', {
+    data: { cartItemIdList },
+  });
+};
+
+// 장바구니 모두 삭제
+export const fetchDeleteAllCartItems = (cartItems) => {
+  return instance.delete('/api/user/cartItems/delete-all');
+};
 
 // 주문하기
 export const fetchOrder = async () => {

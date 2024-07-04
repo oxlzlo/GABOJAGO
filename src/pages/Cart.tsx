@@ -1,33 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
-import { Accommodation } from '@/lib/types/accommodation';
-import { fetchLodgment } from '@/api';
+import { useState } from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react';
+import { Rooms } from '@/lib/types/accommodation';
 import CartItem from '@/components/cart/CartItem';
 import CartOrder from '@/components/cart/CartOrder';
 
 const Cart = () => {
-  // const { user } = useAuth(); // 로그인한 사용자 정보
-  const [loading, setLoading] = useState(true); // 로딩 상태 관리
-  const theme = useTheme();
+  // const [loading, setLoading] = useState(true); // 로딩 상태 관리
   // const [items, setItems] = useState<Accommodation[]>([]);
-  const [selectedItems, setSelectedItems] = useState<Accommodation[]>([]);
+  const [selectedRooms, setSelectedRooms] = useState<Rooms[]>([]);
 
-  // useEffect(() => {
-  //   fetchLodgment().then((response) => {
-  //     setItems(response);
-  //     setLoading(false);
-  //   });
-  // }, []);
-
-  const handleSelectItem = (accommodationItem: Accommodation, isSelected: boolean) => {
+  /**
+   * 사용자가 상품을 선택하면 해당 상품을 selectedRoom 배열에 추가하고, 선택을 해제하면 배열에서 제거.
+   * @param accommodationItem
+   * @param isSelected
+   */
+  const handleSelectRooms = (roomItem: Rooms, isSelected: boolean) => {
+    console.log('accommodationItem', roomItem);
     if (isSelected) {
-      setSelectedItems((prev) => [...prev, accommodationItem]);
+      setSelectedRooms((prev) => [...prev, roomItem]);
     } else {
-      setSelectedItems((prev) => prev.filter((item) => item.id !== accommodationItem.id));
+      setSelectedRooms((prev) => prev.filter((item) => item.id !== roomItem.id));
     }
   };
 
-  console.log('select', selectedItems);
+  console.log('selectedRoom', selectedRooms);
   // console.log(items);
 
   return (
@@ -62,10 +58,10 @@ const Cart = () => {
         )} */}
         <Flex width="100%" gap="1rem">
           <Flex flex="1" direction="column">
-            <CartItem onSelectItem={handleSelectItem} />
+            <CartItem onSelecRooms={handleSelectRooms} />
           </Flex>
           <Flex flex="1" direction="column">
-            <CartOrder selectedItems={selectedItems} />
+            <CartOrder selectedRooms={selectedRooms} />
           </Flex>
         </Flex>
       </Box>

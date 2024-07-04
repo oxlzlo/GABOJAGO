@@ -122,7 +122,6 @@ const AccommodationItem = () => {
    */
   const handleAddToCart = (roomId: string) => {
     const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
-    console.log(selectedRoomForCart);
     if (selectedRoomForCart) {
       const payload = {
         roomId: selectedRoomForCart.id.toString(),
