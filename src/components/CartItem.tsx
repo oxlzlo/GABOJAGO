@@ -1,7 +1,7 @@
-import { fetchCartItems, fetchLodgment } from '@/api';
+import { fetchCartItems } from '@/api';
 import { useEffect, useState } from 'react';
-import { Box, Flex, Image, Text, Checkbox, Divider, useTheme } from '@chakra-ui/react';
-import { Accommodation } from '@/lib/types/accommodation';
+import { Box, Flex, Image, Text, Checkbox, Divider } from '@chakra-ui/react';
+import { Accommodation, Rooms } from '@/lib/types/accommodation';
 
 const CustomCheckbox = ({
   accommodationItem,
@@ -32,28 +32,25 @@ const CustomCheckbox = ({
   );
 };
 
-export type CartItemProps = {
-  items: Accommodation[];
+type CartItemProps = {
   onSelectItem: (accommodation: Accommodation, isSelected: boolean) => void;
 };
 
-const CartItem = ({ items, onSelectItem }: CartItemProps) => {
-  const theme = useTheme();
-  const [cartItems, setCartItems] = useState([]);
+type CartItems = {
+  cart_item_id: number;
+  start_date: string;
+  end_date: string;
+  room: Rooms;
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchLodgment();
-      setLodgments(response);
-    };
-    fetchData();
-  }, []);
+const CartItem = ({ onSelectItem }: CartItemProps) => {
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
 
   useEffect(() => {
     fetchCartItems()
       .then((response) => {
-        console.log(response.data.data.item_dto_list);
         setCartItems(response.data.data.item_dto_list);
+        console.log(response.data.data.item_dto_list.room);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -62,37 +59,53 @@ const CartItem = ({ items, onSelectItem }: CartItemProps) => {
 
   return (
     <>
-      {items.map((accommodation, _) => (
-        <Box key={accommodation.id} p={10} mb={3} border={`1px solid ${theme.colors.main}`} borderRadius="lg">
+      {cartItems.map((cartItem, _) => (
+        <Box
+          key={cartItem.cart_item_id}
+          padding="2.5rem"
+          marginBottom="1rem"
+          border="1px solid"
+          borderColor="grayLight"
+          borderRadius=".5rem">
           <Flex mb={10} alignItems="center">
-            <Image src={accommodation.thumbnail} alt={accommodation.name} boxSize="100px" mr={8} borderRadius="lg" />
+            <Image
+              src={cartItem.room.imageList}
+              alt={cartItem.room.roomTypeName}
+              width="10rem"
+              height="10rem"
+              marginRight="2rem"
+              borderRadius="1rem"
+            />
             <Box flex="1">
               <Text fontSize="2rem" fontWeight="900">
-                {accommodation.name}
+                {cartItem.room.roomTypeName}
               </Text>
-              <Text fontSize="1.2rem">
-                평점: {accommodation.rating} / 리뷰 수: {accommodation.reviewCount}
-              </Text>
+              <Text fontSize="1.5rem">{cartItem.room.roomType}</Text>
+              {/* <Text fontSize="1.2rem">
+                평점: {cartItem.rating} / 리뷰 수: {cartItem.reviewCount}
+              </Text> */}
             </Box>
             <CustomCheckbox
-              accommodationItem={accommodation}
+              accommodationItem={cartItem}
               onSelectItem={onSelectItem}
               colorScheme="teal"
-              borderColor={theme.colors.main}
+              borderColor="main"
             />
           </Flex>
-          <Divider borderColor={`${theme.colors.main}`} />
+          <Divider borderColor="gray" />
           <Box mt={10} fontSize="1.2rem">
-            <Text>
-              이용기간: {accommodation.startDate} - {accommodation.endDate}
+            <Text fontSize="1.3rem">
+              이용기간: {cartItem.start_date} - {cartItem.end_date}
             </Text>
-            <Text>이용자 수: {accommodation.userCount}인</Text>
+            <Text fontSize="1.3rem">이용자 수: {cartItem.room.roomDefaultGuest}인</Text>
             <Flex justifyContent="flex-end" fontSize="2rem" fontWeight="700">
               <Text>
-                {accommodation.roomList && accommodation.roomList.length > 0
-                  ? accommodation.roomList[0].roomPrice.toLocaleString()
-                  : 'N/A'}
-                원
+                <span style={{ color: 'red' }}>
+                  {`${cartItem.room.roomPrice.toLocaleString('ko-KR', {
+                    style: 'decimal',
+                    currency: 'KRW',
+                  })}원`}
+                </span>
               </Text>
             </Flex>
           </Box>
