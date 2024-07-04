@@ -4,9 +4,48 @@ import Profile from '../assets/설이.jpeg';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Mypage = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
+  const [editPhoneNumber, setEditPhoneNumber] = useState(user?.phone_number || '');
+
+  const token = localStorage.getItem('accessToken');
+
+  const handleEdit = async () => {
+    if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(editPhoneNumber)) {
+      alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
+      return;
+    }
+
+    console.log('handleEdit');
+    const payload = {
+      phone_number: editPhoneNumber,
+    };
+
+    try {
+      const response = await axios.put(
+        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/change-phone-number',
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (response.data.result_code === '200') {
+        alert('정상적으로 변경되었습니다.');
+        console.log(editPhoneNumber);
+        console.log(response);
+        login({ ...user, phone_number: editPhoneNumber });
+      } else {
+        alert('수정에 실패하였습니다.');
+        console.error(response.data.error.error_message);
+      }
+    } catch (error) {
+      console.error('프로필 수정 에러', error);
+    }
+  };
 
   return (
     <Box marginTop="8.3vh" height="100vh" backgroundColor="background">
@@ -34,7 +73,11 @@ const Mypage = () => {
                 <Text width="40%" fontSize="2rem" color="main">
                   Phone Number
                 </Text>
-                <InputBox type="number" placeholder={user?.phone_number}></InputBox>
+                <InputBox
+                  type="text"
+                  placeholder={user?.phone_number}
+                  value={editPhoneNumber}
+                  onChange={(e) => setEditPhoneNumber(e.target.value)}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -65,7 +108,8 @@ const Mypage = () => {
                 backgroundColor="main"
                 color="white"
                 borderRadius=".5rem"
-                _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
+                _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}
+                onClick={handleEdit}>
                 Edit
               </Button>
             </Box>
