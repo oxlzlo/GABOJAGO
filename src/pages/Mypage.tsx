@@ -55,24 +55,26 @@ const Mypage = () => {
       }
     }
 
-    const payload = {
-      email: user?.email,
-      password: newPassword,
-    };
+    if (password == user?.password && newPassword === confirmPassword) {
+      const payload = {
+        email: user?.email,
+        password: newPassword,
+      };
 
-    console.log(payload);
+      console.log(payload);
 
-    try {
-      const response = await axios.put(
-        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
-        payload,
-      );
-      if (response.data.result_code === '200') {
-        console.log(response);
-        alert('정상적으로 변경되었습니다.');
+      try {
+        const response = await axios.put(
+          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
+          payload,
+        );
+        if (response.data.result_code === '200') {
+          console.log(response);
+          alert('정상적으로 변경되었습니다.');
+        }
+      } catch (error) {
+        console.error('프로필 수정 에러', error);
       }
-    } catch (error) {
-      console.error('프로필 수정 에러', error);
     }
   };
 
@@ -126,7 +128,12 @@ const Mypage = () => {
                 <Text width="40%" fontSize="2rem" color="main">
                   Password
                 </Text>
-                <InputBox type="password" placeholder="Password *" onKeyPress={handleKeypress}></InputBox>
+                <InputBox
+                  type="password"
+                  placeholder="Password *"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onKeyPress={handleKeypress}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
