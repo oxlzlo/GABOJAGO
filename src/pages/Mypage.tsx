@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import Profile from '../assets/설이.jpeg';
-// import EditProfile from '../assets/eidt_profile.svg?react';
+import Profile from '../assets/default_profile.png';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
@@ -88,7 +87,13 @@ const Mypage = () => {
       <Flex justify="center" align="center">
         <Box width="41.7vw" height="100vh" backgroundColor="white">
           <Flex flexDirection="column" justify="center" align="center" gap="2vh">
-            <Box width="200px" height="200px" marginTop="10vh" borderRadius="50%" overflow="hidden">
+            <Box
+              width="200px"
+              height="200px"
+              marginTop="10vh"
+              borderRadius="50%"
+              overflow="hidden"
+              backgroundColor="background">
               <img src={Profile} className="profile_img"></img>
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
