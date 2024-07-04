@@ -92,8 +92,9 @@ const Mypage = () => {
               height="200px"
               marginTop="10vh"
               borderRadius="50%"
+              backgroundColor="background"
               overflow="hidden"
-              backgroundColor="background">
+              cursor="pointer">
               <img src={Profile} className="profile_img"></img>
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
