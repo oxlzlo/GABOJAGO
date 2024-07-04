@@ -18,6 +18,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 import RoomDetailModal from '@/lib/common/RoomDetailModal';
+import { ToastAlert } from '@/lib/common/ToastAlert';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams<string>();
@@ -38,6 +39,7 @@ const AccommodationItem = () => {
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const showToast = ToastAlert();
 
   useEffect(() => {
     fetchAccommodationById(accommodationId as string)
@@ -130,16 +132,26 @@ const AccommodationItem = () => {
       fetchCreateCartItems(payload)
         .then((response) => {
           console.log(response.data);
+          showToast({
+            title: `객실 ${selectedRoomForCart.roomTypeName}이 장바구니에 추가되었습니다.`,
+            description: '',
+            status: 'success',
+          });
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
+          showToast({
+            title: '객실을 장바구니에 추가하는 도중 오류가 발생했습니다.',
+            description: '',
+            status: 'error',
+          });
         });
     }
   };
 
   return (
     <>
-      <Box paddingX="15rem">
+      <Box padding="8rem 15rem">
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (

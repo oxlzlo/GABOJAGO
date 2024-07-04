@@ -65,7 +65,7 @@ const CartItem = ({ onSelectItem }: CartItemProps) => {
           padding="2.5rem"
           marginBottom="1rem"
           border="1px solid"
-          borderColor="grayLight"
+          borderColor="gray"
           borderRadius=".5rem">
           <Flex mb={10} alignItems="center">
             <Image
