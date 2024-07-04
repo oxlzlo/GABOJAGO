@@ -1,12 +1,8 @@
 import { fetchCartItems, fetchDeleteAllCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Divider } from '@chakra-ui/react';
-import { Accommodation, Rooms } from '@/lib/types/accommodation';
+import { Rooms } from '@/lib/types/accommodation';
 import { CartCheckbox } from '@/lib/common/CartCheckbox';
-
-type CartItemProps = {
-  onSelecRooms: (accommodation: Accommodation, isSelected: boolean) => void;
-};
 
 type CartItems = {
   cart_item_id: number;
@@ -15,7 +11,7 @@ type CartItems = {
   room: Rooms;
 };
 
-const CartItem = ({ onSelecRooms }: CartItemProps) => {
+const CartItem = ({ onSelecRooms }) => {
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
 
   /**
