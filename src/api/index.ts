@@ -43,10 +43,13 @@ export const fetchRoomList = (accommodationId: string) => {
 export const fetchCartItems = () => {
   return instance.get('/api/user/cartItems');
 };
+
 // 장바구니 생성
 export const fetchCreateCartItems = (payload: { roomId: string }) => {
   return instance.post('/api/user/cartItems', payload);
 };
+
+//
 
 // 주문하기
 export const fetchOrder = async () => {

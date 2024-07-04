@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
-import CartItem from '@/components/CartItem';
-import CartOrder from '@/components/CartOrder';
 import { Accommodation } from '@/lib/types/accommodation';
 import { fetchLodgment } from '@/api';
+import CartItem from '@/components/cart/CartItem';
+import CartOrder from '@/components/cart/CartOrder';
 
 const Cart = () => {
   // const { user } = useAuth(); // 로그인한 사용자 정보
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
   const theme = useTheme();
-  const [items, setItems] = useState<Accommodation[]>([]);
+  // const [items, setItems] = useState<Accommodation[]>([]);
   const [selectedItems, setSelectedItems] = useState<Accommodation[]>([]);
 
-  useEffect(() => {
-    fetchLodgment().then((response) => {
-      setItems(response);
-      setLoading(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchLodgment().then((response) => {
+  //     setItems(response);
+  //     setLoading(false);
+  //   });
+  // }, []);
 
   const handleSelectItem = (accommodationItem: Accommodation, isSelected: boolean) => {
     if (isSelected) {
@@ -27,13 +27,16 @@ const Cart = () => {
     }
   };
 
+  console.log('select', selectedItems);
+  // console.log(items);
+
   return (
     <Flex flexDirection="column" alignItems="center" minHeight="calc(100vh - 80px)" padding="2.5rem">
       <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
         <Text marginBottom="1rem" fontSize="3rem" fontWeight="900" textAlign="left" color="main">
           장바구니
         </Text>
-        {items.length === 0 ? (
+        {/* {items.length === 0 ? (
           <Box
             justifyContent="center"
             alignItems="center"
@@ -56,7 +59,15 @@ const Cart = () => {
               <CartOrder selectedItems={selectedItems} />
             </Flex>
           </Flex>
-        )}
+        )} */}
+        <Flex width="100%" gap="1rem">
+          <Flex flex="1" direction="column">
+            <CartItem onSelectItem={handleSelectItem} />
+          </Flex>
+          <Flex flex="1" direction="column">
+            <CartOrder selectedItems={selectedItems} />
+          </Flex>
+        </Flex>
       </Box>
     </Flex>
   );

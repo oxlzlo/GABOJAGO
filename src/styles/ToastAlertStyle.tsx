@@ -1,7 +1,8 @@
+import { ToastAlertProps } from '@/lib/types/toastAlertProps';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import { Box, CloseButton, Text } from '@chakra-ui/react';
 
-const ToastAlertStyle = ({ title, description, status, onClose }) => (
+const ToastAlertStyle = ({ title, description, status, onClose }: ToastAlertProps) => (
   <Box
     display="flex"
     alignItems="center"

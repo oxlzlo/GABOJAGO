@@ -1,4 +1,3 @@
-import { Accommodation } from '@/lib/types/accommodation';
 import { Box, Button, Text, Flex, Divider, Image, useTheme } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
