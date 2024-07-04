@@ -16,17 +16,16 @@ const Mypage = () => {
   const token = localStorage.getItem('accessToken');
 
   const handleEdit = async () => {
-    if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(editPhoneNumber)) {
-      alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
-      return;
-    }
-
-    if (newPassword !== confirmPassword) {
-      alert('패스워드가 일치하지 않습니다.');
-      return;
+    if (password !== user?.password) {
+      alert('기존 패스워드를 확인해주세요.');
     }
 
     if (editPhoneNumber !== user?.phone_number) {
+      if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(editPhoneNumber)) {
+        alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
+        return;
+      }
+
       const payload = {
         phone_number: editPhoneNumber,
       };
@@ -55,7 +54,11 @@ const Mypage = () => {
       }
     }
 
-    if (password == user?.password && newPassword === confirmPassword) {
+    if (password == user?.password) {
+      if (newPassword !== confirmPassword) {
+        alert('패스워드가 일치하지 않습니다.');
+        return;
+      }
       const payload = {
         email: user?.email,
         password: newPassword,
