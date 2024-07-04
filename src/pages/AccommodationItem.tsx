@@ -176,7 +176,6 @@ const AccommodationItem = () => {
                   templateRows="repeat(2, 1fr)"
                   gap=".5rem"
                   margin="0 auto 2.4rem"
-                  padding="2rem"
                   borderRadius="1rem">
                   {accommodation.imageList.map((image, index) => (
                     <GridItem key={index} colSpan={index === 0 ? 2 : 1} rowSpan={index === 0 ? 2 : 1}>
