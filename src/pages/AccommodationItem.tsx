@@ -151,7 +151,7 @@ const AccommodationItem = () => {
 
   return (
     <>
-      <Box padding="8rem 15rem">
+      <Box paddingX="15rem">
         <Flex justify="center" flexDirection="column" alignItems="center" paddingTop="10rem">
           <List>
             {accommodations.map((accommodation, _) => (
