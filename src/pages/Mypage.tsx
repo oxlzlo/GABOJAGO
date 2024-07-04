@@ -1,8 +1,9 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import Profile from '../assets/설이.jpeg';
-import EditProfile from '../assets/eidt_profile.svg?react';
+// import EditProfile from '../assets/eidt_profile.svg?react';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
+import { useState } from 'react';
 
 const Mypage = () => {
   const { user } = useAuth();
@@ -17,38 +18,38 @@ const Mypage = () => {
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   Name
                 </Text>
                 <TextBox>{user?.name}</TextBox>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   Account
                 </Text>
                 <TextBox>{user?.email}</TextBox>
               </Flex>
               <Box margin="3vh 0 3vh 0" border=".1rem solid var(--color-main)" borderBottom="none"></Box>
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   Phone Number
                 </Text>
                 <InputBox type="number" placeholder={user?.phone_number}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   Password
                 </Text>
                 <InputBox type="password" placeholder="Password *"></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   New Password
                 </Text>
                 <InputBox type="password" placeholder="New Password *"></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text fontSize="2rem" color="main">
+                <Text width="40%" fontSize="2rem" color="main">
                   New Password (confirm)
                 </Text>
                 {/* <Text fontSize="1.5rem" color="main">
