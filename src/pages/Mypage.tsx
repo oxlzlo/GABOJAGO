@@ -33,7 +33,7 @@ const Mypage = () => {
                 <Text fontSize="2rem" color="main">
                   Phone Number
                 </Text>
-                <InputBox type="number" placeholder={user?.phoneNumber}></InputBox>
+                <InputBox type="number" placeholder={user?.phone_number}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text fontSize="2rem" color="main">
@@ -51,6 +51,9 @@ const Mypage = () => {
                 <Text fontSize="2rem" color="main">
                   New Password (confirm)
                 </Text>
+                {/* <Text fontSize="1.5rem" color="main">
+                  (confirm)
+                </Text> */}
                 <InputBox type="password" placeholder="Confirm New Password *" />
               </Flex>
               <Button

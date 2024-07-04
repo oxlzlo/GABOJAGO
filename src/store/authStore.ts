@@ -8,22 +8,22 @@ const useAuthStore = create<AuthState>((set) => ({
     set({ user: userData });
     localStorage.setItem('email', userData.email);
     localStorage.setItem('name', userData.name);
-    localStorage.setItem('phoneNumber', userData.phoneNumber);
+    localStorage.setItem('phone_number', userData.phone_number);
   },
   logout: () => {
     set({ user: null });
     localStorage.removeItem('email');
     localStorage.removeItem('name');
-    localStorage.removeItem('phoneNumber');
+    localStorage.removeItem('phone_number');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   },
   loadUserFromLocalStorage: () => {
     const email = localStorage.getItem('email');
     const name = localStorage.getItem('name');
-    const phoneNumber = localStorage.getItem('phoneNumber');
-    if (email && name) {
-      set({ user: { email, name, phoneNumber } });
+    const phone_number = localStorage.getItem('phone_number');
+    if (email && name && phone_number) {
+      set({ user: { email, name, phone_number } });
     }
   },
 }));

@@ -1,7 +1,7 @@
 export type User = {
   email: string;
   name: string;
-  phoneNumber: string;
+  phone_number: string;
 };
 
 export type AuthState = {
