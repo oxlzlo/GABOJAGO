@@ -22,7 +22,7 @@ const Mypage = () => {
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       alert('패스워드가 일치하지 않습니다.');
       return;
     }
@@ -54,6 +54,32 @@ const Mypage = () => {
       } catch (error) {
         console.error('프로필 수정 에러', error);
       }
+    }
+
+    const payload = {
+      email: user?.email,
+      password: newPassword,
+    };
+
+    console.log(payload);
+
+    try {
+      const response = await axios.put(
+        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
+        payload,
+      );
+      if (response.data.result_code === '200') {
+        console.log(response);
+        alert('정상적으로 변경되었습니다.');
+      }
+    } catch (error) {
+      console.error('프로필 수정 에러', error);
+    }
+  };
+
+  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleEdit();
     }
   };
 
@@ -87,13 +113,14 @@ const Mypage = () => {
                   type="text"
                   placeholder={user?.phone_number}
                   value={editPhoneNumber}
-                  onChange={(e) => setEditPhoneNumber(e.target.value)}></InputBox>
+                  onChange={(e) => setEditPhoneNumber(e.target.value)}
+                  onKeyPress={handleKeypress}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
                   Password
                 </Text>
-                <InputBox type="password" placeholder="Password *"></InputBox>
+                <InputBox type="password" placeholder="Password *" onKeyPress={handleKeypress}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -103,7 +130,8 @@ const Mypage = () => {
                   type="password"
                   placeholder="New Password *"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}></InputBox>
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  onKeyPress={handleKeypress}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -117,6 +145,7 @@ const Mypage = () => {
                   placeholder="Confirm New Password *"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  onKeyPress={handleKeypress}
                 />
               </Flex>
               <Button
