@@ -1,8 +1,9 @@
 import { fetchCartItems, fetchDeleteAllCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect, useState } from 'react';
-import { Box, Flex, Image, Text, Divider } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
 import { Rooms } from '@/lib/types/accommodation';
 import { CartCheckbox } from '@/lib/common/CartCheckbox';
+import { CloseIcon } from '@chakra-ui/icons';
 
 type CartItems = {
   cart_item_id: number;
@@ -18,47 +19,57 @@ const CartItem = ({ onSelecRooms }) => {
    * 장바구니에 담긴 상품 조회
    */
   useEffect(() => {
-    fetchCartItems()
-      .then((response) => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetchCartItems();
         setCartRooms(response.data.data.item_dto_list);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
+      }
+    };
+    fetchCart();
   }, []);
 
-  console.log(cartRooms);
-  // const handleCheckboxChange = (cartRoom) => {
-  //   onSelectItem(cartRoom);
-  // };
-
-  // useEffect(() => {
-  //   const cartItemIdList = cartItems;
-  //   fetchDeleteCartItems(cartItemIdList).then((response) => {
-  //     console.log(response.data);
-  //   });
-  // }, []);
+  const handleDeleteCartRoom = async (cartItemId: number) => {
+    try {
+      await fetchDeleteCartItems(cartItemId);
+      const response = await fetchCartItems();
+      setCartRooms(response.data.data.item_dto_list);
+    } catch (error) {
+      console.error('delete error:', error);
+    }
+  };
 
   return (
     <>
       {cartRooms.map((cartRoom, _) => (
         <Box
           key={cartRoom.cart_item_id}
-          padding="2.5rem"
+          padding="1.5rem"
           marginBottom="1rem"
           border="1px solid"
-          borderColor="gray"
+          borderColor="grayLight"
           borderRadius=".5rem">
-          <Flex mb={10} alignItems="center">
+          <Flex justifyContent="end">
+            <Button onClick={() => handleDeleteCartRoom(cartRoom.cart_item_id)}>
+              <CloseIcon />
+            </Button>
+          </Flex>
+          <Flex marginBottom="2rem" alignItems="center" gap="1rem">
+            <Box marginBottom="8rem">
+              <CartCheckbox cartRoom={cartRoom} onSelecRooms={onSelecRooms} colorScheme="" borderColor="main" />
+            </Box>
             <Image
               src={cartRoom.room.imageList}
               alt={cartRoom.room.roomTypeName}
               width="10rem"
               height="10rem"
               marginRight="2rem"
-              borderRadius="1rem"
+              border="1px solid"
+              borderColor="grayLight"
+              borderRadius=".5rem"
             />
-            <Box flex="1">
+            <Box>
               <Text fontSize="2rem" fontWeight="900">
                 {cartRoom.room.roomTypeName}
               </Text>
@@ -67,10 +78,9 @@ const CartItem = ({ onSelecRooms }) => {
                 평점: {cartItem.rating} / 리뷰 수: {cartItem.reviewCount}
               </Text> */}
             </Box>
-            <CartCheckbox cartRoom={cartRoom} onSelecRooms={onSelecRooms} colorScheme="teal" borderColor="main" />
           </Flex>
-          <Divider borderColor="gray" />
-          <Box mt={10} fontSize="1.2rem">
+          <Divider borderColor="main" />
+          <Box marginTop="2rem" fontSize="1.2rem">
             <Text fontSize="1.3rem">
               이용기간: {cartRoom.start_date} - {cartRoom.end_date}
             </Text>

@@ -15,7 +15,6 @@ const Cart = () => {
    * @param isSelected
    */
   const handleSelectRooms = (roomItem: Rooms, isSelected: boolean) => {
-    console.log(roomItem.cart_item_id);
     if (isSelected) {
       setSelectedRooms((prev) => [...prev, roomItem]);
     } else {

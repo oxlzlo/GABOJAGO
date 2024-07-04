@@ -13,15 +13,8 @@ export const CartCheckbox = ({ cartRoom, onSelecRooms, ...props }: any) => {
     <Checkbox
       {...props}
       onChange={handleChange}
-      sx={{
-        '& .chakra-checkbox__control': {
-          width: '2rem',
-          height: '2rem',
-        },
-        '& .chakra-checkbox__icon': {
-          fontSize: '2.5rem',
-        },
-      }}
+      size="lg" // 체크박스 크기를 크게 설정
+      colorScheme="teal"
     />
   );
 };

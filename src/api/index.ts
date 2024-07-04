@@ -50,9 +50,9 @@ export const fetchCreateCartItems = (payload: { roomId: string }) => {
 };
 
 // 장바구니 삭제
-export const fetchDeleteCartItems = (cartItemIdList) => {
+export const fetchDeleteCartItems = (cartItemId: number) => {
   return instance.delete('/api/user/cartItems', {
-    data: { cartItemIdList },
+    data: { cartItemIdList: [cartItemId] },
   });
 };
 
