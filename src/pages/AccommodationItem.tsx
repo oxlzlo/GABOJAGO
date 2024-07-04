@@ -1,4 +1,4 @@
-import { fetchAccommodationById, fetchCartItems, fetchCreateCartItems, fetchRoomList } from '@/api';
+import { fetchAccommodationById, fetchCreateCartItems, fetchRoomList } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import {
   Box,
@@ -174,10 +174,8 @@ const AccommodationItem = () => {
                 <Grid
                   templateColumns="repeat(4, 1fr)"
                   templateRows="repeat(2, 1fr)"
-                  gap={4}
+                  gap=".5rem"
                   margin="0 auto 2.4rem"
-                  border="1px solid"
-                  borderColor="grayLight"
                   padding="2rem"
                   borderRadius="1rem">
                   {accommodation.imageList.map((image, index) => (
@@ -188,7 +186,7 @@ const AccommodationItem = () => {
                         width={index === 0 ? '100%' : '100%'}
                         height={index === 0 ? '100%' : '100%'}
                         objectFit="cover"
-                        borderRadius={index === 0 ? '12px 0 0 12px' : ''}
+                        borderRadius={index === 0 ? '12px 0 0 12px' : index % 2 === 0 ? '0 12px 12px 0' : ''}
                       />
                     </GridItem>
                   ))}
