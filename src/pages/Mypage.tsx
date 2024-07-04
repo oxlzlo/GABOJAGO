@@ -8,7 +8,11 @@ import axios from 'axios';
 
 const Mypage = () => {
   const { user, login } = useAuth();
+
   const [editPhoneNumber, setEditPhoneNumber] = useState(user?.phone_number || '');
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const token = localStorage.getItem('accessToken');
 
@@ -18,32 +22,38 @@ const Mypage = () => {
       return;
     }
 
-    console.log('handleEdit');
-    const payload = {
-      phone_number: editPhoneNumber,
-    };
+    if (password !== confirmPassword) {
+      alert('패스워드가 일치하지 않습니다.');
+      return;
+    }
 
-    try {
-      const response = await axios.put(
-        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/change-phone-number',
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (editPhoneNumber !== user?.phone_number) {
+      const payload = {
+        phone_number: editPhoneNumber,
+      };
+
+      try {
+        const response = await axios.put(
+          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/change-phone-number',
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      );
-      if (response.data.result_code === '200') {
-        alert('정상적으로 변경되었습니다.');
-        console.log(editPhoneNumber);
-        console.log(response);
-        login({ ...user, phone_number: editPhoneNumber });
-      } else {
-        alert('수정에 실패하였습니다.');
-        console.error(response.data.error.error_message);
+        );
+        if (response.data.result_code === '200') {
+          alert('정상적으로 변경되었습니다.');
+          console.log(editPhoneNumber);
+          console.log(response);
+          login({ ...user, phone_number: editPhoneNumber });
+        } else {
+          alert('수정에 실패하였습니다.');
+          console.error(response.data.error.error_message);
+        }
+      } catch (error) {
+        console.error('프로필 수정 에러', error);
       }
-    } catch (error) {
-      console.error('프로필 수정 에러', error);
     }
   };
 
@@ -89,7 +99,11 @@ const Mypage = () => {
                 <Text width="40%" fontSize="2rem" color="main">
                   New Password
                 </Text>
-                <InputBox type="password" placeholder="New Password *"></InputBox>
+                <InputBox
+                  type="password"
+                  placeholder="New Password *"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -98,7 +112,12 @@ const Mypage = () => {
                 {/* <Text fontSize="1.5rem" color="main">
                   (confirm)
                 </Text> */}
-                <InputBox type="password" placeholder="Confirm New Password *" />
+                <InputBox
+                  type="password"
+                  placeholder="Confirm New Password *"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
               </Flex>
               <Button
                 width="35vw"
