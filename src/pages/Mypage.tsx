@@ -15,7 +15,7 @@ const Mypage = () => {
 
   const token = localStorage.getItem('accessToken');
 
-  const handleEdit = async () => {
+  const handleEditInfo = async () => {
     if (password !== user?.password) {
       alert('기존 패스워드를 확인해주세요.');
     }
@@ -83,7 +83,7 @@ const Mypage = () => {
 
   const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleEdit();
+      handleEditInfo();
     }
   };
 
@@ -173,7 +173,7 @@ const Mypage = () => {
                 color="white"
                 borderRadius=".5rem"
                 _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}
-                onClick={handleEdit}>
+                onClick={handleEditInfo}>
                 Edit
               </Button>
             </Box>
