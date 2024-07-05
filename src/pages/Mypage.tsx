@@ -12,7 +12,7 @@ const Mypage = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [imgUrl, setImgUrl] = useState(user?.img_url || '');
+  const [imgUrl, setImgUrl] = useState(user?.img_url);
 
   const token = localStorage.getItem('accessToken');
 
@@ -116,7 +116,6 @@ const Mypage = () => {
         if (response.data.result_code === '200') {
           alert('프로필 사진이 등록되었습니다.');
           const newImgUrl = response.data.data;
-          console.log(response);
           setImgUrl(newImgUrl);
           login({ ...user, img_url: newImgUrl });
         } else {
