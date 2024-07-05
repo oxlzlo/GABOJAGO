@@ -99,32 +99,64 @@ const Mypage = () => {
 
   const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
+
     if (file) {
       const formData = new FormData();
       formData.append('imageFile', file);
 
-      try {
-        const response = await axios.post(
-          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/upload',
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
+      console.log('axios 요청 전');
+
+      let response;
+
+      if (oldImageUrl && oldImageUrl !== undefined) {
+        console.log('put 할거임');
+        try {
+          response = await axios.put(
+            'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/update',
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+              },
+              params: {
+                oldImageUrl: oldImageUrl,
+              },
             },
-          },
-        );
-        if (response.data.result_code === '200') {
-          alert('프로필 사진이 등록되었습니다.');
-          const newImgUrl = response.data.data;
-          setImgUrl(newImgUrl);
-          login({ ...user, img_url: newImgUrl });
-        } else {
-          alert('프로필 사진이 등록되지 않았습니다.');
-          console.error(response.data.error.error_message);
+          );
+
+          console.log('put try', response);
+        } catch (error) {
+          console.error('put', error);
         }
-      } catch (error) {
-        console.error('프로필 업로드 에러', error);
+      } else {
+        console.log('post 할거임');
+        try {
+          response = await axios.post(
+            'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/upload',
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+              },
+            },
+          );
+          console.log('post try', response);
+        } catch (error) {
+          console.error('post', error);
+        }
+      }
+
+      if (response.data.result_code === '200') {
+        console.log(response);
+        alert('프로필 사진이 등록되었습니다.');
+        const newImgUrl = response.data.data;
+        setImgUrl(newImgUrl);
+        login({ ...user, img_url: newImgUrl });
+      } else {
+        alert('프로필 사진이 등록되지 않았습니다.');
+        console.error(response.data.error.error_message);
       }
     }
   };
@@ -144,7 +176,7 @@ const Mypage = () => {
               cursor="pointer"
               onClick={handleProfileImgClick}>
               <img src={imgUrl} className="profile_img" alt="Profile"></img>
-              <Input type="file" ref={fileInputRef} display="none" onChange={handleImgPost} />
+              <Input type="file" ref={fileInputRef} display="none" onChange={handleImgChange} />
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
               <Flex justify="space-between" align="center">
