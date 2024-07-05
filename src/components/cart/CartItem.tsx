@@ -1,4 +1,4 @@
-import { fetchCartItems, fetchDeleteAllCartItems, fetchDeleteCartItems } from '@/api';
+import { fetchCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
 import { CartCheckbox } from '@/lib/common/CartCheckbox';
@@ -62,7 +62,7 @@ const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
           </Button>
         </Flex>
       ) : (
-        cartRooms.map((cartRoom, _) => (
+        cartRooms.map((cartRoom) => (
           <Box
             key={cartRoom.cart_item_id}
             padding="1.5rem"
@@ -77,7 +77,7 @@ const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
             </Flex>
             <Flex marginBottom="2rem" alignItems="center" gap="1rem">
               <Box marginBottom="8rem">
-                <CartCheckbox cartRoom={cartRoom} onSelectRooms={onSelectRooms} colorScheme="" borderColor="main" />
+                <CartCheckbox cartRoom={cartRoom} onSelectRooms={onSelectRooms} borderColor="teal" />
               </Box>
               <Image
                 src={cartRoom.room.imageList}
@@ -95,8 +95,8 @@ const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
                 </Text>
                 <Text fontSize="1.5rem">{cartRoom.room.roomType}</Text>
                 {/* <Text fontSize="1.2rem">
-                평점: {cartItem.rating} / 리뷰 수: {cartItem.reviewCount}
-              </Text> */}
+                  평점: {cartRoom.rating} / 리뷰 수: {cartRoom.reviewCount}
+                </Text> */}
               </Box>
             </Flex>
             <Divider borderColor="main" />
