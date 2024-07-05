@@ -17,8 +17,6 @@ const Cart = () => {
     if (isSelected) {
       setSelectedRooms((prev) => [...prev, roomItem]);
     } else {
-      // 1. cart_item_id 값이 같으면(일치하면), 그 객실을 selectedRooms 배열에서 제거.
-      // 2. cart_item_id 값이 다르면(일치하지 않으면), 그 객실을 selectedRooms 배열에 유지.
       setSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== roomItem.cart_item_id));
     }
   };
