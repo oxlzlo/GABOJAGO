@@ -206,7 +206,7 @@ const AccommodationItem = () => {
                 </Text>
                 {roomList && (
                   <List display="flex" flexDirection="column" gap="1rem">
-                    <Heading borderBottom="1px solid" borderColor="grayLight">
+                    <Heading paddingBottom="1rem" borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
                     {roomList.map((room, _) => (
