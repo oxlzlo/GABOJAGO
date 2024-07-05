@@ -4,12 +4,11 @@ import SearchBar from '@/components/SearchBar';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Accommodation } from '@/lib/types/accommodation';
 import { useLocation } from 'react-router-dom';
-
-const AccommodationList = lazy(() => import('@/components/AccommodationList'));
+import AccommodationList from '@/components/AccommodationList';
 
 const Home = () => {
   const [accommodationData, setAccommodationData] = useState<Accommodation[]>([]);

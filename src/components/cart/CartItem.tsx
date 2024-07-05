@@ -6,7 +6,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { CartItemProps, CartItems } from '@/lib/types/cart';
 
-const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
+const CartItem = ({ onSelectRooms, onDeleteSelectedRoom, selectedRooms }: CartItemProps) => {
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const navigate = useNavigate();
 
@@ -77,7 +77,12 @@ const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
             </Flex>
             <Flex marginBottom="2rem" alignItems="center" gap="1rem">
               <Box marginBottom="8rem">
-                <CartCheckbox cartRoom={cartRoom} onSelectRooms={onSelectRooms} borderColor="teal" />
+                <CartCheckbox
+                  cartRoom={cartRoom}
+                  isChecked={selectedRooms.some((room) => room.cart_item_id === cartRoom.cart_item_id)}
+                  onSelectRooms={onSelectRooms}
+                  borderColor="teal"
+                />
               </Box>
               <Image
                 src={cartRoom.room.imageList}

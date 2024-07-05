@@ -81,7 +81,7 @@ const Header = () => {
                     top="1.3vh"
                     right="1.2vw"
                     width="9vw"
-                    height="17.6vh"
+                    height="23.6vh"
                     border="1px solid"
                     borderColor="grayLight"
                     color="black"
