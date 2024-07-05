@@ -1,4 +1,4 @@
-import { fetchAccommodationById, fetchCartItems, fetchCreateCartItems, fetchRoomList } from '@/api';
+import { fetchAccommodationById, fetchCreateCartItems, fetchRoomList } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import {
   Box,
@@ -18,6 +18,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 import RoomDetailModal from '@/lib/common/RoomDetailModal';
+import { ToastAlert } from '@/lib/common/ToastAlert';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams<string>();
@@ -38,6 +39,7 @@ const AccommodationItem = () => {
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const showToast = ToastAlert();
 
   useEffect(() => {
     fetchAccommodationById(accommodationId as string)
@@ -68,7 +70,7 @@ const AccommodationItem = () => {
    */
   const handleConfirm = () => {
     if (selectedRooms) {
-      navigation(`/payment/${selectedRooms.id}`, { state: selectedRooms });
+      navigation(`/order/${selectedRooms.id}`, { state: selectedRooms });
     }
     onClose();
   };
@@ -120,7 +122,6 @@ const AccommodationItem = () => {
    */
   const handleAddToCart = (roomId: string) => {
     const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
-    console.log(selectedRoomForCart);
     if (selectedRoomForCart) {
       const payload = {
         roomId: selectedRoomForCart.id.toString(),
@@ -130,9 +131,19 @@ const AccommodationItem = () => {
       fetchCreateCartItems(payload)
         .then((response) => {
           console.log(response.data);
+          showToast({
+            title: `객실 ${selectedRoomForCart.roomTypeName}이 장바구니에 추가되었습니다.`,
+            description: '',
+            status: 'success',
+          });
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
+          showToast({
+            title: '객실을 장바구니에 추가하는 도중 오류가 발생했습니다.',
+            description: '',
+            status: 'error',
+          });
         });
     }
   };
@@ -159,17 +170,25 @@ const AccommodationItem = () => {
                     currency: 'KRW',
                   })}원`} */}
                 </Text>
-                {accommodation.imageList.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image.url}
-                    alt={accommodation.name}
-                    width="100%"
-                    height="50vh"
-                    objectFit="cover"
-                    marginBottom="2rem"
-                  />
-                ))}
+                <Grid
+                  templateColumns="repeat(4, 1fr)"
+                  templateRows="repeat(2, 1fr)"
+                  gap=".5rem"
+                  margin="0 auto 2.4rem"
+                  borderRadius="1rem">
+                  {accommodation.imageList.map((image, index) => (
+                    <GridItem key={index} colSpan={index === 0 ? 2 : 1} rowSpan={index === 0 ? 2 : 1}>
+                      <Image
+                        src={image.url}
+                        alt={accommodation.name}
+                        width={index === 0 ? '100%' : '100%'}
+                        height={index === 0 ? '100%' : '100%'}
+                        objectFit="cover"
+                        borderRadius={index === 0 ? '12px 0 0 12px' : index % 2 === 0 ? '0 12px 12px 0' : ''}
+                      />
+                    </GridItem>
+                  ))}
+                </Grid>
                 <Text fontSize="1.6rem">{accommodation.address}</Text>
                 <Text fontSize="1.6rem" fontWeight="600">
                   {accommodation.numbers}

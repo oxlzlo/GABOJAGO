@@ -43,9 +43,32 @@ export const fetchRoomList = (accommodationId: string) => {
 export const fetchCartItems = () => {
   return instance.get('/api/user/cartItems');
 };
+
 // 장바구니 생성
 export const fetchCreateCartItems = (payload: { roomId: string }) => {
   return instance.post('/api/user/cartItems', payload);
+};
+
+// 장바구니 삭제
+export const fetchDeleteCartItems = (cartItemId: number) => {
+  return instance.delete('/api/user/cartItems', {
+    data: { cartItemIdList: [cartItemId] },
+  });
+};
+
+// 장바구니 모두 삭제
+export const fetchDeleteAllCartItems = (cartItems) => {
+  return instance.delete('/api/user/cartItems/delete-all');
+};
+
+// 주문하기
+export const fetchOrder = async () => {
+  return instance.get('api/order');
+};
+
+// 결제하기
+export const paymentOrder = async (orderId: string) => {
+  return instance.get(`api/order/payment/${orderId}`);
 };
 
 // MSW에서 사용할 API

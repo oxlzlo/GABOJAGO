@@ -1,5 +1,7 @@
 import { ImageInfo } from './imageInfo';
 
+export type CombinedAccommodationRooms = Accommodation & Rooms;
+
 export type Accommodation = {
   imageList: ImageInfo[];
   id: number;
@@ -10,6 +12,7 @@ export type Accommodation = {
   thumbnail: string;
   price: number;
   roomList: Rooms[];
+  length?: number;
 };
 
 export type Rooms = {
@@ -23,8 +26,15 @@ export type Rooms = {
   roomDefaultGuest: number;
   roomMaxGuest: number;
   comment: string;
+  cart_item_id?: number;
+  end_date?: string;
+  start_date?: string;
 };
 
 export interface AccommodationListProps {
   accommodation: Accommodation[];
 }
+
+export type RoomListType = {
+  roomList: Rooms[];
+};
