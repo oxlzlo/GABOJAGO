@@ -3,6 +3,7 @@ export type User = {
   password: string;
   name: string;
   phone_number: string;
+  img_url: string;
 };
 
 export type AuthState = {
