@@ -1,11 +1,11 @@
 import { fetchAccommodation } from '@/api';
-import { Accommodation } from '@/lib/types/accommodation';
+import { Accommodation, AccommodationListProps } from '@/lib/types/accommodation';
 import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
 
-const AccommodationList = () => {
+const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
@@ -47,10 +47,6 @@ const AccommodationList = () => {
         console.error('Error fetching data:', error);
       });
   };
-
-  useEffect(() => {
-    setAccommodations(accommodation);
-  }, [accommodation]);
 
   return (
     <>
