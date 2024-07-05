@@ -205,7 +205,7 @@ const SearchBar = () => {
               backgroundColor="main"
               fontSize="3rem"
               color="white"
-              _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}
+              _hover={{ bg: 'primaryHover', border: '.1rem solid var(--color-main)' }}
               onClick={handleClickSearchBtn}>
               Search
             </Button>
