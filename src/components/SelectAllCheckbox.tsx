@@ -1,10 +1,5 @@
+import { SelectAllCheckboxProps } from '@/lib/types/checkbox';
 import { Checkbox } from '@chakra-ui/react';
-
-type SelectAllCheckboxProps = {
-  isChecked: boolean;
-  onChange: (isChecked: boolean) => void;
-  borderColor: string;
-};
 
 const SelectAllCheckbox = ({ isChecked, onChange, ...props }: SelectAllCheckboxProps) => {
   return (

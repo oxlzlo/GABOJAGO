@@ -15,18 +15,3 @@ export const ToastAlert = () => {
   };
   return showToast;
 };
-
-// export const ToastAlert = () => {
-//   const toast = useToast();
-
-//   const showToast = ({ title, description, status = 'info', duration = 7000, isClosable = true }) => {
-//     toast({
-//       title,
-//       description,
-//       status,
-//       duration,
-//       isClosable,
-//     });
-//   };
-//   return showToast;
-// };
