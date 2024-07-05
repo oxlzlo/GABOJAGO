@@ -1,10 +1,6 @@
-import { Rooms } from '@/lib/types/accommodation';
+import { SelectedRoomsProps } from '@/lib/types/cart';
 import { Box, Button, Text, Flex, Divider, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-
-type SelectedRoomsProps = {
-  selectedRooms: Rooms[];
-};
 
 const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
   const navigate = useNavigate();
@@ -14,7 +10,7 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
   };
 
   return (
-    <Box border="1px solid" borderColor="gray" borderRadius=".5rem" padding="3rem">
+    <Box border="1px solid" borderColor="grayLight" borderRadius=".5rem" padding="3rem">
       <Text fontWeight="900" fontSize="3rem" mb={4} color="main">
         결제금액
       </Text>
@@ -28,12 +24,16 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
       ) : (
         selectedRooms.map((selectedRoom, index) => (
           <Box key={`${selectedRoom.room.id} - ${index}`} marginY="4rem">
-            <Flex alignItems="center">
+            <Flex alignItems="center" marginBottom="2rem">
               <Image
                 src={selectedRoom.room.imageList}
-                alt={selectedRoom.room.rommTypeName}
-                boxSize="60px"
+                alt={selectedRoom.room.roomTypeName}
+                width="8rem"
+                height="8rem"
                 marginRight="2.5rem"
+                borderRadius=".5rem"
+                border="1px solid"
+                borderColor="grayLight"
               />
               <Text fontSize="2rem" fontWeight="900" mr={10}>
                 {selectedRoom.room.roomTypeName}

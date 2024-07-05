@@ -45,7 +45,7 @@ export const routes = [
     ),
   },
   {
-    path: '/order/',
+    path: '/order',
     element: (
       <Layout>
         <Order />
