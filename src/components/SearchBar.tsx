@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
 import Datepicker from './Datepicker';
-import { DropdownRef, DateState, SearchBarProps } from '@/lib/types/searchBar';
-import axios from 'axios';
+import { DropdownRef, DateState } from '@/lib/types/searchBar';
+import { useNavigate } from 'react-router-dom';
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
 
@@ -16,6 +16,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [guest, setGuest] = useState(2);
 
   const targetRef = useRef<HTMLDivElement | null>(null);
+
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
@@ -47,27 +49,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     const start = formattedDate(startDate);
     const end = formattedDate(endDate);
 
-    const query = {
+    const query = new URLSearchParams({
       keyword,
-      start,
-      end,
-      guest,
-    };
+      start: start || '',
+      end: end || '',
+      guest: guest.toString(),
+    }).toString();
 
-    const filteredQuery = Object.fromEntries(
-      Object.entries(query).filter(([_, value]) => value != null && value !== ''),
-    );
-
-    try {
-      const response = await axios.get(
-        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
-        { params: filteredQuery },
-      );
-      console.log(response);
-      onSearch(response.data.data.content);
-    } catch (error) {
-      console.error('검색 필터링 오류', error);
-    }
+    navigate(`/?${query}`);
   };
 
   useEffect(() => {
@@ -128,7 +117,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
                 borderRadius=".8rem"
                 backgroundColor="white"
                 fontSize="2rem"
-                placeholder="어디로 가실건가요?"
+                placeholder="어디로 가실건가요?   ex) 서울, 대구"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 _focusVisible={{ outline: 'none' }}
@@ -216,7 +205,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
               backgroundColor="main"
               fontSize="3rem"
               color="white"
-              _hover={{ bg: 'background', border: '.1rem solid var(--color-main)', color: 'main' }}
+              _hover={{ bg: 'primaryHover', border: '.1rem solid var(--color-main)' }}
               onClick={handleClickSearchBtn}>
               Search
             </Button>

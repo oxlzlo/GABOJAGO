@@ -7,30 +7,35 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Accommodation } from '@/lib/types/accommodation';
+import { useLocation } from 'react-router-dom';
 
 const AccommodationList = lazy(() => import('@/components/AccommodationList'));
 
 const Home = () => {
   const [accommodationData, setAccommodationData] = useState<Accommodation[]>([]);
-  const [filteredData, setFilteredData] = useState<Accommodation[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
-    const fetchInitialData = async () => {
+    const fetchFilteredData = async () => {
+      const query = new URLSearchParams(location.search);
+      const keyword = query.get('keyword') || '';
+      const start = query.get('start') || '';
+      const end = query.get('end') || '';
+      const guest = query.get('guest') || '2';
+
       try {
         const response = await axios.get(
           'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
+          { params: { keyword, start, end, guest } },
         );
+        console.log(response);
         setAccommodationData(response.data.data.content);
       } catch (error) {
-        console.error('Error fetching initial data:', error);
+        console.error('검색어 필터링 오류', error);
       }
     };
-    fetchInitialData();
-  }, []);
-
-  const handleSearch = (data: Accommodation[]) => {
-    setFilteredData(data);
-  };
+    fetchFilteredData();
+  }, [location.search]);
 
   return (
     <Box paddingTop="8rem">
@@ -64,12 +69,10 @@ const Home = () => {
             />
           </Box>
         </Slider>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar />
       </Box>
       <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
-        <Suspense fallback={<Heading>Loading...</Heading>}>
-          <AccommodationList accommodation={filteredData.length > 0 ? filteredData : accommodationData} />
-        </Suspense>
+        <AccommodationList accommodation={accommodationData} />
       </Box>
     </Box>
   );
