@@ -47,7 +47,7 @@ const Cart = () => {
         ) : ( */}
         <Flex width="100%" gap="1rem">
           <Flex flex="1" direction="column">
-            <CartItem onSelecRooms={handleSelectRooms} />
+            <CartItem onSelectRooms={handleSelectRooms} />
           </Flex>
           <Flex flex="1" direction="column">
             <CartOrder selectedRooms={selectedRooms} />

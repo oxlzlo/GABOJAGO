@@ -13,7 +13,7 @@ type CartItems = {
   room: Rooms;
 };
 
-const CartItem = ({ onSelecRooms }) => {
+const CartItem = ({ onSelectRooms }) => {
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const CartItem = ({ onSelecRooms }) => {
     }
   };
 
-  const handleAccommdationList = () => {
+  const handleAccommodationList = () => {
     navigate('/');
   };
 
@@ -54,7 +54,7 @@ const CartItem = ({ onSelecRooms }) => {
             장바구니가 비어 있습니다.
           </Text>
           <Button
-            onClick={handleAccommdationList}
+            onClick={handleAccommodationList}
             width="12rem"
             height="5rem"
             borderRadius=".5rem"
@@ -85,7 +85,7 @@ const CartItem = ({ onSelecRooms }) => {
             </Flex>
             <Flex marginBottom="2rem" alignItems="center" gap="1rem">
               <Box marginBottom="8rem">
-                <CartCheckbox cartRoom={cartRoom} onSelecRooms={onSelecRooms} colorScheme="" borderColor="main" />
+                <CartCheckbox cartRoom={cartRoom} onSelectRooms={onSelectRooms} colorScheme="" borderColor="main" />
               </Box>
               <Image
                 src={cartRoom.room.imageList}

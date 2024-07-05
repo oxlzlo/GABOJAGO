@@ -20,6 +20,8 @@ instance.interceptors.request.use(
   },
 );
 
+export default instance;
+
 // 전체 상품 조회 (숙박)
 export const fetchAccommodation = (page: number) => {
   return instance.get('/open-api/accommodation', {
@@ -57,18 +59,41 @@ export const fetchDeleteCartItems = (cartItemId: number) => {
 };
 
 // 장바구니 모두 삭제
-export const fetchDeleteAllCartItems = (cartItems) => {
+export const fetchDeleteAllCartItems = (cartItems: string) => {
   return instance.delete('/api/user/cartItems/delete-all');
 };
 
 // 주문하기
-export const fetchOrder = async () => {
-  return instance.get('api/order');
+export const createOrder = async (orderData: any) => {
+  try {
+    const response = await instance.post('/api/order', orderData);
+    return response;
+  } catch (error) {
+    console.error('오류: 주문 내역 생성 실패. (주문하기)', error);
+    throw error;
+  }
 };
 
-// 결제하기
-export const paymentOrder = async (orderId: string) => {
-  return instance.get(`api/order/payment/${orderId}`);
+// 주문확인
+export const fetchOrderById = async (orderId: string) => {
+  try {
+    const response = await instance.get(`/api/order/${orderId}`);
+    return response.data;
+  } catch (error) {
+    console.error('오류: 주문 내역 불러오기 실패. (결제 확인)', error);
+    throw error;
+  }
+};
+
+// 주문내역 확인
+export const fetchOrderHistory = async () => {
+  try {
+    const response = await instance.get('/api/user/orders');
+    return response.data;
+  } catch (error) {
+    console.error('오류: 주문 내역 불러오기 실패.', error);
+    throw error;
+  }
 };
 
 // MSW에서 사용할 API

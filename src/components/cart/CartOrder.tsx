@@ -10,7 +10,12 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    navigate('/order', { state: { selectedRooms } });
+    navigate('/order', { state: { selectedItems: selectedRooms } });
+  };
+
+  const formatPrice = (price: number | undefined) => {
+    if (price === undefined || price === null) return 'N/A';
+    return `${price.toLocaleString('ko-KR', { style: 'decimal', currency: 'KRW' })}원`;
   };
 
   return (
@@ -27,11 +32,11 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
         </Text>
       ) : (
         selectedRooms.map((selectedRoom, index) => (
-          <Box key={`${selectedRoom.room.id} - ${index}`} marginY="4rem">
+          <Box key={`${selectedRoom.id} - ${index}`} marginY="4rem">
             <Flex alignItems="center" marginBottom="2rem">
               <Image
                 src={selectedRoom.room.imageList}
-                alt={selectedRoom.room.rommTypeName}
+                alt={selectedRoom.room.roomTypeName}
                 width="8rem"
                 height="8rem"
                 marginRight="2.5rem"
@@ -52,10 +57,7 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
             <Divider borderColor="teal" />
             <Flex justifyContent="space-between" mt={2}>
               <Text fontSize="1.5rem">가격: </Text>
-              <Text fontSize="1.5rem">{`${selectedRoom.room.roomPrice.toLocaleString('ko-KR', {
-                style: 'decimal',
-                currency: 'KRW',
-              })}원`}</Text>
+              <Text fontSize="1.5rem">{formatPrice(selectedRoom.room.roomPrice)}</Text>
             </Flex>
           </Box>
         ))
@@ -69,9 +71,9 @@ const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
             </Text>
             <span style={{ color: 'red' }}>
               <Text fontSize="1.5rem">
-                {`${selectedRooms
-                  .reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
-                  .toLocaleString('ko-KR', { style: 'decimal', currency: 'KRW' })}원`}
+                {formatPrice(
+                  selectedRooms.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+                )}
               </Text>
             </span>
           </Flex>

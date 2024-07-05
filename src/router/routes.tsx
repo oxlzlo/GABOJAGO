@@ -44,7 +44,7 @@ export const routes = [
     ),
   },
   {
-    path: '/order/',
+    path: '/order',
     element: (
       <Layout>
         <Order />
@@ -52,7 +52,7 @@ export const routes = [
     ),
   },
   {
-    path: '/order/payment',
+    path: '/order/payment/:orderId',
     element: (
       <Layout>
         <OrderConfirm />
