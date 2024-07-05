@@ -57,7 +57,7 @@ export const fetchDeleteCartItems = (cartItemId: number) => {
 };
 
 // 장바구니 모두 삭제
-export const fetchDeleteAllCartItems = () => {
+export const fetchDeleteAllCartItems = (cartItemId) => {
   return instance.delete('/api/user/cartItems/delete-all');
 };
 

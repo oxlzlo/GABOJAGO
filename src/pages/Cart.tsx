@@ -9,7 +9,7 @@ import SelectAllCheckbox from '@/components/SelectAllCheckbox';
 const Cart = () => {
   const [selectedRooms, setSelectedRooms] = useState<CartItems[]>([]);
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
-  const [isAllSelected, setIsAllSelected] = useState(false);
+  const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
 
   useEffect(() => {
     fetchCartItems()
@@ -36,6 +36,7 @@ const Cart = () => {
 
   /**
    * 선택한 객실을 삭제하는 함수
+   *  @param cartItemId
    */
   const handleDeleteSelectedRoom = (cartItemId: number) => {
     setSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== cartItemId));
@@ -43,6 +44,7 @@ const Cart = () => {
 
   /**
    * 모두 선택 체크박스를 클릭했을 때, 모든 객실 선택/해제 함수
+   * @param isSelected
    */
   const handleSelectAllRooms = (isSelected: boolean) => {
     setIsAllSelected(isSelected);
@@ -53,19 +55,26 @@ const Cart = () => {
     }
   };
 
-  const handleAllDeleteSelectedRooms = async () => {
-    try {
-      const deletePromises = selectedRooms.map((room) => fetchDeleteAllCartItems(room.cart_item_id));
-      await Promise.all(deletePromises);
-      const response = await fetchCartItems();
-      setCartRooms(response.data.data.item_dto_list);
-      setSelectedRooms([]);
-      setIsAllSelected(false);
-    } catch (error) {
-      console.error('delete error:', error);
-    }
-  };
+  /**
+   * 선택된 모든 객실을 삭제하는 함수
+   */
+  // const handleAllDeleteSelectedRooms = async () => {
+  //   try {
+  //     const deletePromises = selectedRooms.map((room) => fetchDeleteAllCartItems(room.cart_item_id));
+  //     await Promise.all(deletePromises);
+  //     const response = await fetchCartItems();
+  //     setCartRooms(response.data.data.item_dto_list);
+  //     setSelectedRooms([]);
+  //     setIsAllSelected(false);
+  //   } catch (error) {
+  //     console.error('delete error:', error);
+  //   }
+  // };
 
+  /**
+   * 모든 객실 선택 시 모두 선택 체크박스 활성화
+   * 모든 객실 선택 해제 시 모두 선택 체크박스 비활성화
+   */
   useEffect(() => {
     setIsAllSelected(selectedRooms.length === cartRooms.length && cartRooms.length > 0);
   }, [selectedRooms, cartRooms]);
@@ -101,7 +110,7 @@ const Cart = () => {
           <Flex flex="1" direction="column">
             <Flex justifyContent="flex-end">
               <Button
-                onClick={handleAllDeleteSelectedRooms}
+                // onClick={handleAllDeleteSelectedRooms}
                 border="1px solid"
                 width="8rem"
                 height="4rem"

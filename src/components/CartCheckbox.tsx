@@ -1,5 +1,5 @@
+import { CartCheckboxProps } from '@/lib/types/checkbox';
 import { Checkbox } from '@chakra-ui/react';
-import { CartCheckboxProps } from '../types/checkbox';
 
 export const CartCheckbox = ({ cartRoom, isChecked, onHandleSelectRooms, ...props }: CartCheckboxProps) => {
   /**
