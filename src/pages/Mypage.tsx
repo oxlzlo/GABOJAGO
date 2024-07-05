@@ -13,7 +13,6 @@ const Mypage = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [imgUrl, setImgUrl] = useState(user?.img_url || '');
-  const [oldImageUrl, setOldImageUrl] = useState(Profile);
 
   const token = localStorage.getItem('accessToken');
 
@@ -97,6 +96,39 @@ const Mypage = () => {
     }
   };
 
+  const handleImgPost = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('imageFile', file);
+
+      try {
+        const response = await axios.post(
+          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/upload',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+        if (response.data.result_code === '200') {
+          alert('프로필 사진이 등록되었습니다.');
+          const newImgUrl = response.data.data;
+          console.log(response);
+          setImgUrl(newImgUrl);
+          login({ ...user, img_url: newImgUrl });
+        } else {
+          alert('프로필 사진이 등록되지 않았습니다.');
+          console.error(response.data.error.error_message);
+        }
+      } catch (error) {
+        console.error('프로필 업로드 에러', error);
+      }
+    }
+  };
+
   return (
     <Box marginTop="8.3vh" height="100vh" backgroundColor="background">
       <Flex justify="center" align="center">
@@ -112,13 +144,7 @@ const Mypage = () => {
               cursor="pointer"
               onClick={handleProfileImgClick}>
               <img src={imgUrl} className="profile_img" alt="Profile"></img>
-              <Input
-                type="file"
-                ref={fileInputRef}
-                value={imgUrl}
-                onChange={(e) => setImgUrl(e.target.value)}
-                display="none"
-              />
+              <Input type="file" ref={fileInputRef} display="none" onChange={handleImgPost} />
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
               <Flex justify="space-between" align="center">
