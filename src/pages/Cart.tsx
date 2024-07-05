@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { Rooms } from '@/lib/types/accommodation';
 import CartItem from '@/components/cart/CartItem';
 import CartOrder from '@/components/cart/CartOrder';
+import { CartItems } from '@/lib/types/cart';
 
 const Cart = () => {
-  const [selectedRooms, setSelectedRooms] = useState<Rooms[]>([]);
+  const [selectedRooms, setSelectedRooms] = useState<CartItems[]>([]);
+  console.log(selectedRooms);
 
   /**
    * 사용자가 상품을 선택하면 해당 상품을 selectedRoom 배열에 추가하고, 선택을 해제하면 배열에서 제거.
    * @param accommodationItem
    * @param isSelected
    */
-  const handleSelectRooms = (roomItem: Rooms, isSelected: boolean) => {
+  const handleSelectRooms = (roomItem: CartItems, isSelected: boolean) => {
     if (isSelected) {
       setSelectedRooms((prev) => [...prev, roomItem]);
     } else {
@@ -37,7 +38,7 @@ const Cart = () => {
         </Text>
         <Flex width="100%" gap="1rem">
           <Flex flex="1" direction="column">
-            <CartItem onSelecRooms={handleSelectRooms} onDeleteSelectedRoom={handleDeleteSelectedRoom} />
+            <CartItem onSelectRooms={handleSelectRooms} onDeleteSelectedRoom={handleDeleteSelectedRoom} />
           </Flex>
           <Flex flex="1" direction="column">
             <CartOrder selectedRooms={selectedRooms} />
