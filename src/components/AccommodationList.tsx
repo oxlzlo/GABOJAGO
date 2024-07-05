@@ -11,23 +11,8 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    fetchAccommodation(page)
-      .then((response) => {
-        //  서버에서 받은  data가 배열인지 확인하는 코드
-        if (response && Array.isArray(response.data.data.content)) {
-          setAccommodations(response.data.data.content);
-        } else {
-          console.error('Expected an array but got:', response);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
-  useEffect(() => {
-    loadMore();
-  }, []);
+    setAccommodations(accommodation);
+  }, [accommodation]);
 
   /**
    * 무한 스크롤 함수
