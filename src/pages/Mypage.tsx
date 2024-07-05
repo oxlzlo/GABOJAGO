@@ -2,7 +2,7 @@ import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import Profile from '../assets/default_profile.png';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 const Mypage = () => {
@@ -12,8 +12,12 @@ const Mypage = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [imgUrl, setImgUrl] = useState(user?.img_url || '');
+  const [oldImageUrl, setOldImageUrl] = useState(Profile);
 
   const token = localStorage.getItem('accessToken');
+
+  const fileInputRef = useRef(null);
 
   const handleEditInfo = async () => {
     if (password !== user?.password) {
@@ -87,6 +91,12 @@ const Mypage = () => {
     }
   };
 
+  const handleProfileImgClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <Box marginTop="8.3vh" height="100vh" backgroundColor="background">
       <Flex justify="center" align="center">
@@ -99,8 +109,16 @@ const Mypage = () => {
               borderRadius="50%"
               backgroundColor="background"
               overflow="hidden"
-              cursor="pointer">
-              <img src={Profile} className="profile_img"></img>
+              cursor="pointer"
+              onClick={handleProfileImgClick}>
+              <img src={imgUrl} className="profile_img" alt="Profile"></img>
+              <Input
+                type="file"
+                ref={fileInputRef}
+                value={imgUrl}
+                onChange={(e) => setImgUrl(e.target.value)}
+                display="none"
+              />
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
               <Flex justify="space-between" align="center">
@@ -150,12 +168,12 @@ const Mypage = () => {
                   onKeyPress={handleKeypress}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text width="40%" fontSize="2rem" color="main">
-                  New Password (confirm)
+                <Text width="21%" fontSize="2rem" color="main">
+                  New Password
                 </Text>
-                {/* <Text fontSize="1.5rem" color="main">
+                <Text width="19%" fontSize="1.5rem" color="main">
                   (confirm)
-                </Text> */}
+                </Text>
                 <InputBox
                   type="password"
                   placeholder="Confirm New Password *"
