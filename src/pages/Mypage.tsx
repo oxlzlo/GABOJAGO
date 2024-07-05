@@ -12,7 +12,8 @@ const Mypage = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [imgUrl, setImgUrl] = useState(user?.img_url);
+  const [imgUrl, setImgUrl] = useState(user?.img_url || '');
+  const [oldImageUrl, setOldImageUrl] = useState(user?.img_url || '');
 
   const token = localStorage.getItem('accessToken');
 
@@ -96,7 +97,7 @@ const Mypage = () => {
     }
   };
 
-  const handleImgPost = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
