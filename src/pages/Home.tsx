@@ -1,4 +1,4 @@
-import { Box, Heading, Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import { settings } from '@/lib/constants/slickCarousel';
 import SearchBar from '@/components/SearchBar';
 import Slider from 'react-slick';
@@ -27,7 +27,6 @@ const Home = () => {
           'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
           { params: { keyword, start, end, guest } },
         );
-        console.log(response);
         setAccommodationData(response.data.data.content);
       } catch (error) {
         console.error('검색어 필터링 오류', error);

@@ -1,13 +1,19 @@
 import { fetchCartItems, fetchDeleteCartItems } from '@/api';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
 import { CartCheckbox } from '@/lib/common/CartCheckbox';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
-import { CartItemProps, CartItems } from '@/lib/types/cart';
+import { CartItemProps } from '@/lib/types/cart';
 
-const CartItem = ({ onSelectRooms, onDeleteSelectedRoom, selectedRooms, setCartRooms, cartRooms }: CartItemProps) => {
-  // const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
+const CartItem = ({
+  onHandleSelectRooms,
+  onDeleteSelectedRoom,
+  selectedRooms,
+  setCartRooms,
+  cartRooms,
+}: CartItemProps) => {
+  // const [cartRooms, setCartRooms] = useState<CartItems[]>([]);
   const navigate = useNavigate();
 
   /**
@@ -80,7 +86,7 @@ const CartItem = ({ onSelectRooms, onDeleteSelectedRoom, selectedRooms, setCartR
                 <CartCheckbox
                   cartRoom={cartRoom}
                   isChecked={selectedRooms.some((room) => room.cart_item_id === cartRoom.cart_item_id)}
-                  onSelectRooms={onSelectRooms}
+                  onHandleSelectRooms={onHandleSelectRooms}
                   borderColor="teal"
                 />
               </Box>

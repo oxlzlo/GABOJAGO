@@ -89,11 +89,21 @@ const Header = () => {
                     shadow="0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.09),"
                     ref={dropdownRef}>
                     <Flex flexDirection="column" align="center" gap="1vh" fontSize="2rem" color="black">
-                      <Text marginTop="2.5vh" onClick={() => navigate('/mypage')}>
+                      <Text
+                        onClick={() => navigate('/mypage')}
+                        color="black"
+                        marginTop="2.5vh"
+                        _hover={{
+                          color: 'main',
+                        }}>
                         마이페이지
                       </Text>
-                      <Text onClick={() => navigate('/cart')}>장바구니</Text>
-                      <Text onClick={() => navigate('/orderhistory')}>주문내역</Text>
+                      <Text onClick={() => navigate('/cart')} _hover={{ color: 'main' }}>
+                        장바구니
+                      </Text>
+                      <Text onClick={() => navigate('/orderhistory')} _hover={{ color: 'main' }}>
+                        주문내역
+                      </Text>
                       <Button
                         width="7vw"
                         height="4vh"

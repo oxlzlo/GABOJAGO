@@ -3,13 +3,18 @@ import { Checkbox } from '@chakra-ui/react';
 type SelectAllCheckboxProps = {
   isChecked: boolean;
   onChange: (isChecked: boolean) => void;
+  borderColor: string;
 };
 
-const SelectAllCheckbox = ({ isChecked, onChange }: SelectAllCheckboxProps) => {
+const SelectAllCheckbox = ({ isChecked, onChange, ...props }: SelectAllCheckboxProps) => {
   return (
-    <Checkbox isChecked={isChecked} onChange={(e) => onChange(e.target.checked)} size="lg" colorScheme="teal">
-      모두선택
-    </Checkbox>
+    <Checkbox
+      {...props}
+      isChecked={isChecked}
+      onChange={(e) => onChange(e.target.checked)}
+      size="lg"
+      colorScheme="teal"
+    />
   );
 };
 

@@ -8,7 +8,7 @@ import SelectAllCheckbox from '@/components/SelectAllCheckbox';
 
 const Cart = () => {
   const [selectedRooms, setSelectedRooms] = useState<CartItems[]>([]);
-  const [cartRooms, setCartRooms] = useState<CartItems[]>([]);
+  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const [isAllSelected, setIsAllSelected] = useState(false);
 
   useEffect(() => {
@@ -86,11 +86,12 @@ const Cart = () => {
         </Box>
         <Flex width="100%" gap="2rem">
           <Flex flex="1" direction="column">
-            <Box marginBottom="1.7rem" fontSize="1.5rem" display="flex" gap="1rem">
-              <SelectAllCheckbox isChecked={isAllSelected} onChange={handleSelectAllRooms} />
+            <Box marginBottom="2.7rem" fontSize="1.5rem" display="flex" gap="1rem">
+              <SelectAllCheckbox isChecked={isAllSelected} onChange={handleSelectAllRooms} borderColor="teal" />
+              모두선택
             </Box>
             <CartItem
-              onSelectRooms={handleSelectRooms}
+              onHandleSelectRooms={handleSelectRooms}
               onDeleteSelectedRoom={handleDeleteSelectedRoom}
               selectedRooms={selectedRooms}
               setCartRooms={setCartRooms}
@@ -102,11 +103,15 @@ const Cart = () => {
               <Button
                 onClick={handleAllDeleteSelectedRooms}
                 border="1px solid"
-                width="7rem"
-                height="3rem"
+                width="8rem"
+                height="4rem"
+                fontSize="1.5rem"
                 marginBottom="1rem"
                 color="white"
-                backgroundColor="main">
+                backgroundColor="main"
+                _hover={{
+                  backgroundColor: 'primaryHover',
+                }}>
                 선택삭제
               </Button>
             </Flex>
