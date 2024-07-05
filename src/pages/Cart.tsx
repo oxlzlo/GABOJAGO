@@ -3,12 +3,11 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import CartItem from '@/components/cart/CartItem';
 import CartOrder from '@/components/cart/CartOrder';
 import { CartItems } from '@/lib/types/cart';
-import { fetchCartItems } from '@/api';
+import { fetchCartItems, fetchDeleteAllCartItems } from '@/api';
 import SelectAllCheckbox from '@/components/SelectAllCheckbox';
 
 const Cart = () => {
   const [selectedRooms, setSelectedRooms] = useState<CartItems[]>([]);
-
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]);
   const [isAllSelected, setIsAllSelected] = useState(false);
 
@@ -54,6 +53,19 @@ const Cart = () => {
     }
   };
 
+  const handleAllDeleteSelectedRooms = async () => {
+    try {
+      const deletePromises = selectedRooms.map((room) => fetchDeleteAllCartItems(room.cart_item_id));
+      await Promise.all(deletePromises);
+      const response = await fetchCartItems();
+      setCartRooms(response.data.data.item_dto_list);
+      setSelectedRooms([]);
+      setIsAllSelected(false);
+    } catch (error) {
+      console.error('delete error:', error);
+    }
+  };
+
   useEffect(() => {
     setIsAllSelected(selectedRooms.length === cartRooms.length && cartRooms.length > 0);
   }, [selectedRooms, cartRooms]);
@@ -81,11 +93,14 @@ const Cart = () => {
               onSelectRooms={handleSelectRooms}
               onDeleteSelectedRoom={handleDeleteSelectedRoom}
               selectedRooms={selectedRooms}
+              setCartRooms={setCartRooms}
+              cartRooms={cartRooms}
             />
           </Flex>
           <Flex flex="1" direction="column">
             <Flex justifyContent="flex-end">
               <Button
+                onClick={handleAllDeleteSelectedRooms}
                 border="1px solid"
                 width="7rem"
                 height="3rem"

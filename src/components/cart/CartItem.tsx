@@ -6,8 +6,8 @@ import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { CartItemProps, CartItems } from '@/lib/types/cart';
 
-const CartItem = ({ onSelectRooms, onDeleteSelectedRoom, selectedRooms }: CartItemProps) => {
-  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
+const CartItem = ({ onSelectRooms, onDeleteSelectedRoom, selectedRooms, setCartRooms, cartRooms }: CartItemProps) => {
+  // const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const navigate = useNavigate();
 
   /**
