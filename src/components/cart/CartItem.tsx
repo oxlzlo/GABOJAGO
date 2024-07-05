@@ -1,19 +1,12 @@
 import { fetchCartItems, fetchDeleteAllCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect, useState } from 'react';
 import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
-import { Rooms } from '@/lib/types/accommodation';
 import { CartCheckbox } from '@/lib/common/CartCheckbox';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import { CartItemProps, CartItems } from '@/lib/types/cart';
 
-type CartItems = {
-  cart_item_id: number;
-  start_date: string;
-  end_date: string;
-  room: Rooms;
-};
-
-const CartItem = ({ onSelectRooms }) => {
+const CartItem = ({ onSelectRooms, onDeleteSelectedRoom }: CartItemProps) => {
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const navigate = useNavigate();
 
@@ -21,15 +14,13 @@ const CartItem = ({ onSelectRooms }) => {
    * 장바구니에 담긴 상품 조회
    */
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await fetchCartItems();
+    fetchCartItems()
+      .then((response) => {
         setCartRooms(response.data.data.item_dto_list);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error fetching data:', error);
-      }
-    };
-    fetchCart();
+      });
   }, []);
 
   const handleDeleteCartRoom = async (cartItemId: number) => {
@@ -37,6 +28,7 @@ const CartItem = ({ onSelectRooms }) => {
       await fetchDeleteCartItems(cartItemId);
       const response = await fetchCartItems();
       setCartRooms(response.data.data.item_dto_list);
+      onDeleteSelectedRoom(cartItemId);
     } catch (error) {
       console.error('delete error:', error);
     }

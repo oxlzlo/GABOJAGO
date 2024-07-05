@@ -33,6 +33,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
+    navigate('/');
   };
 
   const handleScroll = () => {
@@ -81,13 +82,14 @@ const Header = () => {
                     top="1.3vh"
                     right="1.2vw"
                     width="9vw"
-                    height="17.6vh"
+                    height="23vh"
                     borderRadius="0 0 .5rem .5rem"
                     ref={dropdownRef}>
                     <Flex flexDirection="column" align="center" gap="1vh" fontSize="2rem" color="black">
-                      <Text marginTop="2.5vh" onClick={() => navigate('/cart')}>
-                        장바구니
+                      <Text marginTop="2.5vh" onClick={() => navigate('/mypage')}>
+                        마이페이지
                       </Text>
+                      <Text onClick={() => navigate('/cart')}>장바구니</Text>
                       <Text onClick={() => navigate('/orderhistory')}>주문내역</Text>
                       <Button
                         width="7vw"

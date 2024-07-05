@@ -34,7 +34,13 @@ const OrderConfirm = () => {
   const { updatedAt, doneRoomList, totalPrice } = orderData;
 
   return (
-    <Flex direction="column" justifyContent="flex-start" alignItems="center" minHeight="calc(100vh - 80px)" p={4} px={20}>
+    <Flex
+      direction="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      minHeight="calc(100vh - 80px)"
+      p={4}
+      px={20}>
       <Box width="100%" maxWidth="1240px" mx="auto" paddingTop="8rem">
         <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
           결제 확인

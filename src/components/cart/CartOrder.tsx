@@ -1,10 +1,6 @@
-import { Rooms } from '@/lib/types/accommodation';
+import { SelectedRoomsProps } from '@/lib/types/cart';
 import { Box, Button, Text, Flex, Divider, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-
-type SelectedRoomsProps = {
-  selectedRooms: Rooms[];
-};
 
 const CartOrder = ({ selectedRooms }: SelectedRoomsProps) => {
   const navigate = useNavigate();
