@@ -13,7 +13,7 @@ type CartItems = {
   room: Rooms;
 };
 
-const CartItem = ({ onSelecRooms }) => {
+const CartItem = ({ onSelecRooms, onDeleteSelectedRoom }) => {
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const navigate = useNavigate();
 
@@ -21,15 +21,13 @@ const CartItem = ({ onSelecRooms }) => {
    * 장바구니에 담긴 상품 조회
    */
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await fetchCartItems();
+    fetchCartItems()
+      .then((response) => {
         setCartRooms(response.data.data.item_dto_list);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error fetching data:', error);
-      }
-    };
-    fetchCart();
+      });
   }, []);
 
   const handleDeleteCartRoom = async (cartItemId: number) => {
@@ -37,6 +35,7 @@ const CartItem = ({ onSelecRooms }) => {
       await fetchDeleteCartItems(cartItemId);
       const response = await fetchCartItems();
       setCartRooms(response.data.data.item_dto_list);
+      onDeleteSelectedRoom(cartItemId);
     } catch (error) {
       console.error('delete error:', error);
     }
