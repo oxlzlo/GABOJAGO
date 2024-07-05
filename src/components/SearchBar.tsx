@@ -117,7 +117,7 @@ const SearchBar = () => {
                 borderRadius=".8rem"
                 backgroundColor="white"
                 fontSize="2rem"
-                placeholder="어디로 가실건가요?"
+                placeholder="어디로 가실건가요?   ex) 서울, 대구"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 _focusVisible={{ outline: 'none' }}
