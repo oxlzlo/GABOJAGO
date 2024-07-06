@@ -167,6 +167,7 @@ const Mypage = () => {
         <Box width="41.7vw" height="100vh" backgroundColor="white">
           <Flex flexDirection="column" justify="center" align="center" gap="2vh">
             <Box
+              position="relative"
               width="200px"
               height="200px"
               marginTop="10vh"
@@ -175,7 +176,17 @@ const Mypage = () => {
               overflow="hidden"
               cursor="pointer"
               onClick={handleProfileImgClick}>
-              <img src={imgUrl} className="profile_img" alt="Profile"></img>
+              <img
+                src={imgUrl}
+                className="profile_img"
+                alt="Profile"
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  left: '0',
+                  right: '0',
+                }}></img>
               <Input type="file" ref={fileInputRef} display="none" onChange={handleImgChange} />
             </Box>
             <Box width="35vw" height="60vh" marginTop="3vh">
