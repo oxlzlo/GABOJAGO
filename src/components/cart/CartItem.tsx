@@ -1,10 +1,10 @@
 import { fetchCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect } from 'react';
 import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
-import { CartCheckbox } from '@/lib/common/CartCheckbox';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { CartItemProps } from '@/lib/types/cart';
+import { CartCheckbox } from '../CartCheckbox';
 
 const CartItem = ({
   onHandleSelectRooms,
@@ -13,7 +13,6 @@ const CartItem = ({
   setCartRooms,
   cartRooms,
 }: CartItemProps) => {
-  // const [cartRooms, setCartRooms] = useState<CartItems[]>([]);
   const navigate = useNavigate();
 
   /**
