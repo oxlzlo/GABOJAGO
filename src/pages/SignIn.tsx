@@ -27,7 +27,13 @@ const SignIn = () => {
         alert('로그인 되었습니다');
         localStorage.setItem('accessToken', response.data.data.access_token);
         localStorage.setItem('refreshToken', response.data.data.refresh_token);
-        login({ email, name: response.data.data.name });
+        login({
+          email,
+          password,
+          name: response.data.data.name,
+          phone_number: response.data.data.phone_number,
+          img_url: response.data.data.img_url,
+        });
         navigate('/');
       }
     } catch (error) {
