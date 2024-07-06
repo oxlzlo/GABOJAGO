@@ -31,7 +31,7 @@ const OrderConfirm = () => {
     );
   }
 
-  const { updatedAt, doneRoomList, totalPrice } = orderData;
+  const { doneRoomList, totalPrice } = orderData;
 
   return (
     <Flex
@@ -46,7 +46,6 @@ const OrderConfirm = () => {
           결제 확인
         </Text>
         <Box width="100%" p={6} border="1px solid" borderColor="main" borderRadius="3xl">
-          {updatedAt} 결제
           {doneRoomList.map((item: any) => (
             <Box key={item.id} width="100%" p={10} mb={3}>
               <Flex alignItems="center" direction={['column', 'row']}>
