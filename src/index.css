@@ -1,7 +1,5 @@
 :root {
   --color-main: #006769;
-  /* --color-primary: #006769; */
-  /* --color-secondary: #777777 */
   --color-banner: #cdfad5;
   --color-white: #ffffff;
   --color-background: #f7f9f2;
@@ -11,6 +9,7 @@
   --color-logo: #005153;
   --color-primaryHover: #003637;
   --color-gray-light: #e2e8f0;
+  --color-gray-dark: #2a2a2e;
 
   font-size: 10px;
 }

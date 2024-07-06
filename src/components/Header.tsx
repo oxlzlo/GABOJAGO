@@ -4,15 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { useState, useRef, useEffect } from 'react';
 import { DropdownRef } from '@/lib/types/searchBar';
+import { useCartStore } from '@/store/cartStore';
 
 const Header = () => {
   const { user, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
-
   const navigate = useNavigate();
-
   const targetRef = useRef<HTMLDivElement | null>(null);
+  const cartRooms = useCartStore((state) => state.cartRooms);
 
   const handleUserNameClick = () => {
     setShowDropdown((prevState) => !prevState);
@@ -82,23 +82,40 @@ const Header = () => {
                     top="1.3vh"
                     right="1.2vw"
                     width="9vw"
-                    height="23vh"
+                    height="23.6vh"
+                    border="1px solid"
+                    borderColor="grayLight"
+                    color="black"
                     borderRadius="0 0 .5rem .5rem"
+                    shadow="0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.09),"
                     ref={dropdownRef}>
                     <Flex flexDirection="column" align="center" gap="1vh" fontSize="2rem" color="black">
-                      <Text marginTop="2.5vh" onClick={() => navigate('/mypage')}>
+                      <Text
+                        onClick={() => navigate('/mypage')}
+                        color="black"
+                        marginTop="2.5vh"
+                        _hover={{
+                          color: 'main',
+                        }}>
                         마이페이지
                       </Text>
-                      <Text onClick={() => navigate('/cart')}>장바구니</Text>
-                      <Text onClick={() => navigate('/orderhistory')}>주문내역</Text>
+                      <Text onClick={() => navigate('/cart')} _hover={{ color: 'main' }}>
+                        장바구니 {cartRooms.length > 0 && `(${cartRooms.length})`}
+                      </Text>
+                      <Text onClick={() => navigate('/orderhistory')} _hover={{ color: 'main' }}>
+                        주문내역
+                      </Text>
                       <Button
                         width="7vw"
                         height="4vh"
-                        marginTop="1.8vh"
+                        marginTop="1.8rem"
                         backgroundColor="main"
                         fontSize="2rem"
                         color="white"
                         borderRadius=".8rem"
+                        _hover={{
+                          background: 'primaryHover',
+                        }}
                         onClick={handleLogout}>
                         로그아웃
                       </Button>

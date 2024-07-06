@@ -3,8 +3,6 @@ import { extendTheme } from '@chakra-ui/react';
 const customTheme = extendTheme({
   colors: {
     main: 'var(--color-main)',
-    // primary: 'var(--color-primary)',
-    // secondary: 'var(--color-secondary)',
 
     white: 'var(--color-white)',
     banner: 'var(--color-banner)',
@@ -16,6 +14,7 @@ const customTheme = extendTheme({
     btnHover: 'var(--color-background)',
     primaryHover: 'var(--color-primaryHover)',
     grayLight: 'var(--color-gray-light)',
+    garyDark: 'var(--color-gray-dark)',
   },
 
   breakpoints: {

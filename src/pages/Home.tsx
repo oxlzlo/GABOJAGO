@@ -1,15 +1,14 @@
-import { Box, Heading, Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import { settings } from '@/lib/constants/slickCarousel';
 import SearchBar from '@/components/SearchBar';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Accommodation } from '@/lib/types/accommodation';
 import { useLocation } from 'react-router-dom';
-
-const AccommodationList = lazy(() => import('@/components/AccommodationList'));
+import AccommodationList from '@/components/AccommodationList';
 
 const Home = () => {
   const [accommodationData, setAccommodationData] = useState<Accommodation[]>([]);
@@ -28,7 +27,6 @@ const Home = () => {
           'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
           { params: { keyword, start, end, guest } },
         );
-        console.log(response);
         setAccommodationData(response.data.data.content);
       } catch (error) {
         console.error('검색어 필터링 오류', error);

@@ -19,6 +19,7 @@ import Cart from '@/assets/images/cart.svg?react';
 import { ReservationModal } from '@/lib/common/ReservationModal';
 import RoomDetailModal from '@/lib/common/RoomDetailModal';
 import { ToastAlert } from '@/lib/common/ToastAlert';
+import { useCartStore } from '@/store/cartStore';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams<string>();
@@ -40,6 +41,7 @@ const AccommodationItem = () => {
   const [roomList, setRoomList] = useState<Rooms[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showToast = ToastAlert();
+  const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     fetchAccommodationById(accommodationId as string)
@@ -130,11 +132,12 @@ const AccommodationItem = () => {
       };
       fetchCreateCartItems(payload)
         .then((response) => {
-          console.log(response.data);
+          addToCart(response.data.data);
           showToast({
             title: `객실 ${selectedRoomForCart.roomTypeName}이 장바구니에 추가되었습니다.`,
             description: '',
             status: 'success',
+            isClosable: true,
           });
         })
         .catch((error) => {
@@ -206,7 +209,7 @@ const AccommodationItem = () => {
                 </Text>
                 {roomList && (
                   <List display="flex" flexDirection="column" gap="1rem">
-                    <Heading borderBottom="1px solid" borderColor="grayLight">
+                    <Heading paddingBottom="1rem" borderBottom="1px solid" borderColor="grayLight">
                       객실을 선택하세요
                     </Heading>
                     {roomList.map((room, _) => (

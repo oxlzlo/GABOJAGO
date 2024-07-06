@@ -59,7 +59,7 @@ export const fetchDeleteCartItems = (cartItemId: number) => {
 };
 
 // 장바구니 모두 삭제
-export const fetchDeleteAllCartItems = (cartItems: string) => {
+export const fetchDeleteAllCartItems = () => {
   return instance.delete('/api/user/cartItems/delete-all');
 };
 
@@ -93,43 +93,5 @@ export const fetchOrderHistory = async () => {
   } catch (error) {
     console.error('오류: 주문 내역 불러오기 실패.', error);
     throw error;
-  }
-};
-
-// MSW에서 사용할 API
-export const fetchLodgment = async () => {
-  try {
-    const response = await axios.get('/api/lodgment');
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const fetchLodgmentById = async (lodgmentId: string) => {
-  try {
-    const response = await axios.get(`/api/lodgment/${lodgmentId}`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-// 전체 객실 조회
-export const fetchRoomListMSW = async (lodgmentId: string) => {
-  try {
-    const response = await axios.get(`/api/lodgment/${lodgmentId}/room`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-// 특정 객실 조회
-export const fetchRoomDetail = async (lodgmentId: string, roomId: string) => {
-  try {
-    const response = await axios.get(`/api/lodgment/${lodgmentId}/room/${roomId}`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
   }
 };

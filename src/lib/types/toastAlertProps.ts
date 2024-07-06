@@ -1,3 +1,5 @@
+import { NavigateFunction } from 'react-router-dom';
+
 export type ToastAlertProps = {
   title: string;
   description: string;
@@ -5,4 +7,5 @@ export type ToastAlertProps = {
   duration?: number;
   isClosable?: boolean;
   onClose?: React.MouseEventHandler<HTMLButtonElement>;
+  navigate?: NavigateFunction;
 };

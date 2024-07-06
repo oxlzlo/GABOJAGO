@@ -6,7 +6,7 @@ import theme from '@/styles/customTheme.ts';
 import './index.css';
 
 async function enableMocking() {
-  if (import.meta.env.VITE_NODE_ENV !== 'development') {
+  if (import.meta.env.VITE_NODE_ENV === 'development') {
     return;
   }
   const { worker } = await import('./mocks/browser');
