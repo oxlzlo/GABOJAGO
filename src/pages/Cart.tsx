@@ -5,11 +5,14 @@ import CartOrder from '@/components/cart/CartOrder';
 import { CartItems } from '@/lib/types/cart';
 import { fetchCartItems, fetchDeleteCartItems } from '@/api';
 import SelectAllCheckbox from '@/components/SelectAllCheckbox';
+import { useCartStore } from '@/store/cartStore';
 
 const Cart = () => {
-  const [selectedRooms, setSelectedRooms] = useState<CartItems[]>([]);
+  const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);
+  console.log(checkSelectedRooms);
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
+  const removeCart = useCartStore((state) => state.removeCart);
 
   useEffect(() => {
     fetchCartItems()
@@ -28,9 +31,9 @@ const Cart = () => {
    */
   const handleSelectRooms = (roomItem: CartItems, isSelected: boolean) => {
     if (isSelected) {
-      setSelectedRooms((prev) => [...prev, roomItem]);
+      setCheckSelectedRooms((prev) => [...prev, roomItem]);
     } else {
-      setSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== roomItem.cart_item_id));
+      setCheckSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== roomItem.cart_item_id));
     }
   };
 
@@ -39,7 +42,7 @@ const Cart = () => {
    *  @param cartItemId
    */
   const handleDeleteSelectedRoom = (cartItemId: number) => {
-    setSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== cartItemId));
+    setCheckSelectedRooms((prev) => prev.filter((item) => item.cart_item_id !== cartItemId));
   };
 
   /**
@@ -49,9 +52,9 @@ const Cart = () => {
   const handleSelectAllRooms = (isSelected: boolean) => {
     setIsAllSelected(isSelected);
     if (isSelected) {
-      setSelectedRooms(cartRooms);
+      setCheckSelectedRooms(cartRooms);
     } else {
-      setSelectedRooms([]);
+      setCheckSelectedRooms([]);
     }
   };
 
@@ -60,11 +63,13 @@ const Cart = () => {
    */
   const handleAllDeleteSelectedRooms = async () => {
     try {
-      const deletePromises = selectedRooms.map((room) => fetchDeleteCartItems(room.cart_item_id));
+      const deletePromises = checkSelectedRooms.map((room) => fetchDeleteCartItems(room.cart_item_id));
       await Promise.all(deletePromises);
+      // 선택한 객실을 전역 상태에서도 삭제 하도록 removeCart 함수 호출
+      checkSelectedRooms.forEach((checkSlectedRoom) => removeCart(checkSlectedRoom.cart_item_id));
       const response = await fetchCartItems();
       setCartRooms(response.data.data.item_dto_list);
-      setSelectedRooms([]);
+      setCheckSelectedRooms([]);
       setIsAllSelected(false);
     } catch (error) {
       console.error('delete error:', error);
@@ -76,8 +81,8 @@ const Cart = () => {
    * 모든 객실 선택 해제 시 모두 선택 체크박스 비활성화
    */
   useEffect(() => {
-    setIsAllSelected(selectedRooms.length === cartRooms.length && cartRooms.length > 0);
-  }, [selectedRooms, cartRooms]);
+    setIsAllSelected(checkSelectedRooms.length === cartRooms.length && cartRooms.length > 0);
+  }, [checkSelectedRooms, cartRooms]);
 
   return (
     <Flex flexDirection="column" alignItems="center" minHeight="calc(100vh - 80px)" padding="2.5rem">
@@ -91,7 +96,7 @@ const Cart = () => {
           textAlign="left"
           color="main">
           <Text>장바구니</Text>
-          {selectedRooms.length > 0 && <Text color="main">({selectedRooms.length})</Text>}
+          {checkSelectedRooms.length > 0 && <Text color="main">({checkSelectedRooms.length})</Text>}
         </Box>
         <Flex width="100%" gap="2rem">
           <Flex flex="1" direction="column">
@@ -102,7 +107,7 @@ const Cart = () => {
             <CartItem
               onHandleSelectRooms={handleSelectRooms}
               onDeleteSelectedRoom={handleDeleteSelectedRoom}
-              selectedRooms={selectedRooms}
+              checkSelectedRooms={checkSelectedRooms}
               setCartRooms={setCartRooms}
               cartRooms={cartRooms}
             />
@@ -124,7 +129,7 @@ const Cart = () => {
                 선택삭제
               </Button>
             </Flex>
-            <CartOrder selectedRooms={selectedRooms} />
+            <CartOrder checkSelectedRooms={checkSelectedRooms} />
           </Flex>
         </Flex>
       </Box>

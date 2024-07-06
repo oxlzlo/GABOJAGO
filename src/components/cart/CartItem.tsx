@@ -5,15 +5,17 @@ import { CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { CartItemProps } from '@/lib/types/cart';
 import { CartCheckbox } from '../CartCheckbox';
+import { useCartStore } from '@/store/cartStore';
 
 const CartItem = ({
   onHandleSelectRooms,
   onDeleteSelectedRoom,
-  selectedRooms,
+  checkSelectedRooms,
   setCartRooms,
   cartRooms,
 }: CartItemProps) => {
   const navigate = useNavigate();
+  const removeCart = useCartStore((state) => state.removeCart);
 
   /**
    * 장바구니에 담긴 상품 조회
@@ -31,6 +33,7 @@ const CartItem = ({
   const handleDeleteCartRoom = async (cartItemId: number) => {
     try {
       await fetchDeleteCartItems(cartItemId);
+      removeCart(cartItemId);
       const response = await fetchCartItems();
       setCartRooms(response.data.data.item_dto_list);
       onDeleteSelectedRoom(cartItemId);
@@ -84,7 +87,7 @@ const CartItem = ({
               <Box marginBottom="8rem">
                 <CartCheckbox
                   cartRoom={cartRoom}
-                  isChecked={selectedRooms.some((room) => room.cart_item_id === cartRoom.cart_item_id)}
+                  isChecked={checkSelectedRooms.some((room) => room.cart_item_id === cartRoom.cart_item_id)}
                   onHandleSelectRooms={onHandleSelectRooms}
                   borderColor="teal"
                 />

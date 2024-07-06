@@ -3,7 +3,7 @@ import { Rooms } from './accommodation';
 export type CartItemProps = {
   onHandleSelectRooms: (roomItem: CartItems, isSelected: boolean) => void;
   onDeleteSelectedRoom: (cartItemId: number) => void;
-  selectedRooms: CartItems[];
+  checkSelectedRooms: CartItems[];
   setCartRooms: React.Dispatch<React.SetStateAction<CartItems[]>>;
   cartRooms: CartItems[];
 };
@@ -16,5 +16,5 @@ export type CartItems = {
 };
 
 export type SelectedRoomsProps = {
-  selectedRooms: CartItems[];
+  checkSelectedRooms: CartItems[];
 };

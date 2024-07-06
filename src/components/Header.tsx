@@ -4,14 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { useState, useRef, useEffect } from 'react';
 import { DropdownRef } from '@/lib/types/searchBar';
+import { useCartStore } from '@/store/cartStore';
 
 const Header = () => {
   const { user, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef: DropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
   const targetRef = useRef<HTMLDivElement | null>(null);
+  const cartRooms = useCartStore((state) => state.cartRooms);
 
   const handleUserNameClick = () => {
     setShowDropdown((prevState) => !prevState);
@@ -99,7 +100,7 @@ const Header = () => {
                         마이페이지
                       </Text>
                       <Text onClick={() => navigate('/cart')} _hover={{ color: 'main' }}>
-                        장바구니
+                        장바구니 {cartRooms.length > 0 && `(${cartRooms.length})`}
                       </Text>
                       <Text onClick={() => navigate('/orderhistory')} _hover={{ color: 'main' }}>
                         주문내역
