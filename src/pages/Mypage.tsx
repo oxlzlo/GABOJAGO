@@ -181,6 +181,7 @@ const Mypage = () => {
                 className="profile_img"
                 alt="Profile"
                 style={{
+                  display: imgUrl ? 'block' : 'none',
                   position: 'absolute',
                   top: '50%',
                   transform: 'translateY(-50%)',
