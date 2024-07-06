@@ -88,7 +88,7 @@ export const fetchOrderById = async (orderId: string) => {
 // 주문내역 확인
 export const fetchOrderHistory = async () => {
   try {
-    const response = await instance.get('/api/user/orders');
+    const response = await instance.get('/api/order');
     return response.data;
   } catch (error) {
     console.error('오류: 주문 내역 불러오기 실패.', error);
