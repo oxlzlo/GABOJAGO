@@ -14,6 +14,7 @@ const customTheme = extendTheme({
     btnHover: 'var(--color-background)',
     primaryHover: 'var(--color-primaryHover)',
     grayLight: 'var(--color-gray-light)',
+    garyDark: 'var(--color-gray-dark)',
   },
 
   breakpoints: {
