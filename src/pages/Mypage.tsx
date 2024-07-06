@@ -20,10 +20,6 @@ const Mypage = () => {
   const fileInputRef = useRef(null);
 
   const handleEditInfo = async () => {
-    if (password !== user?.password) {
-      alert('기존 패스워드를 확인해주세요.');
-    }
-
     if (editPhoneNumber !== user?.phone_number) {
       if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(editPhoneNumber)) {
         alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
