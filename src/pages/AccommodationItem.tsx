@@ -125,10 +125,14 @@ const AccommodationItem = () => {
   const handleAddToCart = (roomId: string) => {
     const selectedRoomForCart = accommodations[0].roomList.find((room) => room.id === parseInt(roomId, 10));
     if (selectedRoomForCart) {
+      const today = new Date();
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1); 
+
       const payload = {
         roomId: selectedRoomForCart.id.toString(),
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: today,
+        endDate: tomorrow,
       };
       fetchCreateCartItems(payload)
         .then((response) => {

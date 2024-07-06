@@ -46,21 +46,21 @@ const Order = () => {
     if (isCheckboxChecked) {
       try {
         const requestOrderList = selectedItems.map(item => ({
-          id: item.room.id,
-          startDate: item.start_date,
-          endDate: "2024-07-06"
-        }));
-  
+            id: item.room.id,
+            startDate: item.start_date,
+            endDate: item.end_date
+          }));
+
         const totalPrice = selectedItems.reduce(
           (accumulator: number, current: CombinedAccommodationRooms) =>
             accumulator + current.room.roomPrice,
           0
         );
-  
+
         const response = await createOrder({ requestOrderList, totalPrice });
-        
+
         console.log('Order Data:', response); // 응답 데이터 로그
-  
+
         navigate(`/order/payment/${response.data.data.id}`);
       } catch (error) {
         if (error.response) {
