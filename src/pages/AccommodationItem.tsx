@@ -130,11 +130,11 @@ const AccommodationItem = () => {
       };
       fetchCreateCartItems(payload)
         .then((response) => {
-          console.log(response.data);
           showToast({
             title: `객실 ${selectedRoomForCart.roomTypeName}이 장바구니에 추가되었습니다.`,
             description: '',
             status: 'success',
+            isClosable: true,
           });
         })
         .catch((error) => {
