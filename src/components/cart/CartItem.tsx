@@ -93,7 +93,7 @@ const CartItem = ({
                 />
               </Box>
               <Image
-                src={cartRoom.room.imageList}
+                src={cartRoom.room.imageList[0].url}
                 alt={cartRoom.room.roomTypeName}
                 width="10rem"
                 height="10rem"
