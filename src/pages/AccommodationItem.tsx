@@ -72,7 +72,7 @@ const AccommodationItem = () => {
    */
   const handleConfirm = () => {
     if (selectedRooms) {
-      navigation(`/order/${selectedRooms.id}`, { state: selectedRooms });
+      navigation(`/order/${selectedRooms.id}`, { state: { selectedItems: [selectedRooms] } }); // selectedItems를 배열로 전달
     }
     onClose();
   };
