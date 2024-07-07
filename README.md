@@ -135,7 +135,7 @@ PW : qqqq1111
 
 ### 장바구니
 
-![image](https://github.com/YuHyeonWook/TIL/assets/110236953/4b43e4a0-7014-484d-9214-ddb8f17781b3)
+![image](https://github.com/YuHyeonWook/health/assets/110236953/e73f95ab-e888-4b66-ba2f-31bd0d6a3724)
 
 - 장바구니에 추가한 해당 객실들을 볼 수 있습니다.
 - 장바구니에 추가한 아이템을 모두 삭제 및 선택해서 삭제할 수 있습니다.
@@ -146,8 +146,11 @@ PW : qqqq1111
 
 ### 결제 페이지
 
-- 사진
-- 설명
+![image](https://github.com/YuHyeonWook/health/assets/110236953/eb50a1ec-8756-44c9-9eea-24b9b8343ef4)
+
+- 장바구니에서 선택한 아이템을 결제합니다.
+- 필수약관에 동의에 체크하지 않으면 결제 버튼이 활성화되지 않습니다.
+- 체크하지 않고 결제 버튼을 누르는 경우 필수약관에 동의하여야 한다는 팝업이 표시됩니다.
 
 <br>
 
@@ -155,8 +158,10 @@ PW : qqqq1111
 
 ### 결제확인 페이지
 
-- 사진
-- 설명
+
+![image](https://github.com/YuHyeonWook/health/assets/110236953/025542ff-9e34-44b6-a3a8-11f4127eb2e3)
+
+- 직전에 완료된 결제내역을 표시합니다.
 
 <br>
 
@@ -164,7 +169,7 @@ PW : qqqq1111
 
 ### 전체 결제내역 확인 페이지
 
-- 사진
+![image](https://github.com/YuHyeonWook/health/assets/110236953/c3cbf382-3b48-4440-9133-52f4bce6316c)
 - 설명
 
 <br>

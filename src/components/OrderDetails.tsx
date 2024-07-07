@@ -3,7 +3,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 type OrderDetailsProps = {
   selectedItems: CombinedAccommodationRooms[];
-  selectedRoom: Rooms | undefined; // Allow selectedRoom to be undefined
+  selectedRoom: Rooms | undefined;
 };
 
 const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
@@ -58,9 +58,6 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                     {formatPrice(selectedItem.room.roomPrice)}
                   </span>
                 </Text>
-                {/* <Text fontSize="1.5rem" textAlign="right">
-                  추가 요금: {formatPrice(selectedItem.room.roomExtraPrice)}
-                </Text> */}
               </Box>
             ))
           ) : (
