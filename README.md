@@ -27,12 +27,9 @@ PW : qqqq1111
 
 ## 팀원 소개 및 분담
 
-### FE
-
-| <p align='center'>김여진B<p>                                                                                                                                                                                                                        | <p align='center'>유현욱<p>                                                                                                    | <p align='center'>이진영</p>                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| <p align="center">![설이](https://github.com/toy2-1/devtube/assets/140046183/2458f0da-e1c0-41e9-8dfb-694c528c6bc0)</p>                                                                                                                           | <p align="center">![image](https://github.com/YuHyeonWook/TIL/assets/110236953/8c15475a-7cbb-4428-af4b-361d1d0e04b4)           |
-| </p>                                                                                                                                                                                                                                                | <p align="center">사진</p>                                                                                                     |
+| <p align='center'>김여진B<p>                | <p align='center'>유현욱<p>         | <p align='center'>이진영</p>            |
+| ------------------- | -------------------- | --------------- |
+| <p align="center">![설이](https://github.com/toy2-1/devtube/assets/140046183/2458f0da-e1c0-41e9-8dfb-694c528c6bc0)</p> | <p align="center">![image](https://github.com/YuHyeonWook/TIL/assets/110236953/8c15475a-7cbb-4428-af4b-361d1d0e04b4) </p>   | <p align="center">![image](https://github.com/KDT1-FE/KDT_FE8_Mini-Project/assets/140046183/7af68eeb-4a42-48f6-979c-dd910b6a10e9)</p>                                                                                                     |
 | [`https://github.com/oxlzlo`](https://github.com/oxlzlo)                                                                                                                                                                                            | [`https://github.com/YuHyeonWook`](https://github.com/YuHyeonWook)                                                             | [`https://github.com/holololob`](https://github.com/holololob) |
 | 로그인, 회원가입, 이메일 찾기, 패스워드 재설정, 마이페이지(프로필 사진 업로드/수정, 핸드폰번호 재설정), 옵션 검색(키워드, 날짜, 인원수), 검색 후 데이터 필터링/렌더링, 로그인 시 header 변경, 메인페이지 스크롤 위치에 따른 header 변경/검색바 고정 | 초기 개발환경 세팅, 메인페이지(전체 숙박 조회), 장바구니, header, footer, 개별 상품 상세 조회, 개별 객실 상세 조회, 무한스크롤 | 이진영                                                         |
 
@@ -170,7 +167,8 @@ PW : qqqq1111
 ### 전체 결제내역 확인 페이지
 
 ![image](https://github.com/YuHyeonWook/health/assets/110236953/c3cbf382-3b48-4440-9133-52f4bce6316c)
-- 설명
+
+- 이전에 완료된 모든 결제내역을 표시합니다.
 
 <br>
 
