@@ -104,7 +104,7 @@ const Mypage = () => {
 
       let response;
 
-      if (oldImageUrl && oldImageUrl !== undefined) {
+      if (oldImageUrl && oldImageUrl !== 'undefined') {
         console.log('put 할거임');
         try {
           response = await axios.put(
