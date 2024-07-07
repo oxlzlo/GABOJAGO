@@ -4,20 +4,21 @@ import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import { User } from '@/lib/types/authStore';
 
 const Mypage = () => {
   const { user, login } = useAuth();
 
-  const [editPhoneNumber, setEditPhoneNumber] = useState(user?.phone_number || '');
-  const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [imgUrl, setImgUrl] = useState(user?.img_url || '');
-  const [oldImageUrl, setOldImageUrl] = useState(user?.img_url || '');
+  const [editPhoneNumber, setEditPhoneNumber] = useState<string>(user?.phone_number || '');
+  const [password, setPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [imgUrl, setImgUrl] = useState<string>(user?.img_url || '');
+  const [oldImageUrl, setOldImageUrl] = useState<string>(user?.img_url || '');
 
   const token = localStorage.getItem('accessToken');
 
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleEditInfo = async () => {
     if (editPhoneNumber !== user?.phone_number) {
@@ -42,7 +43,7 @@ const Mypage = () => {
         );
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
-          login({ ...user, phone_number: editPhoneNumber });
+          login({ ...user, phone_number: editPhoneNumber } as User);
         } else {
           alert('수정에 실패하였습니다.');
           console.error(response.data.error.error_message);
@@ -89,7 +90,7 @@ const Mypage = () => {
   };
 
   const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
 
     if (file) {
       const formData = new FormData();
@@ -132,14 +133,14 @@ const Mypage = () => {
         }
       }
 
-      if (response.data.result_code === '200') {
+      if (response?.data.result_code === '200') {
         alert('프로필 사진이 등록되었습니다.');
         const newImgUrl = response.data.data;
         setImgUrl(newImgUrl);
-        login({ ...user, img_url: newImgUrl });
+        login({ ...user, img_url: newImgUrl } as User);
       } else {
         alert('프로필 사진이 등록되지 않았습니다.');
-        console.error(response.data.error.error_message);
+        console.error(response?.data.error.error_message);
       }
     }
   };
