@@ -46,15 +46,7 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
 
   return (
     <>
-      <InfiniteScroll
-        pageStart={1}
-        loadMore={loadMore}
-        hasMore={hasMore}
-        loader={
-          <Heading display="flex" justifyContent="center" key={0}>
-            Loading...
-          </Heading>
-        }>
+      <InfiniteScroll pageStart={1} loadMore={loadMore} hasMore={hasMore}>
         <Grid
           templateColumns={{
             mobile: 'repeat(1, 1fr)',
