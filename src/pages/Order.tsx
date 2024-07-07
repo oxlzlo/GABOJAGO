@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Flex, Box, Text, Checkbox, useTheme, Tooltip } from '@chakra-ui/react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import OrderDetails from '@/components/OrderDetails';
-import { CombinedAccommodationRooms } from '@/lib/types/accommodation';
+import { CombinedAccommodationRooms, Rooms } from '@/lib/types/accommodation';
 import { CustomCheckboxProps } from '@/lib/types/customCheckbox';
 import { createOrder } from '@/api';
 
@@ -34,6 +34,7 @@ const Order = () => {
   const { orderId } = useParams();
   const location = useLocation();
   const selectedItems: CombinedAccommodationRooms[] = location.state?.selectedItems || [];
+  const selectedRoom: Rooms = location.state?.selectedRoom || null; // Add selectedRoom
   const theme = useTheme();
   const navigate = useNavigate();
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -45,17 +46,25 @@ const Order = () => {
   const handlePayment = async () => {
     if (isCheckboxChecked) {
       try {
-        const requestOrderList = selectedItems.map(item => ({
+        const requestOrderList = selectedItems.length > 0 
+          ? selectedItems.map(item => ({
             id: item.room.id,
             startDate: item.start_date,
             endDate: item.end_date
-          }));
+          })) 
+          : [{
+            id: selectedRoom.id,
+            startDate: selectedRoom.startDate, // Use the correct startDate
+            endDate: selectedRoom.endDate, // Use the correct endDate
+          }];
 
-        const totalPrice = selectedItems.reduce(
-          (accumulator: number, current: CombinedAccommodationRooms) =>
-            accumulator + current.room.roomPrice,
-          0
-        );
+        const totalPrice = selectedItems.length > 0 
+          ? selectedItems.reduce(
+            (accumulator: number, current: CombinedAccommodationRooms) =>
+              accumulator + current.room.roomPrice,
+            0
+          ) 
+          : selectedRoom.roomPrice;
 
         const response = await createOrder({ requestOrderList, totalPrice });
 
@@ -75,7 +84,7 @@ const Order = () => {
     }
   };
 
-  if (!selectedItems || selectedItems.length === 0) {
+  if ((!selectedItems || selectedItems.length === 0) && !selectedRoom) {
     return (
       <Flex direction="column" justifyContent="flex-start" alignItems="center" minHeight="calc(100vh - 80px)" p={4}>
         <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>
@@ -83,11 +92,13 @@ const Order = () => {
     );
   }
 
-  const totalAmount = selectedItems.reduce(
-    (accumulator: number, current: CombinedAccommodationRooms) =>
-      accumulator + current.room.roomPrice,
-    0
-  );
+  const totalAmount = selectedItems.length > 0 
+    ? selectedItems.reduce(
+      (accumulator: number, current: CombinedAccommodationRooms) =>
+        accumulator + current.room.roomPrice,
+      0
+    ) 
+    : selectedRoom.roomPrice;
 
   return (
     <>
@@ -102,7 +113,7 @@ const Order = () => {
           <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
             예약 결제
           </Text>
-          <OrderDetails selectedItems={selectedItems} selectedRoom={undefined} />
+          <OrderDetails selectedItems={selectedItems} selectedRoom={selectedRoom} />
           <Box
             width="100%"
             padding="2.5rem"
