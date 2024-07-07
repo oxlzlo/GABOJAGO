@@ -192,7 +192,7 @@ const AccommodationItem = () => {
                         height={index === 0 ? '100%' : '100%'}
                         objectFit="cover"
                         borderRadius={
-                          index === 0 ? '10px 0 0 10px' : index === 2 ? '0 10px 0 0' : index === 4 ? '0 0 10px 0' : ''
+                          index === 0 ? '1rem 0 0 1rem' : index === 2 ? '0 1rem 0 0' : index === 4 ? '0 0 1rem 0' : ''
                         }
                       />
                     </GridItem>
