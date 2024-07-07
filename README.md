@@ -107,7 +107,8 @@ PW :
 
 ### 숙박 전체 조회
 
-- 사진
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/8fc89eb0-7f75-47b4-bbe1-a913aa6ab156)
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/c7684228-aa29-45f6-814d-0def703de480)
 
 - 각 지역에 있는 숙박에 대한 정보 목록들을 보여줍니다.
 
@@ -117,20 +118,26 @@ PW :
 
 ### 숙박 상세 조회
 
-- 사진
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/b2376317-9ab3-4ebf-b50d-b69bd735af4f)
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/53ae90e0-f5a0-433f-ba92-f71ee7f3e6b4)
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/9ac14b6b-f29b-4bf4-a144-eff417bea1e1)
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/998f9d0b-3703-4dd7-983a-0b13304bcfb4)
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/80f54125-5327-45df-adb5-e5a7e1516d7d)
 
 - 해당 숙박에 대한 객실 상세정보를 보여줍니다.
 - 객실들을 장바구니 추가, 예약할 수 있습니다.
+- 로그인한 유저가 해당 객실을 장바구니로 추가하면 성공 alert창이 보여지고, 로그인 안한 유저가 장바구니 추가하면 실패한 alert창이 보여집니다.
 
-<br>
+  <br>
 
 ---
 
 ### 장바구니
 
-- 사진
+![image](https://github.com/YuHyeonWook/TIL/assets/110236953/4b43e4a0-7014-484d-9214-ddb8f17781b3)
 
--
+- 장바구니에 추가한 해당 객실들을 볼 수 있습니다.
+- 장바구니에 추가한 아이템을 모두 삭제 및 선택해서 삭제할 수 있습니다.
 
 <br>
 

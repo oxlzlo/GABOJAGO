@@ -37,9 +37,10 @@ const ToastAlertStyle = ({
           onClick={handleGoToCart}
           fontSize="1.5rem"
           marginLeft="2rem"
-          backgroundColor="main"
           padding="1.8rem"
-          _hover={{ backgroundColor: 'primaryHover' }}>
+          color="black"
+          background="white"
+          _hover={{ backgroundColor: 'grayLight' }}>
           장바구니로 이동
         </Button>
       </Box>
