@@ -3,29 +3,36 @@ import { Accommodation, AccommodationListProps } from '@/lib/types/accommodation
 import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const [page, setPage] = useState<number>(1);
+  const [cursor, setCursor] = useState<number>(1);
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const keyword = query.get('keyword') || '';
+  const start = query.get('start') || '';
+  const end = query.get('end') || '';
+  const guest = parseInt(query.get('guest') || '2', 10);
 
   useEffect(() => {
     setAccommodations(accommodation);
+    setCursor(accommodation.length);
+    setHasMore(true);
   }, [accommodation]);
 
-  /**
-   * 무한 스크롤 함수
-   * fetchAccommodation 함수를 호출하여 다음 페이지의 숙소 데이터를 반환
-   */
   const loadMore = () => {
-    fetchAccommodation(page)
+    fetchAccommodation(cursor, keyword, start, end, guest)
       .then((response) => {
-        setAccommodations((prev) => [...prev, ...response.data.data.content]);
-        console.log();
-        setPage(page + 1); // 다음 페이지로 이동함
-        if (response.data.data.content.length === 0) {
+        const newData = response.data.data.content;
+
+        if (newData.length === 0) {
           setHasMore(false);
+        } else {
+          setAccommodations((prev) => [...prev, ...newData]);
+          setCursor((prevCursor) => prevCursor + newData.length);
         }
       })
       .catch((error) => {
@@ -36,7 +43,7 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   return (
     <>
       <InfiniteScroll
-        pageStart={0}
+        pageStart={1}
         loadMore={loadMore}
         hasMore={hasMore}
         loader={

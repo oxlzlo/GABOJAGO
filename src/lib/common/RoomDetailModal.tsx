@@ -32,16 +32,16 @@ const RoomDetailModal = ({ isOpen, onClose, selectedRooms }: RoomDetailModalProp
             />
           )}
           <Text fontSize="1.6rem" fontWeight="600">
-            기본 인원: {selectedRooms?.roomDefaultGuest}명
+            기본 인원: {selectedRooms.roomDefaultGuest}명
           </Text>
           <Text fontSize="1.6rem" fontWeight="600">
-            최대 인원: {selectedRooms?.roomMaxGuest}명
+            최대 인원: {selectedRooms.roomMaxGuest}명
           </Text>
           <Text marginTop="2rem" fontWeight="600" fontSize="2rem" borderBottom="1px solid" borderColor="grayLight">
-            객실 소개
+            객실 소개: {selectedRooms.comment}
           </Text>
           <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
-            {selectedRooms?.comment}
+            {selectedRooms.comment}
           </Text>
           <Text display="flex" justifyContent="end" color="red" fontSize="2.5rem" fontWeight="600" marginBottom="2rem">
             {selectedRooms &&

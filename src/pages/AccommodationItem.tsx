@@ -281,7 +281,7 @@ const AccommodationItem = () => {
                                   })}원`}
                                 </span>
                               </Text>
-                              <Text fontSize="1.6rem">{room.comment}</Text>
+                              <Text fontSize="1.6rem">객실 소개: {room.comment}</Text>
                             </Box>
                           </Flex>
                         </Flex>

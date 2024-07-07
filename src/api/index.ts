@@ -23,10 +23,20 @@ instance.interceptors.request.use(
 export default instance;
 
 // 전체 상품 조회 (숙박)
-export const fetchAccommodation = (page: number) => {
+export const fetchAccommodation = async (
+  cursor: number,
+  keyword: string,
+  start: string,
+  end: string,
+  count: number,
+) => {
   return instance.get('/open-api/accommodation', {
     params: {
-      page,
+      cursor,
+      keyword,
+      start,
+      end,
+      count,
     },
   });
 };
