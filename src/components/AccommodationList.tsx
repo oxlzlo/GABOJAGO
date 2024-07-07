@@ -26,13 +26,17 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const loadMore = () => {
     fetchAccommodation(cursor, keyword, start, end, guest)
       .then((response) => {
-        const newData = response.data.data.content;
-
+        const newData: Accommodation[] = response.data.data.content;
         if (newData.length === 0) {
           setHasMore(false);
         } else {
-          setAccommodations((prev) => [...prev, ...newData]);
-          setCursor((prevCursor) => prevCursor + newData.length);
+          setAccommodations((prev) => {
+            const updatedAccommodations = newData.filter(
+              (newItem) => !prev.some((existingItem) => existingItem.id === newItem.id),
+            );
+            return [...prev, ...updatedAccommodations];
+          });
+          setCursor(cursor + newData.length);
         }
       })
       .catch((error) => {
