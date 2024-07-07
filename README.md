@@ -1,57 +1,151 @@
-# **💒 숙박 / 예약 서비스 만들기**
+# 숙박 · 예약 서비스
 
-본 프로젝트는 숙박 예약 서비스를 완성하는 것을 목표로 합니다.
-필요한 설계는 팀별로 직접 구성합니다.
+<br>
+<div align=center>
+  <a href="https://devtube-46156.web.app/" target="_blank">
+    <img src="https://img.shields.io/badge/GABOJAGO-006769?style=for-the-badge&logoColor=white" alt="example"/>
+  </a>
+</div>
+<br>
+<br>
 
-### **[과제 수행 및 제출 방법]**
+📌 회원가입 절차 없이 게스트 아이디를 통해 '가보자고' 플랫폼을 이용해보세요!
 
-1. 현재 저장소를 로컬에 클론(Clone)합니다.
-2. 자신의 팀명으로 브랜치를 생성합니다.(구분 가능하도록 팀명을 꼭 파스칼케이스로 표시하세요, git branch  KDT_FE8_Mini-Project_Team1)
-3. 자신의 팀명 브랜치에서 과제를 수행합니다.
-4. 과제 수행이 완료되면, 자신의 팀명 브랜치를 원격 저장소에 푸시(Push)합니다.(main 브랜치에 푸시하지 않도록 꼭 주의하세요, git push origin KDT_FE8_Mini-Project_Team1)
-5. 저장소에서 main 브랜치를 대상으로 Pull Request 생성하면, 과제 제출이 완료됩니다!(E.g, main <== KDT_FE8_Mini-Project_Team1)
-6. Pull Request 링크를 LMS로도 제출해 주셔야 합니다.
-7. main 혹은 다른 사람의 브랜치로 절대 병합하지 않도록 주의하세요!
-8. Pull Request에서 보이는 설명을 다른 사람들이 이해하기 쉽도록 꼼꼼하게 작성하세요!
-9. Pull Request에서 과제 제출 후 절대 병합(Merge)하지 않도록 주의하세요!
-10. 과제 수행 및 제출 과정에서 문제가 발생한 경우, 바로 담당 멘토나 강사님, 운영진에게 얘기하세요!
+<br>
 
-### **[필수 구현사항]**
-1. 회원 인증
-    - 회원가입
-        - 회원은 회원가입을 할 수 있습니다.
-        - 기본 정보는 ID 역할로 이메일 주소와, 비밀번호, 이름 입니다.
-    - 회원 로그인 기능
-        - 이메일과 비밀번호로 로그인할 수 있습니다.
-        - 회원 정보를 저장해둔 데이터베이스를 검색하여 해당 사용자가 유효한 사용자 인지 판단합니다.
-        - 상품 조회(전체, 개별), 회원 가입은 로그인 없이 사용 가능합니다.
-        - 이 외 기능은 로그인이 필요합니다.
-2. 전체 상품 목록 조회
-    - 데이터베이스에서 전체 상품 목록을 가져옵니다.
-    - 이미지, 상품명, 상품가격을 기본으로 출력합니다.
-    - 재고에 따라 품절일 경우, 출력 여부에 대해선 팀별로 결정합니다.
-    - 한 페이지에 출력되는 상품 개수는 팀별로 정하여, 페이징을 수행합니다.
-3. 개별 상품 조회
-    - 전체 상품 목록에서 특정 상품 이미지를 클릭하면, 해당 상품에 대한 상세 정보를 상품에 저장해 둔 데이터베이스에서 가져옵니다.
-    - 이미지, 상품명, 상품가격, 상품 상세 소개 (1줄 이상)을 기본으로 출려합니다.
-    - 재고에 따라 품절일 경우, 화면 구성은 팀별로 결정합니다.
-4. 상품 옵션 선택
-    - 상품 상세 소개 페이지에서 상품 옵션을 선택할 수 있습니다.
-    - 날짜, 숙박 인원은 기본으로 포함됩니다.
-    - 이 외 룸 형태 등 필요한 요소는 팀별로 기획합니다.
-5. 결제하기
-    - 주문 페이지에서 결제하기 버튼을 클릭하면, 실제 결제 로직 및 절차 없이 상품을 바로 주문한 것으로 처리합니다.
-    - 주문을 저장하는 데이터베이스에 주문 정보를 저장합니다.
-6. 주문 결과 확인
-    - 결제를 성공적으로 처리하면, 주문한 상품(들)에 대한 주문 결과를 출력해줍니다. 
+```
+🌟 게스트 아이디 🌟
+ID :
+PW :
+```
+
+<br>
+
+```
+🎯 작업 Organization Repo : https://github.com/mini-team1/FE_mini
+```
+
+## 팀원 소개 및 분담
+
+### FE
+
+| <p align='center'>김여진B<p>                             | <p align='center'>유현욱<p>                                        | <p align='center'>이진영</p>                                   |
+| -------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| <p align="center">사진</p>                               | <p align="center">사진</p>                                         | <p align="center">사진</p>                                     |
+| [`https://github.com/oxlzlo`](https://github.com/oxlzlo) | [`https://github.com/YuHyeonWook`](https://github.com/YuHyeonWook) | [`https://github.com/holololob`](https://github.com/holololob) |
+| 김여진B                                                  | 유현욱                                                             | 이진영                                                         |
+
+### BE
+
+| <p align='center'>김강민<p>                                | <p align='center'>김시환<p>                                | <p align='center'>박성찬</p>                                   | <p align='center'>이주형<p>                                        | <p align='center'>홍대용<p>                                  |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| <p align="center">사진</p>                                 | <p align="center">사진</p>                                 | <p align="center">사진</p>                                     | <p align="center">사진</p>                                         | <p align="center">사진</p>                                   |
+| [`https://github.com/GOren98`](https://github.com/GOren98) | [`https://github.com/van1164`](https://github.com/van1164) | [`https://github.com/holololob`](https://github.com/holololob) | [`https://github.com/JurungJrung`](https://github.com/JurungJrung) | [`https://github.com/Reddyong`](https://github.com/Reddyong) |
+| 김강민                                                     | 김시환                                                     | 박성찬                                                         | 이주형                                                             | 홍대용                                                       |
+
+<br>
+<br>
+
+## 사용한 기술 스택
+
+|            | Stack                                                                                                                                                                                                                                                                                                        |
+| :--------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 개발 환경  | <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> |
+|  유틸리티  | <img src="https://img.shields.io/badge/ESlint-4B32C3?style=for-the-badge&logo=ESlint&logoColor=white"> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettie&logoColor=white">                                                                                             |
+|   디자인   | <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">                                                                                                                                                                                                         |
+| 서버/배포  | <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">                                                                                                                                                                                                   |
+| 라이브러리 | <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src ="https://img.shields.io/badge/SASS-cc6699.svg?&style=for-the-badge&logo=Sass&logoColor=white"/>                                                                                               |
+|   협업툴   | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white">                                                                                                      |
+
+<br>
+
+## 프로젝트 소개
+
+> 제작기간 : `2024.06.17 ~ 2024.07.07`  
+> 제작인원 : `8명 [FE: 김여진B, 유현욱, 이진영][BE: 김강민, 김시환, 박성찬, 이주형, 홍대용]`
+
+<br>
+
+### 로그인 · 회원가입 · 아이디 찾기 · 비밀번호 재설정 페이지
+
+![로그인](https://github.com/oxlzlo/oxlzlo/assets/140046183/15e1f12d-425b-4b8b-8a9c-375b5eb1ca0f)
+
+![회원가입](https://github.com/oxlzlo/oxlzlo/assets/140046183/7382a364-97e1-4bd7-8a67-ab8e6394e9de)
+
+- 회원가입이 완료된 계정으로 로그인이 가능합니다.
+- 아이디/비밀번호를 잘못 입력 시 `유효성검사`를 통해 서비스 이용자에게 안내해 줍니다.
+- 회원가입 시 각 입력조건에 맞게 작성해야 회원가입이 가능하며, 잘못 입력 시 서비스 이용자에게 안내해 줍니다.
+
+![아이디 찾기](https://github.com/oxlzlo/oxlzlo/assets/140046183/11bcac17-cb67-4f55-b5ab-567ea2fd3e7d)
+
+- `이름`과 `채널이름`을 입력하면 해당 데이터와 일치하는 `기존 이메일`을 확인할 수 있습니다.
+
+![비밀번호 재설정](https://github.com/oxlzlo/oxlzlo/assets/140046183/828f34de-f2f4-4161-bd91-bed70acbca46)
+
+- `이름` `채널이름` `이메일`을 입력하면 해당 데이터와 일치하는 계정의 `비밀번호를 재설정`할 수 있습니다.
+
+<br>
  
-### **[선택 구현사항]**
-1. 장바구니 보기
-   - 장바구니에 담긴 상품 데이터 (이미지, 상품명, 옵션 등)에 따른 상품별 구매 금액, 전체 주문 합계 금액 등을 화면에 출력합니다.
-   - 체크 박스를 통해 결제할 상품을 선택/제외할 수도 있습니다.
-   - 주문하기 버튼을 통해 주문/결제 화면으로 이동합니다.
-2. 장바구니 담기
-   - 상품 옵션을 선택한 후, 장바구니 담기 버튼을 클릭하면 선택한 상품이 장바구니에 담깁니다.
-3. 주문 내역 확인
-   - 별도 주문 내역 페이지에 여태 주문한 모든 이력을 출력해줍니다.
+---
 
+### 메인 페이지
+
+![메인페이지](https://github.com/oxlzlo/oxlzlo/assets/140046183/40ffb754-0f96-478b-adcf-a5d696bc9d3a)
+
+- 로그인 계정과 일치하는 `채널정보`를 표시해 줍니다.
+- `채널정보 수정`을 통해 계정의 `이름` `채널 이름` `비밀번호` 수정이 가능합니다.
+- 하단의 `주간 캘린더`를 통해 간편하게 이번 주 스케줄을 확인 할 수 있습니다.
+
+<br>
+
+---
+
+### 정정 신청 · 정정 내역 페이지
+
+![정정신청](https://github.com/toy2-1/devtube/assets/140046183/9b3f5797-3832-48e8-a2de-d40d05b6b699)
+![정정신청 모달](https://github.com/toy2-1/devtube/assets/140046183/03b6c101-078c-4ec8-9e9f-6f37833d871c)
+
+- 수익 정정 신청 폼 제출이 가능합니다.
+- 폼 제출 시 로그인 계정 정보를 포함하며, 하단의 `신청 내역`에서 로그인한 유저가 제출한 신청 내역을 확인할 수 있습니다.
+- 폼 제출 즉시 신청 내역이 표시됩니다.
+
+<br>
+
+---
+
+### 캘린더 페이지
+
+![캘린더](https://github.com/oxlzlo/oxlzlo/assets/140046183/9cc0b87c-7d37-4f4c-a6fa-163ff094881f)
+![일정추가](https://github.com/oxlzlo/oxlzlo/assets/140046183/103ff4de-14a8-4180-ac4a-42866cf9a3c3)
+
+- Firestore 데이터베이스에서 사용자 정보를 추출해 로그인한 사용자의 이벤트를 가져오기, 추가, 업데이트, 삭제할 수 있게 구현했습니다(useContext 사용).
+- 이벤트 처리 모달창을 넣어 일정 작성을 할 수 있게 만들었습니다(사용자 상호작용 처리: 빈 슬롯 클릭 시 새 이벤트 추가, 기존 이벤트 클릭 시 수정 가능).
+- 색상을 선택해 일정 구분을 더욱 명확히 할 수 있게 했습니다.
+
+![캘린더 1](https://github.com/toy2-1/devtube/assets/140046183/a82b683e-e3e2-4d03-8fb0-4346607b2c33)
+
+- BigCalendar의 drag&drop addon 기능을 활용해 이벤트 드래그 앤 드롭 및 크기 조정 기능 지원합니다.
+
+<br>
+
+---
+
+### 급여내역 페이지
+
+![급여내역](https://github.com/oxlzlo/oxlzlo/assets/140046183/ce7a7272-95b9-413b-9ef4-c151621004f3)
+![명세서](https://github.com/toy2-1/devtube/assets/140046183/b25de073-2ba8-43ce-86e9-02f96e9ad466)
+
+- 조회수와 급여 내역을 그래프로 확인할 수 있습니다.
+- 총 수익을 확인하는 곳에 페이지네이션을 넣어, 항목이 5개가 넘어갈 경우 항목이 자동으로 다음 페이지로 넘어갑니다.
+- 명세서가 클릭한 해당 수익 내역과 연결되어 해당 명세만 확인할 수 있습니다.
+- 종류별 내역이 총 수익 내역의 합산 값으로 자동 계산됩니다.
+
+<br>
+
+---
+
+<br>
+
+## Userflow
+
+![userflow](https://github.com/toy2-1/devtube/assets/140046183/84560b82-2bc2-4f3c-8f9c-a5ba2768ae86)
