@@ -66,7 +66,7 @@ const Header = () => {
       zIndex="50"
       background="white">
       <Flex height="8rem" align="center" paddingX="4.75rem">
-        <Heading>
+        <Heading _hover={{ opacity: '0.6' }}>
           <Link to="/">
             <Logo />
           </Link>
@@ -96,13 +96,14 @@ const Header = () => {
                         marginTop="2.5vh"
                         _hover={{
                           color: 'main',
+                          opacity: '0.6',
                         }}>
                         마이페이지
                       </Text>
-                      <Text onClick={() => navigate('/cart')} _hover={{ color: 'main' }}>
+                      <Text onClick={() => navigate('/cart')} _hover={{ color: 'main', opacity: '0.6' }}>
                         장바구니 {cartRooms.length > 0 && `(${cartRooms.length})`}
                       </Text>
-                      <Text onClick={() => navigate('/orderhistory')} _hover={{ color: 'main' }}>
+                      <Text onClick={() => navigate('/orderhistory')} _hover={{ color: 'main', opacity: '0.6' }}>
                         주문내역
                       </Text>
                       <Button

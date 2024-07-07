@@ -247,7 +247,10 @@ const AccommodationItem = () => {
                               onClick={() => handleRoomClick(room)}
                               fontSize="2rem"
                               cursor="pointer"
-                              _hover={{ color: 'main', textDecoration: 'underline' }}>
+                              _hover={{
+                                color: 'main',
+                                opacity: '0.6',
+                              }}>
                               {room.roomTypeName}
                             </Heading>
                             <Box display="flex" flexDirection="column" paddingLeft="1rem" gap=".5rem">

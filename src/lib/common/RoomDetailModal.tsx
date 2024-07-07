@@ -16,7 +16,7 @@ const RoomDetailModal = ({ isOpen, onClose, selectedRooms }: RoomDetailModalProp
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
-      <ModalContent maxWidth="45rem" height="auto" borderRadius="0.8rem">
+      <ModalContent maxWidth="60rem" height="auto" borderRadius="0.8rem">
         <ModalHeader marginTop="1.5rem" fontSize="2rem" fontWeight="600">
           {selectedRooms?.roomTypeName}
         </ModalHeader>
