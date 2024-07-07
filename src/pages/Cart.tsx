@@ -9,7 +9,6 @@ import { useCartStore } from '@/store/cartStore';
 
 const Cart = () => {
   const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);
-  console.log(checkSelectedRooms);
   const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
   const removeCart = useCartStore((state) => state.removeCart);

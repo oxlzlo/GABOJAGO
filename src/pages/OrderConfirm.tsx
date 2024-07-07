@@ -51,11 +51,17 @@ const OrderConfirm = () => {
               <Flex alignItems="center" direction={['column', 'row']}>
                 <Image src={item.imageList} />
                 <Box flex="1">
-                  <Text fontSize="1.8rem">{item.startDate} - {item.endDate}</Text>
-                  <Text fontSize="2rem" fontWeight="900">{item.accommodationName}</Text>
+                  <Text fontSize="1.8rem">
+                    {item.startDate} - {item.endDate}
+                  </Text>
+                  <Text fontSize="2rem" fontWeight="900">
+                    {item.accommodationName}
+                  </Text>
                   <Divider my={6} borderColor="main" />
                   <Text fontSize="1.2rem">{item.roomType}</Text>
-                  <Text fontSize="1.2rem">{item.defaultGuest}인 기준, 최대 {item.maxGuest}인 이용 가능</Text>
+                  <Text fontSize="1.2rem">
+                    {item.defaultGuest}인 기준, 최대 {item.maxGuest}인 이용 가능
+                  </Text>
                   <Divider my={6} borderColor="main" />
                   <Text fontSize="1.2rem">{item.roomPrice.toLocaleString()}원</Text>
                   {/* <Text fontSize="1.2rem">추가 요금: {item.extraPrice.toLocaleString()}원</Text> */}
