@@ -2,7 +2,7 @@ import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import Profile from '../assets/default_profile.png';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 
 const Mypage = () => {
@@ -42,8 +42,6 @@ const Mypage = () => {
         );
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
-          console.log(editPhoneNumber);
-          console.log(response);
           login({ ...user, phone_number: editPhoneNumber });
         } else {
           alert('수정에 실패하였습니다.');
@@ -64,15 +62,12 @@ const Mypage = () => {
         password: newPassword,
       };
 
-      console.log(payload);
-
       try {
         const response = await axios.put(
           'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
           payload,
         );
         if (response.data.result_code === '200') {
-          console.log(response);
           alert('정상적으로 변경되었습니다.');
         }
       } catch (error) {
@@ -100,12 +95,9 @@ const Mypage = () => {
       const formData = new FormData();
       formData.append('imageFile', file);
 
-      console.log('axios 요청 전');
-
       let response;
 
-      if (oldImageUrl && oldImageUrl !== undefined) {
-        console.log('put 할거임');
+      if (oldImageUrl && oldImageUrl !== 'undefined') {
         try {
           response = await axios.put(
             'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/update',
@@ -120,13 +112,10 @@ const Mypage = () => {
               },
             },
           );
-
-          console.log('put try', response);
         } catch (error) {
           console.error('put', error);
         }
       } else {
-        console.log('post 할거임');
         try {
           response = await axios.post(
             'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/upload',
@@ -138,14 +127,12 @@ const Mypage = () => {
               },
             },
           );
-          console.log('post try', response);
         } catch (error) {
           console.error('post', error);
         }
       }
 
       if (response.data.result_code === '200') {
-        console.log(response);
         alert('프로필 사진이 등록되었습니다.');
         const newImgUrl = response.data.data;
         setImgUrl(newImgUrl);
@@ -177,7 +164,7 @@ const Mypage = () => {
                 className="profile_img"
                 alt="Profile"
                 style={{
-                  display: imgUrl ? 'block' : 'none',
+                  display: imgUrl == '' ? 'block' : 'none',
                   position: 'absolute',
                   top: '50%',
                   transform: 'translateY(-50%)',
