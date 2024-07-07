@@ -38,7 +38,7 @@ const RoomDetailModal = ({ isOpen, onClose, selectedRooms }: RoomDetailModalProp
             최대 인원: {selectedRooms.roomMaxGuest}명
           </Text>
           <Text marginTop="2rem" fontWeight="600" fontSize="2rem" borderBottom="1px solid" borderColor="grayLight">
-            객실 소개: {selectedRooms.comment}
+            객실 소개
           </Text>
           <Text fontSize="1.8rem" marginBottom="2rem" color="gray">
             {selectedRooms.comment}
