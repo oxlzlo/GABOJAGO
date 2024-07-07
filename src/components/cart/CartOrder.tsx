@@ -26,7 +26,7 @@ const CartOrder = ({ checkSelectedRooms }: SelectedRoomsProps) => {
           <Box key={`${checkSelectedRoom.room.id} - ${index}`} marginY="4rem">
             <Flex alignItems="center" marginBottom="2rem">
               <Image
-                src={checkSelectedRoom.room.imageList}
+                src={checkSelectedRoom.room.imageList[0].url}
                 alt={checkSelectedRoom.room.roomTypeName}
                 width="8rem"
                 height="8rem"

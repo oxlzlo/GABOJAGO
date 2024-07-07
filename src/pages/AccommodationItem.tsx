@@ -127,7 +127,7 @@ const AccommodationItem = () => {
     if (selectedRoomForCart) {
       const today = new Date();
       const tomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1); 
+      tomorrow.setDate(today.getDate() + 1);
 
       const payload = {
         roomId: selectedRoomForCart.id.toString(),
@@ -191,7 +191,9 @@ const AccommodationItem = () => {
                         width={index === 0 ? '100%' : '100%'}
                         height={index === 0 ? '100%' : '100%'}
                         objectFit="cover"
-                        borderRadius={index === 0 ? '12px 0 0 12px' : index % 2 === 0 ? '0 12px 12px 0' : ''}
+                        borderRadius={
+                          index === 0 ? '1rem 0 0 1rem' : index === 2 ? '0 1rem 0 0' : index === 4 ? '0 0 1rem 0' : ''
+                        }
                       />
                     </GridItem>
                   ))}
@@ -235,7 +237,9 @@ const AccommodationItem = () => {
                                 alt={room.roomTypeName}
                                 width="20vw"
                                 height="30vh"
+                                borderRadius="1rem"
                                 marginBottom="1rem"
+                                _hover={{ cursor: 'pointer', opacity: '0.8' }}
                               />
                             ))}
                           <Flex flexDirection="column" gap=".5rem">
