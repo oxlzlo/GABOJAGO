@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 import { fetchOrderHistory } from '@/api';
 import { AxiosError } from 'axios';
+import { OrderData } from '@/lib/types/order';
 
 const OrderHistory = () => {
-  const [orderHistory, setOrderHistory] = useState([]);
+  const [orderHistory, setOrderHistory] = useState<OrderData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,9 +54,9 @@ const OrderHistory = () => {
           주문 내역
         </Text>
         {orderHistory.length > 0 ? (
-          orderHistory.map((order: any) => (
-            <Box width="100%" mb={6} p={6} border="1px solid" borderColor="main" borderRadius="3xl">
-              <Box key={order.id} width="100%" p={10} mb={3}>
+          orderHistory.map((order) => (
+            <Box key={order.id} width="100%" mb={6} p={6} border="1px solid" borderColor="main" borderRadius="3xl">
+              <Box width="100%" p={10} mb={3}>
                 <Flex alignItems="center" direction={['column', 'row']}>
                   <Box flex="1">
                     {order.doneRoomList.map((room: any) => (
@@ -71,7 +72,7 @@ const OrderHistory = () => {
                         </Text>
 
                         <Text fontSize="1.6rem" color="gray">
-                          {room.startDate} - {room.endDate}
+                          {room.start_date} - {room.end_date}
                         </Text>
                         <Text fontSize="1.4rem" color="gray">
                           체크인 15:00　체크아웃 11:30
