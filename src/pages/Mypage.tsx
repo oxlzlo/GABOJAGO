@@ -1,5 +1,4 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import Profile from '../assets/default_profile.png';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
@@ -14,7 +13,7 @@ const Mypage = () => {
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>(user?.img_url || '');
-  const [oldImageUrl, setOldImageUrl] = useState<string>(user?.img_url || '');
+  const oldImageUrl = user?.img_url;
 
   const token = localStorage.getItem('accessToken');
 

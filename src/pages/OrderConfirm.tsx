@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Flex, Text, Image, Divider } from '@chakra-ui/react';
 import instance from '@/api';
+import { OrderData } from '@/lib/types/order';
 
 const OrderConfirm = () => {
   const { orderId } = useParams();
-  const [orderData, setOrderData] = useState(null);
+  const [orderData, setOrderData] = useState<OrderData>({
+    createdAt: '',
+    doneRoomList: [],
+    id: 0,
+    isActive: true,
+    totalPrice: 0,
+    status: '',
+    updatedAt: '',
+  });
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -64,7 +73,6 @@ const OrderConfirm = () => {
                   </Text>
                   <Divider my={6} borderColor="main" />
                   <Text fontSize="1.2rem">{item.roomPrice.toLocaleString()}원</Text>
-                  {/* <Text fontSize="1.2rem">추가 요금: {item.extraPrice.toLocaleString()}원</Text> */}
                 </Box>
               </Flex>
             </Box>
