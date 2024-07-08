@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Flex, Box, Text, Checkbox, useTheme, Tooltip } from '@chakra-ui/react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OrderDetails from '@/components/OrderDetails';
-import { CombinedAccommodationRooms, Rooms } from '@/lib/types/accommodation';
+import { Rooms } from '@/lib/types/accommodation';
 import { CustomCheckboxProps } from '@/lib/types/customCheckbox';
 import { createOrder } from '@/api';
+import { selectedItems } from '@/lib/types/order';
 
 const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +32,9 @@ const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
 };
 
 const Order = () => {
-  const { orderId } = useParams();
   const location = useLocation();
-  const selectedItems: CombinedAccommodationRooms[] = location.state?.selectedItems || [];
-  const selectedRoom: Rooms = location.state?.selectedRoom || null; // Add selectedRoom
+  const selectedItems: selectedItems[] = location.state?.selectedItems || [];
+  const selectedRoom: Rooms = location.state?.selectedRoom || null;
   const theme = useTheme();
   const navigate = useNavigate();
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -46,40 +46,31 @@ const Order = () => {
   const handlePayment = async () => {
     if (isCheckboxChecked) {
       try {
-        const requestOrderList = selectedItems.length > 0 
-          ? selectedItems.map(item => ({
-            id: item.room.id,
-            startDate: item.start_date,
-            endDate: item.end_date
-          })) 
-          : [{
-            id: selectedRoom.id,
-            startDate: selectedRoom.startDate, // Use the correct startDate
-            endDate: selectedRoom.endDate, // Use the correct endDate
-          }];
+        const requestOrderList =
+          selectedItems.length > 0
+            ? selectedItems.map((item) => ({
+                id: item.room.id,
+                startDate: item.start_date,
+                endDate: item.end_date,
+              }))
+            : [
+                {
+                  id: selectedRoom.id,
+                  startDate: selectedRoom.start_date,
+                  endDate: selectedRoom.start_date,
+                },
+              ];
 
-        const totalPrice = selectedItems.length > 0 
-          ? selectedItems.reduce(
-            (accumulator: number, current: CombinedAccommodationRooms) =>
-              accumulator + current.room.roomPrice,
-            0
-          ) 
-          : selectedRoom.roomPrice;
+        const totalPrice =
+          selectedItems.length > 0
+            ? selectedItems.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+            : selectedRoom.roomPrice;
 
         const response = await createOrder({ requestOrderList, totalPrice });
 
-        console.log('Order Data:', response); // 응답 데이터 로그
-
         navigate(`/order/payment/${response.data.data.id}`);
       } catch (error) {
-        if (error.response) {
-          console.error('결제 처리 중 오류 발생 - 응답 데이터:', error.response.data);
-          console.error('결제 처리 중 오류 발생 - 응답 상태 코드:', error.response.status);
-        } else if (error.request) {
-          console.error('결제 처리 중 오류 발생 - 요청 데이터:', error.request);
-        } else {
-          console.error('결제 처리 중 오류 발생 - 메시지:', error.message);
-        }
+        console.error('주문 생성 실패:', error);
       }
     }
   };
@@ -92,13 +83,10 @@ const Order = () => {
     );
   }
 
-  const totalAmount = selectedItems.length > 0 
-    ? selectedItems.reduce(
-      (accumulator: number, current: CombinedAccommodationRooms) =>
-        accumulator + current.room.roomPrice,
-      0
-    ) 
-    : selectedRoom.roomPrice;
+  const totalAmount =
+    selectedItems.length > 0
+      ? selectedItems.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+      : selectedRoom.roomPrice;
 
   return (
     <>

@@ -1,8 +1,9 @@
-import { CombinedAccommodationRooms, Rooms } from '@/lib/types/accommodation';
+import { Rooms } from '@/lib/types/accommodation';
+import { selectedItems } from '@/lib/types/order';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 type OrderDetailsProps = {
-  selectedItems: CombinedAccommodationRooms[];
+  selectedItems: selectedItems[];
   selectedRoom: Rooms | undefined;
 };
 
@@ -72,12 +73,12 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                   <Flex paddingY="5rem" gap="2rem">
                     <Box>
                       <Text fontSize="1.5rem">체크인</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.startDate}</Text> {/* Use the correct startDate */}
+                      <Text fontSize="1.3rem">{selectedRoom.start_date}</Text> {/* Use the correct startDate */}
                       <Text fontSize="1.3rem">15:30</Text>
                     </Box>
                     <Box>
                       <Text fontSize="1.5rem">체크아웃</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.endDate}</Text> {/* Use the correct endDate */}
+                      <Text fontSize="1.3rem">{selectedRoom.end_date}</Text> {/* Use the correct endDate */}
                       <Text fontSize="1.3rem">11:00</Text>
                     </Box>
                   </Flex>

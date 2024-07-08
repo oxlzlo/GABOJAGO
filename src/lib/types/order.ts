@@ -9,3 +9,11 @@ export type OrderData = {
   status: string;
   updatedAt: string;
 };
+
+export type selectedItems = {
+  room: Rooms;
+  id: number;
+  start_date: string;
+  end_date: string;
+  cart_item_id: number;
+};
