@@ -37,8 +37,8 @@ const AccommodationItem = () => {
     roomDefaultGuest: 0,
     roomMaxGuest: 0,
     comment: '',
-    startDate: '', // 추가
-    endDate: '', // 추가
+    start_date: '',
+    end_date: '',
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -126,8 +126,8 @@ const AccommodationItem = () => {
       roomDefaultGuest: 0,
       roomMaxGuest: 0,
       comment: '',
-      startDate: '', // 초기화
-      endDate: '', // 초기화
+      start_date: '',
+      end_date: '',
     });
   };
 

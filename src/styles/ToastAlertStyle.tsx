@@ -1,6 +1,6 @@
 import { ToastAlertProps } from '@/lib/types/toastAlertProps';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
-import { Box, Button, CloseButton, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, CloseButton, Text } from '@chakra-ui/react';
 
 const ToastAlertStyle = ({
   title,
