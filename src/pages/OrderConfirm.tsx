@@ -54,21 +54,21 @@ const OrderConfirm = () => {
           결제 확인
         </Text>
         <Box width="100%" p={6} border="1px solid" borderColor="main" borderRadius="3xl">
-          {doneRoomList.map((item: any) => (
+          {doneRoomList.map((item) => (
             <Box key={item.id} width="100%" p={10} mb={3}>
               <Flex alignItems="center" direction={['column', 'row']}>
-                <Image src={item.imageList} />
+                <Image src={item.imageList[0].url} />
                 <Box flex="1">
                   <Text fontSize="1.8rem">
-                    {item.startDate} - {item.endDate}
+                    {item.start_date} - {item.end_date}
                   </Text>
                   <Text fontSize="2rem" fontWeight="900">
-                    {item.accommodationName}
+                    {item.roomTypeName}
                   </Text>
                   <Divider my={6} borderColor="main" />
                   <Text fontSize="1.2rem">{item.roomType}</Text>
                   <Text fontSize="1.2rem">
-                    {item.defaultGuest}인 기준, 최대 {item.maxGuest}인 이용 가능
+                    {item.roomDefaultGuest}인 기준, 최대 {item.roomMaxGuest}인 이용 가능
                   </Text>
                   <Divider my={6} borderColor="main" />
                   <Text fontSize="1.2rem">{item.roomPrice.toLocaleString()}원</Text>

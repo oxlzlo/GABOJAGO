@@ -58,13 +58,13 @@ const OrderHistory = () => {
               <Box width="100%" p={10} mb={3}>
                 <Flex alignItems="center" direction={['column', 'row']}>
                   <Box flex="1">
-                    {order.doneRoomList.map((room: any) => (
+                    {order.doneRoomList.map((room) => (
                       <Box key={room.id}>
                         <Text fontSize="1.4rem">주문번호　{order.id}</Text>
                         <Text fontSize="1.4rem">주문일시　{new Date(order.createdAt).toLocaleString()}</Text>
                         <Divider my={6} borderColor="main" />
                         <Text fontSize="2.6rem" fontWeight="900">
-                          {room.accommodationName}
+                          {room.roomTypeName}
                         </Text>
                         <Text fontSize="1.6rem" color="gray">
                           {room.roomTypeName}
