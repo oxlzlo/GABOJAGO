@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: `${process.env.PUBLIC_BACKEND_PROXY}`,
+  baseURL: '',
 });
 
 instance.interceptors.request.use(
@@ -30,7 +30,7 @@ export const fetchAccommodation = async (
   end: string,
   count: number,
 ) => {
-  return instance.get('/open-api/accommodation', {
+  return instance.get('/api/open-api/accommodation', {
     params: {
       cursor,
       keyword,
@@ -43,40 +43,40 @@ export const fetchAccommodation = async (
 
 // 개별 상품 조회 (숙박, 객실)
 export const fetchAccommodationById = (accommodationId: string) => {
-  return instance.get(`/open-api/accommodation/${accommodationId}`);
+  return instance.get(`/api/open-api/accommodation/${accommodationId}`);
 };
 
 // 전체 객실 조회
 export const fetchRoomList = (accommodationId: string) => {
-  return instance.get(`/open-api/accommodation/${accommodationId}/room`);
+  return instance.get(`/api/open-api/accommodation/${accommodationId}/room`);
 };
 
 // 장바구니 조회
 export const fetchCartItems = () => {
-  return instance.get('/api/user/cartItems');
+  return instance.get('/api/api/user/cartItems');
 };
 
 // 장바구니 생성
 export const fetchCreateCartItems = (payload: { roomId: string }) => {
-  return instance.post('/api/user/cartItems', payload);
+  return instance.post('/api/api/user/cartItems', payload);
 };
 
 // 장바구니 삭제
 export const fetchDeleteCartItems = (cartItemId: number) => {
-  return instance.delete('/api/user/cartItems', {
+  return instance.delete('/api/api/user/cartItems', {
     data: { cartItemIdList: [cartItemId] },
   });
 };
 
 // 장바구니 모두 삭제
 export const fetchDeleteAllCartItems = () => {
-  return instance.delete('/api/user/cartItems/delete-all');
+  return instance.delete('/api/api/user/cartItems/delete-all');
 };
 
 // 주문하기
 export const createOrder = async (orderData: any) => {
   try {
-    const response = await instance.post('/api/order', orderData);
+    const response = await instance.post('/api/api/order', orderData);
     return response;
   } catch (error) {
     console.error('오류: 주문 내역 생성 실패. (주문하기)', error);
@@ -87,7 +87,7 @@ export const createOrder = async (orderData: any) => {
 // 주문확인
 export const fetchOrderById = async (orderId: string) => {
   try {
-    const response = await instance.get(`/api/order/${orderId}`);
+    const response = await instance.get(`/api/api/order/${orderId}`);
     return response.data;
   } catch (error) {
     console.error('오류: 주문 내역 불러오기 실패. (결제 확인)', error);
@@ -98,7 +98,7 @@ export const fetchOrderById = async (orderId: string) => {
 // 주문내역 확인
 export const fetchOrderHistory = async () => {
   try {
-    const response = await instance.get('/api/order');
+    const response = await instance.get('/api/api/order');
     return response.data;
   } catch (error) {
     console.error('오류: 주문 내역 불러오기 실패.', error);
