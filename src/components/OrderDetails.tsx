@@ -8,11 +8,6 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
     return <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>;
   }
 
-  const formatPrice = (price: number) => {
-    if (price === undefined || price === null) return 'N/A';
-    return `${price.toLocaleString('ko-KR', { style: 'decimal', currency: 'KRW' })}원`;
-  };
-
   return (
     <>
       <Flex>
@@ -65,7 +60,7 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                   borderColor="grayLight"
                   borderRadius="2rem">
                   <Text fontSize="3rem" fontWeight="900">
-                    {selectedRoom.roomTypeName} {/* 숙소 이름 */}
+                    {selectedRoom.roomTypeName}
                   </Text>
                   <Text fontSize="1.5rem">룸 타입: {selectedRoom.roomType}</Text>
                   <Flex paddingY="5rem" gap="2rem">

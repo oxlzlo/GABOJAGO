@@ -10,13 +10,5 @@ export const CartCheckbox = ({ cartRoom, isChecked, onHandleSelectRooms, ...prop
     onHandleSelectRooms(cartRoom, event.target.checked);
   };
 
-  return (
-    <Checkbox
-      {...props}
-      isChecked={isChecked}
-      onChange={handleChange}
-      size="lg" // 체크박스 크기를 크게 설정
-      colorScheme="teal"
-    />
-  );
+  return <Checkbox {...props} isChecked={isChecked} onChange={handleChange} size="lg" colorScheme="teal" />;
 };
