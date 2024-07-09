@@ -3,7 +3,6 @@ import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
-// import instance from '@/api';
 import axios from 'axios';
 
 const Mypage = () => {

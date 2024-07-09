@@ -4,7 +4,6 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
-// import instance from '@/api';
 import axios from 'axios';
 
 const SignIn = () => {
