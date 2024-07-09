@@ -1,11 +1,5 @@
-import { Rooms } from '@/lib/types/accommodation';
-import { selectedItems } from '@/lib/types/order';
+import { OrderDetailsProps } from '@/lib/types/order';
 import { Box, Flex, Text } from '@chakra-ui/react';
-
-type OrderDetailsProps = {
-  selectedItems: selectedItems[];
-  selectedRoom: Rooms | undefined;
-};
 
 const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
   const hasSelectedItems = selectedItems && selectedItems.length > 0;
@@ -14,7 +8,7 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
     return <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>;
   }
 
-  const formatPrice = (price: number | undefined) => {
+  const formatPrice = (price: number) => {
     if (price === undefined || price === null) return 'N/A';
     return `${price.toLocaleString('ko-KR', { style: 'decimal', currency: 'KRW' })}원`;
   };
@@ -54,7 +48,11 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                     기준 {selectedItem.room.roomDefaultGuest}인 / 최대 {selectedItem.room.roomMaxGuest}인
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
-                    가격: <span style={{ color: 'red' }}>{formatPrice(selectedItem.room.roomPrice)}</span>
+                    가격:{' '}
+                    {`${selectedItem.room.roomPrice.toLocaleString('ko-KR', {
+                      style: 'decimal',
+                      currency: 'KRW',
+                    })}원`}
                   </Text>
                 </Box>
               ))
@@ -86,10 +84,20 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                     기준 {selectedRoom.roomDefaultGuest}인 / 최대 {selectedRoom.roomMaxGuest}인
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
-                    가격: <span style={{ color: 'red' }}>{formatPrice(selectedRoom.roomPrice)}</span>
+                    가격:{' '}
+                    <span style={{ color: 'red' }}>
+                      {`${selectedRoom.roomPrice.toLocaleString('ko-KR', {
+                        style: 'decimal',
+                        currency: 'KRW',
+                      })}원`}
+                    </span>
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
-                    추가 요금: <span style={{ color: 'red' }}>{formatPrice(selectedRoom.roomExtraPrice)}</span>
+                    추가 요금:
+                    {`${selectedRoom.roomExtraPrice.toLocaleString('ko-KR', {
+                      style: 'decimal',
+                      currency: 'KRW',
+                    })}원`}
                   </Text>
                 </Box>
               )}

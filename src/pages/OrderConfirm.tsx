@@ -39,8 +39,6 @@ const OrderConfirm = () => {
     );
   }
 
-  const { doneRoomList, totalPrice } = orderData;
-
   return (
     <Flex
       direction="column"
@@ -54,7 +52,7 @@ const OrderConfirm = () => {
           결제 확인
         </Text>
         <Box width="100%" p={6} border="1px solid" borderColor="main" borderRadius="3xl">
-          {doneRoomList.map((item) => (
+          {orderData.doneRoomList.map((item) => (
             <Box key={item.id} width="100%" p={10} mb={3}>
               <Flex alignItems="center" direction={['column', 'row']}>
                 <Image src={item.imageList[0].url} />
@@ -79,7 +77,7 @@ const OrderConfirm = () => {
           <Box width="100%" p={10} mt={20}>
             <Flex justifyContent="right" width="100%" fontSize="2.4rem" fontWeight="700">
               <Text>총 결제금액</Text>
-              <Text ml={6}>{totalPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })}</Text>
+              <Text ml={6}>{orderData.totalPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })}</Text>
             </Flex>
           </Box>
         </Box>

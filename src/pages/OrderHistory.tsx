@@ -6,7 +6,7 @@ import { OrderData } from '@/lib/types/order';
 
 const OrderHistory = () => {
   const [orderHistory, setOrderHistory] = useState<OrderData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getOrderHistory = async () => {

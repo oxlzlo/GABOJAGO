@@ -17,3 +17,8 @@ export type selectedItems = {
   end_date: string;
   cart_item_id: number;
 };
+
+export type OrderDetailsProps = {
+  selectedItems: selectedItems[];
+  selectedRoom: Rooms;
+};
