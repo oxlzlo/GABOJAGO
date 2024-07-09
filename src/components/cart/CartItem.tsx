@@ -107,9 +107,6 @@ const CartItem = ({
                   {cartRoom.room.roomTypeName}
                 </Text>
                 <Text fontSize="1.5rem">{cartRoom.room.roomType}</Text>
-                {/* <Text fontSize="1.2rem">
-                  평점: {cartRoom.rating} / 리뷰 수: {cartRoom.reviewCount}
-                </Text> */}
               </Box>
             </Flex>
             <Divider borderColor="main" />

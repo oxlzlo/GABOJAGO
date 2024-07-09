@@ -20,7 +20,6 @@ const OrderConfirm = () => {
     const fetchOrderData = async () => {
       try {
         const response = await instance.get(`/api/order/${orderId}`);
-        console.log('Order Data:', response.data);
         setOrderData(response.data.data);
       } catch (error) {
         console.error('주문 데이터를 불러오는 중 오류 발생:', error);

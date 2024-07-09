@@ -12,7 +12,6 @@ const OrderHistory = () => {
     const getOrderHistory = async () => {
       try {
         const data = await fetchOrderHistory();
-        console.log('Fetched order history:', data); // 주문 데이터 주문번호 역순 정렬
         const sortedData = data.data.sort(
           (a: { createdAt: string }, b: { createdAt: string }) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
