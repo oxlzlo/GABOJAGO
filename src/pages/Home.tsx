@@ -23,7 +23,7 @@ const Home = () => {
       const guest = query.get('guest') || '2';
 
       try {
-        const url = `/api/open-api/accommodation`;
+        const url = `/open-api/accommodation`;
         const response = await axios.get(url, {
           params: { keyword, start, end, guest },
         });

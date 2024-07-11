@@ -186,10 +186,10 @@ const AccommodationItem = () => {
                   fontSize="2.5rem"
                   fontWeight="600"
                   marginBottom="2rem">
-                  {`${accommodation.price.toLocaleString('ko-KR', {
+                  {/* {`${accommodation.price.toLocaleString('ko-KR', {
                     style: 'decimal',
                     currency: 'KRW',
-                  })}원`}
+                  })}원`} */}
                 </Text>
                 <Grid
                   templateColumns="repeat(4, 1fr)"
@@ -350,10 +350,10 @@ const AccommodationItem = () => {
             <Text>객실 타입: {selectedRooms.roomType}</Text>
             <Text>
               가격:{' '}
-              {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
+              {/* {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
                 style: 'decimal',
                 currency: 'KRW',
-              })}원`}
+              })}원`} */}
             </Text>
           </Box>
         }
