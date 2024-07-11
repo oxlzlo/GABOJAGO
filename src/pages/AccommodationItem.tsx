@@ -204,7 +204,7 @@ const AccommodationItem = () => {
                       <Image
                         src={image.url}
                         alt={accommodation.name}
-                        width={index === 0 ? '100%' : '100%'}
+                        width="100%"
                         height={index === 0 ? '100%' : '100%'}
                         objectFit="cover"
                         borderRadius={
@@ -288,6 +288,16 @@ const AccommodationItem = () => {
                           </Flex>
                         </Flex>
                         <Flex gap=".5rem" alignItems="end">
+                          <Box
+                            border="1px solid"
+                            borderColor="grayLight"
+                            borderRadius=".5rem"
+                            padding=".5rem"
+                            marginRight="1rem">
+                            <Text fontSize="1.8rem">
+                              객실 재고: <span style={{ color: 'red' }}>{room.roomStock}</span>
+                            </Text>
+                          </Box>
                           <Button
                             onClick={() => handleAddToCart(room.id.toString())}
                             paddingY="1.8rem"
@@ -299,7 +309,8 @@ const AccommodationItem = () => {
                             _hover={{
                               background: 'main',
                               color: 'white',
-                            }}>
+                            }}
+                            disabled={room.roomStock === 0}>
                             <Cart width="3rem" height="3.5rem" />
                           </Button>
                           <Flex flexDirection="column" gap="1rem">
@@ -328,7 +339,8 @@ const AccommodationItem = () => {
                               _hover={{
                                 background: 'primaryHover',
                                 color: 'white',
-                              }}>
+                              }}
+                              disabled={room.roomStock === 0}>
                               지금 예약하기
                             </Button>
                           </Flex>
@@ -352,10 +364,10 @@ const AccommodationItem = () => {
             <Text>객실 타입: {selectedRooms.roomType}</Text>
             <Text>
               가격:{' '}
-              {/* {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
+              {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
                 style: 'decimal',
                 currency: 'KRW',
-              })}원`} */}
+              })}원`}
             </Text>
           </Box>
         }
