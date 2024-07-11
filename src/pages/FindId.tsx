@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -15,9 +15,9 @@ const FindId = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.get(
-        `http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/find-email/username/${username}/phone-number/${phoneNumber}`,
-      );
+      const url = `/api/open-api/user/find-email/username/${username}/phone-number/${phoneNumber}`;
+      const response = await axios.get(url);
+
       setEmail(response.data.data);
       setError('');
     } catch (err) {
@@ -69,7 +69,8 @@ const FindId = () => {
                   backgroundColor="main"
                   fontSize="1.5rem"
                   color="white"
-                  _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}>
+                  _hover={{ border: '.1rem solid var(--color-main)', bg: 'background', color: 'main' }}
+                  onClick={handleSubmit}>
                   Find ID
                 </Button>
                 <Text

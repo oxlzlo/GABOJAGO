@@ -37,6 +37,8 @@ const AccommodationItem = () => {
     roomDefaultGuest: 0,
     roomMaxGuest: 0,
     comment: '',
+    start_date: '',
+    end_date: '',
   });
   const [roomList, setRoomList] = useState<Rooms[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +74,17 @@ const AccommodationItem = () => {
    */
   const handleConfirm = () => {
     if (selectedRooms) {
-      navigation(`/order/${selectedRooms.id}`, { state: selectedRooms });
+      const today = new Date();
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+
+      const updatedSelectedRooms = {
+        ...selectedRooms,
+        startDate: today.toISOString().split('T')[0], // 오늘 날짜
+        endDate: tomorrow.toISOString().split('T')[0], // 내일 날짜
+      };
+
+      navigation(`/order/${selectedRooms.id}`, { state: { selectedRoom: updatedSelectedRooms } });
     }
     onClose();
   };
@@ -114,6 +126,8 @@ const AccommodationItem = () => {
       roomDefaultGuest: 0,
       roomMaxGuest: 0,
       comment: '',
+      start_date: '',
+      end_date: '',
     });
   };
 
@@ -336,10 +350,10 @@ const AccommodationItem = () => {
             <Text>객실 타입: {selectedRooms.roomType}</Text>
             <Text>
               가격:{' '}
-              {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
+              {/* {`${selectedRooms.roomPrice.toLocaleString('ko-KR', {
                 style: 'decimal',
                 currency: 'KRW',
-              })}원`}
+              })}원`} */}
             </Text>
           </Box>
         }

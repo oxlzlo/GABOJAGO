@@ -1,6 +1,6 @@
 import { ToastAlertProps } from '@/lib/types/toastAlertProps';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
-import { Box, Button, CloseButton, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, CloseButton, Text } from '@chakra-ui/react';
 
 const ToastAlertStyle = ({
   title,
@@ -33,16 +33,18 @@ const ToastAlertStyle = ({
           </Text>
           <Text fontSize="1.3rem">{description}</Text>
         </Box>
-        <Button
-          onClick={handleGoToCart}
-          fontSize="1.5rem"
-          marginLeft="2rem"
-          padding="1.8rem"
-          color="black"
-          background="white"
-          _hover={{ backgroundColor: 'grayLight' }}>
-          장바구니로 이동
-        </Button>
+        {status === 'success' && (
+          <Button
+            onClick={handleGoToCart}
+            fontSize="1.5rem"
+            marginLeft="2rem"
+            padding="1.8rem"
+            color="black"
+            background="white"
+            _hover={{ backgroundColor: 'grayLight' }}>
+            장바구니로 이동
+          </Button>
+        )}
       </Box>
       <Box paddingLeft="1rem" paddingBottom="5rem">
         <CloseButton color="white" onClick={onClose} />

@@ -11,10 +11,10 @@ const Footer = () => {
           </Text>
         </Box>
         <Text fontSize="1.8rem" color="white">
-          온라인 여행 및 관련 서비스 분야이고, 사용자와 거리를 좁히고 친근하게 다가갑니다.
+          온라인 숙박 및 관련 서비스 분야이고, 사용자와 거리를 좁히고 친근하게 다가갑니다.
         </Text>
         <Box display="flex" justifyContent="center" padding="1rem">
-          <Link to="https://github.com/your-username/your-repository">
+          <Link to="https://github.com/mini-team1">
             <Text
               fontSize="1.8rem"
               color="white"

@@ -2,8 +2,8 @@ import { Box, Flex, Button } from '@chakra-ui/react';
 import Logo from '@/assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Resetpw = () => {
   const [email, setEmail] = useState('');
@@ -34,10 +34,7 @@ const Resetpw = () => {
     };
 
     try {
-      const response = await axios.put(
-        'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
-        payload,
-      );
+      const response = await axios.put(`/api/open-api/user/change-password`, payload);
       if (response.data.result_code === '200') {
         alert('패스워드가 정상적으로 변경되었습니다.');
         navigate('/signin');

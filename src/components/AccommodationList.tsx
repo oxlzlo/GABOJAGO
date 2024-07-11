@@ -1,6 +1,6 @@
 import { fetchAccommodation } from '@/api';
 import { Accommodation, AccommodationListProps } from '@/lib/types/accommodation';
-import { Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link, useLocation } from 'react-router-dom';
@@ -51,9 +51,9 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
         loadMore={loadMore}
         hasMore={hasMore}
         loader={
-          <Heading display="flex" justifyContent="center" key={0}>
-            Loading...
-          </Heading>
+          <Text display="flex" justifyContent="center" key={0}>
+            ...
+          </Text>
         }>
         <Grid
           templateColumns={{

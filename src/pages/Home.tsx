@@ -23,13 +23,20 @@ const Home = () => {
       const guest = query.get('guest') || '2';
 
       try {
-        const response = await axios.get(
-          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/accommodation',
-          { params: { keyword, start, end, guest } },
-        );
-        setAccommodationData(response.data.data.content);
+        const url = `/open-api/accommodation`;
+        const response = await axios.get(url, {
+          params: { keyword, start, end, guest },
+        });
+
+        if (response.data && response.data.data && response.data.data.content) {
+          setAccommodationData(response.data.data.content);
+        } else {
+          console.error('Unexpected API response structure', response.data);
+          setAccommodationData([]); // 기본 값으로 빈 배열 설정
+        }
       } catch (error) {
         console.error('검색어 필터링 오류', error);
+        setAccommodationData([]); // 오류 발생 시 기본 값으로 빈 배열 설정
       }
     };
     fetchFilteredData();

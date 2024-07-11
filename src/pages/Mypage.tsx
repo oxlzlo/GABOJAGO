@@ -1,10 +1,9 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import Profile from '../assets/default_profile.png';
 import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
-import axios from 'axios';
 import { User } from '@/lib/types/authStore';
+import axios from 'axios';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -14,7 +13,7 @@ const Mypage = () => {
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>(user?.img_url || '');
-  const [oldImageUrl, setOldImageUrl] = useState<string>(user?.img_url || '');
+  const oldImageUrl = user?.img_url;
 
   const token = localStorage.getItem('accessToken');
 
@@ -32,15 +31,11 @@ const Mypage = () => {
       };
 
       try {
-        const response = await axios.put(
-          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/change-phone-number',
-          payload,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await axios.put(`/api/api/user/my-page/change-phone-number`, payload, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
           login({ ...user, phone_number: editPhoneNumber } as User);
@@ -64,10 +59,7 @@ const Mypage = () => {
       };
 
       try {
-        const response = await axios.put(
-          'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/change-password',
-          payload,
-        );
+        const response = await axios.put(`/api/open-api/user/change-password`, payload);
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
         }
@@ -100,34 +92,26 @@ const Mypage = () => {
 
       if (oldImageUrl && oldImageUrl !== 'undefined') {
         try {
-          response = await axios.put(
-            'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/update',
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-              },
-              params: {
-                oldImageUrl: oldImageUrl,
-              },
+          response = await axios.put(`/api/api/user/my-page/image/update`, formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
             },
-          );
+            params: {
+              oldImageUrl: oldImageUrl,
+            },
+          });
         } catch (error) {
           console.error('put', error);
         }
       } else {
         try {
-          response = await axios.post(
-            'http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/api/user/my-page/image/upload',
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-              },
+          response = await axios.post(`/api/api/user/my-page/image/upload`, formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
             },
-          );
+          });
         } catch (error) {
           console.error('post', error);
         }

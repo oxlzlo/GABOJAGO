@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { DatepickerStyleProps, CustomInputProps } from '../lib/types/Datepicker';
 import emotionStyled from '@emotion/styled';
 
-const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick, style, ...props }, ref) => (
+const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick, style }, ref) => (
   <Input
     height="5vh"
     paddingLeft="3vw"
@@ -35,7 +35,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onC
   />
 ));
 
-function Datepicker({ value, onChange, style }: DatepickerStyleProps) {
+function Datepicker({ onChange, style }: DatepickerStyleProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const handleDateChange = (date: Date | null) => {
