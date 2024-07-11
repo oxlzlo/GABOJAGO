@@ -22,7 +22,7 @@ import { ToastAlert } from '@/lib/common/ToastAlert';
 import { useCartStore } from '@/store/cartStore';
 
 const AccommodationItem = () => {
-  const { accommodationId } = useParams<string>();
+  const { accommodationId } = useParams();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -46,7 +46,8 @@ const AccommodationItem = () => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
-    fetchAccommodationById(accommodationId as string)
+    const accommodationIdNumber = parseInt(accommodationId ?? '0', 10);
+    fetchAccommodationById(accommodationIdNumber)
       .then((response) => {
         const { data } = response.data;
         setAccommodations([data]);
@@ -58,7 +59,8 @@ const AccommodationItem = () => {
   }, [accommodationId]);
 
   useEffect(() => {
-    fetchRoomList(accommodationId as string)
+    const accommodationIdNumber = parseInt(accommodationId ?? '0', 10);
+    fetchRoomList(accommodationIdNumber)
       .then((response) => {
         const { data } = response.data;
         setRoomList(data);
@@ -144,7 +146,7 @@ const AccommodationItem = () => {
       tomorrow.setDate(today.getDate() + 1);
 
       const payload = {
-        roomId: selectedRoomForCart.id.toString(),
+        roomId: selectedRoomForCart.id,
         startDate: today,
         endDate: tomorrow,
       };

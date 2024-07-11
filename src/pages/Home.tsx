@@ -23,7 +23,7 @@ const Home = () => {
       const guest = query.get('guest') || '2';
 
       try {
-        const url = `/open-api/accommodation`;
+        const url = `http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com//open-api/accommodation`;
         const response = await axios.get(url, {
           params: { keyword, start, end, guest },
         });

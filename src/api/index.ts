@@ -41,12 +41,12 @@ export const fetchAccommodation = async (
 };
 
 // 개별 상품 조회 (숙박, 객실)
-export const fetchAccommodationById = (accommodationId: string) => {
+export const fetchAccommodationById = (accommodationId: number) => {
   return instance.get(`/open-api/accommodation/${accommodationId}`);
 };
 
 // 전체 객실 조회
-export const fetchRoomList = (accommodationId: string) => {
+export const fetchRoomList = (accommodationId: number) => {
   return instance.get(`/open-api/accommodation/${accommodationId}/room`);
 };
 
@@ -56,7 +56,7 @@ export const fetchCartItems = () => {
 };
 
 // 장바구니 생성
-export const fetchCreateCartItems = (payload: { roomId: string }) => {
+export const fetchCreateCartItems = (payload: { roomId: number }) => {
   return instance.post('/api/user/cartItems', payload);
 };
 
