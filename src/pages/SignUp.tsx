@@ -49,7 +49,10 @@ const SignUp = () => {
     };
 
     try {
-      const response = await instance.post(`/api/open-api/user/register`, payload);
+      const response = await instance.post(
+        `http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/register`,
+        payload,
+      );
       if (response.data.result_code === '201') {
         alert('회원가입이 정상적으로 처리되었습니다.');
         navigate('/signin');

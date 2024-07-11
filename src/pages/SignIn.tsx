@@ -4,7 +4,7 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
-import axios from 'axios';
+import { fetchUserLogin } from '@/api';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -18,27 +18,26 @@ const SignIn = () => {
       password,
     };
 
-    try {
-      const url = `/api/open-api/user/login`;
-
-      const response = await axios.post(url, payload);
-      if (response.data.result_code === '200') {
-        alert('로그인 되었습니다');
-        localStorage.setItem('accessToken', response.data.data.access_token);
-        localStorage.setItem('refreshToken', response.data.data.refresh_token);
-        login({
-          email,
-          password,
-          name: response.data.data.name,
-          phone_number: response.data.data.phone_number,
-          img_url: response.data.data.img_url,
-        });
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('로그인 에러', error);
-      alert('로그인에 실패하였습니다.');
-    }
+    fetchUserLogin(payload)
+      .then((response) => {
+        if (response.data.result_code === '200') {
+          alert('로그인 되었습니다');
+          localStorage.setItem('accessToken', response.data.data.access_token);
+          localStorage.setItem('refreshToken', response.data.data.refresh_token);
+          login({
+            email,
+            password,
+            name: response.data.data.name,
+            phone_number: response.data.data.phone_number,
+            img_url: response.data.data.img_url,
+          });
+          navigate('/');
+        }
+      })
+      .catch((error) => {
+        console.error('로그인 오류', error);
+        alert('이메일과 비밀번호를 확인해주세요.');
+      });
   };
 
   const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {

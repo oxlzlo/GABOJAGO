@@ -21,6 +21,10 @@ instance.interceptors.request.use(
 
 export default instance;
 
+export const fetchUserLogin = (payload: { email: string; password: string }) => {
+  return instance.post('/open-api/user/login', payload);
+};
+
 // 전체 상품 조회 (숙박)
 export const fetchAccommodation = async (
   cursor: number,
