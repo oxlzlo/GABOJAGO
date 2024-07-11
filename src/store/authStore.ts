@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { User, AuthState } from '../lib/types/authStore';
 import { useEffect } from 'react';
 
