@@ -21,8 +21,29 @@ instance.interceptors.request.use(
 
 export default instance;
 
+// 회원가입
+export const fetchUserRegister = (payload: { email: string; name: string; phone_number: string; password: string }) => {
+  return instance.post('/open-api/user/register', payload);
+};
+
+// 로그인
 export const fetchUserLogin = (payload: { email: string; password: string }) => {
   return instance.post('/open-api/user/login', payload);
+};
+
+// 아이디 찾기
+export const fetchUserFindId = async (username: string, phoneNumber: string) => {
+  return instance.get('/open-api/user/find-email', {
+    params: {
+      username,
+      phoneNumber,
+    },
+  });
+};
+
+// 패스워드 재설정
+export const fetchUserResetPw = async (payload: { email: string; password: string }) => {
+  return instance.put('/open-api/user/change-password', payload);
 };
 
 // 전체 상품 조회 (숙박)
