@@ -3,7 +3,7 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { fetchUserFindId } from '@/api';
 
 const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -14,16 +14,15 @@ const FindId = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    try {
-      const url = `/api/open-api/user/find-email/username/${username}/phone-number/${phoneNumber}`;
-      const response = await axios.get(url);
-
-      setEmail(response.data.data);
-      setError('');
-    } catch (err) {
-      console.error(err);
-      setError('입력하신 정보와 일치하는 계정이 존재하지 않습니다.');
-    }
+    fetchUserFindId(username, phoneNumber)
+      .then((response) => {
+        setEmail(response.data.data);
+        setError('');
+      })
+      .catch((error) => {
+        console.error(error);
+        setError('입력하신 정보와 일치하는 계정이 존재하지 않습니다.');
+      });
   };
 
   const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {

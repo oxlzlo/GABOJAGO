@@ -31,6 +31,16 @@ export const fetchUserLogin = (payload: { email: string; password: string }) => 
   return instance.post('/open-api/user/login', payload);
 };
 
+// 아이디 찾기
+export const fetchUserFindId = async (username: string, phoneNumber: string) => {
+  return instance.get('/open-api/user/find-email', {
+    params: {
+      username,
+      phoneNumber,
+    },
+  });
+};
+
 // 전체 상품 조회 (숙박)
 export const fetchAccommodation = async (
   cursor: number,
