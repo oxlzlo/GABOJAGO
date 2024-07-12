@@ -25,6 +25,11 @@ export const fetchUserLogin = (payload: { email: string; password: string }) => 
   return instance.post('/open-api/user/login', payload);
 };
 
+// 패스워드 재설정
+export const fetchUserResetPw = async (payload: { email: string; password: string }) => {
+  return instance.put('/open-api/user/change-password', payload);
+};
+
 // 전체 상품 조회 (숙박)
 export const fetchAccommodation = async (
   cursor: number,

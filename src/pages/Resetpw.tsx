@@ -4,6 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { fetchUserResetPw } from '@/api';
 
 const Resetpw = () => {
   const [email, setEmail] = useState('');
@@ -33,15 +34,16 @@ const Resetpw = () => {
       password,
     };
 
-    try {
-      const response = await axios.put(`/api/open-api/user/change-password`, payload);
-      if (response.data.result_code === '200') {
-        alert('패스워드가 정상적으로 변경되었습니다.');
-        navigate('/signin');
-      }
-    } catch (error) {
-      console.error('패스워드 재설정 에러', error);
-    }
+    fetchUserResetPw(payload)
+      .then((response) => {
+        if (response.data.result_code === '200') {
+          alert('패스워드가 정상적으로 변경되었습니다.');
+          navigate('/signin');
+        }
+      })
+      .catch((error) => {
+        console.error('패스워드 재설정 에러', error);
+      });
   };
 
   const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
