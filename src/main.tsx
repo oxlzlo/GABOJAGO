@@ -4,7 +4,6 @@ import App from './App.tsx';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '@/styles/customTheme.ts';
 import '@/styles/theme.css';
-import './index.css';
 
 async function enableMocking() {
   if (import.meta.env.VITE_NODE_ENV === 'development') {

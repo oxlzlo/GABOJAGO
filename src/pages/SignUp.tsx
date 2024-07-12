@@ -3,7 +3,6 @@ import { Box, Button, Flex } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import '../index.css';
 import { fetchUserRegister } from '@/api';
 
 const SignUp = () => {
