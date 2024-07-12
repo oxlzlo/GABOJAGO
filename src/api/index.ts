@@ -21,6 +21,12 @@ instance.interceptors.request.use(
 
 export default instance;
 
+// 회원가입
+export const fetchUserRegister = (payload: { email: string; name: string; phone_number: string; password: string }) => {
+  return instance.post('/open-api/user/register', payload);
+};
+
+// 로그인
 export const fetchUserLogin = (payload: { email: string; password: string }) => {
   return instance.post('/open-api/user/login', payload);
 };

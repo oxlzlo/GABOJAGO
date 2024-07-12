@@ -4,7 +4,7 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
-import instance from '@/api';
+import { fetchUserRegister } from '@/api';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -48,19 +48,18 @@ const SignUp = () => {
       phone_number: phoneNumber,
     };
 
-    try {
-      const response = await instance.post(
-        `http://ec2-43-203-40-90.ap-northeast-2.compute.amazonaws.com/open-api/user/register`,
-        payload,
-      );
-      if (response.data.result_code === '201') {
-        alert('회원가입이 정상적으로 처리되었습니다.');
-        navigate('/signin');
-      }
-    } catch (error) {
-      console.error('회원가입 에러', error);
-      alert('회원가입에 실패하였습니다.');
-    }
+    fetchUserRegister(payload)
+      .then((response) => {
+        console.log(response);
+        if (response.data.result_code === '200') {
+          alert('회원가입이 정상적으로 처리되었습니다.');
+          navigate('/signin');
+        }
+      })
+      .catch((error) => {
+        console.error('회원가입 오류', error);
+        alert('이미 등록된 이메일입니다.');
+      });
   };
 
   const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
