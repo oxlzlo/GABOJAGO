@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Flex, Text, Image, Divider } from '@chakra-ui/react';
+import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 import instance from '@/api';
 import { OrderData } from '@/lib/types/order';
 
@@ -55,10 +55,9 @@ const OrderConfirm = () => {
           {orderData.doneRoomList.map((item) => (
             <Box key={item.id} width="100%" p={10} mb={3}>
               <Flex alignItems="center" direction={['column', 'row']}>
-                <Image src={item.imageList[0].url} />
                 <Box flex="1">
                   <Text fontSize="1.8rem">
-                    {item.start_date} - {item.end_date}
+                    {item.startDate} - {item.endDate}
                   </Text>
                   <Text fontSize="2rem" fontWeight="900">
                     {item.roomTypeName}

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Flex, Box, Text, Checkbox, useTheme, Tooltip } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderDetails from '@/components/OrderDetails';
-import { Rooms } from '@/lib/types/accommodation';
 import { CustomCheckboxProps } from '@/lib/types/customCheckbox';
 import { createOrder } from '@/api';
 import { selectedItems } from '@/lib/types/order';
@@ -34,7 +33,7 @@ const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
 const Order = () => {
   const location = useLocation();
   const selectedItems: selectedItems[] = location.state?.selectedItems || [];
-  const selectedRoom: Rooms = location.state?.selectedRoom || null;
+  const selectedRoom = location.state?.selectedRoom || null;
   const theme = useTheme();
   const navigate = useNavigate();
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -56,8 +55,8 @@ const Order = () => {
             : [
                 {
                   id: selectedRoom.id,
-                  startDate: selectedRoom.start_date,
-                  endDate: selectedRoom.start_date,
+                  startDate: selectedRoom.startDate,
+                  endDate: selectedRoom.endDate,
                 },
               ];
 

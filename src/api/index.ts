@@ -71,11 +71,6 @@ export const fetchDeleteCartItems = (cartItemId: number) => {
   });
 };
 
-// 장바구니 모두 삭제
-export const fetchDeleteAllCartItems = () => {
-  return instance.delete('/api/user/cartItems/delete-all');
-};
-
 // 주문하기
 export const createOrder = async (orderData: any) => {
   try {
