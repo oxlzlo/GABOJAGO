@@ -3,9 +3,9 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import CartItem from '@/components/cart/CartItem';
 import CartOrder from '@/components/cart/CartOrder';
 import { CartItems } from '@/lib/types/cart';
-import { fetchCartItems, fetchDeleteCartItems } from '@/api';
 import SelectAllCheckbox from '@/components/SelectAllCheckbox';
 import { useCartStore } from '@/store/cartStore';
+import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
 
 const Cart = () => {
   const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);

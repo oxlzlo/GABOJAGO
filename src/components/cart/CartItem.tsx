@@ -1,4 +1,3 @@
-import { fetchCartItems, fetchDeleteCartItems } from '@/api';
 import { useEffect } from 'react';
 import { Box, Flex, Image, Text, Divider, Button } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
@@ -6,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartItemProps } from '@/lib/types/cart';
 import { CartCheckbox } from '../CartCheckbox';
 import { useCartStore } from '@/store/cartStore';
+import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
 
 const CartItem = ({
   onHandleSelectRooms,

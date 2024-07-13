@@ -3,8 +3,8 @@ import { Flex, Box, Text, Checkbox, useTheme, Tooltip } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderDetails from '@/components/OrderDetails';
 import { CustomCheckboxProps } from '@/lib/types/customCheckbox';
-import { createOrder } from '@/api';
 import { selectedItems } from '@/lib/types/order';
+import { createOrder } from '@/api/order/orderApi';
 
 const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

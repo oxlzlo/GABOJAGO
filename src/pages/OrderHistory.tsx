@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
-import { fetchOrderHistory } from '@/api';
 import { AxiosError } from 'axios';
 import { OrderData } from '@/lib/types/order';
+import { fetchOrderHistory } from '@/api/order/orderApi';
 
 const OrderHistory = () => {
   const [orderHistory, setOrderHistory] = useState<OrderData[]>([]);

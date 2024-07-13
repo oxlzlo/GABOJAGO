@@ -1,4 +1,3 @@
-import { fetchAccommodationById, fetchCreateCartItems, fetchRoomList } from '@/api';
 import { Accommodation, Rooms } from '@/lib/types/accommodation';
 import {
   Box,
@@ -20,6 +19,9 @@ import { ReservationModal } from '@/lib/common/ReservationModal';
 import RoomDetailModal from '@/lib/common/RoomDetailModal';
 import { ToastAlert } from '@/lib/common/ToastAlert';
 import { useCartStore } from '@/store/cartStore';
+import { fetchAccommodationById } from '@/api/accommodation/accommodationApi';
+import { fetchRoomList } from '@/api/accommodation/roomApi';
+import { fetchCreateCartItems } from '@/api/cart/cartItemsApi';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams();

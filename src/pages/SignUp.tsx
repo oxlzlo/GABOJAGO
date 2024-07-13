@@ -3,7 +3,7 @@ import { Box, Button, Flex } from '@chakra-ui/react';
 import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserRegister } from '@/api';
+import { fetchUserRegister } from '@/api/user/useApi';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
