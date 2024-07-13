@@ -45,86 +45,71 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   };
 
   return (
-    <>
-      <InfiniteScroll
-        pageStart={1}
-        loadMore={loadMore}
-        hasMore={hasMore}
-        loader={
-          <Text display="flex" justifyContent="center" key={0}>
-            ...
-          </Text>
-        }>
-        <Grid
-          templateColumns={{
-            mobile: 'repeat(1, 1fr)',
-            tablet: 'repeat(2, 1fr)',
-            desktop: 'repeat(4, 1fr)',
-          }}
-          gap="1.5rem">
-          {accommodations.map((accommodation, index) => (
-            <Box key={`${accommodation.id}-${index}`}>
-              <Box
-                width="100%"
-                height="100%"
-                border="1px solid"
-                borderColor="grayLight"
-                borderRadius="0.8rem"
-                gap="1.5rem"
-                _hover={{
-                  cursor: 'pointer',
-                  transform: 'scale(1.01)',
-                  boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-                }}>
-                <Link to={`/accommodation/${accommodation.id}`}>
-                  <Image
-                    src={accommodation.thumbnail}
-                    alt={accommodation.name}
-                    width="100%"
-                    height="25.7rem"
-                    borderRadius="0.8rem 0.8rem 0 0"
-                  />
-                  <Box display="flex" flexDirection="column" width="100%" height="auto" paddingLeft="1rem" gap=".5rem">
-                    <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
-                      {accommodation.name}
+    <InfiniteScroll pageStart={1} loadMore={loadMore} hasMore={hasMore}>
+      <Grid
+        templateColumns={{
+          mobile: 'repeat(1, 1fr)',
+          tablet: 'repeat(2, 1fr)',
+          desktop: 'repeat(4, 1fr)',
+        }}
+        gap="1.5rem">
+        {accommodations.map((accommodation) => (
+          <Box key={accommodation.id}>
+            <Box
+              width="100%"
+              height="100%"
+              border="1px solid"
+              borderColor="grayLight"
+              borderRadius="0.8rem"
+              gap="1.5rem"
+              _hover={{
+                cursor: 'pointer',
+                transform: 'scale(1.01)',
+                boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+              }}>
+              <Link to={`/accommodation/${accommodation.id}`}>
+                <Image
+                  src={accommodation.thumbnail}
+                  alt={accommodation.name}
+                  width="100%"
+                  height="25.7rem"
+                  borderRadius="0.8rem 0.8rem 0 0"
+                />
+                <Box display="flex" flexDirection="column" width="100%" height="auto" paddingLeft="1rem" gap=".5rem">
+                  <Text fontSize="2rem" fontWeight="900" marginTop="1rem">
+                    {accommodation.name}
+                  </Text>
+                  <Box padding=".5rem">
+                    <Text fontSize="1.5rem" color="gray">
+                      {accommodation.address}
                     </Text>
-                    <Box padding=".5rem">
-                      <Text fontSize="1.5rem" color="gray">
-                        {accommodation.address}
-                      </Text>
-                      <Text fontSize="1.5rem" color="gray">
-                        {accommodation.numbers}
-                      </Text>
-                      <Text fontSize="1.8rem" color="gray">
-                        {accommodation.comment}
-                      </Text>
-                    </Box>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      alignItems="flex-end"
-                      marginTop="3rem"
-                      paddingRight="1rem">
-                      <Text fontSize="1.5rem" color="gray" paddingRight="2.8rem">
-                        1박당 요금
-                      </Text>
-                      <Flex flexDirection="column">
-                        <Text fontSize="2rem" color="red">
-                          {`${accommodation.price.toLocaleString('ko-KR', {
-                            style: 'decimal',
-                            currency: 'KRW',
-                          })}원`}
-                        </Text>
-                      </Flex>
-                    </Box>
+                    <Text fontSize="1.5rem" color="gray">
+                      {accommodation.numbers}
+                    </Text>
+                    <Text fontSize="1.8rem" color="gray">
+                      {accommodation.comment}
+                    </Text>
                   </Box>
-                </Link>
-              </Box>
+                  <Box display="flex" flexDirection="column" alignItems="flex-end" marginTop="3rem" paddingRight="1rem">
+                    <Text fontSize="1.5rem" color="gray" paddingRight="2.8rem">
+                      1박당 요금
+                    </Text>
+                    <Flex flexDirection="column">
+                      <Text fontSize="2rem" color="red">
+                        {`${accommodation.price.toLocaleString('ko-KR', {
+                          style: 'decimal',
+                          currency: 'KRW',
+                        })}원`}
+                      </Text>
+                    </Flex>
+                  </Box>
+                </Box>
+              </Link>
             </Box>
-          ))}
-        </Grid>
-      </InfiniteScroll>
-    </>
+          </Box>
+        ))}
+      </Grid>
+    </InfiniteScroll>
   );
 };
 
