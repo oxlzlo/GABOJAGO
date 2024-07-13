@@ -28,7 +28,7 @@ const Home = () => {
           params: { keyword, start, end, guest },
         });
 
-        if (response.data && response.data.data && response.data.data.content) {
+        if (response.data?.data?.content) {
           setAccommodationData(response.data.data.content);
         } else {
           console.error('Unexpected API response structure', response.data);
