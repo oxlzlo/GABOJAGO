@@ -189,12 +189,7 @@ const AccommodationItem = () => {
                   color="red"
                   fontSize="2.5rem"
                   fontWeight="600"
-                  marginBottom="2rem">
-                  {/* {`${accommodation.price.toLocaleString('ko-KR', {
-                    style: 'decimal',
-                    currency: 'KRW',
-                  })}원`} */}
-                </Text>
+                  marginBottom="2rem"></Text>
                 <Grid
                   templateColumns="repeat(4, 1fr)"
                   templateRows="repeat(2, 1fr)"
@@ -246,20 +241,19 @@ const AccommodationItem = () => {
                         padding="2rem 0"
                         gap="1rem">
                         <Flex gap="4rem">
-                          {room.imageList &&
-                            room.imageList.map((image, index) => (
-                              <Image
-                                onClick={() => handleRoomClick(room)}
-                                key={index}
-                                src={image.url}
-                                alt={room.roomTypeName}
-                                width="20vw"
-                                height="30vh"
-                                borderRadius="1rem"
-                                marginBottom="1rem"
-                                _hover={{ cursor: 'pointer', opacity: '0.8' }}
-                              />
-                            ))}
+                          {room.imageList?.map((image, index) => (
+                            <Image
+                              onClick={() => handleRoomClick(room)}
+                              key={index}
+                              src={image.url}
+                              alt={room.roomTypeName}
+                              width="20vw"
+                              height="30vh"
+                              borderRadius="1rem"
+                              marginBottom="1rem"
+                              _hover={{ cursor: 'pointer', opacity: '0.8' }}
+                            />
+                          ))}
                           <Flex flexDirection="column" gap=".5rem">
                             <Heading
                               onClick={() => handleRoomClick(room)}

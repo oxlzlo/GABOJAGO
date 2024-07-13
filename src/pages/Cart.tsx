@@ -25,7 +25,7 @@ const Cart = () => {
 
   /**
    * 사용자가 상품을 선택하면 해당 상품을 selectedRoom 배열에 추가하고, 선택을 해제하면 배열에서 제거.
-   * @param accommodationItem
+   * @param roomItem
    * @param isSelected
    */
   const handleSelectRooms = (roomItem: CartItems, isSelected: boolean) => {
