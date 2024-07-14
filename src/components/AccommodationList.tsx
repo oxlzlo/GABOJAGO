@@ -8,7 +8,8 @@ import { Link, useLocation } from 'react-router-dom';
 const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const [cursor, setCursor] = useState<number>(1);
+  const [cursor, setCursor] = useState<number>(91);
+  console.log(cursor);
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -19,7 +20,9 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
 
   useEffect(() => {
     setAccommodations(accommodation);
-    setCursor(accommodation.length);
+    if (accommodation.length > 0) {
+      setCursor(91 - accommodation.length);
+    }
     setHasMore(true);
   }, [accommodation]);
 
@@ -30,13 +33,9 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
         if (newData.length === 0) {
           setHasMore(false);
         } else {
-          setAccommodations((prev) => {
-            const updatedAccommodations = newData.filter(
-              (newItem) => !prev.some((existingItem) => existingItem.id === newItem.id),
-            );
-            return [...prev, ...updatedAccommodations];
-          });
-          setCursor(cursor + newData.length);
+          setAccommodations((prev) => [...prev, ...newData]);
+          const newCursor = cursor - newData.length;
+          setCursor(newCursor <= 1 ? 91 : newCursor);
         }
       })
       .catch((error) => {
@@ -53,8 +52,8 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
           desktop: 'repeat(4, 1fr)',
         }}
         gap="1.5rem">
-        {accommodations.map((accommodation) => (
-          <Box key={accommodation.id}>
+        {accommodations.map((accommodation, index) => (
+          <Box key={`${accommodation.id}-${index}`}>
             <Box
               width="100%"
               height="100%"
