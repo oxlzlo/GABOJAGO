@@ -6,7 +6,7 @@ const SelectAllCheckbox = ({ isChecked, onChange, ...props }: SelectAllCheckboxP
     <Checkbox
       {...props}
       isChecked={isChecked}
-      onChange={(e) => onChange(e.target.checked)}
+      onChange={(event) => onChange(event.target.checked)}
       size="lg"
       colorScheme="teal"
     />
