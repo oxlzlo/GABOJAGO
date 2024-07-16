@@ -64,7 +64,7 @@ const AccommodationItem = () => {
     const accommodationIdNumber = parseInt(accommodationId ?? '0', 10);
     fetchRoomList(accommodationIdNumber)
       .then((response) => {
-        const { data } = response.data;
+        const { data } = response?.data;
         setRoomList(data);
       })
       .catch((error) => {

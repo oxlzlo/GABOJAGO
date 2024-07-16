@@ -38,3 +38,7 @@ export interface AccommodationListProps {
 export type RoomListType = {
   roomList: Rooms[];
 };
+
+export type RoomListResponse = {
+  data: Rooms[];
+};
