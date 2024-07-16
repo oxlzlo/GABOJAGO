@@ -1,5 +1,3 @@
-import { ImageInfo } from './imageInfo';
-
 export type OrderData = {
   id: number;
   isActive: boolean;
@@ -25,7 +23,7 @@ export type OrderDetailsProps = {
 
 export type Rooms = {
   id: number;
-  imageList: ImageInfo[];
+  imageList: { url: string }[];
   roomType: string;
   roomTypeName: string;
   roomPrice: number;

@@ -23,6 +23,7 @@ import { fetchAccommodationById } from '@/api/accommodation/accommodationApi';
 import { fetchRoomList } from '@/api/accommodation/roomApi';
 import { fetchCreateCartItems } from '@/api/cart/cartItemsApi';
 import dayjs from 'dayjs';
+import { configureDayjs } from '@/lib/constants/dayjsConfig';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams();
@@ -73,12 +74,12 @@ const AccommodationItem = () => {
       });
   }, []);
 
+  configureDayjs(); // dayjs 한국 시간 설정
+
   /**
    * 특정 객실을 "지금 예약하기" 누르면 결제정보 페이지도 이동되는 함수
    * @return void
    */
-
-  // configureDayjs();
   const handleConfirm = () => {
     if (selectedRooms) {
       const today = dayjs().tz().format('YYYY-MM-DDTHH:mm:ssZ');
@@ -89,8 +90,6 @@ const AccommodationItem = () => {
         startDate: today.split('T')[0],
         endDate: tomorrow.split('T')[0],
       };
-      console.log(today);
-      console.log(tomorrow);
 
       navigation(`/order/${selectedRooms.id}`, { state: { selectedRoom: updatedSelectedRooms } });
     }
