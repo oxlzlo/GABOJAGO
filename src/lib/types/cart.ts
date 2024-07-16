@@ -18,3 +18,13 @@ export type CartItems = {
 export type SelectedRoomsProps = {
   checkSelectedRooms: CartItems[];
 };
+
+export type CartItemsResponse = {
+  data: {
+    item_dto_list: CartItems[];
+  };
+};
+
+export type CartItemDataResponse = {
+  data: CartItems;
+};

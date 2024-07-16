@@ -4,7 +4,14 @@ import client from '../apiConfig';
  * 주문하기
  * @param orderData
  */
-export const createOrder = async (orderData: any) => {
+export const createOrder = async (orderData: {
+  requestOrderList: {
+    id: number;
+    startDate: string;
+    endDate: string;
+  }[];
+  totalPrice: number;
+}) => {
   try {
     const response = await client.post('/api/order', orderData);
     return response;

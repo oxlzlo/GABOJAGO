@@ -9,7 +9,7 @@ import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
 
 const Cart = () => {
   const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);
-  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
+  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
   const removeCart = useCartStore((state) => state.removeCart);
 
@@ -25,7 +25,7 @@ const Cart = () => {
 
   /**
    * 사용자가 상품을 선택하면 해당 상품을 selectedRoom 배열에 추가하고, 선택을 해제하면 배열에서 제거.
-   * @param roomItem
+   * @param accommodationItem
    * @param isSelected
    */
   const handleSelectRooms = (roomItem: CartItems, isSelected: boolean) => {
@@ -62,12 +62,18 @@ const Cart = () => {
    */
   const handleAllDeleteSelectedRooms = async () => {
     try {
+      // 선택된 객실을 삭제하는 api 호출
       const deletePromises = checkSelectedRooms.map((room) => fetchDeleteCartItems(room.cart_item_id));
       await Promise.all(deletePromises);
       // 선택한 객실을 전역 상태에서도 삭제 하도록 removeCart 함수 호출
       checkSelectedRooms.forEach((checkSlectedRoom) => removeCart(checkSlectedRoom.cart_item_id));
-      const response = await fetchCartItems();
-      setCartRooms(response.data.data.item_dto_list);
+      // 선택한 객실을 필터링하여 장바구니 상태를 업데이트한다.
+      setCartRooms((prevCartRooms) =>
+        prevCartRooms.filter(
+          (room) =>
+            !checkSelectedRooms.some((checkSelectedRoom) => checkSelectedRoom.cart_item_id === room.cart_item_id),
+        ),
+      );
       setCheckSelectedRooms([]);
       setIsAllSelected(false);
     } catch (error) {

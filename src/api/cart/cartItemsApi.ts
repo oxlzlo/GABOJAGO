@@ -1,26 +1,45 @@
 import client from '@/api/apiConfig';
+import { CartItemDataResponse, CartItemsResponse } from '@/lib/types/cart';
+import { AxiosResponse } from 'axios';
+
+/**
+ *  장바구니 조회
+ */
+export const fetchCartItems = async (): Promise<AxiosResponse<CartItemsResponse>> => {
+  try {
+    return await client.get('/api/user/cartItems');
+  } catch (error) {
+    console.error('장바구니 조회 오류: ', error);
+    throw error;
+  }
+};
 
 /**
  * 장바구니 삭제
  * @param cartItemId
  */
-export const fetchDeleteCartItems = (cartItemId: number) => {
-  return client.delete('/api/user/cartItems', {
-    data: { cartItemIdList: [cartItemId] },
-  });
-};
-
-/**
- *  장바구니 조회
- */
-export const fetchCartItems = () => {
-  return client.get('/api/user/cartItems');
+export const fetchDeleteCartItems = async (cartItemId: number): Promise<AxiosResponse<CartItemsResponse>> => {
+  try {
+    return await client.delete('/api/user/cartItems', {
+      data: { cartItemIdList: [cartItemId] },
+    });
+  } catch (error) {
+    console.error('장바구니 삭제 오류: ', error);
+    throw error;
+  }
 };
 
 /**
  * 장바구니 생성
  * @param payload {roomId}
  */
-export const fetchCreateCartItems = (payload: { roomId: number }) => {
-  return client.post('/api/user/cartItems', payload);
+export const fetchCreateCartItems = async (payload: {
+  roomId: number;
+}): Promise<AxiosResponse<CartItemDataResponse>> => {
+  try {
+    return await client.post('/api/user/cartItems', payload);
+  } catch (error) {
+    console.error('장바구니 생성 오류: ', error);
+    throw error;
+  }
 };
