@@ -4,6 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
+import { fetchUserImgChange } from '@/api/user/useApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -105,16 +106,7 @@ const Mypage = () => {
           console.error('put', error);
         }
       } else {
-        try {
-          response = await axios.post(`/api/api/user/my-page/image/upload`, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-        } catch (error) {
-          console.error('post', error);
-        }
+        response = await fetchUserImgChange(formData);
       }
 
       if (response?.data.result_code === '200') {

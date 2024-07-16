@@ -37,3 +37,17 @@ export const fetchUserFindId = async (username: string, phoneNumber: string) => 
 export const fetchUserResetPw = async (payload: { email: string; password: string }) => {
   return client.put('/open-api/user/change-password', payload);
 };
+
+/**
+ * 프로필사진 등록
+ *
+ */
+export const fetchUserImgChange = async (formData: FormData) => {
+  const token = localStorage.getItem('accessToken');
+  return client.post('api/user/my-page/image/upload', formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
