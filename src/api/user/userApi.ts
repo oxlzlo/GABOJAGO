@@ -1,5 +1,7 @@
 import client from '@/api/apiConfig';
 
+const token = localStorage.getItem('accessToken');
+
 /**
  * 회원가입
  * @param payload {email, name, phone_number, password}
@@ -43,7 +45,6 @@ export const fetchUserResetPw = async (payload: { email: string; password: strin
  * @param formData
  */
 export const fetchUserImgPost = async (formData: FormData) => {
-  const token = localStorage.getItem('accessToken');
   return client.post('api/user/my-page/image/upload', formData, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -58,7 +59,6 @@ export const fetchUserImgPost = async (formData: FormData) => {
  * @param params {oldImageUrl}
  */
 export const fetchUserImgPut = async (formData: FormData, oldImageUrl: string) => {
-  const token = localStorage.getItem('accessToken');
   return client.put('/api/user/my-page/image/update', formData, {
     headers: {
       Authorization: `Bearer ${token}`,
