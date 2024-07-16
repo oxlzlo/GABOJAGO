@@ -12,7 +12,6 @@ export const createOrder = async (orderData: {
   }[];
   totalPrice: number;
 }) => {
-  console.log('orderData', orderData);
   try {
     const response = await client.post('/api/order', orderData);
     return response;
