@@ -9,7 +9,7 @@ import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
 
 const Cart = () => {
   const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);
-  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state에 담김
+  const [cartRooms, setCartRooms] = useState<CartItems[]>([]); // 장바구니 추가한 객실은 해당 state
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
   const removeCart = useCartStore((state) => state.removeCart);
 
