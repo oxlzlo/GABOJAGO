@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
-import { AxiosError } from 'axios';
 import { OrderData } from '@/lib/types/order';
 import { fetchOrderHistory } from '@/api/order/orderApi';
 
@@ -18,12 +17,7 @@ const OrderHistory = () => {
         );
         setOrderHistory(sortedData);
       } catch (error) {
-        if (error instanceof AxiosError) {
-          console.error('주문 내역 불러오기 실패 - 응답 데이터:', error.response?.data);
-          console.error('주문 내역 불러오기 실패 - 응답 상태 코드:', error.response?.status);
-        } else if (error instanceof AxiosError) {
-          console.error('주문 내역 불러오기 실패 - 요청 데이터:', error.request);
-        }
+        console.error('주문 내역 불러오기 실패.', error);
       } finally {
         setLoading(false);
       }
@@ -69,9 +63,8 @@ const OrderHistory = () => {
                         <Text fontSize="1.6rem" color="gray">
                           {room.roomTypeName}
                         </Text>
-
                         <Text fontSize="1.6rem" color="gray">
-                          {room.start_date} - {room.end_date}
+                          {room.startDate} - {room.endDate}
                         </Text>
                         <Text fontSize="1.4rem" color="gray">
                           체크인 15:00　체크아웃 11:30
