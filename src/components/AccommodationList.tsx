@@ -9,7 +9,6 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [cursor, setCursor] = useState<number>(91);
-  console.log(cursor);
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
