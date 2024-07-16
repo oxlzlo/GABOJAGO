@@ -4,7 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
-import { fetchUserImgChange } from '@/api/user/useApi';
+import { fetchUserImgChange } from '@/api/user/userApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();

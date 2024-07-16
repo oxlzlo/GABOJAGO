@@ -31,15 +31,15 @@ client.interceptors.request.use(
  * 응답 인터셉터 설정
  * 로그인 토큰이 만료되었을 때, 로그인 페이지로 이동
  */
-client.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      // 토큰 만료 시 로그인 페이지로 이동
-      window.location.href = '/signin';
-    }
-    return Promise.reject(error);
-  },
-);
+// client.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   (error) => {
+//     if (error.response && error.response.status === 401) {
+//       // 토큰 만료 시 로그인 페이지로 이동
+//       window.location.href = '/signin';
+//     }
+//     return Promise.reject(error);
+//   },
+// );
