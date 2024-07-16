@@ -51,3 +51,21 @@ export const fetchUserImgPost = async (formData: FormData) => {
     },
   });
 };
+
+/**
+ * 프로필사진 수정
+ * @param formData
+ * @param params {oldImageUrl}
+ */
+export const fetchUserImgPut = async (formData: FormData, oldImageUrl: string) => {
+  const token = localStorage.getItem('accessToken');
+  return client.put('/api/user/my-page/image/update', formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      oldImageUrl: oldImageUrl,
+    },
+  });
+};

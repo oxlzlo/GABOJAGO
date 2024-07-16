@@ -4,7 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
-import { fetchUserImgPost } from '@/api/user/userApi';
+import { fetchUserImgPost, fetchUserImgPut } from '@/api/user/userApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -92,19 +92,7 @@ const Mypage = () => {
       let response;
 
       if (oldImageUrl && oldImageUrl !== 'undefined') {
-        try {
-          response = await axios.put(`/api/api/user/my-page/image/update`, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-            params: {
-              oldImageUrl: oldImageUrl,
-            },
-          });
-        } catch (error) {
-          console.error('put', error);
-        }
+        response = await fetchUserImgPut(formData, oldImageUrl);
       } else {
         response = await fetchUserImgPost(formData);
       }
