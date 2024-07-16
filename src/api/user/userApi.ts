@@ -69,3 +69,15 @@ export const fetchUserImgPut = async (formData: FormData, oldImageUrl: string) =
     },
   });
 };
+
+/**
+ * 휴대폰번호 재설정
+ * @param payload {phone_number}
+ */
+export const fetchUserEditPhoneNumber = async (payload: { phone_number: string }) => {
+  return client.put('/api/user/my-page/change-phone-number', payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
