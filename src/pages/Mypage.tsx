@@ -4,7 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
-import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut } from '@/api/user/userApi';
+import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserResetPw } from '@/api/user/userApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -54,7 +54,7 @@ const Mypage = () => {
       };
 
       try {
-        const response = await axios.put(`/api/open-api/user/change-password`, payload);
+        const response = await fetchUserResetPw(payload);
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
         }
