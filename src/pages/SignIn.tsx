@@ -5,6 +5,7 @@ import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { fetchUserLogin } from '@/api/user/useApi';
+import { handleKeyDown } from '@/utils/keyDownUtils';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -40,12 +41,6 @@ const SignIn = () => {
       });
   };
 
-  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSubmit();
-    }
-  };
-
   return (
     <Box position="relative" height="100vh" backgroundColor="background">
       <Box
@@ -66,14 +61,14 @@ const SignIn = () => {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <Button
                 width="27.8vw"

@@ -4,6 +4,7 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserRegister } from '@/api/user/useApi';
+import { handleKeyDown } from '@/utils/keyDownUtils';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -61,12 +62,6 @@ const SignUp = () => {
       });
   };
 
-  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSubmit();
-    }
-  };
-
   return (
     <Box position="relative" height="100vh" backgroundColor="background">
       <Box
@@ -87,33 +82,33 @@ const SignUp = () => {
                 placeholder="E-mail *"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Password *"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Confirm Password *"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Name *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Phone Number *"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <Button
                 width="27.8vw"

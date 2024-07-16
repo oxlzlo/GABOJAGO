@@ -4,6 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
+import { handleKeyDown } from '@/utils/keyDownUtils';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -66,12 +67,6 @@ const Mypage = () => {
       } catch (error) {
         console.error('프로필 수정 에러', error);
       }
-    }
-  };
-
-  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleEditInfo();
     }
   };
 
@@ -181,7 +176,7 @@ const Mypage = () => {
                   placeholder={user?.phone_number}
                   value={editPhoneNumber}
                   onChange={(e) => setEditPhoneNumber(e.target.value)}
-                  onKeyPress={handleKeypress}></InputBox>
+                  onKeyDown={(e) => handleKeyDown(e, handleEditInfo)}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -192,7 +187,7 @@ const Mypage = () => {
                   placeholder="Password *"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  onKeyPress={handleKeypress}></InputBox>
+                  onKeyDown={(e) => handleKeyDown(e, handleEditInfo)}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
@@ -203,7 +198,7 @@ const Mypage = () => {
                   placeholder="New Password *"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  onKeyPress={handleKeypress}></InputBox>
+                  onKeyDown={(e) => handleKeyDown(e, handleEditInfo)}></InputBox>
               </Flex>
               <Flex justify="space-between" align="center">
                 <Text width="21%" fontSize="2rem" color="main">
@@ -217,7 +212,7 @@ const Mypage = () => {
                   placeholder="Confirm New Password *"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  onKeyPress={handleKeypress}
+                  onKeyDown={(e) => handleKeyDown(e, handleEditInfo)}
                 />
               </Flex>
               <Button
