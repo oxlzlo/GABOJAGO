@@ -52,6 +52,7 @@ const AccommodationItem = () => {
     fetchAccommodationById(accommodationIdNumber)
       .then((response) => {
         const { data } = response.data;
+        console.log(data);
         setAccommodations([data]);
       })
       .catch((error) => {

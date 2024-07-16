@@ -1,4 +1,6 @@
 import client from '@/api/apiConfig';
+import { AccommodationResponse } from '@/lib/types/accommodation';
+import { AxiosResponse } from 'axios';
 
 /**
  * 전체 상품 조회 (숙박)
@@ -31,6 +33,13 @@ export const fetchAccommodation = async (
  * 개별 상품 조회 (숙박, 객실)
  * @param accommodationId
  */
-export const fetchAccommodationById = (accommodationId: number) => {
-  return client.get(`/open-api/accommodation/${accommodationId}`);
+export const fetchAccommodationById = async (
+  accommodationId: number,
+): Promise<AxiosResponse<AccommodationResponse>> => {
+  try {
+    return await client.get(`/open-api/accommodation/${accommodationId}`);
+  } catch (error) {
+    console.error('개별 상품 조회 오류: ', error);
+    throw error;
+  }
 };

@@ -1,9 +1,7 @@
-import { ImageInfo } from './imageInfo';
-
 export type CombinedAccommodationRooms = Accommodation & Rooms;
 
 export type Accommodation = {
-  imageList: ImageInfo[];
+  imageList: { url: string }[];
   id: number;
   name: string;
   address: string;
@@ -17,7 +15,7 @@ export type Accommodation = {
 
 export type Rooms = {
   id: number;
-  imageList: ImageInfo[];
+  imageList: { url: string }[];
   roomType: string;
   roomTypeName: string;
   roomPrice: number;
@@ -31,9 +29,9 @@ export type Rooms = {
   start_date?: string;
 };
 
-export interface AccommodationListProps {
+export type AccommodationListProps = {
   accommodation: Accommodation[];
-}
+};
 
 export type RoomListType = {
   roomList: Rooms[];
@@ -41,4 +39,8 @@ export type RoomListType = {
 
 export type RoomListResponse = {
   data: Rooms[];
+};
+
+export type AccommodationResponse = {
+  data: Accommodation;
 };
