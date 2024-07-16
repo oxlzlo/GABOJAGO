@@ -3,7 +3,6 @@ import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
-import axios from 'axios';
 import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserResetPw } from '@/api/user/userApi';
 
 const Mypage = () => {
