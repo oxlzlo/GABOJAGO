@@ -42,7 +42,7 @@ export const fetchUserResetPw = async (payload: { email: string; password: strin
  * 프로필사진 등록
  * @param formData
  */
-export const fetchUserImgChange = async (formData: FormData) => {
+export const fetchUserImgPost = async (formData: FormData) => {
   const token = localStorage.getItem('accessToken');
   return client.post('api/user/my-page/image/upload', formData, {
     headers: {

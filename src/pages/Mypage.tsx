@@ -4,7 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import axios from 'axios';
-import { fetchUserImgChange } from '@/api/user/userApi';
+import { fetchUserImgPost } from '@/api/user/userApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -106,7 +106,7 @@ const Mypage = () => {
           console.error('put', error);
         }
       } else {
-        response = await fetchUserImgChange(formData);
+        response = await fetchUserImgPost(formData);
       }
 
       if (response?.data.result_code === '200') {
