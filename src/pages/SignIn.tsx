@@ -66,14 +66,14 @@ const SignIn = () => {
                 placeholder="E-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={handleKeypress}
               />
               <InputBox
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={handleKeypress}
               />
               <Button
                 width="27.8vw"
