@@ -22,6 +22,7 @@ import { useCartStore } from '@/store/cartStore';
 import { fetchAccommodationById } from '@/api/accommodation/accommodationApi';
 import { fetchRoomList } from '@/api/accommodation/roomApi';
 import { fetchCreateCartItems } from '@/api/cart/cartItemsApi';
+import dayjs from 'dayjs';
 
 const AccommodationItem = () => {
   const { accommodationId } = useParams();
@@ -76,17 +77,20 @@ const AccommodationItem = () => {
    * 특정 객실을 "지금 예약하기" 누르면 결제정보 페이지도 이동되는 함수
    * @return void
    */
+
+  // configureDayjs();
   const handleConfirm = () => {
     if (selectedRooms) {
-      const today = new Date();
-      const tomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1);
+      const today = dayjs().tz().format('YYYY-MM-DDTHH:mm:ssZ');
+      const tomorrow = dayjs().tz().add(1, 'day').format('YYYY-MM-DDTHH:mm:ssZ');
 
       const updatedSelectedRooms = {
         ...selectedRooms,
-        startDate: today.toISOString().split('T')[0], // 오늘 날짜
-        endDate: tomorrow.toISOString().split('T')[0], // 내일 날짜
+        startDate: today.split('T')[0],
+        endDate: tomorrow.split('T')[0],
       };
+      console.log(today);
+      console.log(tomorrow);
 
       navigation(`/order/${selectedRooms.id}`, { state: { selectedRoom: updatedSelectedRooms } });
     }
