@@ -25,10 +25,9 @@ export const createOrder = async (orderData: {
  * 단일 주문 확인
  * @param orderId
  */
-export const fetchOrderById = async (orderId: string) => {
+export const getOrderById = async (orderId: number) => {
   try {
-    const response = await client.get(`/api/order/${orderId}`);
-    return response.data;
+    return await client.get(`/api/order/${orderId}`);
   } catch (error) {
     console.error('오류: 주문 내역 불러오기 실패. (결제 확인)', error);
     throw error;

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
-
 import { OrderData } from '@/lib/types/order';
-import { client } from '@/api/apiConfig';
+import { getOrderById } from '@/api/order/orderApi';
 
 const OrderConfirm = () => {
   const { orderId } = useParams();
@@ -18,18 +17,14 @@ const OrderConfirm = () => {
   });
 
   useEffect(() => {
-    const fetchOrderData = async () => {
-      try {
-        const response = await client.get(`/api/order/${orderId}`);
+    const orderIdNumber = parseInt(orderId ?? '0', 10);
+    getOrderById(orderIdNumber)
+      .then((response) => {
         setOrderData(response.data.data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('주문 데이터를 불러오는 중 오류 발생:', error);
-      }
-    };
-
-    if (orderId) {
-      fetchOrderData();
-    }
+      });
   }, [orderId]);
 
   if (!orderData) {

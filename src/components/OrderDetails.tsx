@@ -22,11 +22,9 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                   borderColor="grayLight"
                   borderRadius="2rem">
                   <Text fontSize="3rem" fontWeight="900">
-                    {selectedItem.room.roomTypeName} {/* 숙소 이름 */}
+                    {selectedItem.room.roomTypeName}
                   </Text>
-                  <Text fontSize="1.5rem">
-                    {selectedItem.room.roomType} {/* 룸 타입 */}
-                  </Text>
+                  <Text fontSize="1.5rem">{selectedItem.room.roomType}</Text>
                   <Flex paddingY="5rem" gap="2rem">
                     <Box>
                       <Text fontSize="1.5rem">체크인</Text>
@@ -66,12 +64,12 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                   <Flex paddingY="5rem" gap="2rem">
                     <Box>
                       <Text fontSize="1.5rem">체크인</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.start_date}</Text> {/* Use the correct startDate */}
+                      <Text fontSize="1.3rem">{selectedRoom.startDate}</Text> {/* Use the correct startDate */}
                       <Text fontSize="1.3rem">15:30</Text>
                     </Box>
                     <Box>
                       <Text fontSize="1.5rem">체크아웃</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.end_date}</Text> {/* Use the correct endDate */}
+                      <Text fontSize="1.3rem">{selectedRoom.endDate}</Text> {/* Use the correct endDate */}
                       <Text fontSize="1.3rem">11:00</Text>
                     </Box>
                   </Flex>

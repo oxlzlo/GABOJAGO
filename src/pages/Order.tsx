@@ -31,12 +31,12 @@ const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
 };
 
 const Order = () => {
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const location = useLocation();
   const selectedItems: selectedItems[] = location.state?.selectedItems || [];
   const selectedRoom = location.state?.selectedRoom || null;
   const theme = useTheme();
   const navigate = useNavigate();
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const handleCheckboxChange = (isChecked: boolean) => {
     setIsCheckboxChecked(isChecked);
