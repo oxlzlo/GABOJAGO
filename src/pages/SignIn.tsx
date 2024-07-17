@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/authStore';
 import { fetchUserLogin } from '@/api/user/userApi';
 import { handleKeyDown } from '@/utils/keyDownUtils';
+import { validateEmail, validatePassword } from '@/utils/inputValidationUtils';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,10 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    if (!validateEmail(email) || !validatePassword(password)) {
+      return;
+    }
+
     const payload = {
       email,
       password,
