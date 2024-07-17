@@ -28,7 +28,7 @@ import { configureDayjs } from '@/lib/constants/dayjsConfig';
 const AccommodationItem = () => {
   const { accommodationId } = useParams();
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedRooms, setSelectedRooms] = useState<Rooms>({
     id: 0,
@@ -91,7 +91,7 @@ const AccommodationItem = () => {
         endDate: tomorrow.split('T')[0],
       };
 
-      navigation(`/order/${selectedRooms.id}`, { state: { selectedRoom: updatedSelectedRooms } });
+      navigate(`/order/${selectedRooms.id}`, { state: { selectedBookingRoom: updatedSelectedRooms } });
     }
     onClose();
   };

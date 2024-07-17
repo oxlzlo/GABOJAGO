@@ -3,7 +3,7 @@ import { Flex, Box, Text, Checkbox, useTheme, Tooltip } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderDetails from '@/components/OrderDetails';
 import { CustomCheckboxProps } from '@/lib/types/customCheckbox';
-import { selectedItems } from '@/lib/types/order';
+import { selectedCartRooms } from '@/lib/types/order';
 import { createOrder } from '@/api/order/orderApi';
 
 const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
@@ -33,37 +33,39 @@ const CustomCheckbox = ({ onChange, ...props }: CustomCheckboxProps) => {
 const Order = () => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const location = useLocation();
-  const selectedItems: selectedItems[] = location.state?.selectedItems || [];
-  const selectedRoom = location.state?.selectedRoom || null;
+  const selectedCartRooms: selectedCartRooms[] = location.state?.selectedCartRooms || [];
+  const selectedBookingRoom = location.state?.selectedBookingRoom || null;
   const theme = useTheme();
   const navigate = useNavigate();
 
   const handleCheckboxChange = (isChecked: boolean) => {
     setIsCheckboxChecked(isChecked);
   };
+  console.log('selectedBookingRoom', selectedBookingRoom);
+  console.log('selectedCartRooms', selectedCartRooms);
 
   const handlePayment = async () => {
     if (isCheckboxChecked) {
       try {
         const requestOrderList =
-          selectedItems.length > 0
-            ? selectedItems.map((item) => ({
-                id: item.room.id,
-                startDate: item.start_date,
-                endDate: item.end_date,
+          selectedCartRooms.length > 0
+            ? selectedCartRooms.map((selectedCartRoom) => ({
+                id: selectedCartRoom.room.id,
+                startDate: selectedCartRoom.start_date,
+                endDate: selectedCartRoom.end_date,
               }))
             : [
                 {
-                  id: selectedRoom.id,
-                  startDate: selectedRoom.startDate,
-                  endDate: selectedRoom.endDate,
+                  id: selectedBookingRoom.id,
+                  startDate: selectedBookingRoom.startDate,
+                  endDate: selectedBookingRoom.endDate,
                 },
               ];
 
         const totalPrice =
-          selectedItems.length > 0
-            ? selectedItems.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
-            : selectedRoom.roomPrice;
+          selectedCartRooms.length > 0
+            ? selectedCartRooms.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+            : selectedBookingRoom.roomPrice;
 
         const response = await createOrder({ requestOrderList, totalPrice });
 
@@ -74,7 +76,7 @@ const Order = () => {
     }
   };
 
-  if ((!selectedItems || selectedItems.length === 0) && !selectedRoom) {
+  if ((!selectedCartRooms || selectedCartRooms.length === 0) && !selectedBookingRoom) {
     return (
       <Flex direction="column" justifyContent="flex-start" alignItems="center" minHeight="calc(100vh - 80px)" p={4}>
         <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>
@@ -83,9 +85,9 @@ const Order = () => {
   }
 
   const totalAmount =
-    selectedItems.length > 0
-      ? selectedItems.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
-      : selectedRoom.roomPrice;
+    selectedCartRooms.length > 0
+      ? selectedCartRooms.reduce((accumulator, current) => accumulator + current.room.roomPrice, 0)
+      : selectedBookingRoom.roomPrice;
 
   return (
     <>
@@ -100,7 +102,7 @@ const Order = () => {
           <Text mb={4} textAlign="left" fontWeight="900" fontSize="3rem">
             예약 결제
           </Text>
-          <OrderDetails selectedItems={selectedItems} selectedRoom={selectedRoom} />
+          <OrderDetails selectedCartRooms={selectedCartRooms} selectedBookingRoom={selectedBookingRoom} />
           <Box
             width="100%"
             padding="2.5rem"

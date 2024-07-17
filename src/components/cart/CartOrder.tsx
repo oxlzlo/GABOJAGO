@@ -6,7 +6,7 @@ const CartOrder = ({ checkSelectedRooms }: SelectedRoomsProps) => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    navigate('/order', { state: { selectedItems: checkSelectedRooms } });
+    navigate('/order', { state: { selectedCartRooms: checkSelectedRooms } });
   };
 
   return (
