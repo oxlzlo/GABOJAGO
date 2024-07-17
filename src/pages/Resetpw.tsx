@@ -3,7 +3,7 @@ import Logo from '@/assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserResetPw } from '@/api/user/useApi';
+import { fetchUserResetPw } from '@/api/user/userApi';
 import { handleKeyDown } from '@/utils/keyDownUtils';
 
 const Resetpw = () => {
