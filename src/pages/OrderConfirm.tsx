@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 
 import { OrderData } from '@/lib/types/order';
-import client from '@/api/apiConfig';
+import { client } from '@/api/apiConfig';
 
 const OrderConfirm = () => {
   const { orderId } = useParams();
