@@ -3,7 +3,7 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserFindId } from '@/api/user/useApi';
+import { fetchUserFindId } from '@/api/user/userApi';
 
 const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');

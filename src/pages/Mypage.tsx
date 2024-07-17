@@ -3,7 +3,7 @@ import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
-import axios from 'axios';
+import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserResetPw } from '@/api/user/userApi';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -14,8 +14,6 @@ const Mypage = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>(user?.img_url || '');
   const oldImageUrl = user?.img_url;
-
-  const token = localStorage.getItem('accessToken');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,11 +29,7 @@ const Mypage = () => {
       };
 
       try {
-        const response = await axios.put(`/api/api/user/my-page/change-phone-number`, payload, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetchUserEditPhoneNumber(payload);
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
           login({ ...user, phone_number: editPhoneNumber } as User);
@@ -59,7 +53,7 @@ const Mypage = () => {
       };
 
       try {
-        const response = await axios.put(`/api/open-api/user/change-password`, payload);
+        const response = await fetchUserResetPw(payload);
         if (response.data.result_code === '200') {
           alert('정상적으로 변경되었습니다.');
         }
@@ -91,30 +85,9 @@ const Mypage = () => {
       let response;
 
       if (oldImageUrl && oldImageUrl !== 'undefined') {
-        try {
-          response = await axios.put(`/api/api/user/my-page/image/update`, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-            params: {
-              oldImageUrl: oldImageUrl,
-            },
-          });
-        } catch (error) {
-          console.error('put', error);
-        }
+        response = await fetchUserImgPut(formData, oldImageUrl);
       } else {
-        try {
-          response = await axios.post(`/api/api/user/my-page/image/upload`, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-        } catch (error) {
-          console.error('post', error);
-        }
+        response = await fetchUserImgPost(formData);
       }
 
       if (response?.data.result_code === '200') {
