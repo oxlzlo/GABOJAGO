@@ -104,12 +104,9 @@ const SearchBar = () => {
         <Box position="absolute" width="90.3vw" height="6.5vh">
           <Flex justifyContent="space-between" align="center">
             <InputGroup width="29.9vw">
-              <InputLeftElement
-                width="3vw"
-                height="6.5vh"
-                paddingLeft=".5vw"
-                children={<SearchIcon color="gray" w={9} h={9} />}
-              />
+              <InputLeftElement width="3vw" height="6.5vh" paddingLeft=".5vw">
+                <SearchIcon color="gray" w={9} h={9} />
+              </InputLeftElement>
               <Input
                 height="6.5vh"
                 padding="0 5.5rem"
@@ -160,19 +157,17 @@ const SearchBar = () => {
                 value={`인원 ${guest}명`}
                 readOnly
               />
-              <InputRightElement
-                children={
-                  <ChevronDownIcon
-                    w={10}
-                    h={10}
-                    color="gray"
-                    marginTop="3.5vh"
-                    marginRight="1vw"
-                    cursor="pointer"
-                    onClick={toggleDropdown}
-                  />
-                }
-              />
+              <InputRightElement>
+                <ChevronDownIcon
+                  w={10}
+                  h={10}
+                  color="gray"
+                  marginTop="3.5vh"
+                  marginRight="1vw"
+                  cursor="pointer"
+                  onClick={toggleDropdown}
+                />
+              </InputRightElement>
               {showDropdown && (
                 <Box
                   position="absolute"
