@@ -1,4 +1,4 @@
-import { fetchAccommodation } from '@/api/accommodation/accommodationApi';
+import { getAccommodation } from '@/api/accommodation/accommodationApi';
 import { Accommodation, AccommodationListProps } from '@/lib/types/accommodation';
 import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,7 @@ const AccommodationList = ({ accommodation }: AccommodationListProps) => {
   }, [accommodation]);
 
   const loadMore = () => {
-    fetchAccommodation(cursor, keyword, start, end, guest)
+    getAccommodation(cursor, keyword, start, end, guest)
       .then((response) => {
         const newData: Accommodation[] = response.data.data.content;
         if (newData.length === 0) {

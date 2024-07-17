@@ -1,4 +1,4 @@
-import { client } from '../apiConfig';
+import { client } from '@/api/apiConfig';
 
 /**
  * 주문하기
@@ -38,7 +38,7 @@ export const fetchOrderById = async (orderId: string) => {
 /**
  *  전체 주문내역 확인
  */
-export const fetchOrderHistory = async () => {
+export const getOrderHistory = async () => {
   try {
     const response = await client.get('/api/order');
     return response.data;

@@ -1,32 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 import { OrderData } from '@/lib/types/order';
-import { fetchOrderHistory } from '@/api/order/orderApi';
+import { getOrderHistory } from '@/api/order/orderApi';
 
 const OrderHistory = () => {
   const [orderHistory, setOrderHistory] = useState<OrderData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const getOrderHistory = async () => {
-      try {
-        const data = await fetchOrderHistory();
-        const sortedData = data.data.sort(
+    getOrderHistory()
+      .then((response) => {
+        const sortedData = response.data.sort(
           (a: { createdAt: string }, b: { createdAt: string }) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
         );
         setOrderHistory(sortedData);
-      } catch (error) {
-        console.error('주문 내역 불러오기 실패.', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getOrderHistory();
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Flex justifyContent="center" alignItems="center" minHeight="100vh">
         <Text>주문 내역을 불러오는 중입니다...</Text>

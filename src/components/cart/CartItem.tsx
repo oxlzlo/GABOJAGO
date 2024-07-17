@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartItemProps } from '@/lib/types/cart';
 import { CartCheckbox } from '../CartCheckbox';
 import { useCartStore } from '@/store/cartStore';
-import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
+import { getCartItems, deleteCartItems } from '@/api/cart/cartItemsApi';
 
 const CartItem = ({
   onHandleSelectRooms,
@@ -21,7 +21,7 @@ const CartItem = ({
    * 장바구니에 담긴 상품 조회
    */
   useEffect(() => {
-    fetchCartItems()
+    getCartItems()
       .then((response) => {
         setCartRooms(response.data.data.item_dto_list);
       })
@@ -32,9 +32,9 @@ const CartItem = ({
 
   const handleDeleteCartRoom = async (cartItemId: number) => {
     try {
-      await fetchDeleteCartItems(cartItemId);
+      await deleteCartItems(cartItemId);
       removeCart(cartItemId);
-      const response = await fetchCartItems();
+      const response = await getCartItems();
       setCartRooms(response.data.data.item_dto_list);
       onDeleteSelectedRoom(cartItemId);
     } catch (error) {

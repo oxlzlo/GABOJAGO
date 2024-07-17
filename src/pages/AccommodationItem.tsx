@@ -19,9 +19,9 @@ import { ReservationModal } from '@/lib/common/ReservationModal';
 import RoomDetailModal from '@/lib/common/RoomDetailModal';
 import { ToastAlert } from '@/lib/common/ToastAlert';
 import { useCartStore } from '@/store/cartStore';
-import { fetchAccommodationById } from '@/api/accommodation/accommodationApi';
-import { fetchRoomList } from '@/api/accommodation/roomApi';
-import { fetchCreateCartItems } from '@/api/cart/cartItemsApi';
+import { getAccommodationById } from '@/api/accommodation/accommodationApi';
+import { getRoomList } from '@/api/accommodation/roomApi';
+import { createCartItems } from '@/api/cart/cartItemsApi';
 import dayjs from 'dayjs';
 import { configureDayjs } from '@/lib/constants/dayjsConfig';
 
@@ -51,7 +51,7 @@ const AccommodationItem = () => {
 
   useEffect(() => {
     const accommodationIdNumber = parseInt(accommodationId ?? '0', 10);
-    fetchAccommodationById(accommodationIdNumber)
+    getAccommodationById(accommodationIdNumber)
       .then((response) => {
         const { data } = response.data;
         setAccommodations([data]);
@@ -64,7 +64,7 @@ const AccommodationItem = () => {
 
   useEffect(() => {
     const accommodationIdNumber = parseInt(accommodationId ?? '0', 10);
-    fetchRoomList(accommodationIdNumber)
+    getRoomList(accommodationIdNumber)
       .then((response) => {
         const { data } = response?.data;
         setRoomList(data);
@@ -155,7 +155,7 @@ const AccommodationItem = () => {
         startDate: today,
         endDate: tomorrow,
       };
-      fetchCreateCartItems(payload)
+      createCartItems(payload)
         .then((response) => {
           addToCart(response.data.data);
           showToast({

@@ -5,7 +5,7 @@ import CartOrder from '@/components/cart/CartOrder';
 import { CartItems } from '@/lib/types/cart';
 import SelectAllCheckbox from '@/components/SelectAllCheckbox';
 import { useCartStore } from '@/store/cartStore';
-import { fetchCartItems, fetchDeleteCartItems } from '@/api/cart/cartItemsApi';
+import { getCartItems, deleteCartItems } from '@/api/cart/cartItemsApi';
 
 const Cart = () => {
   const [checkSelectedRooms, setCheckSelectedRooms] = useState<CartItems[]>([]);
@@ -14,7 +14,7 @@ const Cart = () => {
   const removeCart = useCartStore((state) => state.removeCart);
 
   useEffect(() => {
-    fetchCartItems()
+    getCartItems()
       .then((response) => {
         setCartRooms(response.data.data.item_dto_list);
       })
@@ -63,7 +63,7 @@ const Cart = () => {
   const handleAllDeleteSelectedRooms = async () => {
     try {
       // 선택된 객실을 삭제하는 api 호출
-      const deletePromises = checkSelectedRooms.map((room) => fetchDeleteCartItems(room.cart_item_id));
+      const deletePromises = checkSelectedRooms.map((room) => deleteCartItems(room.cart_item_id));
       await Promise.all(deletePromises);
       // 선택한 객실을 전역 상태에서도 삭제 하도록 removeCart 함수 호출
       checkSelectedRooms.forEach((checkSlectedRoom) => removeCart(checkSlectedRoom.cart_item_id));

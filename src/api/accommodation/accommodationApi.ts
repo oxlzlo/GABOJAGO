@@ -11,13 +11,7 @@ import { AxiosResponse } from 'axios';
  * @param count
  * @returns
  */
-export const fetchAccommodation = async (
-  cursor: number,
-  keyword: string,
-  start: string,
-  end: string,
-  count: number,
-) => {
+export const getAccommodation = async (cursor: number, keyword: string, start: string, end: string, count: number) => {
   return client.get('/open-api/accommodation', {
     params: {
       cursor,
@@ -33,9 +27,7 @@ export const fetchAccommodation = async (
  * 개별 상품 조회 (숙박, 객실)
  * @param accommodationId
  */
-export const fetchAccommodationById = async (
-  accommodationId: number,
-): Promise<AxiosResponse<AccommodationResponse>> => {
+export const getAccommodationById = async (accommodationId: number): Promise<AxiosResponse<AccommodationResponse>> => {
   try {
     return await client.get(`/open-api/accommodation/${accommodationId}`);
   } catch (error) {
