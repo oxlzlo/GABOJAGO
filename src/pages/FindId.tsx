@@ -4,6 +4,7 @@ import emotionStyled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserFindId } from '@/api/user/userApi';
+import { handleKeyDown } from '@/utils/keyDownUtils';
 
 const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -23,12 +24,6 @@ const FindId = () => {
         console.error(error);
         setError('입력하신 정보와 일치하는 계정이 존재하지 않습니다.');
       });
-  };
-
-  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSubmit();
-    }
   };
 
   return (
@@ -52,13 +47,13 @@ const FindId = () => {
                   placeholder="Name"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  onKeyPress={handleKeypress}
+                  onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
                 />
                 <InputBox
                   placeholder="Phone Number"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  onKeyPress={handleKeypress}
+                  onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
                 />
                 <Button
                   width="27.8vw"

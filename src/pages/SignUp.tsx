@@ -4,6 +4,13 @@ import Logo from '../assets/logo.svg?react';
 import emotionStyled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserRegister } from '@/api/user/userApi';
+import { handleKeyDown } from '@/utils/keyDownUtils';
+import {
+  validateConfirmPassword,
+  validateEmail,
+  validatePassword,
+  validatePhoneNumber,
+} from '@/utils/inputValidationUtils';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -15,28 +22,17 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (email === '') {
-      alert('이메일을 입력해주세요.');
-      return;
-    }
-
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
-      alert('비밀번호는 영어와 숫자를 포함한 8자 이상이어야 합니다.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert('패스워드가 일치하지 않습니다.');
+    if (
+      !validateEmail(email) ||
+      !validatePassword(password) ||
+      !validateConfirmPassword(password, confirmPassword) ||
+      !validatePhoneNumber(phoneNumber)
+    ) {
       return;
     }
 
     if (name === '') {
       alert('이름을 입력해주세요.');
-      return;
-    }
-
-    if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(phoneNumber)) {
-      alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
       return;
     }
 
@@ -61,12 +57,6 @@ const SignUp = () => {
       });
   };
 
-  const handleKeypress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSubmit();
-    }
-  };
-
   return (
     <Box position="relative" height="100vh" backgroundColor="background">
       <Box
@@ -87,33 +77,33 @@ const SignUp = () => {
                 placeholder="E-mail *"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Password *"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Confirm Password *"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Name *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <InputBox
                 placeholder="Phone Number *"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                onKeyPress={handleKeypress}
+                onKeyDown={(e) => handleKeyDown(e, handleSubmit)}
               />
               <Button
                 width="27.8vw"
