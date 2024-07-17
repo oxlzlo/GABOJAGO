@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserResetPw } from '@/api/user/userApi';
 import { handleKeyDown } from '@/utils/keyDownUtils';
+import { validatePhoneNumber } from '@/utils/inputValidationUtils';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -20,8 +21,7 @@ const Mypage = () => {
 
   const handleEditInfo = async () => {
     if (editPhoneNumber !== user?.phone_number) {
-      if (!/^\d{2,3}-\d{3,4}-\d{4}$/.test(editPhoneNumber)) {
-        alert('전화번호를 양식에 맞게 입력해주세요.\nex) 00-000-0000\nex) 000-0000-0000');
+      if (!validatePhoneNumber(editPhoneNumber)) {
         return;
       }
 
