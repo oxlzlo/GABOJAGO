@@ -1,4 +1,4 @@
-import client from '@/api/apiConfig';
+import { client } from '@/api/apiConfig';
 
 const token = localStorage.getItem('accessToken');
 

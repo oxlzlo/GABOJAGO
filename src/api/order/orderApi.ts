@@ -1,4 +1,4 @@
-import client from '../apiConfig';
+import { client } from '../apiConfig';
 
 /**
  * 주문하기

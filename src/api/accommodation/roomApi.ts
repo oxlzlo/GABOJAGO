@@ -1,4 +1,4 @@
-import client from '@/api/apiConfig';
+import { client } from '@/api/apiConfig';
 import { RoomListResponse } from '@/lib/types/accommodation';
 import { AxiosResponse } from 'axios';
 
