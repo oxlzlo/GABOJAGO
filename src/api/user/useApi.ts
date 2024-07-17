@@ -1,4 +1,4 @@
-import client from '@/api/apiConfig';
+import { client } from '@/api/apiConfig';
 
 /**
  * 회원가입

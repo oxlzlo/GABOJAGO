@@ -1,4 +1,4 @@
-import client from '@/api/apiConfig';
+import { client } from '@/api/apiConfig';
 import { CartItemDataResponse, CartItemsResponse } from '@/lib/types/cart';
 import { AxiosResponse } from 'axios';
 
