@@ -1,10 +1,10 @@
 import { OrderDetailsProps } from '@/lib/types/order';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
-const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
-  const hasSelectedItems = selectedItems && selectedItems.length > 0;
+const OrderDetails = ({ selectedCartRooms, selectedBookingRoom }: OrderDetailsProps) => {
+  const hasSelectedItems = selectedCartRooms && selectedCartRooms.length > 0;
 
-  if (!selectedRoom && !hasSelectedItems) {
+  if (!selectedBookingRoom && !hasSelectedItems) {
     return <Text>데이터를 불러오는 중 오류가 발생했습니다.</Text>;
   }
 
@@ -13,73 +13,73 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
       <Flex>
         <Box width="100%" display="flex" flexDirection="column" gap="1.5rem">
           {hasSelectedItems
-            ? selectedItems.map((selectedItem) => (
+            ? selectedCartRooms.map((selectedCartRoom) => (
                 <Box
-                  key={selectedItem.cart_item_id}
+                  key={selectedCartRoom.cart_item_id}
                   width="100%"
                   padding="2.5rem"
                   border="1px solid"
                   borderColor="grayLight"
                   borderRadius="2rem">
                   <Text fontSize="3rem" fontWeight="900">
-                    {selectedItem.room.roomTypeName}
+                    {selectedCartRoom.room.roomTypeName}
                   </Text>
-                  <Text fontSize="1.5rem">{selectedItem.room.roomType}</Text>
+                  <Text fontSize="1.5rem">{selectedCartRoom.room.roomType}</Text>
                   <Flex paddingY="5rem" gap="2rem">
                     <Box>
                       <Text fontSize="1.5rem">체크인</Text>
-                      <Text fontSize="1.3rem">{selectedItem.start_date}</Text>
+                      <Text fontSize="1.3rem">{selectedCartRoom.start_date}</Text>
                       <Text fontSize="1.3rem">15:30</Text>
                     </Box>
                     <Box>
                       <Text fontSize="1.5rem">체크아웃</Text>
-                      <Text fontSize="1.3rem">{selectedItem.end_date}</Text>
+                      <Text fontSize="1.3rem">{selectedCartRoom.end_date}</Text>
                       <Text fontSize="1.3rem">11:00</Text>
                     </Box>
                   </Flex>
                   <Text fontSize="1.5rem">
-                    기준 {selectedItem.room.roomDefaultGuest}인 / 최대 {selectedItem.room.roomMaxGuest}인
+                    기준 {selectedCartRoom.room.roomDefaultGuest}인 / 최대 {selectedCartRoom.room.roomMaxGuest}인
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
                     가격:{' '}
-                    {`${selectedItem.room.roomPrice.toLocaleString('ko-KR', {
+                    {`${selectedCartRoom.room.roomPrice.toLocaleString('ko-KR', {
                       style: 'decimal',
                       currency: 'KRW',
                     })}원`}
                   </Text>
                 </Box>
               ))
-            : selectedRoom && (
+            : selectedBookingRoom && (
                 <Box
-                  key={selectedRoom.id}
+                  key={selectedBookingRoom.id}
                   width="100%"
                   padding="2.5rem"
                   border="1px solid"
                   borderColor="grayLight"
                   borderRadius="2rem">
                   <Text fontSize="3rem" fontWeight="900">
-                    {selectedRoom.roomTypeName}
+                    {selectedBookingRoom.roomTypeName}
                   </Text>
-                  <Text fontSize="1.5rem">룸 타입: {selectedRoom.roomType}</Text>
+                  <Text fontSize="1.5rem">룸 타입: {selectedBookingRoom.roomType}</Text>
                   <Flex paddingY="5rem" gap="2rem">
                     <Box>
                       <Text fontSize="1.5rem">체크인</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.startDate}</Text> {/* Use the correct startDate */}
+                      <Text fontSize="1.3rem">{selectedBookingRoom.startDate}</Text> {/* Use the correct startDate */}
                       <Text fontSize="1.3rem">15:30</Text>
                     </Box>
                     <Box>
                       <Text fontSize="1.5rem">체크아웃</Text>
-                      <Text fontSize="1.3rem">{selectedRoom.endDate}</Text> {/* Use the correct endDate */}
+                      <Text fontSize="1.3rem">{selectedBookingRoom.endDate}</Text> {/* Use the correct endDate */}
                       <Text fontSize="1.3rem">11:00</Text>
                     </Box>
                   </Flex>
                   <Text fontSize="1.5rem">
-                    기준 {selectedRoom.roomDefaultGuest}인 / 최대 {selectedRoom.roomMaxGuest}인
+                    기준 {selectedBookingRoom.roomDefaultGuest}인 / 최대 {selectedBookingRoom.roomMaxGuest}인
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
                     가격:{' '}
                     <span style={{ color: 'red' }}>
-                      {`${selectedRoom.roomPrice.toLocaleString('ko-KR', {
+                      {`${selectedBookingRoom.roomPrice.toLocaleString('ko-KR', {
                         style: 'decimal',
                         currency: 'KRW',
                       })}원`}
@@ -87,7 +87,7 @@ const OrderDetails = ({ selectedItems, selectedRoom }: OrderDetailsProps) => {
                   </Text>
                   <Text fontSize="1.5rem" textAlign="right">
                     추가 요금:
-                    {`${selectedRoom.roomExtraPrice.toLocaleString('ko-KR', {
+                    {`${selectedBookingRoom.roomExtraPrice.toLocaleString('ko-KR', {
                       style: 'decimal',
                       currency: 'KRW',
                     })}원`}

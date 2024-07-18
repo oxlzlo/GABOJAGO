@@ -8,7 +8,7 @@ export type OrderData = {
   doneRoomList: Rooms[];
 };
 
-export type selectedItems = {
+export type selectedCartRooms = {
   room: Rooms;
   id: number;
   start_date: string;
@@ -17,8 +17,8 @@ export type selectedItems = {
 };
 
 export type OrderDetailsProps = {
-  selectedItems: selectedItems[];
-  selectedRoom: Rooms;
+  selectedCartRooms: selectedCartRooms[];
+  selectedBookingRoom: Rooms;
 };
 
 export type Rooms = {
