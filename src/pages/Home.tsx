@@ -7,7 +7,6 @@ import axios from 'axios';
 import { Accommodation } from '@/lib/types/accommodation';
 import { useLocation } from 'react-router-dom';
 import AccommodationList from '@/components/AccommodationList';
-import Banner from '@/assets/images/banner.svg?react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -75,7 +74,6 @@ const Home = () => {
         <SearchBar />
       </Box>
       <Box padding="8rem 15rem 7rem" display="flex" flexDirection="column" alignItems="center">
-        <Banner />
         <AccommodationList accommodation={accommodationData} />
       </Box>
     </Box>
