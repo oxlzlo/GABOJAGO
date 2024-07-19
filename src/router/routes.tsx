@@ -1,95 +1,129 @@
 import Layout from '@/components/layout/Layout';
-import Home from '@/pages/Home';
-import Order from '@/pages/Order';
-import Cart from '@/pages/Cart';
-import SignIn from '@/pages/SignIn';
-import SignUp from '@/pages/SignUp';
-import AccommodationItem from '@/pages/AccommodationItem';
-import FindId from '@/pages/FindId';
-import Resetpw from '@/pages/Resetpw';
-import Mypage from '@/pages/Mypage';
-import OrderConfirm from '@/pages/OrderConfirm';
-import OrderHistory from '@/pages/OrderHistory';
+import { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('@/pages/Home'));
+const Order = lazy(() => import('@/pages/Order'));
+const Cart = lazy(() => import('@/pages/Cart'));
+const SignIn = lazy(() => import('@/pages/SignIn'));
+const SignUp = lazy(() => import('@/pages/SignUp'));
+const AccommodationItem = lazy(() => import('@/pages/AccommodationItem'));
+const FindId = lazy(() => import('@/pages/FindId'));
+const Resetpw = lazy(() => import('@/pages/Resetpw'));
+const Mypage = lazy(() => import('@/pages/Mypage'));
+const OrderConfirm = lazy(() => import('@/pages/OrderConfirm'));
+const OrderHistory = lazy(() => import('@/pages/OrderHistory'));
 
 export const routes = [
   {
     path: '/',
     element: (
       <Layout>
-        <Home />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Home />
+        </Suspense>
       </Layout>
     ),
   },
   {
     path: '/cart',
     element: (
-      <Layout>
-        <Cart />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <Cart />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/accommodation/:accommodationId',
     element: (
-      <Layout>
-        <AccommodationItem />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <AccommodationItem />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/order/:roomId',
     element: (
-      <Layout>
-        <Order />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <Order />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/order',
     element: (
-      <Layout>
-        <Order />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <Order />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/order/payment/:orderId',
     element: (
-      <Layout>
-        <OrderConfirm />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <OrderConfirm />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/orderhistory',
     element: (
-      <Layout>
-        <OrderHistory />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <OrderHistory />
+        </Layout>
+      </Suspense>
     ),
   },
   {
     path: '/signup',
-    element: <SignUp />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <SignUp />
+      </Suspense>
+    ),
   },
   {
     path: '/signin',
-    element: <SignIn />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <SignIn />
+      </Suspense>
+    ),
   },
   {
     path: '/findid',
-    element: <FindId />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <FindId />
+      </Suspense>
+    ),
   },
   {
     path: '/resetpw',
-    element: <Resetpw />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Resetpw />
+      </Suspense>
+    ),
   },
   {
     path: 'mypage',
     element: (
-      <Layout>
-        <Mypage />
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <Mypage />
+        </Layout>
+      </Suspense>
     ),
   },
 ];
