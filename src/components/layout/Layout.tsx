@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { LayoutProps } from '@/lib/types/layoutProps';
 
 const Layout = ({ children }: LayoutProps) => {
@@ -7,7 +6,6 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Header />
       {children}
-      <Footer />
     </>
   );
 };
