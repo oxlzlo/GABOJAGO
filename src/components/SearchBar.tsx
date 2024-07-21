@@ -1,4 +1,13 @@
-import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useState, useRef, useEffect } from 'react';
 import { SearchIcon, ChevronDownIcon, AddIcon, MinusIcon } from '@chakra-ui/icons';
 import People from '../assets/people.svg?react';
@@ -95,39 +104,46 @@ const SearchBar = () => {
     };
   });
 
+  const inputWidth = useBreakpointValue({ base: '90vw', md: '29.9vw' });
+  const datepickerWidth = useBreakpointValue({ base: '90vw', md: '27.8vw' });
+  const guestWidth = useBreakpointValue({ base: '90vw', md: '18.1vw' });
+  const buttonWidth = useBreakpointValue({ base: '90vw', md: '12.5vw' });
+  const inputFontSize = useBreakpointValue({ base: '1.2rem', md: '2rem' });
+  const buttonFontSize = useBreakpointValue({ base: '2rem', md: '3rem' });
+  const height = useBreakpointValue({ base: '5vh', md: '6.5vh' });
+
   return (
     <div
       ref={targetRef}
       className="searchBar"
       style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '0', left: '0' }}>
       <Flex justify="center" align="center">
-        <Box position="absolute" width="90.3vw" height="6.5vh">
-          <Flex justifyContent="space-between" align="center">
-            <InputGroup width="29.9vw">
-              <InputLeftElement width="3vw" height="6.5vh" paddingLeft=".5vw">
-                <SearchIcon color="gray" w={9} h={9} />
+        <Box position="absolute" width={useBreakpointValue({ base: '95vw', md: '90.3vw' })} height={height}>
+          <Flex justifyContent="space-between" align="center" wrap="wrap">
+            <InputGroup width={inputWidth}>
+              <InputLeftElement width="3vw" height={height} paddingLeft=".5vw">
+                <SearchIcon color="gray" w={7} h={7} />
               </InputLeftElement>
               <Input
-                height="6.5vh"
+                height={height}
                 padding="0 5.5rem"
                 border=".1rem solid var(--color-main)"
                 borderRadius=".8rem"
                 backgroundColor="white"
-                fontSize="2rem"
+                fontSize={inputFontSize}
                 placeholder="어디로 가실건가요?   ex) 서울, 대구"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 _focusVisible={{ outline: 'none' }}
               />
             </InputGroup>
-
             <InputGroup
-              width="27.8vw"
-              height="6.5vh"
+              width={datepickerWidth}
+              height={height}
               border=".1rem solid var(--color-main)"
               borderRadius=".8rem"
               backgroundColor="white">
-              <Flex align="center">
+              <Flex align="center" width="100%">
                 <Datepicker
                   value={startDate ? startDate.toISOString().split('T')[0] : ''}
                   onChange={(date) => setStartDate(date)}
@@ -140,18 +156,17 @@ const SearchBar = () => {
               </Flex>
             </InputGroup>
 
-            <InputGroup width="18.1vw" position="relative" ref={dropdownRef}>
-              <InputLeftElement width="3vw" height="6.5vh" paddingLeft=".5vw">
+            <InputGroup width={guestWidth} position="relative" ref={dropdownRef}>
+              <InputLeftElement width="3vw" height={height} paddingLeft=".5vw">
                 <People />
               </InputLeftElement>
               <Input
-                width="18.1vw"
-                height="6.5vh"
+                height={height}
                 padding="0 3.5vw"
                 border=".1rem solid var(--color-main)"
                 borderRadius=".8rem"
                 backgroundColor="white"
-                fontSize="1.6rem"
+                fontSize={inputFontSize}
                 placeholder={`인원 ${guest}명`}
                 _focusVisible={{ outline: 'none' }}
                 value={`인원 ${guest}명`}
@@ -192,13 +207,12 @@ const SearchBar = () => {
                 </Box>
               )}
             </InputGroup>
-
             <Button
-              width="12.5vw"
-              height="6.5vh"
+              width={buttonWidth}
+              height={height}
               borderRadius=".8rem"
               backgroundColor="main"
-              fontSize="3rem"
+              fontSize={buttonFontSize}
               color="white"
               _hover={{ bg: 'primaryHover', border: '.1rem solid var(--color-main)' }}
               onClick={handleClickSearchBtn}>
