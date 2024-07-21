@@ -7,6 +7,9 @@ import axios from 'axios';
 import { Accommodation } from '@/lib/types/accommodation';
 import { useLocation } from 'react-router-dom';
 import AccommodationList from '@/components/AccommodationList';
+import banner1 from '@/assets/images/banner1.webp';
+import banner2 from '@/assets/images/banner2.webp';
+import banner3 from '@/assets/images/banner3.webp';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -47,28 +50,13 @@ const Home = () => {
       <Box position="relative" overflowX="hidden">
         <Slider {...settings}>
           <Box pointerEvents="none">
-            <Image
-              src="https://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243548102999472.jpg"
-              width="100%"
-              height="70vh"
-              opacity=".9"
-            />
+            <Image src={banner1} width="100%" height="70vh" opacity=".9" />
           </Box>
           <Box pointerEvents="none">
-            <Image
-              src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243560922193661.jpg"
-              width="100%"
-              height="70vh"
-              opacity=".9"
-            />
+            <Image src={banner2} width="100%" height="70vh" opacity=".9" />
           </Box>
           <Box pointerEvents="none">
-            <Image
-              src="http://tourimage.interpark.com/BBS/Tour/FckUpload/202012/6374243553155874372.jpg"
-              width="100%"
-              height="70vh"
-              opacity=".9"
-            />
+            <Image src={banner3} width="100%" height="70vh" opacity=".9" />
           </Box>
         </Slider>
         <SearchBar />
