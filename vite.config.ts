@@ -14,6 +14,7 @@ export default defineConfig({
       algorithm: 'gzip',
       // 압축된 파일의 확장자를 '.gz'로 설정
       ext: '.gz',
+      filter: /\.(js|css|html|svg)$/, // 원하는 파일 형식을 지정
     }),
   ],
   resolve: {
