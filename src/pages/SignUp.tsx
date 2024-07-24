@@ -45,7 +45,6 @@ const SignUp = () => {
 
     fetchUserRegister(payload)
       .then((response) => {
-        console.log(response);
         if (response.data.result_code === '200') {
           alert('회원가입이 정상적으로 처리되었습니다.');
           navigate('/signin');
