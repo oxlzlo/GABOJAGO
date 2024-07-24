@@ -1,7 +1,5 @@
 import { client } from '@/api/apiConfig';
 
-const token = localStorage.getItem('accessToken');
-
 /**
  * 회원가입
  * @param payload {email, name, phone_number, password}
@@ -45,12 +43,7 @@ export const fetchUserResetPw = async (payload: { email: string; password: strin
  * @param formData
  */
 export const fetchUserImgPost = async (formData: FormData) => {
-  return client.post('api/user/my-page/image/upload', formData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  return client.post('api/user/my-page/image/upload', formData);
 };
 
 /**
@@ -60,10 +53,6 @@ export const fetchUserImgPost = async (formData: FormData) => {
  */
 export const fetchUserImgPut = async (formData: FormData, oldImageUrl: string) => {
   return client.put('/api/user/my-page/image/update', formData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
-    },
     params: {
       oldImageUrl: oldImageUrl,
     },
@@ -75,9 +64,5 @@ export const fetchUserImgPut = async (formData: FormData, oldImageUrl: string) =
  * @param payload {phone_number}
  */
 export const fetchUserEditPhoneNumber = async (payload: { phone_number: string }) => {
-  return client.put('/api/user/my-page/change-phone-number', payload, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  return client.put('/api/user/my-page/change-phone-number', payload, {});
 };

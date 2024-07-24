@@ -1,11 +1,11 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import { useAuth } from '@/store/authStore';
 import emotionStyled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { User } from '@/lib/types/authStore';
 import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserResetPw } from '@/api/user/userApi';
 import { handleKeyDown } from '@/utils/keyDownUtils';
 import { validatePhoneNumber } from '@/utils/inputValidationUtils';
+import { useAuth } from '@/lib/hooks/useAuth';
 
 const Mypage = () => {
   const { user, login } = useAuth();

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { User, AuthState } from '../lib/types/authStore';
 import { useEffect } from 'react';
 
-const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   login: (userData: User) => {
     set({ user: userData });
@@ -33,12 +33,3 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 }));
-
-export const useAuth = () => {
-  const { user, login, logout, loadUserFromLocalStorage } = useAuthStore();
-
-  useEffect(() => {
-    loadUserFromLocalStorage();
-  }, [loadUserFromLocalStorage]);
-  return { user, login, logout };
-};
