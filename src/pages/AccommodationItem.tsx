@@ -283,20 +283,13 @@ const AccommodationItem = () => {
                                 </span>
                               </Text>
                               <Text fontSize="1.6rem">객실 소개: {room.comment}</Text>
+                              <Text fontSize="1.8rem">
+                                객실 재고: <span style={{ color: 'red' }}>{room.roomStock}</span>
+                              </Text>
                             </Box>
                           </Flex>
                         </Flex>
                         <Flex gap=".5rem" alignItems="end">
-                          <Box
-                            border="1px solid"
-                            borderColor="grayLight"
-                            borderRadius=".5rem"
-                            padding=".5rem"
-                            marginRight="1rem">
-                            <Text fontSize="1.8rem">
-                              객실 재고: <span style={{ color: 'red' }}>{room.roomStock}</span>
-                            </Text>
-                          </Box>
                           <Button
                             onClick={() => handleAddToCart(room.id.toString())}
                             paddingY="1.8rem"
