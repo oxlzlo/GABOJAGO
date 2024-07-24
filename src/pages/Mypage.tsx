@@ -9,14 +9,13 @@ import { useAuth } from '@/lib/hooks/useAuth';
 
 const Mypage = () => {
   const { user, login } = useAuth();
-
   const [editPhoneNumber, setEditPhoneNumber] = useState<string>(user?.phone_number || '');
   const [password, setPassword] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>(user?.img_url || '');
   const oldImageUrl = user?.img_url;
-
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleEditInfo = async () => {
@@ -70,12 +69,25 @@ const Mypage = () => {
     }
   };
 
-  const handleImgChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
+  /**
+   * 이미지 파일 변경 시 호출되는 함수
+   * @param event
+   */
+  const handleImgChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
+      setSelectedFile(file);
+      setImgUrl(URL.createObjectURL(file));
+    }
+  };
+
+  /**
+   * 이미지 업로드 함수
+   */
+  const handleImgUpload = async () => {
+    if (selectedFile) {
       const formData = new FormData();
-      formData.append('imageFile', file);
+      formData.append('imageFile', selectedFile);
 
       let response;
 
@@ -123,9 +135,19 @@ const Mypage = () => {
                   transform: 'translateY(-50%)',
                   left: '0',
                   right: '0',
-                }}></img>
+                }}
+              />
               <Input type="file" ref={fileInputRef} display="none" onChange={handleImgChange} />
             </Box>
+            <Button
+              onClick={handleImgUpload}
+              border="1px solid"
+              borderRadius=".5rem"
+              background="main"
+              textColor="white"
+              padding="1.5rem">
+              <Text fontSize="1.5rem">등록</Text>
+            </Button>
             <Box width="35vw" height="60vh" marginTop="3vh">
               <Flex justify="space-between" align="center">
                 <Text width="40%" fontSize="2rem" color="main">
