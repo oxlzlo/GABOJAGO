@@ -6,6 +6,7 @@ import { fetchUserEditPhoneNumber, fetchUserImgPost, fetchUserImgPut, fetchUserR
 import { handleKeyDown } from '@/utils/keyDownUtils';
 import { validatePhoneNumber } from '@/utils/inputValidationUtils';
 import { useAuth } from '@/lib/hooks/useAuth';
+import FileResizer from 'react-image-file-resizer';
 
 const Mypage = () => {
   const { user, login } = useAuth();
@@ -76,8 +77,19 @@ const Mypage = () => {
   const handleImgChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
-      setImgUrl(URL.createObjectURL(file));
+      FileResizer.imageFileResizer(
+        file,
+        300,
+        300,
+        'WEBP',
+        100,
+        0,
+        (uri) => {
+          setSelectedFile(uri as File);
+          setImgUrl(URL.createObjectURL(uri as Blob));
+        },
+        'blob',
+      );
     }
   };
 
